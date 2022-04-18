@@ -26,7 +26,7 @@ public class Eventhelper {
 	public static WebElement findElement(WebDriver driver, By locator) {
 		WebElement element = null;
 		try {
-			element = driver.findElement(locator);
+			element = Eventhelper.explicitwait(driver, locator);
 		} catch (StaleElementReferenceException e) {
 			element = driver.findElement(locator);
 			Log.error("Getting exception in find element --> " + e.toString());
