@@ -13,7 +13,7 @@ public class Log {
 
 		log.info(lineseparator);
 
-		log.info("$$$$$$$$$$$$$$$$$$$$$     " + testcasename + "     $$$$$$$$$$$$$$$$$$$$$$$$$");
+		log.info("$$$$$$$$$$$$$$$$$$$$$  Start of   " + testcasename + "     $$$$$$$$$$$$$$$$$$$$$$$$$");
 
 		log.info(lineseparator);
 
@@ -25,7 +25,7 @@ public class Log {
 
 		log.info(lineseparator);
 
-		log.info("XXXXXXXXXXXXXXXXXXXXXXX             " + testcasename + "             XXXXXXXXXXXXXXXXXXXXXX");
+		log.info("XXXXXXXXXXXXXXXXXXXXXXX    End of      " + testcasename + "             XXXXXXXXXXXXXXXXXXXXXX");
 
 		log.info(lineseparator);
 
