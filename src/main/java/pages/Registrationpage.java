@@ -1,19 +1,24 @@
 package pages;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import utility.Eventhelper;
-import utility.Log;
 
 public class Registrationpage {
 
 	private WebDriver driver;
-	private By fnametextbox = By.xpath("//input[@placeholder='Your first name']");
-	private By lnametextbox = By.xpath("//input[@placeholder='Your last name']");
-	private By businessaddress = By.xpath("//input[@placeholder='The name you’re known by']");
+	private By fnametextbox = By.xpath(" //input[@name='firstName']");
+	private By lnametextbox = By.xpath("//input[@name='lastName']");
+	private By businessaddress = By.xpath("//input[@name='dbaName']");
 	private By password = By.xpath("//input[contains(@name ,'password')]");
 	private By emailaddress = By.xpath("//input[contains(@name ,'email')]");
+	private By otpboxlocator = By.xpath("(//input[contains(@aria-label,'Digit')])");
 
 	public Registrationpage(WebDriver driver) {
 		this.driver = driver;
@@ -34,6 +39,10 @@ public class Registrationpage {
 	}
 
 	public void enterEmailAddress(String value) {
+
+		if (value.contains("random")) {
+			value = UUID.randomUUID().toString() + "@hopscotchautomation.com";
+		}
 
 		Eventhelper.sendkeys(driver, emailaddress, value);
 	}
@@ -59,18 +68,19 @@ public class Registrationpage {
 	}
 
 	public void enterOTP() {
-		for (int i = 1; i <= 4; i++) {
+		List<WebElement> otpboxes = Eventhelper.findElements(driver, otpboxlocator);
+		for (int i = 1; i <= otpboxes.size(); i++) {
 			String xpath = "(//input[contains(@aria-label,'Digit')])[" + i + "]";
-			Log.info(xpath);
 			By otptextfield = By.xpath(xpath);
-
 			Eventhelper.sendkeys(driver, otptextfield, "5");
-
 		}
+
 	}
 
-	public String getWelcomeText(String text) {
+	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
-		return Eventhelper.getTextofElement(driver, xpath);
+		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
+
+	
 }

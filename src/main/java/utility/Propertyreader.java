@@ -7,14 +7,14 @@ import java.util.Properties;
 
 public class Propertyreader {
 
-	private Properties prop;
+	private Properties property;
 
 	public Properties init_prop() {
 
-		prop = new Properties();
+		property = new Properties();
 		try {
 			FileInputStream ip = new FileInputStream("./src/test/resources/hopscotch.properties");
-			prop.load(ip);
+			property.load(ip);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -22,7 +22,7 @@ public class Propertyreader {
 			e.printStackTrace();
 		}
 
-		return prop;
+		return property;
 
 	}
 

@@ -1,13 +1,11 @@
 package steps;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.*;
-
-
 import pages.Registrationpage;
 import utility.Driverhelper;
-import utility.Eventhelper;
 import utility.Log;
 
 
@@ -55,14 +53,12 @@ public class Registrationstep {
 
 	@When("User enter otp on registration page")
 	public void user_enter_otp_on_registration_page() {
-		
 		registrationpage.enterOTP();
-
 	}
 	
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
-	  String actualText= registrationpage.getWelcomeText(expectedText);
-	  assertEquals(expectedText,actualText );
+	  boolean isTextDisplay= registrationpage.isTextDisplayed(expectedText);
+	  assertTrue(isTextDisplay);
 	}
 }
