@@ -8,7 +8,7 @@ Feature: Test Login Functionality
     Then User should see "Homepage" text on the screen
 
   @Regression
-  Scenario Outline: Verify Validations for Email/Password
+  Scenario Outline: Verify Validations for Email_Password
     When User enter <email> in email field
     When User enter <password> in password field
     When User click on "Log in" button
@@ -35,3 +35,4 @@ Feature: Test Login Functionality
   Scenario: Verify that User click on Term of Use Link
     When User click on "Terms of Use" link
     Then User should see "Terms of Use" text on the screen
+    
