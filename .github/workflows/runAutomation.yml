@@ -42,7 +42,12 @@ jobs:
           server-id: codeartifact
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
-
+          
+      - name: Install Google Chrome 
+        run: |
+          chmod +x ./scripts/InstallChrome.sh
+          ./scripts/InstallChrome.sh
+		      
       - name: Build Package
         run: mvn package
         env:
