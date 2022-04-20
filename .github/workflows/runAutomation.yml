@@ -44,10 +44,9 @@ jobs:
           server-password: MAVEN_TOKEN
           
       - name: Install Google Chrome 
-        run: |
+        run: 
           chmod +x ./scripts/InstallChrome.sh
-          ./scripts/InstallChrome.sh
-		      
+	      
       - name: Build Package
         run: mvn package
         env:
