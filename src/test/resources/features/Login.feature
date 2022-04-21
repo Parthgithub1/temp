@@ -35,4 +35,4 @@ Feature: Test Login Functionality
   Scenario: Verify that User click on Term of Use Link
     When User click on "Terms of Use" link
     Then User should see "Terms of Use" text on the screen
-    
+

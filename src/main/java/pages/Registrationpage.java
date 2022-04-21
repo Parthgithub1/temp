@@ -82,5 +82,12 @@ public class Registrationpage {
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
 
-	
+	public void clickOnTextbox() {
+		Eventhelper.click(driver, emailaddress);
+	}
+
+	public void sendTab() {
+		Eventhelper.sendTab(driver, emailaddress);
+	}
+
 }

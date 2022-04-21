@@ -9,7 +9,7 @@ public class Environmenthelper {
 
 	public static String setUrl(String Env) {
 		String url = null;
-
+	
 		switch (Env) {
 		case "dev":
 			url = property.getProperty("dev");
@@ -20,6 +20,8 @@ public class Environmenthelper {
 		case "uat":
 			url = property.getProperty("uat");
 			break;
+		default:
+			url = property.getProperty("uat");
 		}
 		return url;
 

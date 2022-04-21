@@ -2,6 +2,7 @@ package utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -66,20 +68,21 @@ public class Eventhelper {
 		try {
 			element.click();
 		} catch (ElementClickInterceptedException e) {
-			Eventhelper.clickElementwithjs(driver, element);
+			Eventhelper.clickElementwithjs(driver, locator);
 			Log.error("Getting exception in Click --> " + e.toString());
 		} catch (StaleElementReferenceException e) {
-			Eventhelper.clickElementwithjs(driver, element);
+			Eventhelper.clickElementwithjs(driver, locator);
 			Log.error("Getting exception in  Click --> " + e.toString());
 		} catch (NoSuchElementException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
-			Eventhelper.clickElementwithjs(driver, element);
+			Eventhelper.clickElementwithjs(driver, locator);
 
 		}
 	}
 
-	public static void clickElementwithjs(WebDriver driver, WebElement element) {
+	public static void clickElementwithjs(WebDriver driver, By locator) {
 		JavascriptExecutor jsexecutor = (JavascriptExecutor) driver;
+		WebElement element = explicitwaitclickable(driver, locator);
 		try {
 			jsexecutor.executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
@@ -150,5 +153,18 @@ public class Eventhelper {
 		return element.getText();
 
 	}
+	
+	public static void sendTab(WebDriver driver, By locator) {
+		WebElement element = explicitwait(driver, locator);
+		element.sendKeys(Keys.TAB);
+	}
+	
+	public static void sendBackspace(WebDriver driver, By locator) {
+		WebElement element = explicitwait(driver, locator);
+		element.sendKeys(Keys.CONTROL + "a");
+		element.sendKeys(Keys.DELETE);
+	}
+	
+
 
 }
