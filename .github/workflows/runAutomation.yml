@@ -21,6 +21,9 @@ jobs:
       - name: Run git checkout
         uses: actions/checkout@v2
 
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@latest
+                
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -43,11 +46,6 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
           
-      - name: Install Google Chrome 
-        run: |
-          chmod +x ./scripts/InstallChrome.sh
-          ./scripts/InstallChrome.sh
-
       - name: Build Package
         run: mvn package
         env:
