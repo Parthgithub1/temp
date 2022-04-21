@@ -19,7 +19,7 @@ public class Hooks {
 	@Before
 	public void setup(Scenario scenario) throws Exception {
 		Log.startTestCase(scenario.getName());
-		MyScreenRecorder.startRecording(scenario.getName());
+		//MyScreenRecorder.startRecording(scenario.getName());
 		driver = driverhelper.setDriver(System.getProperty("browser"));
 		Driverhelper.getDriver().get(Environmenthelper.setUrl(System.getProperty("env")));
 
@@ -36,7 +36,7 @@ public class Hooks {
 	@After(order = 0)
 	public void teardown(Scenario scenario) throws Exception {
 		driver.quit();
-		MyScreenRecorder.stopRecording();
+		//MyScreenRecorder.stopRecording();
 		Log.endTestCase(scenario.getName());
 	}
 
