@@ -14,6 +14,9 @@ public class Driverhelper {
 
 	public WebDriver setDriver(String browser) {
 
+		if (browser == null) {
+			browser = "chrome";
+		}
 		switch (browser) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();

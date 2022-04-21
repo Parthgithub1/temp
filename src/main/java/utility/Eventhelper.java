@@ -2,10 +2,10 @@ package utility;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -20,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class Eventhelper {
 
@@ -153,18 +154,27 @@ public class Eventhelper {
 		return element.getText();
 
 	}
-	
+
 	public static void sendTab(WebDriver driver, By locator) {
 		WebElement element = explicitwait(driver, locator);
 		element.sendKeys(Keys.TAB);
 	}
-	
+
 	public static void sendBackspace(WebDriver driver, By locator) {
 		WebElement element = explicitwait(driver, locator);
 		element.sendKeys(Keys.CONTROL + "a");
 		element.sendKeys(Keys.DELETE);
 	}
-	
 
+	public static void getURL(WebDriver driver, String URL) {
+		URL = Environmenthelper.setUrl(System.getProperty("env"))+URL;
+		driver.get(URL);
+	}
+	
+	public static String generateRandomNumber() {
+		Random random = new Random();
+		int number = random.nextInt(999999999);
+		return String.valueOf(number);
+	}
 
 }

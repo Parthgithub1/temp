@@ -4,19 +4,15 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
 import utility.Eventhelper;
-import utility.Log;
 
 public class Verificationpage {
 
+	
 	private WebDriver driver;
 
 	private By legalbusinessnametextbox = By.xpath("//input[@placeholder='Business name']");
 	private By businessaddress = By.xpath("//input[@name='bizAddress']");
-	private By selectbusinessaddress = By.xpath("//div[@class='pac-container pac-logo']//div[@class='pac-item'][1]");
 	private By businessapt = By.xpath("//input[@name='bizAddressApt']");
 	private By businesscity = By.xpath("//input[@name='bizAddressCity']");
 	private By businessstate = By.xpath("//div[@id='bizAddressState']");
@@ -31,14 +27,15 @@ public class Verificationpage {
 	private By addbeneficialBirthdate = By.xpath("//input[@placeholder='Birthday']");
 	private By addbeneficialssn = By.xpath("//input[@id='ownerSSN']");
 	private By addbeneficialnextbtn = By.xpath("//button[normalize-space()='Next']");
-	private By addbeneficialsameaslegaladdress = By
-			.xpath("//label[normalize-space()='Same as legal business address']");
+	private By addbeneficialsameaslegaladdress = By.xpath("//label[normalize-space()='Same as legal business address']");
 	private By addbeneficialsavebtn = By.xpath("//button[normalize-space()='Save']");
-
 	private By isbeneficialadded = By.xpath("//p[@class='BeneficialOwner_name__3kfE1']");
+	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
+	private By addbankde = By.xpath("//span[normalize-space()='Add and securely connect instantly']");
 
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
+
 	}
 
 	public void enterLegalBusinessName(String legalbusnienssname) {
@@ -55,7 +52,6 @@ public class Verificationpage {
 	}
 
 	public void enterBusinessTax() {
-
 		Eventhelper.click(driver, businesstaxtype);
 		Eventhelper.click(driver, businessselecttaxtype);
 		Eventhelper.sendkeys(driver, businesstaxid, "444559999");
@@ -63,25 +59,36 @@ public class Verificationpage {
 	}
 
 	public void addBeneficial() {
-
-		Random random = new Random();
-		int number = random.nextInt(999999999);
-		String ssn = String.valueOf(number);
-
 		Eventhelper.click(driver, addbeneficial);
 		Eventhelper.sendkeys(driver, addbeneficialfirstname, "jack");
 		Eventhelper.sendkeys(driver, addbeneficiallastname, "denial");
 		Eventhelper.sendkeys(driver, addbeneficialBirthdate, "01012008");
-		Eventhelper.sendkeys(driver, addbeneficialssn, ssn);
+		Eventhelper.sendkeys(driver, addbeneficialssn, Eventhelper.generateRandomNumber());
 		Eventhelper.click(driver, addbeneficialnextbtn);
 		Eventhelper.click(driver, addbeneficialsameaslegaladdress);
 		Eventhelper.click(driver, addbeneficialsavebtn);
-
 	}
 
 	public String isBeneficialAdded() {
-
 		return Eventhelper.getTextofElement(driver, isbeneficialadded);
+	}
+
+	public void addBank() {
+		Eventhelper.explicitwaitclickable(driver, addbankde);
+		Eventhelper.click(driver, addbankde);
+	}
+
+	public boolean isLinkDisplay(String linktext) {
+		By linkxpath = By.partialLinkText(linktext);
+		return Eventhelper.isElementDisplayed(driver, linkxpath);
+	}
+
+	public boolean isUserverified() {
+		return Eventhelper.isElementDisplayed(driver, verifiedIcon);
+	}
+
+	public void setURL(String url) {
+		Eventhelper.getURL(driver, url);
 	}
 
 }
