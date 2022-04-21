@@ -2,8 +2,8 @@ Feature: Test Login Functionality
 
   @Smoke
   Scenario: Verify Login is Successful with Valid Credentials
-    When User enter "jayti.s@yopmail.com" in email field
-    When User enter "Test@123" in password field
+    When User enter "hopsmokeautomation1@mailinator.com" in email field
+    When User enter "Password1!" in password field
     When User click on "Log in" button
     Then User should see "Homepage" text on the screen
 
@@ -26,13 +26,13 @@ Feature: Test Login Functionality
     When User click on "Log in" button
     Then User should see validation message for maximum attempts
 
-  @Smoke
+  @Regression
   Scenario: Verify that User click on Privacy Policy Link
     When User click on "Privacy Policy" link
     Then User should see "Privacy Policy" text on the screen
 
-  @Smoke
+  @Regression
   Scenario: Verify that User click on Term of Use Link
     When User click on "Terms of Use" link
     Then User should see "Terms of Use" text on the screen
-    
+

@@ -12,7 +12,9 @@ Feature: Registration feature file
     When User enter "Test@123" in password field
     When User click on "Continue" button
     When User enter otp on registration page
+    When User enter company details
     When User click on "Continue" button
+    When user enter additional information 
     When User click on "Submit" button
     Then User should see "Welcome to Hopscotch" text on the screen
 
@@ -29,7 +31,7 @@ Feature: Registration feature file
     When User click on "Continue" button
     Then User should see "This email address is already being used." text on the screen
 
-@Regression
+  @Regression
   Scenario Outline: verify that user is not able to set invalid email address in  registration process
     When User click on "Register here" link
     When User enter <invalidEmail> in email field
@@ -53,7 +55,7 @@ Feature: Registration feature file
       | "#@%^%#$@#$@#.com"              | "Please enter a legit email address" |
       | "Joe Smith <email@example.com>" | "Please enter a legit email address" |
       | "あいうえお@example.com"             | "Please enter a legit email address" |
-  
+
   @Regression
   Scenario Outline: verify that user is not able to set invalid first name in registration process
     When User click on "Register here" link
@@ -130,8 +132,7 @@ Feature: Registration feature file
       | "Test@122121212122121212212221212121212121" | "Maximum of 14 characters"                                                             |
       | "Test@12"                                   | "Minimum of 8 characters"                                                              |
 
-  
-@Regression
+  @Regression
   Scenario: verify that user is able to click on resend code during register process into hopscotch application
     When User click on "Register here" link
     When User enter "random" in email field
@@ -143,5 +144,10 @@ Feature: Registration feature file
     When User click on "Continue" button
     When User click on "Resend code" button
     Then User should see "Verification code resend successfully!" text on the screen
-    
- 
+
+  @Regression
+  Scenario: verify that user is not able to leave the email field empty on the during register process into hopscotch application
+    When User click on "Register here" link
+    When User click on the textbox of email
+    When User press the tab button
+    Then User should see "Drop in your email" text on the screen

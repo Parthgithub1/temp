@@ -1,7 +1,5 @@
 package cucumber;
 
-import java.util.Properties;
-
 import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.After;
@@ -12,23 +10,18 @@ import utility.Environmenthelper;
 import utility.Eventhelper;
 import utility.Log;
 import utility.MyScreenRecorder;
-import utility.Propertyreader;
 
 public class Hooks {
 
 	Driverhelper driverhelper = new Driverhelper();
 	WebDriver driver;
 
-	Propertyreader propertyreader = new Propertyreader();
-	Properties pr;
-
 	@Before
 	public void setup(Scenario scenario) throws Exception {
 		Log.startTestCase(scenario.getName());
 		MyScreenRecorder.startRecording(scenario.getName());
-		pr = propertyreader.init_prop();
-		driver = driverhelper.setDriver(pr.getProperty("browser"));
-		Driverhelper.getDriver().get(Environmenthelper.setUrl(pr.getProperty("env")));
+		driver = driverhelper.setDriver(System.getProperty("browser"));
+		Driverhelper.getDriver().get(Environmenthelper.setUrl(System.getProperty("env")));
 
 	}
 

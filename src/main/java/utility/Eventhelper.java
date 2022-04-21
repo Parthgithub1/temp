@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -18,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class Eventhelper {
 
@@ -66,20 +69,21 @@ public class Eventhelper {
 		try {
 			element.click();
 		} catch (ElementClickInterceptedException e) {
-			Eventhelper.clickElementwithjs(driver, element);
+			Eventhelper.clickElementwithjs(driver, locator);
 			Log.error("Getting exception in Click --> " + e.toString());
 		} catch (StaleElementReferenceException e) {
-			Eventhelper.clickElementwithjs(driver, element);
+			Eventhelper.clickElementwithjs(driver, locator);
 			Log.error("Getting exception in  Click --> " + e.toString());
 		} catch (NoSuchElementException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
-			Eventhelper.clickElementwithjs(driver, element);
+			Eventhelper.clickElementwithjs(driver, locator);
 
 		}
 	}
 
-	public static void clickElementwithjs(WebDriver driver, WebElement element) {
+	public static void clickElementwithjs(WebDriver driver, By locator) {
 		JavascriptExecutor jsexecutor = (JavascriptExecutor) driver;
+		WebElement element = explicitwaitclickable(driver, locator);
 		try {
 			jsexecutor.executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
@@ -149,6 +153,28 @@ public class Eventhelper {
 
 		return element.getText();
 
+	}
+
+	public static void sendTab(WebDriver driver, By locator) {
+		WebElement element = explicitwait(driver, locator);
+		element.sendKeys(Keys.TAB);
+	}
+
+	public static void sendBackspace(WebDriver driver, By locator) {
+		WebElement element = explicitwait(driver, locator);
+		element.sendKeys(Keys.CONTROL + "a");
+		element.sendKeys(Keys.DELETE);
+	}
+
+	public static void getURL(WebDriver driver, String URL) {
+		URL = Environmenthelper.setUrl(System.getProperty("env"))+URL;
+		driver.get(URL);
+	}
+	
+	public static String generateRandomNumber() {
+		Random random = new Random();
+		int number = random.nextInt(999999999);
+		return String.valueOf(number);
 	}
 
 }
