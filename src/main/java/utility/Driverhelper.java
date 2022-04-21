@@ -14,16 +14,24 @@ public class Driverhelper {
 
 	public WebDriver setDriver(String browser) {
 
-		if (browser.equals("chrome")) {
+		if (browser == null) {
+			browser = "chrome";
+		}
+		switch (browser) {
+		case "chrome":
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver());
-		} else if (browser.equals("firefox")) {
+			break;
+		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 			tlDriver.set(new FirefoxDriver());
-		} else if (browser.equals("safari")) {
+			break;
+		case "safari":
 			tlDriver.set(new SafariDriver());
-		} else {
-			System.out.println("Please pass the correct browser value: " + browser);
+			break;
+		default:
+			WebDriverManager.chromedriver().setup();
+			tlDriver.set(new ChromeDriver());
 		}
 
 		getDriver().manage().deleteAllCookies();

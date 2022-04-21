@@ -1,6 +1,5 @@
 package steps;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.*;
@@ -8,22 +7,21 @@ import pages.Registrationpage;
 import utility.Driverhelper;
 import utility.Log;
 
-
 public class Registrationstep {
 
 	Registrationpage registrationpage = new Registrationpage(Driverhelper.getDriver());
-	
+
 	@When("User click on {string} link")
 	public void user_click_on_link(String linktext) {
-	registrationpage.clickOnLink(linktext);		
-	Log.info("User is on registration page"+ linktext);
+		registrationpage.clickOnLink(linktext);
+		Log.info("User is on registration page" + linktext);
 	}
 
 	@When("User enter {string} in email field")
 	public void user_enter_in_email_field(String emailaddress) {
 		registrationpage.enterEmailAddress(emailaddress);
-		Log.info("User is on enter email field value is "+emailaddress );
-		
+		Log.info("User is on enter email field value is " + emailaddress);
+
 	}
 
 	@When("User click on {string} button")
@@ -55,10 +53,32 @@ public class Registrationstep {
 	public void user_enter_otp_on_registration_page() {
 		registrationpage.enterOTP();
 	}
-	
+
+	@When("user enter additional information")
+	public void user_enter_additional_information() {
+	    registrationpage.enterAdditionalInformation();
+	}
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
-	  boolean isTextDisplay= registrationpage.isTextDisplayed(expectedText);
-	  assertTrue(isTextDisplay);
+		boolean isTextDisplay = registrationpage.isTextDisplayed(expectedText);
+		assertTrue(isTextDisplay);
+	}
+
+	@When("User click on the textbox of email")
+	public void user_click_on_the_textbox_of_email() {
+		registrationpage.clickOnTextbox();
+	}
+
+	@When("User press the tab button")
+	public void user_press_the_tab_button() {
+		registrationpage.sendTab();
+	}
+	@When("User register with {string} email")
+	public void user_register_with_email(String string) {
+	 registrationpage.doRegister(string);
+	}
+	@When("User enter company details")
+	public void user_enter_company_details() {
+	 registrationpage.enterCompanyDetails();
 	}
 }
