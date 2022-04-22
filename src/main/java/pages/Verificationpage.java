@@ -39,7 +39,6 @@ public class Verificationpage {
 	private By chaseusernme = By.xpath("//input[@id='username']");
 	private By chasepassword = By.xpath("//input[@id='password']");
 	private By submitbtn = By.xpath("//button[@id='aut-submit-button']");
-	
 
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
@@ -63,7 +62,6 @@ public class Verificationpage {
 		Eventhelper.click(driver, businesstaxtype);
 		Eventhelper.click(driver, businessselecttaxtype);
 		Eventhelper.sendkeys(driver, businesstaxid, "444559999");
-
 	}
 
 	public void addBeneficial() {
@@ -75,21 +73,20 @@ public class Verificationpage {
 		Eventhelper.click(driver, addbeneficialnextbtn);
 		Eventhelper.click(driver, addbeneficialsameaslegaladdress);
 		Eventhelper.click(driver, addbeneficialsavebtn);
-			}
+	}
 
 	public boolean isBeneficialAdded() {
 		return Eventhelper.isElementDisplayed(driver, isbeneficialadded);
 	}
 
 	public void addBank() {
-
 		Eventhelper.click(driver, addbankde);
 		driver.switchTo().frame(Eventhelper.findElement(driver, iframe));
 		Eventhelper.isElementDisplayed(driver, continuebtn);
 		Eventhelper.click(driver, continuebtn);
 		Eventhelper.click(driver, chase);
 		Eventhelper.sendkeys(driver, chaseusernme, "user_good");
-		Eventhelper.sendkeys(driver, chasepassword,"pass_good");
+		Eventhelper.sendkeys(driver, chasepassword, "pass_good");
 		Eventhelper.click(driver, submitbtn);
 		Eventhelper.isElementDisplayed(driver, continuebtn);
 		Eventhelper.click(driver, continuebtn);
