@@ -38,7 +38,7 @@ public class Registrationpage {
 
 	public void clickOnButton(String buttonname) {
 		By btnxpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[1]");
-			Eventhelper.click(driver, btnxpath);
+		Eventhelper.click(driver, btnxpath);
 	}
 
 	public void enterEmailAddress(String value) {
