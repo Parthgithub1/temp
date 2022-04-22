@@ -93,7 +93,7 @@ public class Eventhelper {
 	}
 
 	public static WebElement explicitwait(WebDriver driver, By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, 120);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element = null;
 		try {
 			element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

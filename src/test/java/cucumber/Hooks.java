@@ -15,14 +15,16 @@ public class Hooks {
 
 	Driverhelper driverhelper = new Driverhelper();
 	WebDriver driver;
+	public static final String ENVIRONMENT = "environment";
+	public static final String BROWSER = "browser";
+	public static final String HEADLESS = "headless";
 
 	@Before
 	public void setup(Scenario scenario) throws Exception {
 		Log.startTestCase(scenario.getName());
-		//MyScreenRecorder.startRecording(scenario.getName());
-		driver = driverhelper.setDriver(System.getProperty("browser"));
-		Driverhelper.getDriver().get(Environmenthelper.setUrl(System.getProperty("env")));
-
+		MyScreenRecorder.startRecording(scenario.getName());
+		driver = driverhelper.setDriver(System.getProperty(BROWSER),Boolean.parseBoolean(System.getProperty(HEADLESS)));
+		Driverhelper.getDriver().get(Environmenthelper.setUrl(System.getProperty(ENVIRONMENT)));
 	}
 
 	@After(order = 1)
