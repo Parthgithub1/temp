@@ -5,10 +5,10 @@ import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.Eventhelper;
+import utility.Log;
 
 public class Verificationpage {
 
-	
 	private WebDriver driver;
 
 	private By legalbusinessnametextbox = By.xpath("//input[@placeholder='Business name']");
@@ -27,11 +27,19 @@ public class Verificationpage {
 	private By addbeneficialBirthdate = By.xpath("//input[@placeholder='Birthday']");
 	private By addbeneficialssn = By.xpath("//input[@id='ownerSSN']");
 	private By addbeneficialnextbtn = By.xpath("//button[normalize-space()='Next']");
-	private By addbeneficialsameaslegaladdress = By.xpath("//label[normalize-space()='Same as legal business address']");
+	private By addbeneficialsameaslegaladdress = By
+			.xpath("//label[normalize-space()='Same as legal business address']");
 	private By addbeneficialsavebtn = By.xpath("//button[normalize-space()='Save']");
-	private By isbeneficialadded = By.xpath("//p[@class='BeneficialOwner_name__3kfE1']");
+	private By isbeneficialadded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
-	private By addbankde = By.xpath("//span[normalize-space()='Add and securely connect instantly']");
+	private By addbankde = By.xpath("//button[.='Add and securely connect instantly']");
+	private By iframe = By.xpath("//iframe");
+	private By continuebtn = By.xpath("//button[@id='aut-continue-button']");
+	private By chase = By.xpath("(//p[text()='Chase'])");
+	private By chaseusernme = By.xpath("//input[@id='username']");
+	private By chasepassword = By.xpath("//input[@id='password']");
+	private By submitbtn = By.xpath("//button[@id='aut-submit-button']");
+	
 
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
@@ -67,15 +75,26 @@ public class Verificationpage {
 		Eventhelper.click(driver, addbeneficialnextbtn);
 		Eventhelper.click(driver, addbeneficialsameaslegaladdress);
 		Eventhelper.click(driver, addbeneficialsavebtn);
-	}
+			}
 
-	public String isBeneficialAdded() {
-		return Eventhelper.getTextofElement(driver, isbeneficialadded);
+	public boolean isBeneficialAdded() {
+		return Eventhelper.isElementDisplayed(driver, isbeneficialadded);
 	}
 
 	public void addBank() {
-		Eventhelper.explicitwaitclickable(driver, addbankde);
+
 		Eventhelper.click(driver, addbankde);
+		driver.switchTo().frame(Eventhelper.findElement(driver, iframe));
+		Eventhelper.isElementDisplayed(driver, continuebtn);
+		Eventhelper.click(driver, continuebtn);
+		Eventhelper.click(driver, chase);
+		Eventhelper.sendkeys(driver, chaseusernme, "user_good");
+		Eventhelper.sendkeys(driver, chasepassword,"pass_good");
+		Eventhelper.click(driver, submitbtn);
+		Eventhelper.isElementDisplayed(driver, continuebtn);
+		Eventhelper.click(driver, continuebtn);
+		Eventhelper.click(driver, continuebtn);
+		driver.switchTo().parentFrame();
 	}
 
 	public boolean isLinkDisplay(String linktext) {

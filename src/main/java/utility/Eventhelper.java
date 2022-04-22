@@ -21,7 +21,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class Eventhelper {
 
 	// add findelement,findelements, click, sendkeys, explicitwait,
@@ -77,7 +76,6 @@ public class Eventhelper {
 		} catch (NoSuchElementException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
 			Eventhelper.clickElementwithjs(driver, locator);
-
 		}
 	}
 
@@ -106,7 +104,6 @@ public class Eventhelper {
 
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
 		return findElement(driver, locator).isDisplayed();
-
 	}
 
 	public static String getTextofElement(WebDriver driver, By locator) {
@@ -115,14 +112,12 @@ public class Eventhelper {
 	}
 
 	public static String getTitleOfWebPage(WebDriver driver) {
-
 		return driver.getTitle();
 	}
 
 	public static WebElement explicitwaitclickable(WebDriver driver, By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
-
 	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {
@@ -144,15 +139,10 @@ public class Eventhelper {
 
 	public static String getTextOfToast(WebDriver driver, By locator) {
 		WebElement element = Eventhelper.explicitwait(driver, locator);
-
 		if (Eventhelper.isElementDisplayed(driver, locator)) {
-
 			element = Eventhelper.findElement(driver, locator);
-
 		}
-
 		return element.getText();
-
 	}
 
 	public static void sendTab(WebDriver driver, By locator) {
@@ -160,21 +150,14 @@ public class Eventhelper {
 		element.sendKeys(Keys.TAB);
 	}
 
-	public static void sendBackspace(WebDriver driver, By locator) {
-		WebElement element = explicitwait(driver, locator);
-		element.sendKeys(Keys.CONTROL + "a");
-		element.sendKeys(Keys.DELETE);
-	}
-
 	public static void getURL(WebDriver driver, String URL) {
-		URL = Environmenthelper.setUrl(System.getProperty("env"))+URL;
+		URL = Environmenthelper.setUrl(System.getProperty("env")) + URL;
 		driver.get(URL);
 	}
-	
+
 	public static String generateRandomNumber() {
 		Random random = new Random();
-		int number = random.nextInt(999999999);
-		return String.valueOf(number);
+		return String.format("%09d", random.nextInt(999999999));
 	}
 
 }
