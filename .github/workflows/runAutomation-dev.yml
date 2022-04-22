@@ -6,6 +6,7 @@ on:
       Tag:
         description: 'Enter the environment to run the Automation suite)'
         required: true
+        default: 'dev'
 
 env:
   CODEARTIFACT_REPO_URL: ${{ secrets.CODEARTIFACT_REPO_URL }}
@@ -42,7 +43,7 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
           
-      - name: Build Package
+      - name: Run Testsuite environment DEV
         run: mvn test -Dheadless="true" -Denvironment="dev"
         env:
           MAVEN_USERNAME: aws
