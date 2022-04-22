@@ -9,8 +9,6 @@ import utility.Driverhelper;
 import utility.Environmenthelper;
 import utility.Eventhelper;
 import utility.Log;
-import utility.MyScreenRecorder;
-
 public class Hooks {
 
 	Driverhelper driverhelper = new Driverhelper();
@@ -22,9 +20,6 @@ public class Hooks {
 	@Before
 	public void setup(Scenario scenario) throws Exception {
 		Log.startTestCase(scenario.getName());
-		if (Boolean.parseBoolean(System.getProperty(HEADLESS))) {
-			MyScreenRecorder.startRecording(scenario.getName());
-		}
 
 		driver = driverhelper.setDriver(System.getProperty(BROWSER),
 				Boolean.parseBoolean(System.getProperty(HEADLESS)));
@@ -42,9 +37,6 @@ public class Hooks {
 	@After(order = 0)
 	public void teardown(Scenario scenario) throws Exception {
 		driver.quit();
-		if (Boolean.parseBoolean(System.getProperty(HEADLESS))) {
-			MyScreenRecorder.stopRecording();
-		}
 		Log.endTestCase(scenario.getName());
 	}
 
