@@ -38,7 +38,7 @@ public class Registrationpage {
 
 	public void clickOnButton(String buttonname) {
 		By btnxpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[1]");
-		Eventhelper.click(driver, btnxpath);
+			Eventhelper.click(driver, btnxpath);
 	}
 
 	public void enterEmailAddress(String value) {
@@ -105,9 +105,9 @@ public class Registrationpage {
 		clickOnLink("Register here");
 		enterEmailAddress(randomemail);
 		clickOnButton("Continue");
-		enterFirstName("The Automated");
-		enterLastName("User");
-		enterBusinessAddress("The Automated suser");
+		enterFirstName("Ronald");
+		enterLastName("Reagan");
+		enterBusinessAddress("The Ronald Reagan");
 		enterPassword("Test@123");
 		clickOnButton("Continue");
 		enterOTP();
