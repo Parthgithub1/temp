@@ -48,7 +48,7 @@ jobs:
           server-password: MAVEN_TOKEN
           
       - name: Build Package
-        run: mvn package -Dheadless="true"
+        run: mvn test -Dheadless="true" -Denvironment="dev"
         env:
           MAVEN_USERNAME: aws
           MAVEN_TOKEN: ${{ steps.token.outputs.token }}
