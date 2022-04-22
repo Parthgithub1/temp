@@ -25,7 +25,6 @@ public class Hooks {
 		MyScreenRecorder.startRecording(scenario.getName());
 		driver = driverhelper.setDriver(System.getProperty(BROWSER),Boolean.parseBoolean(System.getProperty(HEADLESS)));
 		Driverhelper.getDriver().get(Environmenthelper.setUrl(System.getProperty(ENVIRONMENT)));
-
 	}
 
 	@After(order = 1)
@@ -39,7 +38,7 @@ public class Hooks {
 	@After(order = 0)
 	public void teardown(Scenario scenario) throws Exception {
 		driver.quit();
-		MyScreenRecorder.stopRecording();
+		//MyScreenRecorder.stopRecording();
 		Log.endTestCase(scenario.getName());
 	}
 

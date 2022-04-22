@@ -18,9 +18,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run git checkout
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v1
+      - run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+      
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -42,7 +46,7 @@ jobs:
           server-id: codeartifact
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
-
+          
       - name: Build Package
         run: mvn package
         env:
