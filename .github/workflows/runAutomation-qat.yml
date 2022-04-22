@@ -1,0 +1,50 @@
+name: Run QAT Automation Suite
+
+on:
+  workflow_dispatch:
+    inputs:
+      Tag:
+        description: 'Enter the environment to run the Automation suite)'
+        required: true
+        default: 'qat'
+
+env:
+  CODEARTIFACT_REPO_URL: ${{ secrets.CODEARTIFACT_REPO_URL }}
+  CODEARTIFACT_DOMAIN: ${{ secrets.CODEARTIFACT_DOMAIN }}
+  CODEARTIFACT_DOMAIN_OWNER: ${{ secrets.AWS_ACCOUNT_ID }}
+
+jobs:
+  build:
+    name: Maven package test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Acquire AWS CodeArtifact token
+        id: token
+        run: |
+          CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token --domain $CODEARTIFACT_DOMAIN --domain-owner $CODEARTIFACT_DOMAIN_OWNER --query authorizationToken --output text)
+          echo "::set-output name=token::$CODEARTIFACT_AUTH_TOKEN"
+
+      - name: Configure Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          server-id: codeartifact
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_TOKEN
+          
+      - name: Run Testsuite environment DEV
+        run: mvn test -Dheadless="true" -Denvironment="qat"
+        env:
+          MAVEN_USERNAME: aws
+          MAVEN_TOKEN: ${{ steps.token.outputs.token }}
