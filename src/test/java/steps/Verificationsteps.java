@@ -32,8 +32,7 @@ public class Verificationsteps {
 
 	@Then("User should see beneficial owner in list")
 	public void user_should_see_beneficial_owner_in_list() {
-		String expecteda = verificationpage.isBeneficialAdded();
-		assertEquals("jack denial", expecteda);
+				assertTrue("Beneficial owner is not display on list", verificationpage.isBeneficialAdded());
 	}
 
 	@When("User procss add bank screen")

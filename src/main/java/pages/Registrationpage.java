@@ -105,9 +105,9 @@ public class Registrationpage {
 		clickOnLink("Register here");
 		enterEmailAddress(randomemail);
 		clickOnButton("Continue");
-		enterFirstName("The Automated");
-		enterLastName("User");
-		enterBusinessAddress("The Automated suser");
+		enterFirstName("Ronald");
+		enterLastName("Reagan");
+		enterBusinessAddress("The Ronald Reagan");
 		enterPassword("Test@123");
 		clickOnButton("Continue");
 		enterOTP();
