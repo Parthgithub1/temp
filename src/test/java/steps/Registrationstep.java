@@ -3,6 +3,7 @@ package steps;
 import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.*;
+import junit.framework.Assert;
 import pages.Registrationpage;
 import utility.Driverhelper;
 import utility.Log;
@@ -41,7 +42,7 @@ public class Registrationstep {
 
 	@When("User enter {string} in businessname field")
 	public void user_enter_in_businessname_field(String bname) {
-		registrationpage.enterBusinessAddress(bname);
+		registrationpage.enterBusinessName(bname);
 	}
 
 	@When("User enter {string} in password field")
@@ -61,7 +62,7 @@ public class Registrationstep {
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
 		boolean isTextDisplay = registrationpage.isTextDisplayed(expectedText);
-		assertTrue(isTextDisplay);
+		assertTrue(isTextDisplay); 
 	}
 
 	@When("User click on the textbox of email")

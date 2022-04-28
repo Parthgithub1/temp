@@ -145,9 +145,29 @@ public class Eventhelper {
 		return element.getText();
 	}
 
-	public static void sendTab(WebDriver driver, By locator) {
+	public static void sendKeyboardKeys(WebDriver driver, By locator, String key) {
 		WebElement element = explicitwait(driver, locator);
-		element.sendKeys(Keys.TAB);
+		switch (key) {
+		case "tab":
+			element.sendKeys(Keys.TAB);
+			break;
+		case "space":
+			element.sendKeys(Keys.SPACE);
+			break;
+		case "backspace":
+			element.sendKeys(Keys.BACK_SPACE);
+			break;
+		}
+	}
+
+	public static void switchToParentFrame(WebDriver driver) {
+
+		driver.switchTo().parentFrame();
+	}
+
+	public static void switchToFrame(WebDriver driver,By locator) {
+
+		driver.switchTo().frame(Eventhelper.findElement(driver, locator));
 	}
 
 	public static void getURL(WebDriver driver, String URL) {
@@ -159,5 +179,5 @@ public class Eventhelper {
 		Random random = new Random();
 		return String.format("%09d", random.nextInt(999999999));
 	}
-
+	
 }
