@@ -31,7 +31,7 @@ public class Verificationpage {
 	private By btnAddBeneficialSave = By.xpath("//button[text()='Save']");
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu"); 
-	private By btnAddBankDetails = By.cssSelector("//button[@class='Button_btn__2DmbY AddButton_add-button__1b56I']");
+	private By btnAddBankDetails = By.xpath("//span[text()='Add and securely connect instantly']");
 	private By frmIframe = By.xpath("//iframe");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
@@ -83,7 +83,12 @@ public class Verificationpage {
 	}
 
 	public void addBank() {		
-			Eventhelper.explicitwait(driver, btnAddBankDetails);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			Eventhelper.click(driver, btnAddBankDetails);
 			Eventhelper.switchToFrame(driver, frmIframe);
 			Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
