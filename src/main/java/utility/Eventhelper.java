@@ -106,6 +106,10 @@ public class Eventhelper {
 		return findElement(driver, locator).isDisplayed();
 	}
 
+	public static boolean isElementEnabled(WebDriver driver, By locator) {
+		return findElement(driver, locator).isEnabled();
+	}
+
 	public static String getTextofElement(WebDriver driver, By locator) {
 		WebElement element = Eventhelper.findElement(driver, locator);
 		return element.getText();
