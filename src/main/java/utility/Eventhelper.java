@@ -165,7 +165,7 @@ public class Eventhelper {
 		driver.switchTo().parentFrame();
 	}
 
-	public static void switchToFrame(WebDriver driver,By locator) {
+	public static void switchToFrame(WebDriver driver, By locator) {
 
 		driver.switchTo().frame(Eventhelper.findElement(driver, locator));
 	}
@@ -179,5 +179,13 @@ public class Eventhelper {
 		Random random = new Random();
 		return String.format("%09d", random.nextInt(999999999));
 	}
-	
+
+	public static void threadWait(long miliSeconds) {
+		try {
+			Thread.sleep(miliSeconds);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
 }

@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.Eventhelper;
-import utility.Log;
 
 public class Verificationpage {
 
@@ -12,11 +11,8 @@ public class Verificationpage {
 	Registrationpage registrationPage;
 	private By txtLegalBusinessName = By.xpath("//input[@placeholder='Business name']");
 	private By txtBusinessAddress = By.xpath("//input[@name='bizAddress']");
+	private By ddBusinessAddress = By.xpath("//div[@class='pac-item'][1]");
 	private By txtBusinessAppartement = By.xpath("//input[@name='bizAddressApt']");
-	private By txtBusinessCity = By.xpath("//input[@name='bizAddressCity']");
-	private By txtBusinessState = By.xpath("//div[@id='bizAddressState']");
-	private By txtBusinessSelecteState = By.xpath("//div[text()='AK']");
-	private By txtBusinessZipCode = By.xpath("//input[@name='bizAddressZip']");
 	private By ddBusinessTaxType = By.xpath("//div[@id='taxId']");
 	private By ddBusinessSelectTaxYype = By.xpath("//div[text()='SSN']");
 	private By txtBusinessTaxID = By.xpath("//input[@id='idNumber']");
@@ -25,24 +21,21 @@ public class Verificationpage {
 	private By txtAddBeneficialLastName = By.xpath("//input[@name='ownerLastName']");
 	private By txtAddBeneficialBirthDate = By.xpath("//input[@placeholder='Birthday']");
 	private By txtAddBeneficialSSN = By.xpath("//input[@id='ownerSSN']");
-	private By btnAddBeneficialNext = By.xpath("//button[text()='Next']");
 	private By rbtnAddBeneficialSameAsLegalAddress = By
 			.xpath("//label[normalize-space()='Same as legal business address']");
-	private By btnAddBeneficialSave = By.xpath("//button[text()='Save']");
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
-	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu"); 
+	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
 	private By btnAddBankDetails = By.xpath("//span[text()='Add and securely connect instantly']");
 	private By frmIframe = By.xpath("//iframe");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
-	private By txtChaseUserName = By.xpath("//input[@id='aut-input-0']");
-	private By txtChasePassword = By.xpath("//input[@id='aut-input-1']");
-	private By btnAddBankSubmit = By.xpath("//button[@id='aut-button']");
-	private By rbtnAddBankPleidChecking= By.xpath("//input[@type='radio']");
+	private By txtChaseUserName = By.xpath("//label[text()='Username']/following-sibling::input");
+	private By txtChasePassword = By.xpath("//label[text()='Password']/following-sibling::input");
+	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
-		registrationPage= new Registrationpage(driver);
+		registrationPage = new Registrationpage(driver);
 
 	}
 
@@ -51,15 +44,13 @@ public class Verificationpage {
 	}
 
 	public void enterAddress() {
-		Eventhelper.sendkeys(driver, txtBusinessAddress, "Home street");
-		Eventhelper.sendkeys(driver, txtBusinessAppartement, "4th floor");
-		Eventhelper.sendkeys(driver, txtBusinessCity, "Boston");
-		Eventhelper.click(driver, txtBusinessState);
-		Eventhelper.click(driver, txtBusinessSelecteState);
-		Eventhelper.sendkeys(driver, txtBusinessZipCode, "02114");
-		Eventhelper.sendKeyboardKeys(driver, txtBusinessZipCode, "tab");
-		
-	}
+		Eventhelper.sendkeys(driver, txtBusinessAddress,"55 Fruit Street");
+		Eventhelper.threadWait(1000);
+		Eventhelper.click(driver, txtBusinessAppartement);
+		Eventhelper.click(driver, txtBusinessAddress);
+		Eventhelper.threadWait(1000);
+		Eventhelper.click(driver, ddBusinessAddress);
+		}
 
 	public void enterBusinessTax() {
 		Eventhelper.click(driver, ddBusinessTaxType);
@@ -82,26 +73,21 @@ public class Verificationpage {
 		return Eventhelper.isElementDisplayed(driver, lstIsBeneficialAdded);
 	}
 
-	public void addBank() {		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			Eventhelper.click(driver, btnAddBankDetails);
-			Eventhelper.switchToFrame(driver, frmIframe);
-			Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-			registrationPage.clickOnButton("Continue");
-			Eventhelper.click(driver, lstChase);
-			Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
-			Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
-			registrationPage.clickOnButton("Submit");
-			Eventhelper.click(driver, rbtnAddBankPleidChecking);
-			Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-			registrationPage.clickOnButton("Continue");
-			registrationPage.clickOnButton("Continue");
-			Eventhelper.switchToParentFrame(driver);			
+	public void addBank() {
+		Eventhelper.threadWait(2000);
+		Eventhelper.click(driver, btnAddBankDetails);
+		Eventhelper.switchToFrame(driver, frmIframe);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		registrationPage.clickOnButton("Continue");
+		Eventhelper.click(driver, lstChase);
+		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
+		registrationPage.clickOnButton("Submit");
+		Eventhelper.click(driver, rbtnAddBankPleidChecking);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		registrationPage.clickOnButton("Continue");
+		registrationPage.clickOnButton("Continue");
+		Eventhelper.switchToParentFrame(driver);
 	}
 
 	public boolean isLinkDisplay(String linktext) {
