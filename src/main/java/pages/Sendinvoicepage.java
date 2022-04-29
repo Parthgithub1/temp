@@ -1,9 +1,7 @@
 package pages;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +20,8 @@ public class Sendinvoicepage {
 	private By lblNotification = By.xpath("(//p[contains(@class,'notifications-text')])[1]");
 	private By lblreceivableBalanceonAccounting = By.xpath(
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
-	private By txtSearchBarOnReceivable = By.xpath("(//input[contains(@placeholder,'')])[4]");
+	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
+	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
 	String receivableBalanceOndashboard, receiableBlanaceOnAccountingPage;
 
 	public Sendinvoicepage(WebDriver driver) {
@@ -50,8 +49,7 @@ public class Sendinvoicepage {
 	}
 
 	public List<String> seeInvoice() {
-
-		List<WebElement> columnElements = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr[1]//td"));
+		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
 		List<String> actualData = new ArrayList<String>();
 		for (WebElement columnElement : columnElements) {
 			actualData.add(columnElement.getText());

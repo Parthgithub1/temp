@@ -2,7 +2,7 @@ Feature: Send invoice feature
  
   @Smoke
   Scenario: verify that user is able to send an invoice to existing business into hopscotch application
-    When User login with "patel@mailinator.com" and "Test@123" and click on "Log in" button
+    When User login with "hopsmokeautomation2@mailinator.com" and "Password1!" and click on "Log in" button
     Then Read Receivable Balance on home screen
     When User click on "Send Invoice" link
     Then User should see "Invoice a business" text on the screen
