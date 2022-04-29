@@ -2,7 +2,7 @@ Feature: Verifcation feature file
 
   @Regression
   Scenario: verify that user is able to start the verification process into hopscotch application
-    When User login with "patel1@mailinator.com" and "Test@123" and click on "Log in" button
+    When User login with "cyciv@mailinator.com" and "Test@123" and click on "Log in" button
     And User click on "change that" link
     Then User should see "Let’s connect the dots" text on the screen
 
@@ -20,7 +20,7 @@ Feature: Verifcation feature file
     And User process add beneficial owner screen
     Then User should see beneficial owner in list
     When User click on "Continue" button
-    When User procss add bank screen
+    When User process add bank screen
     When User click on "Continue" button
     Then User should see "Verification is complete" text on the screen
     Then User should see verified icon

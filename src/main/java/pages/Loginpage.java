@@ -15,8 +15,8 @@ public class Loginpage {
 	}
 
 	public boolean isAttemptTextDisplayed() {
-		By errorLocator = By.cssSelector(".LoginForm_field__content-error__2NPje.LoginForm_attempts-error__2pKNJ");
-		return Eventhelper.isElementDisplayed(driver, errorLocator);
+		By tstErrorLocator = By.cssSelector(".LoginForm_field__content-error__2NPje.LoginForm_attempts-error__2pKNJ");
+		return Eventhelper.isElementDisplayed(driver, tstErrorLocator);
 	}
 
 	public void doLogin(String email, String pass, String login) {
