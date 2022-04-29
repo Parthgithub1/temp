@@ -12,20 +12,20 @@ import utility.Log;
 public class Registrationpage {
 
 	private WebDriver driver;
-	private By fnametextbox = By.xpath(" //input[@name='firstName']");
-	private By lnametextbox = By.xpath("//input[@name='lastName']");
-	private By businessaddress = By.xpath("//input[@name='dbaName']");
-	private By password = By.xpath("//input[contains(@name ,'password')]");
-	private By emailaddress = By.xpath("//input[contains(@name ,'email')]");
-	private By otpboxlocator = By.xpath("(//input[contains(@aria-label,'Digit')])");
-	private By aboutyourcompany = By.xpath("//textarea[@name='description']");
-	private By website = By.xpath("//input[@name='website']");
-	private By city = By.xpath("//input[@name='city']");
-	private By yearfounded = By.xpath("//input[@name='yearFounded']");
-	private By state = By.xpath("//div[@id='state']");
-	private By selectestate = By.xpath("//div[text()='AK']");
-	private By industry = By.xpath("//div[@id='industry']");
-	private By selecteindustry = By.xpath("//div[text()='Accounting']");
+	private By txtFirstName = By.xpath(" //input[@name='firstName']");
+	private By txtLastName = By.xpath("//input[@name='lastName']");
+	private By txtBusinessName = By.xpath("//input[@name='dbaName']");
+	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
+	private By txtEmailAddress = By.xpath("//input[contains(@name ,'email')]");
+	private By txtOtpBoxLocator = By.xpath("(//input[contains(@aria-label,'Digit')])");
+	private By txtAboutYourCompany = By.xpath("//textarea[@name='description']");
+	private By txtWebsite = By.xpath("//input[@name='website']");
+	private By txtCity = By.xpath("//input[@name='city']");
+	private By txtYearFounded = By.xpath("//input[@name='yearFounded']");
+	private By ddState = By.xpath("//div[@id='state']");
+	private By ddSelecteState = By.xpath("//div[text()='AK']");
+	private By ddIndustry = By.xpath("//div[@id='industry']");
+	private By ddSelecteIndustry = By.xpath("//div[text()='Accounting']");
 
 	public Registrationpage(WebDriver driver) {
 		this.driver = driver;
@@ -46,27 +46,27 @@ public class Registrationpage {
 			value = UUID.randomUUID().toString() + "@hopscotchautomation.com";
 			Log.info("Email id is -->" + value);
 		}
-		Eventhelper.sendkeys(driver, emailaddress, value);
+		Eventhelper.sendkeys(driver, txtEmailAddress, value);
 	}
 
 	public void enterFirstName(String value) {
-		Eventhelper.sendkeys(driver, fnametextbox, value);
+		Eventhelper.sendkeys(driver, txtFirstName, value);
 	}
 
 	public void enterLastName(String value) {
-		Eventhelper.sendkeys(driver, lnametextbox, value);
+		Eventhelper.sendkeys(driver, txtLastName, value);
 	}
 
-	public void enterBusinessAddress(String value) {
-		Eventhelper.sendkeys(driver, businessaddress, value);
+	public void enterBusinessName(String value) {
+		Eventhelper.sendkeys(driver, txtBusinessName, value);
 	}
 
 	public void enterPassword(String value) {
-		Eventhelper.sendkeys(driver, password, value);
+		Eventhelper.sendkeys(driver, txtPassword, value);
 	}
 
 	public void enterOTP() {
-		List<WebElement> otpboxes = Eventhelper.findElements(driver, otpboxlocator);
+		List<WebElement> otpboxes = Eventhelper.findElements(driver, txtOtpBoxLocator);
 		for (int i = 1; i <= otpboxes.size(); i++) {
 			String xpath = "(//input[contains(@aria-label,'Digit')])[" + i + "]";
 			By otptextfield = By.xpath(xpath);
@@ -75,17 +75,17 @@ public class Registrationpage {
 	}
 
 	public void enterCompanyDetails() {
-		Eventhelper.sendkeys(driver, aboutyourcompany, "This textare contains value about company");
+		Eventhelper.sendkeys(driver, txtAboutYourCompany, "This textarea contains value about company");
 	}
 
 	public void enterAdditionalInformation() {
-		Eventhelper.sendkeys(driver, website, "https://www.google.com/");
-		Eventhelper.sendkeys(driver, city, "lakesville");
-		Eventhelper.click(driver, state);
-		Eventhelper.click(driver, selectestate);
-		Eventhelper.sendkeys(driver, yearfounded, "2022");
-		Eventhelper.click(driver, industry);
-		Eventhelper.click(driver, selecteindustry);
+		Eventhelper.sendkeys(driver, txtWebsite, "https://www.google.com/");
+		Eventhelper.sendkeys(driver, txtCity, "lakesville");
+		Eventhelper.click(driver, ddState);
+		Eventhelper.click(driver, ddSelecteState);
+		Eventhelper.sendkeys(driver, txtYearFounded, "2022");
+		Eventhelper.click(driver, ddIndustry);
+		Eventhelper.click(driver, ddSelecteIndustry);
 	}
 
 	public Boolean isTextDisplayed(String text) {
@@ -94,11 +94,11 @@ public class Registrationpage {
 	}
 
 	public void clickOnTextbox() {
-		Eventhelper.click(driver, emailaddress);
+		Eventhelper.click(driver, txtEmailAddress);
 	}
 
 	public void sendTab() {
-		Eventhelper.sendTab(driver, emailaddress);
+		Eventhelper.sendKeyboardKeys(driver, txtEmailAddress, "tab");
 	}
 
 	public void doRegister(String randomemail) {
@@ -107,7 +107,7 @@ public class Registrationpage {
 		clickOnButton("Continue");
 		enterFirstName("Ronald");
 		enterLastName("Reagan");
-		enterBusinessAddress("The Ronald Reagan");
+		enterBusinessName("The Ronald Reagan");
 		enterPassword("Test@123");
 		clickOnButton("Continue");
 		enterOTP();

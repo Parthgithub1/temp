@@ -14,7 +14,7 @@ Feature: Registration feature file
     When User enter otp on registration page
     When User enter company details
     When User click on "Continue" button
-    When user enter additional information 
+    When user enter additional information
     When User click on "Submit" button
     Then User should see "Welcome to Hopscotch" text on the screen
 
@@ -105,8 +105,6 @@ Feature: Registration feature file
       | "The]Business"       |
       | "~The business name" |
       | "?the name"          |
-      | "      "             |
-      | "/ the name"         |
       | "\\ the slash"       |
       | "= is equel"         |
 
