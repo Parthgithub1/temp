@@ -23,16 +23,16 @@ public class Loginpage {
 		registrationpage.enterPassword(pass);
 		registrationpage.clickOnButton(login);
 	}
-	
+
 	public boolean isHompageDisplay() {
 		By loginBtn = By.xpath("//button[@type='submit']");
 		try {
-		Eventhelper.waitUntilElementInvisible(driver, loginBtn);
-		}catch (Exception e) {
-		registrationpage.clickOnLink("Forgot your password?");
-		driver.navigate().back();
-		doLogin("hopsmokeautomation1@mailinator.com", "Password1!", "Log in");
+			Eventhelper.waitUntilElementInvisible(driver, loginBtn);
+		} catch (Exception e) {
+			registrationpage.clickOnLink("Forgot your password?");
+			driver.navigate().back();
+			doLogin("hopsmokeautomation1@mailinator.com", "Password1!", "Log in");
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
-		}
+	}
 }

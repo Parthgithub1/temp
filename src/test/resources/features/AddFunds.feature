@@ -4,7 +4,7 @@ Feature: Title of your feature
   @Smoke
   Scenario: Verify User is able to Add Funds Successfully
     When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
-    Then User should see "Homepage" text on the screen
+    Then User should navigate to dashboard
     Then User should save Default amount
     When User click on "Add funds" button
     Then User should see "Add funds" model open
@@ -20,7 +20,7 @@ Feature: Title of your feature
   @Smoke
   Scenario: Verify User is able to Withdraw Successfully
     When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
-    Then User should see "Homepage" text on the screen
+    Then User should navigate to dashboard
     Then User should save Default amount
     When User click on "Withdraw" button
     Then User should see "Withdraw funds" model open

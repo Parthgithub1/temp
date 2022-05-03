@@ -5,7 +5,7 @@ Feature: Test Login Functionality
     When User enter "hopsmokeautomation1@mailinator.com" in email field
     When User enter "Password1!" in password field
     When User click on "Log in" button
-    Then User should see "Homepage" text on the screen
+    Then User should navigate to dashboard
 
   @Regression
   Scenario Outline: Verify Validations for Email_Password
