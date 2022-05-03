@@ -34,7 +34,7 @@ public class Sendinvoicesteps {
 	
 	@Then("User should see the invoice on the screen")
 	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
-	  sendInvoicePage.searchBusinessInGrid(searchBusinessOnReceivable);
+	 sendInvoicePage.sortWithDueDate();
 		List<String> expectedList = new ArrayList<String>();
 		List<String> actualList=sendInvoicePage.seeInvoice();
 		List<List<String>> expected= dataTable.asLists();
@@ -69,5 +69,9 @@ public class Sendinvoicesteps {
 		String actualnotifiationcontent= sendInvoicePage.isNotificationSent();
 	    Log.info("Content of notificatiosn is --- >"+actualnotifiationcontent);
 	    assertEquals(notificationMessage, actualnotifiationcontent);
+	}
+	@When("User click on Send Invoice link")
+	public void user_click_on_send_invoice_link() {
+	sendInvoicePage.clickOnSendInvoice();
 	}
 }

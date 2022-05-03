@@ -22,6 +22,8 @@ public class Sendinvoicepage {
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
 	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
+	private By lnkSendInvoice = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
+	private By btnDueDateOnReceivable = By.xpath("(//p[contains(text(),'Due date')])[2]");
 	String receivableBalanceOndashboard, receiableBlanaceOnAccountingPage;
 
 	public Sendinvoicepage(WebDriver driver) {
@@ -74,5 +76,13 @@ public class Sendinvoicepage {
 
 	public void searchBusinessInGrid(String search) {
 		Eventhelper.sendkeys(driver, txtSearchBarOnReceivable, search);
+	}
+
+	public void clickOnSendInvoice() {
+		Eventhelper.click(driver, lnkSendInvoice);
+	}
+
+	public void sortWithDueDate() {
+		Eventhelper.click(driver, btnDueDateOnReceivable);
 	}
 }
