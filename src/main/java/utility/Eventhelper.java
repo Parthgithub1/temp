@@ -35,6 +35,11 @@ public class Eventhelper {
 		}
 		return element;
 	}
+	
+	public static boolean waitUntilElementInvisible(WebDriver driver, By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		}
 
 	public static List<WebElement> findElements(WebDriver driver, By locator) {
 		List<WebElement> element = null;

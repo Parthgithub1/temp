@@ -2,14 +2,12 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import getter_setter.AddFunds;
 import utility.Eventhelper;
 
 public class AddFundspage {
 	private WebDriver driver;
 	private By txtaddAmount = By.xpath("//input[@name='amount']");
-	private By btncloseIcon = By.xpath("//button[@aria-label=\"Close\"]");
+	private By btncloseIcon = By.xpath("//button[@aria-label='Close']");
 	
 	public AddFundspage(WebDriver driver) {
 		this.driver = driver;		

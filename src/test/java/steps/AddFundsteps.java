@@ -2,8 +2,6 @@ package steps;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import getter_setter.AddFunds;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.AddFundspage;
@@ -16,7 +14,6 @@ public class AddFundsteps {
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Registrationpage registrationpage = new Registrationpage(Driverhelper.getDriver());
 	float existingAmountBalance;
-	AddFunds addFund;
 
 	@Then("the {string} button should be enabled | disabled")
 	public void the_button_should_be_enabled(String btnName) {
