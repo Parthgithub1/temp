@@ -3,6 +3,7 @@ Feature: Test Login Functionality
   @Smoke
   Scenario: Verify Pay Invoice Successfully
     When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
+    Then User should see "Homepage" text on the screen
     Then User should save Default amount
     Then User should save Default amount of Payable
     Then User click on Payable Container
