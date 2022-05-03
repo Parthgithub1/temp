@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import utility.*;
 
 public class Loginpage {
@@ -24,5 +23,4 @@ public class Loginpage {
 		registrationpage.enterPassword(pass);
 		registrationpage.clickOnButton(login);
 	}
-
 }

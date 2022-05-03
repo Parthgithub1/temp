@@ -64,7 +64,7 @@ public class Registrationstep {
 		boolean isTextDisplay = registrationpage.isTextDisplayed(expectedText);
 		assertTrue(isTextDisplay); 
 	}
-
+	
 	@When("User click on the textbox of email")
 	public void user_click_on_the_textbox_of_email() {
 		registrationpage.clickOnTextbox();

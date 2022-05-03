@@ -40,6 +40,7 @@ public class Sendinvoicepage {
 		Eventhelper.sendkeys(driver, txtSearchBar, businessName);
 		selectBusiness = By
 				.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
+		Eventhelper.threadWait(3000);
 		Eventhelper.click(driver, selectBusiness);
 	}
 

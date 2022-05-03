@@ -101,7 +101,7 @@ public class Eventhelper {
 		}
 		return element;
 	}
-
+	
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
 		return findElement(driver, locator).isDisplayed();
 	}
@@ -113,10 +113,6 @@ public class Eventhelper {
 	public static String getTextofElement(WebDriver driver, By locator) {
 		WebElement element = Eventhelper.findElement(driver, locator);
 		return element.getText();
-	}
-
-	public static String getTitleOfWebPage(WebDriver driver) {
-		return driver.getTitle();
 	}
 
 	public static WebElement explicitwaitclickable(WebDriver driver, By locator) {
@@ -188,7 +184,6 @@ public class Eventhelper {
 		try {
 			Thread.sleep(miliSeconds);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 
