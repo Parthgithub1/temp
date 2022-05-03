@@ -1,12 +1,14 @@
 package steps;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.cucumber.java.en.*;
 import pages.AddFundspage;
+import pages.Loginpage;
 import pages.Payinvoicepage;
 import utility.Driverhelper;
 import utility.Eventhelper;
@@ -15,6 +17,7 @@ import utility.Log;
 public class Payinvoivesteps {
 	
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
+	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	float actualPayableBalanceonAccountingPage;
 	float actualPayableBalanceonHomePage;
@@ -106,4 +109,9 @@ public class Payinvoivesteps {
 		assertEquals(updateHopscotchBalanceCompletedPayables, hopscotchBalanceonAccoutingPage, 1);	
 	}
 
+	@Then("User should navigate to dashboard")
+	public void user_should_navigate_to_dashboard() {
+		boolean isTextDisplay = loginPage.isHompageDisplay();
+		assertTrue(isTextDisplay); 
+	}
 }

@@ -3,8 +3,6 @@ package steps;
 import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.*;
-import junit.framework.Assert;
-import pages.Loginpage;
 import pages.Registrationpage;
 import utility.Driverhelper;
 import utility.Log;
@@ -12,7 +10,6 @@ import utility.Log;
 public class Registrationstep {
 
 	Registrationpage registrationpage = new Registrationpage(Driverhelper.getDriver());
-	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 
 	@When("User click on {string} link")
 	public void user_click_on_link(String linktext) {
@@ -59,15 +56,15 @@ public class Registrationstep {
 
 	@When("user enter additional information")
 	public void user_enter_additional_information() {
-	    registrationpage.enterAdditionalInformation();
+		registrationpage.enterAdditionalInformation();
 	}
-	
+
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
-		boolean isTextDisplay = loginPage.isHompageDisplay();
-		assertTrue(isTextDisplay); 
+		boolean isTextDisplay = registrationpage.isTextDisplayed(expectedText);
+		assertTrue(isTextDisplay);
 	}
-	
+
 	@When("User click on the textbox of email")
 	public void user_click_on_the_textbox_of_email() {
 		registrationpage.clickOnTextbox();
@@ -77,12 +74,14 @@ public class Registrationstep {
 	public void user_press_the_tab_button() {
 		registrationpage.sendTab();
 	}
+
 	@When("User register with {string} email")
 	public void user_register_with_email(String string) {
-	 registrationpage.doRegister(string);
+		registrationpage.doRegister(string);
 	}
+
 	@When("User enter company details")
 	public void user_enter_company_details() {
-	 registrationpage.enterCompanyDetails();
+		registrationpage.enterCompanyDetails();
 	}
 }
