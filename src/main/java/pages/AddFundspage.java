@@ -6,21 +6,26 @@ import utility.Eventhelper;
 
 public class AddFundspage {
 	private WebDriver driver;
-	private By addAmount = By.xpath("//input[@name='amount']");
+	private By txtaddAmount = By.xpath("//input[@name='amount']");
+	private By btncloseIcon = By.xpath("//button[@aria-label='Close']");
 	
 	public AddFundspage(WebDriver driver) {
 		this.driver = driver;		
 	}
 
 	public void addAmount(int value) {
-		Eventhelper.isElementDisplayed(driver, addAmount);
-		Eventhelper.sendkeys(driver, addAmount, String.valueOf(value));
+		Eventhelper.isElementDisplayed(driver, txtaddAmount);
+		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(value));
 
 	}
 
 	public By getButtonByText(String btnName) {
 		return By.xpath("(//button[normalize-space()='" + btnName + "'])[1]");
 
+	}
+	
+	public void clickonCloseIcon() {
+		Eventhelper.click(driver, btncloseIcon);
 	}
 
 	public boolean isButtonEnabled(String text) {
@@ -43,15 +48,10 @@ public class AddFundspage {
 	}
 	
 	public float getexistingBalance() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Eventhelper.threadWait(2000);
 		String actualBalanceDisplayed = Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'Balance_balance__amount')]"));
 	    String hopscotchBalance = actualBalanceDisplayed.substring(1);
 		float amountBalance = Float.parseFloat(hopscotchBalance);
-		
 		return amountBalance;
 	}
 

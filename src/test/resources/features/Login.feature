@@ -15,9 +15,9 @@ Feature: Test Login Functionality
     Then User should see <validationMessage> text on the screen
 
     Examples: 
-      | email                  | password   | validationMessage                                        |
-      | "jayti.s@yopmail.com"  | "Test@12"  | "The email and password do not match, please try again." |
-      | "jayti.s1@yopmail.com" | "Test@123" | "User not found"                                         |
+      | email                                  | password     | validationMessage                                        |
+      | "hopsmokeautomation2@mailinator.com"   | "Password1"  | "The email and password do not match, please try again." |
+      | "hopsmokeautomation122@mailinator.com" | "Password1!" | "User not found"                                         |
 
   @Regression
   Scenario: Verify maximum Attempts Validation Message on Login Page
@@ -35,4 +35,3 @@ Feature: Test Login Functionality
   Scenario: Verify that User click on Term of Use Link
     When User click on "Terms of Use" link
     Then User should see "Terms of Use" text on the screen
-

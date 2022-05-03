@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import pages.AddFundspage;
 import pages.Registrationpage;
 import utility.Driverhelper;
+import utility.Eventhelper;
 import utility.Log;
 
 public class AddFundsteps {
@@ -22,7 +23,6 @@ public class AddFundsteps {
 	@Then("User should save Default amount")
 	public void user_should_save_default_amount() {
 		existingAmountBalance = addFunds.getexistingBalance();
-	    
 	}
 	
 	@Then("the {string} button should be {string}")
@@ -39,8 +39,7 @@ public class AddFundsteps {
 	@Then("User should see {string} model open")
 	public void user_should_see_model_open(String string) {
 		boolean amountTextDisplay = addFunds.modalHeader(string) != null;
-		assertTrue(amountTextDisplay);
-	    
+		assertTrue(amountTextDisplay);    
 	}
 
 	@When("User enter {int} in amount field")
@@ -51,6 +50,7 @@ public class AddFundsteps {
 	
 	@Then("User should see {string} amount on the screen")
 	public void user_should_see_amount_on_the_screen(String expectedAmountTobeChanged) {
+		Eventhelper.threadWait(5000);
 		float actualAmountDisplayed = addFunds.amtText();
 		float totalExpectedAmountBalance = existingAmountBalance + Float.parseFloat(expectedAmountTobeChanged);
 		Log.info(existingAmountBalance);
@@ -59,9 +59,16 @@ public class AddFundsteps {
 	
 	@Then("User should see {string} amount on the screen for withdraw")
 	public void user_should_see_amount_on_the_screen_for_withdraw(String string) {
+		Eventhelper.threadWait(5000);
 		float actualAmountBalance = addFunds.amtText();
 		float totalExpectedAmountBalance = existingAmountBalance - Float.parseFloat(string);
 		Log.info(existingAmountBalance);
 		assertEquals(totalExpectedAmountBalance, actualAmountBalance, 1);
 	}
+	
+	@When("User click on Close Icon")
+	public void user_click_on_close_icon() {
+		addFunds.clickonCloseIcon();
+	}
+
 }
