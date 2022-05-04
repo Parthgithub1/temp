@@ -14,6 +14,7 @@ public class Sendinvoicepage {
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By selectBusiness;
 	private By txtAmount = By.xpath("//input[@name='customerAmount']");
+	private By txtdate= By.xpath("//input[@placeholder='Due Date']");
 	private By txtMessage = By.xpath(" //textarea[@placeholder='Message']");
 	private By lblReceivableBalance = By.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
@@ -48,6 +49,7 @@ public class Sendinvoicepage {
 
 	public void sendInvoice(int amount, String message) {
 		Eventhelper.sendkeys(driver, txtAmount, String.valueOf(amount));
+		Eventhelper.sendkeys(driver, txtdate, Eventhelper.getTodaysDateInSting());
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 
@@ -75,10 +77,7 @@ public class Sendinvoicepage {
 		return Eventhelper.getTextofElement(driver, lblNotification);
 	}
 
-	public void searchBusinessInGrid(String search) {
-		Eventhelper.sendkeys(driver, txtSearchBarOnReceivable, search);
-	}
-
+	
 	public void clickOnSendInvoice() {
 		Eventhelper.click(driver, lnkSendInvoice);
 	}
