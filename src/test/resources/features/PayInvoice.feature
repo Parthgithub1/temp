@@ -6,10 +6,10 @@ Feature: Test Login Functionality
     Then User should navigate to dashboard
     Then User should save Default amount
     Then User should save Default amount of Payable
-    Then User click on Payable Container
+    Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
     Then User should save the amount of Hopscotch Balance from Accounting Page
-    When User enter "hopsmokeautomation2llc" in Searchbar
+    #When User enter "hopsmokeautomation2llc" in Searchbar
     When User click on Invoice from Payable tab
     Then User should see the amount to be Payable
     Then User should see "Payable Dashboard" text on the screen

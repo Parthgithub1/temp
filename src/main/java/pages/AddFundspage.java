@@ -33,7 +33,7 @@ public class AddFundspage {
 
 	}
 
-	public float amtText() {
+	public float hopscotchBalanceAfterAddingFund() {
 		By xpath = By.xpath("//*[contains(@class,'Balance_balance__amount')]");
 		String amountText = Eventhelper.getTextofElement(driver, xpath);
 		String hopscotchBalance = amountText.substring(1);
@@ -47,7 +47,7 @@ public class AddFundspage {
 		return Eventhelper.getTextofElement(driver, xpath);
 	}
 	
-	public float getexistingBalance() {
+	public float hopscotchBalanceBeforeAddingFund() {
 		Eventhelper.threadWait(2000);
 		String actualBalanceDisplayed = Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'Balance_balance__amount')]"));
 	    String hopscotchBalance = actualBalanceDisplayed.substring(1);

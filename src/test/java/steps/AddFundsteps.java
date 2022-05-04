@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.AddFundspage;
 import pages.Registrationpage;
+import userdata.Fundsdata;
 import utility.Driverhelper;
 import utility.Eventhelper;
 import utility.Log;
@@ -13,7 +14,7 @@ import utility.Log;
 public class AddFundsteps {
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Registrationpage registrationpage = new Registrationpage(Driverhelper.getDriver());
-	float existingAmountBalance;
+	Fundsdata fundData = new Fundsdata();
 
 	@Then("the {string} button should be enabled | disabled")
 	public void the_button_should_be_enabled(String btnName) {
@@ -22,7 +23,7 @@ public class AddFundsteps {
 	
 	@Then("User should save Default amount")
 	public void user_should_save_default_amount() {
-		existingAmountBalance = addFunds.getexistingBalance();
+		fundData.setAmountofhopscotchBalance(addFunds.hopscotchBalanceBeforeAddingFund());
 	}
 	
 	@Then("the {string} button should be {string}")
@@ -50,20 +51,16 @@ public class AddFundsteps {
 	
 	@Then("User should see {string} amount on the screen")
 	public void user_should_see_amount_on_the_screen(String expectedAmountTobeChanged) {
-		Eventhelper.threadWait(5000);
-		float actualAmountDisplayed = addFunds.amtText();
-		float totalExpectedAmountBalance = existingAmountBalance + Float.parseFloat(expectedAmountTobeChanged);
-		Log.info(existingAmountBalance);
-		assertEquals(totalExpectedAmountBalance, actualAmountDisplayed, 0);
+		Eventhelper.threadWait(3000);
+		float totalExpectedAmountBalance = fundData.getAmountofhopscotchBalance() + Float.parseFloat(expectedAmountTobeChanged);
+		assertEquals(totalExpectedAmountBalance, addFunds.hopscotchBalanceAfterAddingFund(), 0);
 	}
 	
 	@Then("User should see {string} amount on the screen for withdraw")
 	public void user_should_see_amount_on_the_screen_for_withdraw(String string) {
-		Eventhelper.threadWait(5000);
-		float actualAmountBalance = addFunds.amtText();
-		float totalExpectedAmountBalance = existingAmountBalance - Float.parseFloat(string);
-		Log.info(existingAmountBalance);
-		assertEquals(totalExpectedAmountBalance, actualAmountBalance, 1);
+		Eventhelper.threadWait(3000);
+		float totalExpectedAmountBalance = fundData.getAmountofhopscotchBalance() - Float.parseFloat(string);
+		assertEquals(totalExpectedAmountBalance, addFunds.hopscotchBalanceAfterAddingFund(), 1);
 	}
 	
 	@When("User click on Close Icon")
