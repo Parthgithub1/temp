@@ -20,6 +20,6 @@ Feature: Test Login Functionality
     Then User should see new amount on the screen for Payables
     Then User should see update amount of Hopscotch Balance on Accounting Page
     Then User should see invoice details of invoice details on the screen
-      | hopsmokeautomation2llc | May 3rd | -$1.00 |
+      | hopsmokeautomation2llc | -$1.00 |
     Then User click on "Homepage" button to navigate to dashboard
     Then User should see "You paid an invoice to hopsmokeautomation2llc for $1.00" notification on the dashboard
