@@ -2,11 +2,14 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import userdata.Payinvoicedata;
 import utility.*;
 
 public class Loginpage {
 	private WebDriver driver;
 	private Registrationpage registrationpage;
+	Payinvoicedata payData = new Payinvoicedata();
 
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
@@ -20,6 +23,7 @@ public class Loginpage {
 
 	public void doLogin(String email, String pass, String login) {
 		registrationpage.enterEmailAddress(email);
+		payData.setEmail(email);
 		registrationpage.enterPassword(pass);
 		registrationpage.clickOnButton(login);
 	}
@@ -31,7 +35,7 @@ public class Loginpage {
 		} catch (Exception e) {
 			registrationpage.clickOnLink("Forgot your password?");
 			driver.navigate().back();
-			doLogin("hopsmokeautomation1@mailinator.com", "Password1!", "Log in");
+			doLogin(payData.getEmail(), "Password1!", "Log in");
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}

@@ -7,38 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.cucumber.java.en.*;
-import pages.AddFundspage;
-import pages.Loginpage;
-import pages.Payinvoicepage;
-import utility.Driverhelper;
-import utility.Eventhelper;
-import utility.Log;
+import pages.*;
+import userdata.*;
+import utility.*;
 
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
-	float actualPayableBalanceonAccountingPage;
-	float actualPayableBalanceonHomePage;
-	float invoiceAmount;
-	float hopscotchBalanceonAccoutingPage;
-	float existingBalanceofCompletedPayables;
+	Fundsdata fundData = new Fundsdata();
+	Payinvoicedata payData = new Payinvoicedata();
 
 	@Then("User should save Default amount of Payable")
 	public void user_should_save_default_amount_of_payable() {
-		actualPayableBalanceonHomePage = payInvoice.getexistingBalanceofPayableofHomePage();
-
+		 payData.setDefaultPayableBalanceatHomePage(payInvoice.getexistingBalanceofPayableofHomePage());
 	}
 
-	@Then("User click on Payable Container")
-	public void user_click_on_payable_container() {
-		payInvoice.clickOnPayableContanier();
+	@Then("User click on {string} Container")
+	public void user_click_on_container(String string) {
+		payInvoice.clickOnContanier(string);
 	}
 
 	@Then("User should save Default amount of Payable on Accounting Page")
 	public void user_should_save_default_amount_of_payable_on_accounting_page() {
-		actualPayableBalanceonAccountingPage = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		payData.setBalanceofPayableonAccountingPage(payInvoice.getexistingBalanceofPayableonAccountingPage());
 	}
 
 	@When("User click on Invoice from Payable tab")
@@ -48,27 +41,26 @@ public class Payinvoivesteps {
 
 	@Then("User should see the amount to be Payable")
 	public void user_should_see_the_amount_to_be_payable() {
-		invoiceAmount = payInvoice.invoiceAmountUserPaying();
+		payData.setInvoiceAmounttobePaid(payInvoice.invoiceAmountUserPaying());
 	}
 
 	@Then("User should see new amount on the screen for Payables")
 	public void user_should_see_new_amount_on_the_screen_for_payables() {
 		Eventhelper.threadWait(2000);
-		float expectedAmount = actualPayableBalanceonHomePage - invoiceAmount;
-		Log.info(expectedAmount);
-		assertEquals(expectedAmount, actualPayableBalanceonAccountingPage, 0);
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage() - payData.getInvoiceAmounttobePaid();
+		assertEquals(expectedAmount, payData.getBalanceofPayableonAccountingPage(), 0);
 	}
-
+	
 	@Then("User should see update amount of Hopscotch Balance on Accounting Page")
 	public void user_should_see_update_amount_of_hopscotch_balance_on_accounting_page() {
-		float updateHopscotchBalance = hopscotchBalanceonAccoutingPage - invoiceAmount;
+		float updateHopscotchBalance = fundData.getAmountofhopscotchBalance() - payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalance);
-		assertEquals(updateHopscotchBalance, hopscotchBalanceonAccoutingPage, 1);
+		assertEquals(updateHopscotchBalance, fundData.getAmountofhopscotchBalance(), 1);
 	}
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")
 	public void user_should_save_the_amount_of_hopscotch_balance_from_accounting_page() {
-		hopscotchBalanceonAccoutingPage = addFunds.getexistingBalance();
+		fundData.setAmountofhopscotchBalance(addFunds.hopscotchBalanceBeforeAddingFund());
 	}
 
 	@When("User enter {string} in Searchbar")
@@ -87,6 +79,7 @@ public class Payinvoivesteps {
 			expectedList.add(columns.get(0));
 			expectedList.add(Eventhelper.GetTodaysdateInSpecifiedFormat());
 			expectedList.add(columns.get(1));
+	
 		}
 		assertEquals(expectedList, actualList);
 
@@ -99,14 +92,15 @@ public class Payinvoivesteps {
 
 	@Then("User should save the amount of Completed Payables Balance from Accounting Page")
 	public void user_should_save_the_amount_of_completed_payables_balance_from_accounting_page() {
-		existingBalanceofCompletedPayables = payInvoice.getexistingBalanceofCompletedPayables();
+		payData.setExistingBalanceofCompletedPayables(payInvoice.getexistingBalanceofCompletedPayables());
 	}
 
 	@Then("User should see updated amount of Completed Payable Balance")
 	public void user_should_see_updated_amount_of_completed_payable_balance() {
-		float updateHopscotchBalanceCompletedPayables = existingBalanceofCompletedPayables + invoiceAmount;
+		float updateHopscotchBalanceCompletedPayables = payData.getExistingBalanceofCompletedPayables() + payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalanceCompletedPayables);
-		assertEquals(updateHopscotchBalanceCompletedPayables, hopscotchBalanceonAccoutingPage, 1);
+		assertEquals(updateHopscotchBalanceCompletedPayables, fundData.getAmountofhopscotchBalance() , 1);
+
 	}
 
 	@Then("User should navigate to dashboard")
