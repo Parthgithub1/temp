@@ -8,6 +8,7 @@ import java.util.List;
 import io.cucumber.java.en.*;
 import pages.Sendinvoicepage;
 import utility.Driverhelper;
+import utility.Eventhelper;
 import utility.Log;
 
 public class Sendinvoicesteps {
@@ -40,9 +41,9 @@ public class Sendinvoicesteps {
 		List<List<String>> expected= dataTable.asLists();
 		for (List<String> columns : expected) {
 	       expectedList.add(columns.get(0));
+	       expectedList.add(Eventhelper.GetTodaysdateInSpecifiedFormat()); 
 	       expectedList.add(columns.get(1));
-	       expectedList.add(columns.get(2));
-	    }
+	       	    }
 		assertEquals(expectedList, actualList);
 	}
 	
