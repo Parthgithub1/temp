@@ -9,11 +9,12 @@ import utility.*;
 public class Loginpage {
 	private WebDriver driver;
 	private Registrationpage registrationpage;
-	Payinvoicedata payData = new Payinvoicedata();
+	Payinvoicedata payData;
 
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
 		registrationpage = new Registrationpage(driver);
+		payData = new Payinvoicedata();
 	}
 
 	public boolean isAttemptTextDisplayed() {
