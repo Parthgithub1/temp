@@ -1,5 +1,6 @@
 package utility;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,6 +29,7 @@ public class Driverhelper {
 			ChromeOptions options = new ChromeOptions();
 			if(headless) {
 				options.setHeadless(true);
+				options.addArguments("window-size=1920,1080");
 			}
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
