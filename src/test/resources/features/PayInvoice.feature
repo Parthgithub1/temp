@@ -1,9 +1,8 @@
-Feature: Test Login Functionality
+Feature: Test PayInvoice Functionality
 
-  @Smoke
   Scenario: Verify Pay Invoice Successfully
     When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
-    Then User should navigate to dashboard
+    Then User should navigate to dashboard of "hopsmokeautomation3@mailinator.com"
     Then User should save Default amount
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
@@ -20,6 +19,6 @@ Feature: Test Login Functionality
     Then User should see new amount on the screen for Payables
     Then User should see update amount of Hopscotch Balance on Accounting Page
     Then User should see invoice details of invoice details on the screen
-      | hopsmokeautomation2llc | -$1.00 |
+      | hopsmokeautomation1llc | -$1.00 |
     Then User click on "Homepage" button to navigate to dashboard
-    Then User should see "You paid an invoice to hopsmokeautomation2llc for $1.00" notification on the dashboard
+    Then User should see "You paid an invoice to hopsmokeautomation1llc for $1.00" notification on the dashboard
