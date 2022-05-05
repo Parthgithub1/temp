@@ -8,7 +8,6 @@ public class Loginpage {
 	private WebDriver driver;
 	private Registrationpage registrationpage;
 
-
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
 		registrationpage = new Registrationpage(driver);
@@ -20,24 +19,20 @@ public class Loginpage {
 	}
 
 	public void doLogin(String email, String pass, String login) {
-		registrationpage.enterEmailAddress(email);
-		//logData.setEmail(email);
+		 registrationpage.enterEmailAddress(email);
 		registrationpage.enterPassword(pass);
-		//logData.setPassword(pass);
 		registrationpage.clickOnButton(login);
+		
 	}
 
-	public boolean isHompageDisplay() {
+	public boolean isHompageDisplay(String email) {
 		By loginBtn = By.xpath("//button[@type='submit']");
 		try {
 			Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 		} catch (Exception e) {
 			registrationpage.clickOnLink("Forgot your password?");
 			driver.navigate().back();
-			//String email = logData.getEmail();
-			//String pass = logData.getPassword();
-			//doLogin(email, pass, "Log in");
-			doLogin("hopsmokeautomation2@mailinator.com", "Password1!", "Log in");
+			doLogin(email, "Password1!", "Log in");
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}
