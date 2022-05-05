@@ -7,13 +7,11 @@ import utility.*;
 public class Loginpage {
 	private WebDriver driver;
 	private Registrationpage registrationpage;
-	Payinvoicedata payData = new Payinvoicedata();
-	Logindata logData;
+
 
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
 		registrationpage = new Registrationpage(driver);
-		logData = new Logindata();
 	}
 
 	public boolean isAttemptTextDisplayed() {
