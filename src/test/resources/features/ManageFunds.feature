@@ -14,7 +14,7 @@ Feature: Test Fund Management
     Then User should see "Done" text on the screen
     When User click on Close Icon
     Then User should see "Hopscotch Balance" text on the screen
-    Then User should see "1.00" amount on the screen
+    Then User should see "2.00" amount on the screen
     Then User should save Default amount
     When User click on "Withdraw" button
     Then User should see "Withdraw funds" model open

@@ -1,7 +1,7 @@
-Feature: Send invoice feature
+Feature: Send and Pay invoice feature
 
   @Smoke
-  Scenario: verify that user is able to send an invoice to existing business into hopscotch application
+  Scenario: Verify that user is able to send and Pay invoice to existing business into hopscotch application
     When User login with "hopsmokeautomation1@mailinator.com" and "Password1!" and click on "Log in" button
     Then User should navigate to dashboard of "hopsmokeautomation1@mailinator.com"
     Then Read Receivable Balance on home screen
