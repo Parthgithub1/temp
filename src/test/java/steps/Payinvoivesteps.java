@@ -31,6 +31,7 @@ public class Payinvoivesteps {
 
 	@Then("User should save Default amount of Payable on Accounting Page")
 	public void user_should_save_default_amount_of_payable_on_accounting_page() {
+		Eventhelper.threadWait(2000);
 		payData.setBalanceofPayableonAccountingPage(payInvoice.getexistingBalanceofPayableonAccountingPage());
 	}
 
@@ -103,9 +104,9 @@ public class Payinvoivesteps {
 
 	}
 
-	@Then("User should navigate to dashboard")
-	public void user_should_navigate_to_dashboard() {
-		boolean isTextDisplay = loginPage.isHompageDisplay();
+	@Then("User should navigate to dashboard of {string}")
+	public void user_should_navigate_to_dashboard(String email) {
+		boolean isTextDisplay = loginPage.isHompageDisplay(email);
 		assertTrue(isTextDisplay);
 	}
 }
