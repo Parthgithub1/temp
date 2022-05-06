@@ -20,10 +20,11 @@ public class Loginpage {
 	}
 
 	public void doLogin(String email, String pass, String login) {
-		 registrationpage.enterEmailAddress(email);
+		registrationpage.enterEmailAddress(email);
 		registrationpage.enterPassword(pass);
+		Eventhelper.threadWait(2000);
 		registrationpage.clickOnButton(login);
-		
+
 	}
 
 	public boolean isHompageDisplay(String email) {
@@ -37,11 +38,11 @@ public class Loginpage {
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}
-	
-	public void clickonDropDownofProfile(){
+
+	public void clickonDropDownofProfile() {
 		Eventhelper.click(driver, xPathofdropDown);
 	}
-	
+
 	public void clickonLogOutOptionfromProfileDropDown(String text) {
 		By btnxpath = By.xpath("//a[normalize-space()='" + text + "']");
 		Eventhelper.click(driver, btnxpath);
