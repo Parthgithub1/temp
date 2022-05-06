@@ -7,6 +7,7 @@ import utility.*;
 public class Loginpage {
 	private WebDriver driver;
 	private Registrationpage registrationpage;
+	private By xPathofdropDown = By.xpath("//img[@alt='Company Logo']");
 
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
@@ -35,5 +36,14 @@ public class Loginpage {
 			doLogin(email, "Password1!", "Log in");
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
+	}
+	
+	public void clickonDropDownofProfile(){
+		Eventhelper.click(driver, xPathofdropDown);
+	}
+	
+	public void clickonLogOutOptionfromProfileDropDown(String text) {
+		By btnxpath = By.xpath("//a[normalize-space()='" + text + "']");
+		Eventhelper.click(driver, btnxpath);
 	}
 }

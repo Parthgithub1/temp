@@ -42,3 +42,6 @@ Feature: Send and Pay invoice feature
       | hopsmokeautomation1llc | -$1.00 |
     Then User click on "Homepage" button to navigate to dashboard
     Then User should see "You paid an invoice to hopsmokeautomation1llc for $1.00" notification on the dashboard
+    When User click on Profile Drop Down
+    Then User click on "Log Out" option from Profile Drop-Down
+    Then User should see "Welcome Back!" text on the screen
