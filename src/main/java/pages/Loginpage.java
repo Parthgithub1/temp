@@ -26,6 +26,7 @@ public class Loginpage {
 		registrationpage.enterEmailAddress(email);
 		payData.setEmail(email);
 		registrationpage.enterPassword(pass);
+		Eventhelper.threadWait(2000);
 		registrationpage.clickOnButton(login);
 	}
 

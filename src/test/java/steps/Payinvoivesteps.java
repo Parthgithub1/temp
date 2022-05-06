@@ -15,8 +15,10 @@ public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
+	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
+	Addbillsteps addBillSteps = new Addbillsteps();
 	Payinvoicedata payData = new Payinvoicedata();
 
 	@Then("User should save Default amount of Payable")
@@ -107,5 +109,24 @@ public class Payinvoivesteps {
 	public void user_should_navigate_to_dashboard() {
 		boolean isTextDisplay = loginPage.isHompageDisplay();
 		assertTrue(isTextDisplay);
+	}
+	
+	@Then("User should see updated payable amount on the screen")
+	public void user_should_see_updated_payable_amount_on_the_screen() {
+		Eventhelper.threadWait(3000);
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage();
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
+	
+	@Then("User see the updated payable balance before paying invoice of add bill")
+	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
+		addBillPage.closeCard();
+		Eventhelper.threadWait(3000);        
+		Log.info(" amount --->"+Addbillsteps.fatchAmount());
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage()+Addbillsteps.fatchAmount();
+		Log.info("payData.getDefaultPayableBalanceatHomePage()"+payData.getDefaultPayableBalanceatHomePage());
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		assertEquals(expectedAmount, actualAmount, 0);
 	}
 }
