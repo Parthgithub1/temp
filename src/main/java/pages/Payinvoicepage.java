@@ -54,6 +54,7 @@ public class Payinvoicepage {
 	}
 	
 	public void clickOnInvoice() {
+		Eventhelper.threadWait(2000);
 		By invoicexpath = By.xpath("//*[contains(@class,'TransactionList_bizName__2vORu')]");
 		Eventhelper.click(driver, invoicexpath);
 	}

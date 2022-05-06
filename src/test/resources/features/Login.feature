@@ -6,6 +6,9 @@ Feature: Test Login Functionality
     When User enter "Password1!" in password field
     When User click on "Log in" button
     Then User should navigate to dashboard of "hopsmokeautomation1@mailinator.com"
+    When User click on Profile Drop Down
+    Then User click on "Log Out" option from Profile Drop-Down
+    Then User should see "Welcome Back!" text on the screen
 
   @Regression
   Scenario Outline: Verify Validations for Email_Password

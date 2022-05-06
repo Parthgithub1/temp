@@ -89,6 +89,7 @@ public class Registrationpage {
 	}
 
 	public Boolean isTextDisplayed(String text) {
+		Eventhelper.threadWait(2000);
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
