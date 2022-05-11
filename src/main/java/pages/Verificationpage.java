@@ -9,23 +9,23 @@ public class Verificationpage {
 	private WebDriver driver;
 
 	Registrationpage registrationPage;
-	private By txtLegalBusinessName = By.xpath("//input[@placeholder='Business name']");
+	private By txtLegalBusinessName = By.xpath("//input[@name='legalName']");
 	private By txtBusinessAddress = By.xpath("//input[@name='bizAddress']");
 	private By ddBusinessAddress = By.xpath("//div[@class='pac-item'][1]");
 	private By txtBusinessAppartement = By.xpath("//input[@name='bizAddressApt']");
 	private By ddBusinessTaxType = By.xpath("//div[@id='taxId']");
 	private By ddBusinessSelectTaxYype = By.xpath("//div[text()='SSN']");
 	private By txtBusinessTaxID = By.xpath("//input[@id='idNumber']");
-	private By btnAddBeneficial = By.xpath("//span[normalize-space()='Add beneficial owner']");
+	private By btnAddBeneficial = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By txtAddBeneficialFirstName = By.xpath("//input[@name='ownerFirstName']");
 	private By txtAddBeneficialLastName = By.xpath("//input[@name='ownerLastName']");
-	private By txtAddBeneficialBirthDate = By.xpath("//input[@placeholder='Birthday']");
+	private By txtAddBeneficialBirthDate = By.xpath("//label[@for='birthday']/following-sibling::div//input");
 	private By txtAddBeneficialSSN = By.xpath("//input[@id='ownerSSN']");
 	private By rbtnAddBeneficialSameAsLegalAddress = By
 			.xpath("//label[normalize-space()='Same as legal business address']");
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
-	private By btnAddBankDetails = By.xpath("//span[text()='Add and securely connect instantly']");
+	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
@@ -76,6 +76,22 @@ public class Verificationpage {
 	public void addBank() {
 		Eventhelper.threadWait(2000);
 		Eventhelper.click(driver, btnAddBankDetails);
+		Eventhelper.switchToFrame(driver, frmIframe);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		registrationPage.clickOnButton("Continue");
+		Eventhelper.click(driver, lstChase);
+		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
+		registrationPage.clickOnButton("Submit");
+		Eventhelper.click(driver, rbtnAddBankPleidChecking);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		registrationPage.clickOnButton("Continue");
+		registrationPage.clickOnButton("Continue");
+		Eventhelper.switchToParentFrame(driver);
+	}
+	
+	public void addBankExternalInvoice()
+	{
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
 		registrationPage.clickOnButton("Continue");
