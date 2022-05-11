@@ -1,6 +1,6 @@
 Feature: Test Fund Management
 
-  @Smoke
+  @dSmoke
   Scenario: Verify User is able to Add and Withdraw Funds Successfully
     When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
     Then User should navigate to dashboard of "hopsmokeautomation3@mailinator.com"
