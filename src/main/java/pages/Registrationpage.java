@@ -37,8 +37,9 @@ public class Registrationpage {
 	}
 
 	public void clickOnButton(String buttonname) {
-		By btnxpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[1]");
-		Eventhelper.click(driver, btnxpath);
+		By btnXpath = By.xpath("((//button[normalize-space()='Transfer'])[1] | (//button[normalize-space()='"+ buttonname +"']))[1]");
+		Eventhelper.threadWait(2000);
+		Eventhelper.click(driver, btnXpath);
 	}
 
 	public void enterEmailAddress(String value) {
@@ -89,6 +90,7 @@ public class Registrationpage {
 	}
 
 	public Boolean isTextDisplayed(String text) {
+		Eventhelper.threadWait(2000);
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}

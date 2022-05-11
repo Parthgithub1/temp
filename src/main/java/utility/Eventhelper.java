@@ -220,5 +220,14 @@ public class Eventhelper {
 		String Outputdate = outsimpleDateFormat.format(new Date());
 		return (Outputdate + " " + dayStr);
 	}
+	
+	public static float numberFormat(float x) {
+		String amt = String.valueOf(x);
+		if(amt.contains("-")){
+			amt = amt.replace("-", "");
+		}
+		float a = Float.parseFloat(amt);
+		return a;	
+	}
 
 }

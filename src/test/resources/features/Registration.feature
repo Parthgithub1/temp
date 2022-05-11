@@ -1,7 +1,7 @@
 Feature: Registration feature file
   I want to use this template for my feature file
 
-  @Smoke
+  @Smoke @uat
   Scenario: verify that user is able to register into hopscotch application
     When User click on "Register here" link
     When User enter "random" in email field
