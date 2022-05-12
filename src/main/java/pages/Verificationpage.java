@@ -7,7 +7,7 @@ public class Verificationpage {
 
 	private WebDriver driver;
 	private Commonpage commonPage ;
-	private By txtLegalBusinessName = By.xpath("//input[@placeholder='Business name']");
+	private By txtLegalBusinessName = By.xpath("//input[@name='legalName']");
 	private By txtBusinessAddress = By.xpath("//input[@name='bizAddress']");
 	private By ddBusinessAddress = By.xpath("//div[@class='pac-item'][1]");
 	private By txtBusinessAppartement = By.xpath("//input[@name='bizAddressApt']");
