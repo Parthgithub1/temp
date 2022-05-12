@@ -14,10 +14,10 @@ import utility.*;
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
-	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
 	Payinvoicedata payData = new Payinvoicedata();
+	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 
 	@Then("User should save Default amount of Payable")
 	public void user_should_save_default_amount_of_payable() {
@@ -47,8 +47,11 @@ public class Payinvoivesteps {
 
 	@Then("User should see new amount on the screen for Payables")
 	public void user_should_see_new_amount_on_the_screen_for_payables() {
-		Eventhelper.threadWait(2000);
+		Eventhelper.threadWait(5000);
 		float expectedAmount = payData.getDefaultPayableBalanceatHomePage() - payData.getInvoiceAmounttobePaid();
+		System.out.println(expectedAmount);
+		System.out.println(payData.getDefaultPayableBalanceatHomePage());
+		System.out.println(payData.getInvoiceAmounttobePaid());
 		assertEquals(expectedAmount, payData.getBalanceofPayableonAccountingPage(), 0);
 	}
 	
@@ -61,7 +64,7 @@ public class Payinvoivesteps {
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")
 	public void user_should_save_the_amount_of_hopscotch_balance_from_accounting_page() {
-		fundData.setAmountofhopscotchBalance(addFunds.hopscotchBalanceBeforeAddingFund());
+		fundData.setAmountofhopscotchBalance(commonPage.hopscotchBalanceBeforeAddingFund());
 	}
 
 	@When("User enter {string} in Searchbar")
@@ -86,11 +89,6 @@ public class Payinvoivesteps {
 
 	}
 
-	@Then("User click on {string} button to navigate to dashboard")
-	public void user_click_on_button_to_navigate_to_dashboard(String buttoname) {
-		payInvoice.clickOnButton();
-	}
-
 	@Then("User should save the amount of Completed Payables Balance from Accounting Page")
 	public void user_should_save_the_amount_of_completed_payables_balance_from_accounting_page() {
 		payData.setExistingBalanceofCompletedPayables(payInvoice.getexistingBalanceofCompletedPayables());
@@ -103,10 +101,24 @@ public class Payinvoivesteps {
 		assertEquals(updateHopscotchBalanceCompletedPayables, fundData.getAmountofhopscotchBalance() , 1);
 
 	}
-
-	@Then("User should navigate to dashboard of {string}")
-	public void user_should_navigate_to_dashboard(String email) {
-		boolean isTextDisplay = loginPage.isHompageDisplay(email);
-		assertTrue(isTextDisplay);
+	
+	@Then("User click on {string} button to navigate to dashboard")
+	public void user_click_on_button_to_navigate_to_dashboard(String buttoname) {
+		commonPage.clickonLinkfromProfileDropDownOption(buttoname);
 	}
+	
+	@When("User click on {string} option from Header")
+	public void user_click_on_option_from_header(String string) {
+	    commonPage.clickonNotificationfromHeader(string);
+	}
+	
+	@Then("User should get the List of Notifications")
+	public void user_should_get_the_list_of_notifications() {
+		//List<String> expectedList = new ArrayList<String>();
+		boolean actualList=commonPage.seeNotifications();
+		assertTrue(actualList);
+		
+		//System.out.println(actualList);
+	}
+
 }

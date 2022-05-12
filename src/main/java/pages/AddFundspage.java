@@ -1,8 +1,7 @@
 package pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import utility.Eventhelper;
+import utility.*;
 
 public class AddFundspage {
 	private WebDriver driver;
@@ -13,9 +12,9 @@ public class AddFundspage {
 		this.driver = driver;
 	}
 
-	public void addAmount(float value) {
+	public void addAmount(float amountofHopscotchBalance) {
 		Eventhelper.isElementDisplayed(driver, txtaddAmount);
-		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(value));
+		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(amountofHopscotchBalance));
 
 	}
 
@@ -41,14 +40,6 @@ public class AddFundspage {
 	public String modalHeader(String text) {
 		By xpath = By.xpath("//span[contains(@class,'ModalTitleWithStep_title') and contains(text(),'" + text + "')]");
 		return Eventhelper.getTextofElement(driver, xpath);
-	}
-
-	public float hopscotchBalanceBeforeAddingFund() {
-		Eventhelper.threadWait(2000);
-		String amountofHBalance = Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'Balance_balance__amount')]"));
-		String newamountogHBalance = amountofHBalance.replace("$","");
-		float amountBalance = Float.parseFloat(newamountogHBalance);
-		return amountBalance;
 	}
 
 }
