@@ -2,6 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import com.github.javafaker.Faker;
+
 import utility.Eventhelper;
 
 public class Addbillpage {
@@ -17,6 +20,7 @@ public class Addbillpage {
 	private By txtMessage = By.xpath("//textarea[@name='message']");
 	private By txtsearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 	private By lblnotification;
+	Faker faker = new Faker();
 	String vender;
 
 	public Addbillpage(WebDriver driver) {
@@ -25,11 +29,11 @@ public class Addbillpage {
 	}
 
 	public float addBill() {
-		vender = Eventhelper.generateRandomNumber();
+		vender = faker.name().firstName();
 		Eventhelper.sendkeys(driver, txtVendor, vender);
 		Eventhelper.click(driver, selectVendor);
-		Eventhelper.sendkeys(driver, txtContactName, "Barak Obama");
-		String tempEmail = Eventhelper.generateRandomNumber() + "@mailinator.com";
+		Eventhelper.sendkeys(driver, txtContactName, vender);
+		String tempEmail = vender + "@mailinator.com";
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
 		Eventhelper.sendkeys(driver, txtAmount, "1");
 		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
@@ -65,10 +69,4 @@ public class Addbillpage {
 		Eventhelper.explicitwait(driver, lblnotification);
 		return Eventhelper.isElementDisplayed(driver, lblnotification);
 	}
-
-	public void closeCard() {
-		Eventhelper.click(driver, By.xpath("//button[contains(@class,'close-btn')][1]"));
-
-	}
-
 }

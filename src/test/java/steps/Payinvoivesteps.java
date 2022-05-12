@@ -120,7 +120,6 @@ public class Payinvoivesteps {
 	
 	@Then("User see the updated payable balance before paying invoice of add bill")
 	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
-		addBillPage.closeCard();
 		Eventhelper.threadWait(3000);        
 		Log.info(" amount --->"+Addbillsteps.fatchAmount());
 		float expectedAmount = payData.getDefaultPayableBalanceatHomePage()+Addbillsteps.fatchAmount();

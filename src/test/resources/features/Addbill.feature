@@ -1,8 +1,8 @@
-Feature: Test Add functionality 
- 
+Feature: Test Add functionality
+
   @Smoke
   Scenario: Verify Add bill Successfully
-    When User login with "hopsmokeautomation1@mailinator.com" and "Password1!" and click on "Log in" button
+    When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
