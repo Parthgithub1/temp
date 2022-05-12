@@ -229,4 +229,9 @@ public class Eventhelper {
 		float amount = Float.parseFloat(amountofBalance);
 		return amount;	
 	}
+	
+	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
+		WebElement element = Eventhelper.findElement(driver, locator);
+		return element.getAttribute(attribute);
+	}
 }
