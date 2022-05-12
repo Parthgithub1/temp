@@ -18,6 +18,7 @@ public class Payinvoivesteps {
 	Fundsdata fundData = new Fundsdata();
 	Payinvoicedata payData = new Payinvoicedata();
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
+	Homepage homepage = new Homepage(Driverhelper.getDriver());
 
 	@Then("User should save Default amount of Payable")
 	public void user_should_save_default_amount_of_payable() {
@@ -64,7 +65,7 @@ public class Payinvoivesteps {
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")
 	public void user_should_save_the_amount_of_hopscotch_balance_from_accounting_page() {
-		fundData.setAmountofhopscotchBalance(commonPage.hopscotchBalanceBeforeAddingFund());
+		fundData.setAmountofhopscotchBalance(homepage.hopscotchBalanceBeforeAddingFund());
 	}
 
 	@When("User enter {string} in Searchbar")
@@ -110,15 +111,6 @@ public class Payinvoivesteps {
 	@When("User click on {string} option from Header")
 	public void user_click_on_option_from_header(String string) {
 	    commonPage.clickonNotificationfromHeader(string);
-	}
-	
-	@Then("User should get the List of Notifications")
-	public void user_should_get_the_list_of_notifications() {
-		//List<String> expectedList = new ArrayList<String>();
-		boolean actualList=commonPage.seeNotifications();
-		assertTrue(actualList);
-		
-		//System.out.println(actualList);
 	}
 
 }
