@@ -8,7 +8,7 @@ public class Fundsdata {
 		return hopscotchBalance;
 	}
 
-	public void setAmountofhopscotchBalance(float amountOfhopscotchBalance) {
-		this.hopscotchBalance = amountOfhopscotchBalance;
+	public void setAmountofhopscotchBalance(float amountofHopscotchBalance) {
+		this.hopscotchBalance = amountofHopscotchBalance;
 	}
 }

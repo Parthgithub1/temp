@@ -16,6 +16,7 @@ public class Payinvoicepage {
     private By btnDate= By.xpath("(//p[contains(text(),'Due date')])[3]");
     private By invoiceTableGrid = By.xpath("(//table)[3]//tr[1]//td");
     private By txtsearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+    private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
     private By payableContanierxpath;
 
 	public Payinvoicepage(WebDriver driver) {
@@ -84,5 +85,26 @@ public class Payinvoicepage {
 	public void enterInSearchBar(String searchPayables) {
 		Eventhelper.sendkeys(driver, txtsearchBaronPayableTab, searchPayables);
 	}
+	
+	public void clickonNotificationfromHeader(String linktext) {
+		By btnxpath = By.xpath("(//*[name()='svg'])[4]");		
+		Eventhelper.click(driver, btnxpath);
+	}
+	
+
+	public boolean seeNotifications() {
+		List<WebElement> columnElements = Eventhelper.findElements(driver, notificationTableGridxPath);
+		List<String> actualData = new ArrayList<String>();
+		boolean flag = false;
+		for (WebElement columnElement : columnElements) {
+			actualData.add(columnElement.getText());
+		}
+		if(actualData.contains("You paid an invoice to hopsmokeautomation1llc for $1.00")){
+			//System.out.println("Notification Matched");
+			flag = true;
+		}
+		return flag;
+	}
+
 
 }

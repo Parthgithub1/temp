@@ -1,13 +1,11 @@
 package pages;
 
 import java.util.List;
-import java.util.UUID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utility.*;
 
-import utility.Eventhelper;
-import utility.Log;
 
 public class Registrationpage {
 
@@ -15,7 +13,6 @@ public class Registrationpage {
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtBusinessName = By.xpath("//input[@name='dbaName']");
-	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
 	private By txtEmailAddress = By.xpath("//input[contains(@name ,'email')]");
 	private By txtOtpBoxLocator = By.xpath("(//input[contains(@aria-label,'Digit')])");
 	private By txtAboutYourCompany = By.xpath("//textarea[@name='description']");
@@ -26,28 +23,11 @@ public class Registrationpage {
 	private By ddSelecteState = By.xpath("//div[text()='AK']");
 	private By ddIndustry = By.xpath("//div[@id='industry']");
 	private By ddSelecteIndustry = By.xpath("//div[text()='Accounting']");
+	private Commonpage commonPage ;
 
 	public Registrationpage(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public void clickOnLink(String linktext) {
-		By linkxpath = By.partialLinkText(linktext);
-		Eventhelper.click(driver, linkxpath);
-	}
-
-	public void clickOnButton(String buttonname) {
-		By btnXpath = By.xpath("((//button[normalize-space()='Transfer'])[1] | (//button[normalize-space()='"+ buttonname +"']))[1]");
-		Eventhelper.threadWait(2000);
-		Eventhelper.click(driver, btnXpath);
-	}
-
-	public void enterEmailAddress(String value) {
-		if (value.contains("random")) {
-			value = UUID.randomUUID().toString() + "@hopscotchautomation.com";
-			Log.info("Email id is -->" + value);
-		}
-		Eventhelper.sendkeys(driver, txtEmailAddress, value);
+		commonPage = new Commonpage(driver);
 	}
 
 	public void enterFirstName(String value) {
@@ -60,10 +40,6 @@ public class Registrationpage {
 
 	public void enterBusinessName(String value) {
 		Eventhelper.sendkeys(driver, txtBusinessName, value);
-	}
-
-	public void enterPassword(String value) {
-		Eventhelper.sendkeys(driver, txtPassword, value);
 	}
 
 	public void enterOTP() {
@@ -104,17 +80,17 @@ public class Registrationpage {
 	}
 
 	public void doRegister(String randomemail) {
-		clickOnLink("Register here");
-		enterEmailAddress(randomemail);
-		clickOnButton("Continue");
+		commonPage.clickOnLink("Register here");
+		commonPage.enterEmailAddress(randomemail);
+		commonPage.clickOnButton("Continue");
 		enterFirstName("Ronald");
 		enterLastName("Reagan");
 		enterBusinessName("The Ronald Reagan");
-		enterPassword("Test@123");
-		clickOnButton("Continue");
+		commonPage.enterPassword("Test@123");
+		commonPage.clickOnButton("Continue");
 		enterOTP();
-		clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
 		enterAdditionalInformation();
-		clickOnButton("Submit");
+		commonPage.clickOnButton("Submit");
 	}
 }

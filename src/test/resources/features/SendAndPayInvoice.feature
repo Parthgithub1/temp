@@ -29,6 +29,7 @@ Feature: Send and Pay invoice feature
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
     Then User should save the amount of Hopscotch Balance from Accounting Page
+    When User enter "hopsmokeautomation1llc" in Searchbar
     When User click on Invoice from Payable tab
     Then User should see the amount to be Payable
     Then User should see "Payable Dashboard" text on the screen

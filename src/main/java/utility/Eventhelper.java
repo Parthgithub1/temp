@@ -222,12 +222,11 @@ public class Eventhelper {
 	}
 	
 	public static float numberFormat(float x) {
-		String amt = String.valueOf(x);
-		if(amt.contains("-")){
-			amt = amt.replace("-", "");
+		String amountofBalance = String.valueOf(x);
+		if(amountofBalance.contains("-")){
+			amountofBalance = amountofBalance.replace("-", "");
 		}
-		float a = Float.parseFloat(amt);
-		return a;	
+		float amount = Float.parseFloat(amountofBalance);
+		return amount;	
 	}
-
 }
