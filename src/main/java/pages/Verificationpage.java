@@ -1,14 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import utility.Eventhelper;
+import org.openqa.selenium.*;
+import utility.*;
 
 public class Verificationpage {
 
 	private WebDriver driver;
-
-	Registrationpage registrationPage;
+	private Commonpage commonPage ;
 	private By txtLegalBusinessName = By.xpath("//input[@name='legalName']");
 	private By txtBusinessAddress = By.xpath("//input[@name='bizAddress']");
 	private By ddBusinessAddress = By.xpath("//div[@class='pac-item'][1]");
@@ -16,7 +14,7 @@ public class Verificationpage {
 	private By ddBusinessTaxType = By.xpath("//div[@id='taxId']");
 	private By ddBusinessSelectTaxYype = By.xpath("//div[text()='SSN']");
 	private By txtBusinessTaxID = By.xpath("//input[@id='idNumber']");
-	private By btnAddBeneficial = By.xpath("//span[normalize-space()='Add and connect instantly']");
+	private By btnAddBeneficial = By.xpath("//span[normalize-space()='Add beneficial owner']");
 	private By txtAddBeneficialFirstName = By.xpath("//input[@name='ownerFirstName']");
 	private By txtAddBeneficialLastName = By.xpath("//input[@name='ownerLastName']");
 	private By txtAddBeneficialBirthDate = By.xpath("//label[@for='birthday']/following-sibling::div//input");
@@ -25,7 +23,7 @@ public class Verificationpage {
 			.xpath("//label[normalize-space()='Same as legal business address']");
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
-	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
+	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and securely connect instantly']");
 	private By frmIframe = By.xpath("//iframe");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
@@ -35,7 +33,7 @@ public class Verificationpage {
 
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
-		registrationPage = new Registrationpage(driver);
+		commonPage = new Commonpage(driver);
 
 	}
 
@@ -64,9 +62,9 @@ public class Verificationpage {
 		Eventhelper.sendkeys(driver, txtAddBeneficialLastName, "denial");
 		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012008");
 		Eventhelper.sendkeys(driver, txtAddBeneficialSSN, Eventhelper.generateRandomNumber());
-		registrationPage.clickOnButton("Next");
+		commonPage.clickOnButton("Next");
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
-		registrationPage.clickOnButton("Save");
+		commonPage.clickOnButton("Save");
 	}
 
 	public boolean isBeneficialAdded() {
@@ -78,15 +76,15 @@ public class Verificationpage {
 		Eventhelper.click(driver, btnAddBankDetails);
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		registrationPage.clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
 		Eventhelper.click(driver, lstChase);
 		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
 		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
-		registrationPage.clickOnButton("Submit");
+		commonPage.clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		registrationPage.clickOnButton("Continue");
-		registrationPage.clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
 		Eventhelper.switchToParentFrame(driver);
 	}
 	
@@ -94,15 +92,15 @@ public class Verificationpage {
 	{
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		registrationPage.clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
 		Eventhelper.click(driver, lstChase);
 		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
 		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
-		registrationPage.clickOnButton("Submit");
+		commonPage.clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		registrationPage.clickOnButton("Continue");
-		registrationPage.clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton("Continue");
 		Eventhelper.switchToParentFrame(driver);
 	}
 
