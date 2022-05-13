@@ -229,5 +229,11 @@ public class Eventhelper {
 		float a = Float.parseFloat(amt);
 		return a;	
 	}
+	
+	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
+        WebElement element = Eventhelper.findElement(driver, locator);
+        return element.getAttribute(attribute);
+
+    }
 
 }

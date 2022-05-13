@@ -16,6 +16,7 @@ public class Payinvoicepage {
     private By btnDate= By.xpath("(//p[contains(text(),'Due date')])[3]");
     private By invoiceTableGrid = By.xpath("(//table)[3]//tr[1]//td");
     private By txtsearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+    private By payableAmountofDashboard = By.xpath("//span[contains(.,'Payable')]/following-sibling::div/span[@id='amount_payable']");
     private By payableContanierxpath;
 
 	public Payinvoicepage(WebDriver driver) {
@@ -28,24 +29,19 @@ public class Payinvoicepage {
 	}
 	
 	public float getexistingBalanceofPayableofHomePage() {
-		Eventhelper.threadWait(2000);
-		float amountBalanceofPayablesonHomePage = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("//span[contains(.,'Payable')]/following-sibling::div/span")).substring(1));
-		Log.info("Pay Amount on Home Page" + amountBalanceofPayablesonHomePage);
-		return amountBalanceofPayablesonHomePage;
+		Eventhelper.threadWait(5000);
+		String amountBalanceofPayablesonHomePage = Eventhelper.getValueOfAttribute(driver, payableAmountofDashboard ,"payable-amount").substring(1).replace(",", "");
+		return Float.parseFloat(amountBalanceofPayablesonHomePage);
 	}
 	
 	public float getexistingBalanceofPayableonAccountingPage() {
 		Eventhelper.threadWait(2000);
-		float amountBalanceonAccountingPageforPayables = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__1OW1E')]")).substring(1));
-		Log.info("Pay Amount on Accounting Page" + amountBalanceonAccountingPageforPayables);
-		return amountBalanceonAccountingPageforPayables;
+		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__1OW1E')]") ,"payable-amount").substring(1).replace(",", ""));
 	}
 	
 	public float invoiceAmountUserPaying() {
 		Eventhelper.threadWait(2000);
-		float newAmountonAccountingBalanceforPayables = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[1]")).substring(1));
-		Log.info("Pay Amount on Invoice Page" + newAmountonAccountingBalanceforPayables);
-		return newAmountonAccountingBalanceforPayables;
+		return Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[1]")).substring(1).replace(",", ""));
 	}
 	
 	public void clickOnPayableContanier() {
@@ -77,8 +73,7 @@ public class Payinvoicepage {
 
 	public float getexistingBalanceofCompletedPayables() {
 		Eventhelper.threadWait(2000);
-		float amountBalance = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'CompletedDashboard_completed-dashboard-item__amount__3En2r')]")).substring(1));
-		return amountBalance;
+		return Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'CompletedDashboard_completed-dashboard-item__amount__3En2r')]")).substring(1).replace(",", ""));
 	}
 	
 	public void enterInSearchBar(String searchPayables) {

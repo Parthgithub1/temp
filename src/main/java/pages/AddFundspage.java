@@ -1,5 +1,6 @@
 package pages;
 
+import java.text.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.Eventhelper;
@@ -32,10 +33,8 @@ public class AddFundspage {
 	}
 
 	public float hopscotchBalanceAfterAddingFund() {
-		Eventhelper.threadWait(2000);
-		String amountofHBalance = Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'Balance_balance__amount')]")).replace("$", "");
-		float amountBalance = Float.parseFloat(amountofHBalance);
-		return amountBalance;
+		Eventhelper.threadWait(5000);
+		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"), "zurobalance-amount").replace("$",""));
 	}
 
 	public String modalHeader(String text) {
@@ -44,11 +43,9 @@ public class AddFundspage {
 	}
 
 	public float hopscotchBalanceBeforeAddingFund() {
-		Eventhelper.threadWait(2000);
-		String amountofHBalance = Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'Balance_balance__amount')]"));
-		String newamountogHBalance = amountofHBalance.replace("$","");
-		float amountBalance = Float.parseFloat(newamountogHBalance);
-		return amountBalance;
+		Eventhelper.threadWait(5000);
+		DecimalFormat df = new DecimalFormat(".00");
+		return Float.valueOf(df.format(Float.parseFloat(Eventhelper.getValueOfAttribute(driver, By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"), "zurobalance-amount").replace("$",""))));
 	}
 
 }

@@ -47,7 +47,7 @@ public class Payinvoivesteps {
 
 	@Then("User should see new amount on the screen for Payables")
 	public void user_should_see_new_amount_on_the_screen_for_payables() {
-		Eventhelper.threadWait(2000);
+		Eventhelper.threadWait(5000);
 		float expectedAmount = payData.getDefaultPayableBalanceatHomePage() - payData.getInvoiceAmounttobePaid();
 		assertEquals(expectedAmount, payData.getBalanceofPayableonAccountingPage(), 0);
 	}
