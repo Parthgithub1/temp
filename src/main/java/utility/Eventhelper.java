@@ -36,11 +36,11 @@ public class Eventhelper {
 		}
 		return element;
 	}
-	
+
 	public static boolean waitUntilElementInvisible(WebDriver driver, By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-		}
+	}
 
 	public static List<WebElement> findElements(WebDriver driver, By locator) {
 		List<WebElement> element = null;
@@ -107,7 +107,7 @@ public class Eventhelper {
 		}
 		return element;
 	}
-	
+
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
 		return findElement(driver, locator).isDisplayed();
 	}
@@ -192,7 +192,7 @@ public class Eventhelper {
 		} catch (Exception e) {
 		}
 	}
-	
+
 	public static String getTodaysDateInSting() {
 		String pattern = "MMddyyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -200,16 +200,17 @@ public class Eventhelper {
 		System.out.println("Date in mm-dd-yyyy format --> " + inputdate);
 		return inputdate;
 	}
+
 	public static String GetTodaysdateInSpecifiedFormat() {
-		String[] suffixes = //    0     1     2     3     4     5     6     7     8     9
-			 { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
-			//    10    11    12    13    14    15    16    17    18    19
-			 "th", "th", "th", "th", "th", "th", "th", "th", "th", "th",
-			 //    20    21    22    23    24    25    26    27    28    29
-			 "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
-			 //    30    31
-			"th", "st" };
-		
+		String[] suffixes = // 0 1 2 3 4 5 6 7 8 9
+				{ "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
+						// 10 11 12 13 14 15 16 17 18 19
+						"th", "th", "th", "th", "th", "th", "th", "th", "th", "th",
+						// 20 21 22 23 24 25 26 27 28 29
+						"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
+						// 30 31
+						"th", "st" };
+
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
@@ -220,13 +221,19 @@ public class Eventhelper {
 		String Outputdate = outsimpleDateFormat.format(new Date());
 		return (Outputdate + " " + dayStr);
 	}
-	
+
 	public static float numberFormat(float x) {
 		String amountofBalance = String.valueOf(x);
-		if(amountofBalance.contains("-")){
+		if (amountofBalance.contains("-")) {
 			amountofBalance = amountofBalance.replace("-", "");
 		}
 		float amount = Float.parseFloat(amountofBalance);
-		return amount;	
+		return amount;
 	}
+
+	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
+		WebElement element = Eventhelper.findElement(driver, locator);
+		return element.getAttribute(attribute);
+	}
+
 }
