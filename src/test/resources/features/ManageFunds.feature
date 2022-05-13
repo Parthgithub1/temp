@@ -9,7 +9,7 @@ Feature: Test Fund Management
     Then User should see "Add funds" model open
     When User enter 2.15 in amount field to "Add" funds
     Then User should see "Add funds" model open
-    When User click on "transfer" button
+    When User click on "Transfer" button
     When User click on "Confirm" button
     Then User should see "Done" text on the screen
     When User click on Close Icon
@@ -20,7 +20,7 @@ Feature: Test Fund Management
     Then User should see "Withdraw funds" model open
     When User enter 1.15 in amount field to "Withdraw" funds
     Then User should see "Withdraw funds" model open
-    When User click on "transfer" button
+    When User click on "Transfer" button
     When User click on "Confirm" button
     Then User should see "Done" text on the screen
     When User click on Close Icon
