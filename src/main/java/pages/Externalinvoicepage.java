@@ -31,8 +31,10 @@ public class Externalinvoicepage {
 	private By lblPagetitle = By.xpath("//title[normalize-space()='External Payment - Hopscotch']");
 	private By lblAccounting = By.xpath("//h1[normalize-space()='Accounting']");
 	private By lblnotification;
-	private By btnCrossIcon= By.xpath("//button[@aria-label='Close']");
-	private String txtCustomerName, tempEmailAddress, url;
+	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
+	private By lblBusinessNameOnDashboard= By.xpath("//span[contains(@class,'InfoHeader_header')]");
+	private By lblBusinessNameOnExternalInvoice=By.xpath(")//div[@class='handle']//span[1]");
+	private String txtCustomerName, tempEmailAddress, url,BusinessNameOnDashboard,BusinessNameOnExternalInvoice;
 	Faker faker = new Faker();
 	Registrationpage registrationPage;
 	Verificationpage verificationPage;
@@ -41,8 +43,8 @@ public class Externalinvoicepage {
 
 	public Externalinvoicepage(WebDriver driver) {
 		this.driver = driver;
-		registrationPage= new Registrationpage(driver);
-		verificationPage= new Verificationpage(driver);
+		registrationPage = new Registrationpage(driver);
+		verificationPage = new Verificationpage(driver);
 		sendInvoicePage = new Sendinvoicepage(driver);
 	}
 
@@ -66,47 +68,51 @@ public class Externalinvoicepage {
 		// Eventhelper.click(driver, btnDueDateOnReceivable);
 		url = generateExternalurl();
 	}
-	
+
 	public void setURL() {
 		Eventhelper.getURL(driver, url);
 	}
-	
+
 	public void enterOTP() {
 		registrationPage.enterOTP();
 	}
-	
+
 	public void addBankDetails() {
 		verificationPage.addBankExternalInvoice();
 	}
 
 	public String generateExternalurl() {
-		
-		String fetchInvoiceid=Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "id");
-		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=80f4125&emailId="
-				+ tempEmailAddress;
+		String fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoice-id");
+		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoicee-bizid");
+		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
+				+ "&emailId=" + tempEmailAddress;
 		sendInvoicePage.switchToDashboard();
-		// String externalURl=
-		// "https://dev.zurohq.com/external-payment?invoiceId="+fetchInvoiceid()+"&dba=hopsmokeautomation1llc&emailId="+tempEmailAddress;
+		Log.info("The generated external url" + externalURl);
 		return externalURl;
 	}
 
-	private String fetchInvoiceid() {
-		return Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "id");
-	}
-	
 	public boolean verifyExternalInvoiceNotificationOnDashboard(String notificationContent) {
-		//Eventhelper.threadWait(3000);
-		lblnotification = By.xpath(
-				"(//div[@class='card-content']//p[contains(text(),'"+notificationContent+"')]//span[contains(text(),'"
-						+ txtCustomerName + "')])[1]");
-	//	Eventhelper.explicitwait(driver, lblnotification);
+		lblnotification = By.xpath("(//div[@class='card-content']//p[contains(text(),'" + notificationContent
+				+ "')]//span[contains(text(),'" + txtCustomerName + "')])[1]");
 		return Eventhelper.isElementDisplayed(driver, lblnotification);
 	}
+
 	public void closeDialogbox() {
 		Eventhelper.click(driver, btnCrossIcon);
 	}
+
+	public void readBusinessNameOndashboard()
+	{
+		BusinessNameOnDashboard=Eventhelper.getTextofElement(driver, lblBusinessNameOnDashboard);
+	}
 	
-	public void setLoginPageURL() {
-		Eventhelper.getURL(driver, property.getProperty("dev") );
+	public Boolean verifyExternalInvoiceSender()
+	{
+		Boolean flag=false;
+		BusinessNameOnExternalInvoice=Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice);
+		if (BusinessNameOnDashboard.equals(BusinessNameOnExternalInvoice)) {
+			flag=true;
+		}
+		return flag;
 	}
 }

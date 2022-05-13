@@ -16,7 +16,7 @@ public class Sendinvoicepage {
 	private By txtAmount = By.xpath("//input[@name='customerAmount']");
 	private By txtdate= By.xpath("//input[@placeholder='Due Date']");
 	private By txtMessage = By.xpath(" //textarea[@placeholder='Message']");
-	private By lblReceivableBalance = By.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span");
+	private By lblReceivableBalance = By.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span[@id='amount_receivable']");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
 	private By lblNotification = By.xpath("(//p[contains(@class,'notifications-text')])[1]");
 	private By lblreceivableBalanceonAccounting = By.xpath(
@@ -26,15 +26,14 @@ public class Sendinvoicepage {
 	private By lnkSendInvoice = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
 	private By btnDueDateOnReceivable = By.xpath("(//p[contains(text(),'Due date')])[2]");
 	String receivableBalanceOndashboard, receiableBlanaceOnAccountingPage;
-
+	
 	public Sendinvoicepage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public Float readReceivableBalanceOnDashBoard() {
-		Eventhelper.threadWait(5000);
-		Eventhelper.explicitwait(driver, lblReceivableBalance);
-		receivableBalanceOndashboard = Eventhelper.getTextofElement(driver, lblReceivableBalance);
+		Eventhelper.threadWait(3000);
+		receivableBalanceOndashboard = Eventhelper.getValueOfAttribute(driver,lblReceivableBalance ,"receivable-amount");
 		String castToFloat = receivableBalanceOndashboard.substring(1);
 		return Float.parseFloat(castToFloat);
 	}
@@ -64,7 +63,7 @@ public class Sendinvoicepage {
 
 	public float reciavableBalanceOnAccounting() {
 		Eventhelper.isElementDisplayed(driver, lblreceivableBalanceonAccounting);
-		String amount = Eventhelper.getTextofElement(driver, lblreceivableBalanceonAccounting);
+		String amount = Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting,"receivable-amount");
 		String castToFloat = amount.substring(1);
 		return Float.parseFloat(castToFloat);
 	}
