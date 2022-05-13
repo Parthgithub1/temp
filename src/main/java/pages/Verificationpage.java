@@ -14,7 +14,7 @@ public class Verificationpage {
 	private By ddBusinessTaxType = By.xpath("//div[@id='taxId']");
 	private By ddBusinessSelectTaxYype = By.xpath("//div[text()='SSN']");
 	private By txtBusinessTaxID = By.xpath("//input[@id='idNumber']");
-	private By btnAddBeneficial = By.xpath("//span[normalize-space()='Add beneficial owner']");
+	private By btnAddBeneficial = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By txtAddBeneficialFirstName = By.xpath("//input[@name='ownerFirstName']");
 	private By txtAddBeneficialLastName = By.xpath("//input[@name='ownerLastName']");
 	private By txtAddBeneficialBirthDate = By.xpath("//label[@for='birthday']/following-sibling::div//input");
@@ -23,7 +23,7 @@ public class Verificationpage {
 			.xpath("//label[normalize-space()='Same as legal business address']");
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
-	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and securely connect instantly']");
+	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
