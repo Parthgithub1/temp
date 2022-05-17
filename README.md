@@ -72,11 +72,16 @@ How to Run Project
 
 Make Sure all the Pre-Requirements are fulfilled  
 
+Below are the Ways that we can run the Project : -
+
+1. 
 Open the Runner Class of the Project (Example: Hopscotchtestrunner.java) - We can find this class inside src/test/java/runner 
 
 Right click from Runner class as mentioned above and Select “Run-As” Option  
 
 Select “JUnit Test” and Script will Run  
+
+2. 
 
 We Can also Run Project using command line by following below steps “ 
 
@@ -91,3 +96,26 @@ Then fire Command:
  mvn clean > This will clean the Project before execution  
 
 mvn test > This will run the Project and will test the scripts  
+
+
+3. 
+We Can also run the Project using specific tags. This can be used when we want to run any Particular Cases/Scenarios from Project 
+
+Example : 
+1. To Run using specific Enviornment we can use command : mvn test -Denvironment="uat"
+2. To Run the Project using HeadLess the command is : mvn test -Dheadless= “true”
+3. Other commands are : mvn test -Denvironment="uat" -Dcucumber.filter.tags="@Smoke and not @uat"
+
+This way we can use the different Variables to run Run Projects with different combinations !
+
+
+4. 
+We can also Run the Project from gitHub > Actions Tab 
+- Users can Login in the gitHub with correct Credentails 
+- Make Sure builds are ready in gitHub for Run 
+- Navigate to Actions tab 
+- Select the Environment from the List present 
+- Select the Run workflow option
+- Click on "Run workflow" button 
+- The Build will starting executing 
+
