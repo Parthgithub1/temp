@@ -1,4 +1,6 @@
 package pages;
+
+import java.text.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.*;
@@ -15,7 +17,6 @@ public class AddFundspage {
 	public void addAmount(float amountofHopscotchBalance) {
 		Eventhelper.isElementDisplayed(driver, txtaddAmount);
 		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(amountofHopscotchBalance));
-
 	}
 
 	public By getButtonByText(String btnName) {
@@ -31,15 +32,23 @@ public class AddFundspage {
 	}
 
 	public float hopscotchBalanceAfterAddingFund() {
-		Eventhelper.threadWait(2000);
-		String amountofHBalance = Eventhelper.getTextofElement(driver, By.xpath("//*[contains(@class,'Balance_balance__amount')]")).replace("$", "");
-		float amountBalance = Float.parseFloat(amountofHBalance);
-		return amountBalance;
+		Eventhelper.threadWait(5000);
+		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"zurobalance-amount").replace("$", ""));
 	}
 
 	public String modalHeader(String text) {
 		By xpath = By.xpath("//span[contains(@class,'ModalTitleWithStep_title') and contains(text(),'" + text + "')]");
 		return Eventhelper.getTextofElement(driver, xpath);
+	}
+
+	public float hopscotchBalanceBeforeAddingFund() {
+		Eventhelper.threadWait(5000);
+		DecimalFormat df = new DecimalFormat(".00");
+		return Float.valueOf(df.format(Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"zurobalance-amount").replace("$", ""))));
 	}
 
 }

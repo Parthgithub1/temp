@@ -1,6 +1,6 @@
 Feature: Test Add functionality
 
-  @Smoke
+  @Smoke @addbill
   Scenario: Verify Add bill Successfully
     When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
     Then User should save Default amount of Payable
