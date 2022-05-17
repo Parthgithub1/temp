@@ -33,7 +33,7 @@ public class Externalinvoicepage {
 	private By lblnotification;
 	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
 	private By lblBusinessNameOnDashboard= By.xpath("//span[contains(@class,'InfoHeader_header')]");
-	private By lblBusinessNameOnExternalInvoice=By.xpath(")//div[@class='handle']//span[1]");
+	private By lblBusinessNameOnExternalInvoice=By.xpath("//div[@class='handle']//span[1]");
 	private String txtCustomerName, tempEmailAddress, url,BusinessNameOnDashboard,BusinessNameOnExternalInvoice;
 	Faker faker = new Faker();
 	Registrationpage registrationPage;
@@ -104,12 +104,14 @@ public class Externalinvoicepage {
 	public void readBusinessNameOndashboard()
 	{
 		BusinessNameOnDashboard=Eventhelper.getTextofElement(driver, lblBusinessNameOnDashboard);
+		Log.info("BusinessNameOnDashboard is -->"+BusinessNameOnDashboard);
 	}
 	
 	public Boolean verifyExternalInvoiceSender()
 	{
 		Boolean flag=false;
-		BusinessNameOnExternalInvoice=Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice);
+		BusinessNameOnExternalInvoice=(Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice)).substring(1);
+		Log.info("BusinessNameOnExternalInvoice is --."+BusinessNameOnExternalInvoice);
 		if (BusinessNameOnDashboard.equals(BusinessNameOnExternalInvoice)) {
 			flag=true;
 		}
