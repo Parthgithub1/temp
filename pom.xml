@@ -5,7 +5,7 @@
 	<groupId>Hopscotch</groupId>
 	<artifactId>QAAutomation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -62,6 +62,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>0.12</version>
 		</dependency>
 
 	</dependencies>
