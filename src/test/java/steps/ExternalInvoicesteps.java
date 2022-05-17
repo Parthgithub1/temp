@@ -25,9 +25,9 @@ public class ExternalInvoicesteps {
 	public void search_the_external_invoice_in_receivable() {
 		externalInvoicePage.searchBusinessInGrid();
 	}
-
-	@When("User throw url in browser")
-	public void user_throw_url_in_browser() {
+	
+	@When("User set external invoice url in browser")
+	public void user_set_external_invoice_url_in_browser() {
 		externalInvoicePage.setURL();
 		Eventhelper.threadWait(1000);
 	}

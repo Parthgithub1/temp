@@ -19,7 +19,7 @@ Feature: Test External Invoice
     Then User should see sent external invoice notiifcation on the screen
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
-    When User throw url in browser
+    When User set external invoice url in browser
     Then User should see the businessname of the external invoice sender
     Then User enter OTP details
     When User click on "View invoice" button
