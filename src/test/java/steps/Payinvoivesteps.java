@@ -3,7 +3,6 @@ package steps;
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
-
 import io.cucumber.java.en.*;
 import pages.*;
 import userdata.*;
@@ -12,8 +11,12 @@ import utility.*;
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
+
+	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
+	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
+	Addbillsteps addBillSteps = new Addbillsteps();
 	Payinvoicedata payData = new Payinvoicedata();
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Homepage homepage = new Homepage(Driverhelper.getDriver());
@@ -106,9 +109,29 @@ public class Payinvoivesteps {
 		commonPage.clickonLinkfromProfileDropDownOption(buttoname);
 	}
 	
+
+	@Then("User should see updated payable amount on the screen")
+	public void user_should_see_updated_payable_amount_on_the_screen() {
+		Eventhelper.threadWait(3000);
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage();
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
+	
+	@Then("User see the updated payable balance before paying invoice of add bill")
+	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
+		Eventhelper.threadWait(3000);        
+		Log.info(" amount --->"+Addbillsteps.fatchAmount());
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage()+Addbillsteps.fatchAmount();
+		Log.info("payData.getDefaultPayableBalanceatHomePage()"+payData.getDefaultPayableBalanceatHomePage());
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
+
 	@When("User click on {string} option from Header")
 	public void user_click_on_option_from_header(String string) {
 	    commonPage.clickonNotificationfromHeader(string);
 	}
+
 
 }
