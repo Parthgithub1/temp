@@ -243,5 +243,4 @@ public class Eventhelper {
 		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 }
-}
 

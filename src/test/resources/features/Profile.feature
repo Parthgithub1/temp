@@ -2,7 +2,7 @@ Feature: Test Profile Functionality
 
   @Smoke
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
-    When User login with "jayti.s@yopmail.com" and "Test@123" and click on "Log in" button
+    When User login with "hopsmokeautomation0@mailinator.com" and "Password1!" and click on "Log in" button
     Then User should navigate to dashboard of "jayti.s@yopmail.com"
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see "Jayti Simform QA" text on the screen
