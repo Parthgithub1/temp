@@ -3,7 +3,7 @@ package pages;
 import java.text.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import utility.Eventhelper;
+import utility.*;
 
 public class AddFundspage {
 	private WebDriver driver;
@@ -14,10 +14,9 @@ public class AddFundspage {
 		this.driver = driver;
 	}
 
-	public void addAmount(float value) {
+	public void addAmount(float amountofHopscotchBalance) {
 		Eventhelper.isElementDisplayed(driver, txtaddAmount);
-		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(value));
-
+		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(amountofHopscotchBalance));
 	}
 
 	public By getButtonByText(String btnName) {
@@ -34,7 +33,9 @@ public class AddFundspage {
 
 	public float hopscotchBalanceAfterAddingFund() {
 		Eventhelper.threadWait(5000);
-		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"), "zurobalance-amount").replace("$",""));
+		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"zurobalance-amount").replace("$", ""));
 	}
 
 	public String modalHeader(String text) {
@@ -45,7 +46,9 @@ public class AddFundspage {
 	public float hopscotchBalanceBeforeAddingFund() {
 		Eventhelper.threadWait(5000);
 		DecimalFormat df = new DecimalFormat(".00");
-		return Float.valueOf(df.format(Float.parseFloat(Eventhelper.getValueOfAttribute(driver, By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"), "zurobalance-amount").replace("$",""))));
+		return Float.valueOf(df.format(Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"zurobalance-amount").replace("$", ""))));
 	}
 
 }

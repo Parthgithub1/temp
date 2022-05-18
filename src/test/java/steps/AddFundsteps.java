@@ -14,16 +14,18 @@ public class AddFundsteps {
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Registrationpage registrationpage = new Registrationpage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
+	Homepage homePage = new Homepage(Driverhelper.getDriver());
 
 	@Then("the {string} button should be enabled | disabled")
 	public void the_button_should_be_enabled(String btnName) {
 		assertTrue(btnName + " Button is not Enable", addFunds.isButtonEnabled(btnName));
 	}
-
+	
 	@Then("User should save Default amount")
 	public void user_should_save_default_amount() {
-		fundData.setAmountofhopscotchBalance(addFunds.hopscotchBalanceBeforeAddingFund());
+		fundData.setAmountofhopscotchBalance(homePage.hopscotchBalanceBeforeAddingFund());
 	}
+
 
 	@Then("the {string} button should be {string}")
 	public void the_button_should_be(String btnName, String isStatus) {
@@ -76,5 +78,4 @@ public class AddFundsteps {
 	public void user_click_on_close_icon() {
 		addFunds.clickonCloseIcon();
 	}
-
 }
