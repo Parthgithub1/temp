@@ -236,10 +236,12 @@ public class Eventhelper {
 		WebElement element = Eventhelper.findElement(driver, locator);
 		return element.getAttribute(attribute);
 	}
-
+  
 	public static void clearTextwithdoubleClickusingActionClass(WebDriver driver, By locator) {
 		Actions action = new Actions(driver);
 		WebElement element = Eventhelper.findElement(driver, locator);
 		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 }
+}
+
