@@ -9,7 +9,7 @@ import utility.*;
 public class Profilestep {
 
 	Profilepage profilePage = new Profilepage(Driverhelper.getDriver());
-	Loginpage loginpage = new Loginpage(Driverhelper.getDriver());
+	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 
 	@When("User enter {string} in Business Name field and {string} in Handle field and {string} from Industry drop-down and {string} in Website field and {string} in Year founded field")
 	public void user_enter_in_business_name_field_and_in_handle_field_and_from_industry_drop_down_and_in_website_field_and_in_year_founded_field(
@@ -19,8 +19,8 @@ public class Profilestep {
 
 	@When("User click on Profile Drop Down  and click on {string} option from Profile Drop-Down")
 	public void user_click_on_profile_drop_down_and_click_on_option_from_profile_drop_down(String string) {
-		loginpage.clickonDropDownofProfile();
-		loginpage.clickonLogOutOptionfromProfileDropDown(string);
+		commonPage.clickonDropDownofProfile();
+		commonPage.clickonLinkfromProfileDropDownOption(string);
 	}
 
 	@When("User enter {string} in about textarea")
