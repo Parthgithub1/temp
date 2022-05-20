@@ -1,4 +1,4 @@
-Feature: Test Fund Management
+Feature: Test Fund Management Functionality
 
   @Smoke
   Scenario: Verify User is able to Add and Withdraw Funds Successfully

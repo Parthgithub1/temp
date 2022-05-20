@@ -11,7 +11,7 @@ public class Environmenthelper {
 		String url = null;
 
 		if (Env == null) {
-			Env = "dev";
+			Env = "qat";
 		}
 
 		switch (Env) {
@@ -25,7 +25,7 @@ public class Environmenthelper {
 			url = property.getProperty("uat");
 			break;
 		default:
-			url = property.getProperty("dev");
+			url = property.getProperty("qat");
 		}
 		return url;
 

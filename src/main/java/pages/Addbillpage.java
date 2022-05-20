@@ -2,10 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import com.github.javafaker.Faker;
-
-import utility.Eventhelper;
+import utility.*;
 
 public class Addbillpage {
 	private WebDriver driver;
@@ -18,8 +16,9 @@ public class Addbillpage {
 	private By txtInvoiceNumber = By.xpath("//input[@name='invoiceNumber']");
 	private By txtDate = By.xpath("//input[@placeholder='MM/DD/YYYY']");
 	private By txtMessage = By.xpath("//textarea[@name='message']");
-	private By txtsearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
-	private By lblnotification;
+	private By txtSearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+	private By btnCloseOfPayableCard = By.xpath("(//button[contains(@class,'close-btn')])[1]");
+	private By lblNotification;
 	Faker faker = new Faker();
 	String vender;
 
@@ -39,34 +38,37 @@ public class Addbillpage {
 		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
 		Eventhelper.sendkeys(driver, txtDate, Eventhelper.getTodaysDateInSting());
 		Eventhelper.sendkeys(driver, txtMessage, "This is the add bill details.");
-	return (float) 1.0;
-		//	addInvoiceData.setAddBillInvoiceAmount((float) 1.0);
+		return (float) 1.0;
 	}
 
 	public void searchBusinessInSearchBar() {
-		Eventhelper.sendkeys(driver, txtsearchBaronPayableTab, vender);
+		Eventhelper.sendkeys(driver, txtSearchBaronPayableTab, vender);
 	}
 
 	public void clearBusinessInSearchBar() {
 		Eventhelper.threadWait(3000);
-		Eventhelper.sendKeyboardKeys(driver, txtsearchBaronPayableTab, "backspace");
+		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronPayableTab, "backspace");
 	}
 
 	public boolean verifyNotificationOfPayOfAddedBill() {
 		sendInvoicePage.switchToDashboard();
-		lblnotification = By.xpath(
+		lblNotification = By.xpath(
 				"(//div[@class='card-content']//p[contains(text(),'It is on its way to')]//span[contains(text(),'"
 						+ vender + "')])[1]");
-		return Eventhelper.isElementDisplayed(driver, lblnotification);
+		return Eventhelper.isElementDisplayed(driver, lblNotification);
 	}
 
 	public boolean verifyAddBillNotificationOnDashboard() {
 		Eventhelper.threadWait(5000);
 		sendInvoicePage.switchToDashboard();
-		lblnotification = By.xpath(
+		lblNotification = By.xpath(
 				"(//div[@class='card-content']//p[contains(text(),'sent an invoice for')]//span[contains(text(),'"
 						+ vender + "')])[1]");
-		Eventhelper.explicitwait(driver, lblnotification);
-		return Eventhelper.isElementDisplayed(driver, lblnotification);
+		Eventhelper.explicitwait(driver, lblNotification);
+		return Eventhelper.isElementDisplayed(driver, lblNotification);
+	}
+
+	public void clickonCloseIconfromPayableCard() {
+		Eventhelper.click(driver, btnCloseOfPayableCard);
 	}
 }
