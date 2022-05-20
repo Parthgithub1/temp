@@ -1,11 +1,11 @@
 Feature: Test Profile Functionality
 
-  @Smoke
+  @Smoke @Profile
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
-    When User login with "hopsmokeautomation0@mailinator.com" and "Password1!" and click on "Log in" button
-    Then User should navigate to dashboard of "jayti.s@yopmail.com"
+    When User login with "hopsmokeautomation2@mailinator.com" and "Password1!" and click on "Log in" button
+    Then User should navigate to dashboard of "hopsmokeautomation2@mailinator.com"
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
-    Then User should see "Jayti Simform QA" text on the screen
+    Then User should see <BusinessName> text on the screen
     When User click on Edit Icon beside User name
     Then User should see "Edit Profile" text on the screen of Edit form
     When User enter <BusinessName> in Business Name field and <Handle> in Handle field and <Industry> from Industry drop-down and <Website> in Website field and <YearFound> in Year founded field
@@ -32,10 +32,10 @@ Feature: Test Profile Functionality
     Then User click on "View all" link
     Then User should see "Hopscotch Balance" text on the screen
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
-    Then User should see "Jayti Simform QA" text on the screen
+    Then User should see <BusinessName> text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Welcome Back!" text on the screen
 
     Examples: 
-      | BusinessName       | Handle            | Industry     | Website                   | YearFound | AboutText                                     |
-      | "Jayti Simform QA" | "@JaytiSimformQA" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
+      | BusinessName             | Handle                    | Industry     | Website                   | YearFound | AboutText                                     |
+      | "hopsmokeautomation2llc" | "@hopsmokeautomation2llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
