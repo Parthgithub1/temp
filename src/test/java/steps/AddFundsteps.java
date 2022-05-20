@@ -59,7 +59,7 @@ public class AddFundsteps {
 
 	@Then("User should see {string} amount on the screen")
 	public void user_should_see_amount_on_the_screen(String expectedAmountTobeChanged) {
-		Eventhelper.threadWait(5000);
+		Eventhelper.threadWait(8000);
 		Log.info("User is on enter Amount field value is " + fundData.getAmountofhopscotchBalance());
 		float totalExpectedAmountBalance = fundData.getAmountofhopscotchBalance()
 				+ fundData.getAmountofhopscotchBalance() - Float.parseFloat(expectedAmountTobeChanged);
@@ -70,7 +70,7 @@ public class AddFundsteps {
 
 	@Then("User should see {string} amount on the screen for withdraw")
 	public void user_should_see_amount_on_the_screen_for_withdraw(String string) {
-		Eventhelper.threadWait(3000);
+		Eventhelper.threadWait(8000);
 		assertEquals(Float.parseFloat(string), addFunds.hopscotchBalanceAfterAddingFund(), 1);
 	}
 
