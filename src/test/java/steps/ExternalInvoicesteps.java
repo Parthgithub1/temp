@@ -37,11 +37,6 @@ public class ExternalInvoicesteps {
 		externalInvoicePage.addBankDetails();
 	}
 
-	@Then("User enter OTP details")
-	public void user_enter_otp_details() {
-		externalInvoicePage.enterOTP();
-	}
-
 	@Then("User should see sent external invoice notiifcation on the screen")
 	public void user_should_see_sent_external_innvoice_notiifcation_on_the_screen() {
 		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("You sent an invoice to"));

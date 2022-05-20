@@ -21,7 +21,7 @@ Feature: Test External Invoice
     Then User click on "Log Out" option from Profile Drop-Down
     When User set external invoice url in browser
     Then User should see the businessname of the external invoice sender
-    Then User enter OTP details
+    When User enter otp on screen
     When User click on "View invoice" button
     When User click on "Add" button
     Then User enter bank details
@@ -34,3 +34,4 @@ Feature: Test External Invoice
     Then Read Receivable Balance on home screen
     Then User should see updated hopscotch balance on the screen
     Then User should see the pay of external invoice notiifcation on the screen
+   
