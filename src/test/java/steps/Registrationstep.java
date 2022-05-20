@@ -22,10 +22,10 @@ public class Registrationstep {
 	public void user_enter_in_businessname_field(String bname) {
 		registrationpage.enterBusinessName(bname);
 	}
-
-	@When("User enter otp on registration page")
-	public void user_enter_otp_on_registration_page() {
-		registrationpage.enterOTP();
+	
+	@When("User enter otp on screen")
+    public void user_enter_otp_on_screen() {
+        registrationpage.enterOTP();
 	}
 
 	@When("user enter additional information")

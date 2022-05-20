@@ -12,19 +12,20 @@ public class Payinvoicepage {
 	private By btnCompleted = By.xpath("//button[normalize-space()='Completed']");
 	private By btnDate = By.xpath("(//p[contains(text(),'Due date')])[3]");
 	private By invoiceTableGrid = By.xpath("(//table)[3]//tr[1]//td");
-	private By txtsearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+	private By txtSearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 	private By payableAmountofDashboard = By
 			.xpath("//span[contains(.,'Payable')]/following-sibling::div/span[@id='amount_payable']");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
-	private By payableContanierxpath;
+	private By txtSearchBaronAccountingSection;
+	private By payableContanierxPath;
 
 	public Payinvoicepage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void clickOnContanier(String contanierName) {
-		payableContanierxpath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
-		Eventhelper.click(driver, payableContanierxpath);
+		payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
+		Eventhelper.click(driver, payableContanierxPath);
 	}
 
 	public float getexistingBalanceofPayableofHomePage() {
@@ -85,7 +86,7 @@ public class Payinvoicepage {
 	}
 
 	public void enterInSearchBar(String searchPayables) {
-		Eventhelper.sendkeys(driver, txtsearchBaronPayableTab, searchPayables);
+		Eventhelper.sendkeys(driver, txtSearchBaronPayableTab, searchPayables);
 	}
 
 	public void clickonNotificationfromHeader(String linktext) {
@@ -101,10 +102,21 @@ public class Payinvoicepage {
 			actualData.add(columnElement.getText());
 		}
 		if (actualData.contains("You paid an invoice to hopsmokeautomation1llc for $1.00")) {
-			// System.out.println("Notification Matched");
 			flag = true;
 		}
 		return flag;
 	}
 
+	public void enterInSearchBar(String searchPayables, String AccountingSection) {
+		String xpath = null;
+		if (AccountingSection.equals("Payable")) {
+			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
+		} else if (AccountingSection.equals("Receivable")) {
+			xpath = "(//input[@aria-label='Search in the data grid'])[2]";
+		} else if (AccountingSection.equals("Completed")) {
+			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
+		}
+		txtSearchBaronAccountingSection = By.xpath(xpath);
+		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, searchPayables);
+	}
 }

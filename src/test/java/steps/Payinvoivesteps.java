@@ -75,7 +75,6 @@ public class Payinvoivesteps {
 	}
 
 	@Then("User should see invoice details of invoice details on the screen")
-
 	public void user_should_see_invoice_details_of_invoice_details_on_the_screen(
 			io.cucumber.datatable.DataTable dataTable) {
 		List<String> expectedList = new ArrayList<String>();
@@ -85,10 +84,8 @@ public class Payinvoivesteps {
 			expectedList.add(columns.get(0));
 			expectedList.add(Eventhelper.GetTodaysdateInSpecifiedFormat());
 			expectedList.add(columns.get(1));
-	
 		}
 		assertEquals(expectedList, actualList);
-
 	}
 
 	@Then("User should save the amount of Completed Payables Balance from Accounting Page")
@@ -101,14 +98,12 @@ public class Payinvoivesteps {
 		float updateHopscotchBalanceCompletedPayables = payData.getExistingBalanceofCompletedPayables() + payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalanceCompletedPayables);
 		assertEquals(updateHopscotchBalanceCompletedPayables, fundData.getAmountofhopscotchBalance() , 1);
-
 	}
 	
 	@Then("User click on {string} button to navigate to dashboard")
 	public void user_click_on_button_to_navigate_to_dashboard(String buttoname) {
 		commonPage.clickonLinkfromProfileDropDownOption(buttoname);
 	}
-	
 
 	@Then("User should see updated payable amount on the screen")
 	public void user_should_see_updated_payable_amount_on_the_screen() {
@@ -132,6 +127,9 @@ public class Payinvoivesteps {
 	public void user_click_on_option_from_header(String string) {
 	    commonPage.clickonNotificationfromHeader(string);
 	}
-
-
+	
+	@When("User enter {string} in Searchbar of {string}")
+	public void user_enter_in_searchbar_of(String Businessname, String AccountingSection) {
+	payInvoice.enterInSearchBar(Businessname, AccountingSection);
+	}
 }

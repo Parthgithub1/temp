@@ -19,6 +19,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,7 +31,7 @@ public class Eventhelper {
 		WebElement element = null;
 		try {
 			element = Eventhelper.explicitwait(driver, locator);
-		} catch (StaleElementReferenceException e) {
+		} catch (Exception e ) {
 			element = driver.findElement(locator);
 			Log.error("Getting exception in find element --> " + e.toString());
 		}
@@ -109,6 +110,7 @@ public class Eventhelper {
 	}
 
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
+		Eventhelper.explicitwait(driver, locator);
 		return findElement(driver, locator).isDisplayed();
 	}
 
@@ -223,17 +225,23 @@ public class Eventhelper {
 	}
 
 	public static float numberFormat(float x) {
-		String amountofBalance = String.valueOf(x);
-		if (amountofBalance.contains("-")) {
-			amountofBalance = amountofBalance.replace("-", "");
+		String amt = String.valueOf(x);
+		if (amt.contains("-")) {
+			amt = amt.replace("-", "");
 		}
-		float amount = Float.parseFloat(amountofBalance);
-		return amount;
+		float a = Float.parseFloat(amt);
+		return a;
 	}
 
 	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
 		WebElement element = Eventhelper.findElement(driver, locator);
 		return element.getAttribute(attribute);
 	}
-
+  
+	public static void clearTextwithdoubleClickusingActionClass(WebDriver driver, By locator) {
+		Actions action = new Actions(driver);
+		WebElement element = Eventhelper.findElement(driver, locator);
+		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+	}
 }
+

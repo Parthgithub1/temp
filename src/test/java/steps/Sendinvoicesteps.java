@@ -49,6 +49,7 @@ public class Sendinvoicesteps {
 	
 	@Then("Receivable balance is updated on the screen with {string}")
 	public void receivable_balance_is_updated_on_the_screen_with(String amount) throws InterruptedException {
+		Eventhelper.threadWait(2000);
 		Float totalExpectedAmount = receivableBalanceOnDashboard + Float.parseFloat(amount);
 		Float actualAmount= sendInvoicePage.reciavableBalanceOnAccounting();
 		Log.info(actualAmount);
@@ -65,12 +66,6 @@ public class Sendinvoicesteps {
 		assertEquals(receivableBalanceOnAccountingPage, receivableBalanceOnDashboard);
 	}
 
-	@Then("User should see {string} notification on the dashboard")
-	public void user_should_see_notification_on_the_dashboard(String notificationMessage) throws InterruptedException {
-		String actualnotifiationcontent= sendInvoicePage.isNotificationSent();
-	    Log.info("Content of notificatiosn is --- >"+actualnotifiationcontent);
-	    assertEquals(notificationMessage, actualnotifiationcontent);
-	}
 	@When("User click on Send Invoice link")
 	public void user_click_on_send_invoice_link() {
 	sendInvoicePage.clickOnSendInvoice();
