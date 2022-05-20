@@ -1,6 +1,9 @@
 package steps;
 
 import static org.junit.Assert.*;
+
+import java.text.DecimalFormat;
+
 import io.cucumber.java.en.*;
 import pages.*;
 import userdata.*;
@@ -40,13 +43,13 @@ public class AddFundsteps {
 		assertTrue(amountTextDisplay);
 	}
 
-	@When("User enter {int} in amount field to {string} funds")
-	public void user_enter_in_amount_field1(int amount, String fundProcess) {
+	@When("User enter {double} in amount field to {string} funds")
+	public void user_enter_in_amount_field1(double amount, String fundProcess) {
 		float amountofHopscotchBalance;
 		if (fundProcess.equals("Add")) {
-			amountofHopscotchBalance = amount + Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance());
+			amountofHopscotchBalance = (float) (amount + Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()));
 		} else {
-			amountofHopscotchBalance = Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()) - amount;
+			amountofHopscotchBalance = (float) (Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()) - amount);
 		}
 
 		addFunds.addAmount(amountofHopscotchBalance);
@@ -56,11 +59,13 @@ public class AddFundsteps {
 
 	@Then("User should see {string} amount on the screen")
 	public void user_should_see_amount_on_the_screen(String expectedAmountTobeChanged) {
-		Eventhelper.threadWait(3000);
+		Eventhelper.threadWait(5000);
 		Log.info("User is on enter Amount field value is " + fundData.getAmountofhopscotchBalance());
 		float totalExpectedAmountBalance = fundData.getAmountofhopscotchBalance()
 				+ fundData.getAmountofhopscotchBalance() - Float.parseFloat(expectedAmountTobeChanged);
-		assertEquals(totalExpectedAmountBalance, addFunds.hopscotchBalanceAfterAddingFund(), 0);
+		DecimalFormat df = new DecimalFormat(".00");
+		float number = Float.valueOf(df.format(totalExpectedAmountBalance));
+		assertEquals(number, addFunds.hopscotchBalanceAfterAddingFund(), 0);
 	}
 
 	@Then("User should see {string} amount on the screen for withdraw")

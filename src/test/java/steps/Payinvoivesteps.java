@@ -1,11 +1,8 @@
 package steps;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import io.cucumber.java.en.*;
 import pages.*;
 import userdata.*;
@@ -14,8 +11,12 @@ import utility.*;
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
+
+	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
+	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
+	Addbillsteps addBillSteps = new Addbillsteps();
 	Payinvoicedata payData = new Payinvoicedata();
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Homepage homepage = new Homepage(Driverhelper.getDriver());
@@ -74,7 +75,6 @@ public class Payinvoivesteps {
 	}
 
 	@Then("User should see invoice details of invoice details on the screen")
-
 	public void user_should_see_invoice_details_of_invoice_details_on_the_screen(
 			io.cucumber.datatable.DataTable dataTable) {
 		List<String> expectedList = new ArrayList<String>();
@@ -84,10 +84,8 @@ public class Payinvoivesteps {
 			expectedList.add(columns.get(0));
 			expectedList.add(Eventhelper.GetTodaysdateInSpecifiedFormat());
 			expectedList.add(columns.get(1));
-	
 		}
 		assertEquals(expectedList, actualList);
-
 	}
 
 	@Then("User should save the amount of Completed Payables Balance from Accounting Page")
@@ -100,17 +98,38 @@ public class Payinvoivesteps {
 		float updateHopscotchBalanceCompletedPayables = payData.getExistingBalanceofCompletedPayables() + payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalanceCompletedPayables);
 		assertEquals(updateHopscotchBalanceCompletedPayables, fundData.getAmountofhopscotchBalance() , 1);
-
 	}
 	
 	@Then("User click on {string} button to navigate to dashboard")
 	public void user_click_on_button_to_navigate_to_dashboard(String buttoname) {
 		commonPage.clickonLinkfromProfileDropDownOption(buttoname);
 	}
+
+	@Then("User should see updated payable amount on the screen")
+	public void user_should_see_updated_payable_amount_on_the_screen() {
+		Eventhelper.threadWait(3000);
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage();
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
 	
+	@Then("User see the updated payable balance before paying invoice of add bill")
+	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
+		Eventhelper.threadWait(3000);        
+		Log.info(" amount --->"+Addbillsteps.fatchAmount());
+		float expectedAmount = payData.getDefaultPayableBalanceatHomePage()+Addbillsteps.fatchAmount();
+		Log.info("payData.getDefaultPayableBalanceatHomePage()"+payData.getDefaultPayableBalanceatHomePage());
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
+
 	@When("User click on {string} option from Header")
 	public void user_click_on_option_from_header(String string) {
 	    commonPage.clickonNotificationfromHeader(string);
 	}
-
+	
+	@When("User enter {string} in Searchbar of {string}")
+	public void user_enter_in_searchbar_of(String Businessname, String AccountingSection) {
+	payInvoice.enterInSearchBar(Businessname, AccountingSection);
+	}
 }

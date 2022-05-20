@@ -83,14 +83,15 @@ public class Registrationpage {
 		commonPage.clickOnLink("Register here");
 		commonPage.enterEmailAddress(randomemail);
 		commonPage.clickOnButton("Continue");
+		enterOTP();
 		enterFirstName("Ronald");
 		enterLastName("Reagan");
 		enterBusinessName("The Ronald Reagan");
 		commonPage.enterPassword("Test@123");
 		commonPage.clickOnButton("Continue");
-		enterOTP();
+		enterCompanyDetails();
 		commonPage.clickOnButton("Continue");
 		enterAdditionalInformation();
-		commonPage.clickOnButton("Submit");
+		commonPage.clickOnButton("Done");
 	}
 }

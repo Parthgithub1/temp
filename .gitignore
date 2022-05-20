@@ -2,3 +2,5 @@
 /recordings/
 /Failedtestscreenshot/
 /LoggerFiles/
+.classpath
+.settings/org.eclipse.core.resources.prefs
