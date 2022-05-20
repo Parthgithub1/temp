@@ -20,10 +20,11 @@ public class Sendinvoicepage {
 	private By lnkSendInvoice = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
 	private By btnDueDateOnReceivable = By.xpath("(//p[contains(text(),'Due date')])[2]");
 	String receivableBalanceOndashboard, receiableBlanaceOnAccountingPage;
-
+	
 	public Sendinvoicepage(WebDriver driver) {
 		this.driver = driver;
 	}
+
 
 	public float readReceivableBalanceOnDashBoard() {
         Eventhelper.threadWait(8000);
@@ -56,7 +57,6 @@ public class Sendinvoicepage {
 	public float reciavableBalanceOnAccounting() {
 		Eventhelper.threadWait(5000);
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting ,"receivable-amount").substring(1).replace(",", ""));
-
 	}
 
 	public void switchToDashboard() {

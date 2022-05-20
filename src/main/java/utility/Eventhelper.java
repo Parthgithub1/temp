@@ -31,7 +31,7 @@ public class Eventhelper {
 		WebElement element = null;
 		try {
 			element = Eventhelper.explicitwait(driver, locator);
-		} catch (Exception e ) {
+		} catch (Exception e) {
 			element = driver.findElement(locator);
 			Log.error("Getting exception in find element --> " + e.toString());
 		}
@@ -165,6 +165,9 @@ public class Eventhelper {
 		case "backspace":
 			element.sendKeys(Keys.BACK_SPACE);
 			break;
+		case "enter":
+			element.sendKeys(Keys.ENTER);
+			break;
 		}
 	}
 
@@ -229,19 +232,18 @@ public class Eventhelper {
 		if (amt.contains("-")) {
 			amt = amt.replace("-", "");
 		}
-		float a = Float.parseFloat(amt);
-		return a;
+		return Float.parseFloat(amt);
 	}
 
 	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
 		WebElement element = Eventhelper.findElement(driver, locator);
 		return element.getAttribute(attribute);
+
 	}
-  
+
 	public static void clearTextwithdoubleClickusingActionClass(WebDriver driver, By locator) {
 		Actions action = new Actions(driver);
 		WebElement element = Eventhelper.findElement(driver, locator);
 		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 }
-
