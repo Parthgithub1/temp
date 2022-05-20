@@ -1,11 +1,10 @@
 package steps;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import io.cucumber.java.en.*;
-import pages.Addbillpage;
-import utility.Driverhelper;
-import utility.Log;
+import pages.*;
+import utility.*;
 
 public class Addbillsteps {
 
@@ -34,6 +33,11 @@ public class Addbillsteps {
 
 	public static float fatchAmount() {
 		return amount;
+	}
+	
+	@When("User click on Close button from Payable Card")
+	public void user_click_on_close_button_from_payable_card() {
+		addBillPage.clickonCloseIconfromPayableCard();
 	}
 
 }

@@ -110,6 +110,7 @@ public class Eventhelper {
 	}
 
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
+		Eventhelper.explicitwait(driver, locator);
 		return findElement(driver, locator).isDisplayed();
 	}
 

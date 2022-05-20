@@ -29,7 +29,7 @@ public class Commonpage {
 	
 	public void clickOnButton(String buttonname) {
 		By btnXpath = By.xpath("((//button[normalize-space()='"+ buttonname +"']))[1]");
-		Eventhelper.threadWait(2000);
+		Eventhelper.explicitwait(driver, btnXpath);
 		Eventhelper.click(driver, btnXpath);
 	}
 	public Boolean isTextDisplayed(String text) {
@@ -45,7 +45,6 @@ public class Commonpage {
 		By btnxpath = By.xpath("//a[normalize-space()='" + text + "']");
 		Eventhelper.click(driver, btnxpath);
 	}
-	
 	
 	public void enterEmailAddress(String value) {
 		if (value.contains("random")) {
@@ -64,7 +63,6 @@ public class Commonpage {
 		Eventhelper.click(driver, btnxpath);
 	}
 	
-
 	public boolean seeNotifications(String notificationMessage) {
 		List<WebElement> listofNotificationsElements = Eventhelper.findElements(driver, notificationTableGridxPath);
 		List<String> listofNotificationsText = new ArrayList<String>();
@@ -78,6 +76,5 @@ public class Commonpage {
 		}
 		return flag;
 	}
-
 
 }
