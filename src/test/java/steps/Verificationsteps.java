@@ -1,9 +1,9 @@
 package steps;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import io.cucumber.java.en.*;
-import pages.Verificationpage;
-import utility.Driverhelper;
+import pages.*;
+import utility.*;
 
 public class Verificationsteps {
 
@@ -31,7 +31,7 @@ public class Verificationsteps {
 
 	@Then("User should see beneficial owner in list")
 	public void user_should_see_beneficial_owner_in_list() {
-				assertTrue("Beneficial owner is not display on list", verificationpage.isBeneficialAdded());
+		assertTrue("Beneficial owner is not display on list", verificationpage.isBeneficialAdded());
 	}
 
 	@When("User process add bank screen")
@@ -55,4 +55,18 @@ public class Verificationsteps {
 		assertTrue("Verified icon not display", verificationpage.isUserverified());
 	}
 
+	@When("User click on Drop-down to select Business type and select {string} from options")
+	public void user_click_on_drop_down_to_select_business_type_and_select_from_options(String string) {
+		verificationpage.selectDropDownforBusinessType(string);
+	}
+
+	@Then("User enters {int} taxNumber of Business")
+	public void user_enters_tax_number_of_business(Integer taxNumber) {
+		verificationpage.enterTaxID(taxNumber);
+	}
+
+	@Then("User should wait for Bussiness Verification")
+	public void user_should_wait_for_bussiness_verification() {
+		Eventhelper.threadWait(6000);
+	}
 }
