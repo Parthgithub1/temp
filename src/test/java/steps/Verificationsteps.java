@@ -1,6 +1,7 @@
 package steps;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+
 import io.cucumber.java.en.*;
 import pages.*;
 import utility.*;
@@ -31,7 +32,7 @@ public class Verificationsteps {
 
 	@Then("User should see beneficial owner in list")
 	public void user_should_see_beneficial_owner_in_list() {
-		assertTrue("Beneficial owner is not display on list", verificationpage.isBeneficialAdded());
+		Assertions.assertTrue(verificationpage.isBeneficialAdded(), "Beneficial owner is not display on list");
 	}
 
 	@When("User process add bank screen")
@@ -42,7 +43,7 @@ public class Verificationsteps {
 	@Then("User should see {string} link")
 	public void user_should_see_link(String string) {
 		boolean islinkdisplay = verificationpage.isLinkDisplay(string);
-		assertTrue("User is already verified", islinkdisplay);
+		Assertions.assertTrue(islinkdisplay, "User is already verified");
 	}
 
 	@When("User is on {string}")
@@ -52,7 +53,7 @@ public class Verificationsteps {
 
 	@Then("User should see verified icon")
 	public void user_should_see_verified_icon() {
-		assertTrue("Verified icon not display", verificationpage.isUserverified());
+		Assertions.assertTrue(verificationpage.isUserverified());
 	}
 
 	@When("User click on Drop-down to select Business type and select {string} from options")
@@ -67,6 +68,6 @@ public class Verificationsteps {
 	
 	@Then("User should see Verification Message")
 	public void user_should_see_verification_message() {
-		assertTrue(verificationpage.verificationConfirmation());	
+		Assertions.assertTrue(verificationpage.verificationConfirmation());	
 	}
 }
