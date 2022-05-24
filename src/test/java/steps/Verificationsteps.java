@@ -64,9 +64,9 @@ public class Verificationsteps {
 	public void user_enters_tax_number_of_business(Integer taxNumber) {
 		verificationpage.enterTaxID(taxNumber);
 	}
-
-	@Then("User should wait for Bussiness Verification")
-	public void user_should_wait_for_bussiness_verification() {
-		Eventhelper.threadWait(6000);
+	
+	@Then("User should see Verification Message")
+	public void user_should_see_verification_message() {
+		assertTrue(verificationpage.verificationConfirmation());	
 	}
 }

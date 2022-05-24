@@ -6,7 +6,7 @@ Feature: Test Verifcation Functionality
     And User click on "change that" link
     Then User should see "Let’s connect the dots" text on the screen
 
-  @Smoke @uat
+  @Smoke @uat 
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email
     Then User should see "change that" link
@@ -26,10 +26,8 @@ Feature: Test Verifcation Functionality
     Then User should see beneficial owner in list
     When User click on "Continue" button
     When User process add bank screen
-    Then User should wait for Bussiness Verification
     When User click on "Continue" button
-    Then User should see "Verification is complete" text on the screen
-    Then User should see verified icon
+    Then User should see Verification Message
 
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email

@@ -33,6 +33,7 @@ public class Verificationpage {
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By dropDownofBusinessType1 = By.xpath("//div[@id='businessType']");
 	private By ddSelecteBusinessType;
+	private By verificationText =By.xpath("//div[contains(@class,'VerificationStatus_title')]");
 
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
@@ -127,5 +128,13 @@ public class Verificationpage {
 		commonPage.clickOnButton("Continue");
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
 		commonPage.clickOnButton("Continue");
+	}
+	
+	public boolean verificationConfirmation() {
+		boolean flag = false;
+		if(Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is complete") || Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is pending")) {
+			 flag=true;
+		}
+		return flag;
 	}
 }
