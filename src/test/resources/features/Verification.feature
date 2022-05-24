@@ -24,12 +24,10 @@ Feature: Test Verifcation Functionality
     When User click on "Continue" button
     And User process add beneficial owner screen
     Then User should see beneficial owner in list
-    When User click on "Continue" button
+    When User click on "Submit" button
     When User process add bank screen
-    Then User should wait for Bussiness Verification
     When User click on "Continue" button
-    Then User should see "Verification is complete" text on the screen
-    Then User should see verified icon
+    Then User should see Verification Message
 
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email
