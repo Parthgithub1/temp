@@ -2,7 +2,7 @@ Feature: Test Send and Pay invoice Functionality
 
   @Smoke @sendandpayinvoice 
   Scenario: Verify that user is able to send and Pay invoice to existing business into hopscotch application
-    When User login with "hopsmokeautomation1@mailinator.com" and "Password1!" and click on "Log in" button
+    When User login with "hopsmokeautomation1@mailinator.com" and "Password1!" and click on "Continue" button
     Then User should navigate to dashboard of "hopsmokeautomation1@mailinator.com"
     Then Read Receivable Balance on home screen
     When User click on Send Invoice link
@@ -25,7 +25,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "You sent an invoice to hopsmokeautomation3llc for $1.00" notification
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
-    When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
+    When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Continue" button
     Then User should navigate to dashboard of "hopsmokeautomation3@mailinator.com"
     Then User should save Default amount
     Then User should save Default amount of Payable

@@ -4,7 +4,7 @@ Feature: Test Login Functionality
   Scenario: Verify Login is Successful with Valid Credentials
     When User enter "hopsmokeautomation1@mailinator.com" in email field
     When User enter "Password1!" in password field
-    When User click on "Log in" button
+    When User click on "Continue" button
     Then User should navigate to dashboard of "hopsmokeautomation1@mailinator.com"
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
@@ -14,7 +14,7 @@ Feature: Test Login Functionality
   Scenario Outline: Verify Validations for Email_Password
     When User enter <email> in email field
     When User enter <password> in password field
-    When User click on "Log in" button
+    When User click on "Continue" button
     Then User should see <validationMessage> text on the screen
 
     Examples: 
@@ -26,7 +26,7 @@ Feature: Test Login Functionality
   Scenario: Verify maximum Attempts Validation Message on Login Page
     When User enter "jayti.s@yopmail.com" in email field
     When User enter "Test@13" in password field
-    When User click on "Log in" button
+    When User click on "Continue" button
     Then User should see validation message for maximum attempts
 
   @Regression

@@ -1,6 +1,6 @@
 Feature: Test Forgot Password Functionality
 
-  @Smoke 
+  @Smoke
   Scenario Outline: Verify forgot Password is Successful
     When User click on <Forgot Password Link> link
     Then User should see "Reset password" text on the screen
@@ -18,5 +18,5 @@ Feature: Test Forgot Password Functionality
     Then User should see "Verification code resend successfully!" text on the screen
 
     Examples: 
-      | Forgot Password Link    | email                                |
-      | "Forgot your password?" | "hopsmokeautomation1@mailinator.com" |
+      | Forgot Password Link  | email                                |
+      | "Reset your password" | "hopsmokeautomation1@mailinator.com" |
