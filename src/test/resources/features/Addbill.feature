@@ -10,7 +10,7 @@ Feature: Test AddBill functionality
     When User click on "Add Bill" link
     When User enter add bill details
     When User click on "Add Bill" button
-    When User click on Close button from Payable Card
+   	#When User click on Close button from Payable Card
     Then User see the updated payable balance before paying invoice of add bill
     Then User should see notification of add bill on the dashboard
     Then User click on "Payable" Container

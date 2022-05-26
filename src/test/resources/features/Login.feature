@@ -2,10 +2,8 @@ Feature: Test Login Functionality
 
   @Smoke @Login
   Scenario: Verify Login is Successful with Valid Credentials
-    When User enter "hopsmokeautomation1@mailinator.com" in email field
-    When User enter "Password1!" in password field
-    When User click on "Continue" button
-    Then User should navigate to dashboard of "hopsmokeautomation1@mailinator.com"
+    When User login with "jayti.t@simformsolutions.com" and "Password1!" and click on "Continue" button
+    Then User should navigate to dashboard of "jayti.t@simformsolutions.com"
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
