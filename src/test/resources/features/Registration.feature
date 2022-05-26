@@ -1,9 +1,9 @@
 Feature: Test Registration Functionality
   I want to use this template for my feature file
 
-  @Smoke @uat 
+  @Smoke @uat @Registration
   Scenario: verify that user is able to register into hopscotch application
-    When User click on "Register here" link
+    When User click on "Sign up" link
     When User enter "random" in email field
     When User click on "Continue" button
     When User enter otp on screen

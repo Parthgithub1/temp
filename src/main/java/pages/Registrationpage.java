@@ -80,7 +80,7 @@ public class Registrationpage {
 	}
 
 	public void doRegister(String randomemail) {
-		commonPage.clickOnLink("Register here");
+		commonPage.clickOnLink("Sign up");
 		commonPage.enterEmailAddress(randomemail);
 		commonPage.clickOnButton("Continue");
 		enterOTP();
