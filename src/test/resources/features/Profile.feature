@@ -34,7 +34,7 @@ Feature: Test Profile Functionality
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see <BusinessName> text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
-    Then User should see "Welcome Back!" text on the screen
+    Then User should see "Sign in" text on the screen
 
     Examples: 
       | BusinessName             | Handle                    | Industry     | Website                   | YearFound | AboutText                                     |

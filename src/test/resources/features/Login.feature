@@ -1,6 +1,6 @@
 Feature: Test Login Functionality
 
-  @Smoke
+  @Smoke @Login
   Scenario: Verify Login is Successful with Valid Credentials
     When User enter "hopsmokeautomation1@mailinator.com" in email field
     When User enter "Password1!" in password field
@@ -8,7 +8,7 @@ Feature: Test Login Functionality
     Then User should navigate to dashboard of "hopsmokeautomation1@mailinator.com"
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
-    Then User should see "Welcome Back!" text on the screen
+    Then User should see "Sign in" text on the screen
 
   @Regression
   Scenario Outline: Verify Validations for Email_Password

@@ -28,4 +28,4 @@ Feature: Test Fund Management Functionality
     Then User should see "1.15" amount on the screen for withdraw
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
-    Then User should see "Welcome Back!" text on the screen
+    Then User should see "Sign in" text on the screen
