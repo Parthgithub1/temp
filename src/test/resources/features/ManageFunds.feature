@@ -2,8 +2,8 @@ Feature: Test Fund Management Functionality
 
   @Smoke
   Scenario: Verify User is able to Add and Withdraw Funds Successfully
-    When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
-    Then User should navigate to dashboard of "hopsmokeautomation3@mailinator.com"
+    When User login with "jayti.t@simformsolutions.com" and "Password1!" and click on "Continue" button
+    Then User should navigate to dashboard of "jayti.t@simformsolutions.com"
     Then User should save Default amount
     When User click on "Add funds" button
     Then User should see "Add funds" model open

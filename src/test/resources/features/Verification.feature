@@ -2,7 +2,7 @@ Feature: Test Verifcation Functionality
 
   @Regression
   Scenario: verify that user is able to start the verification process into hopscotch application
-    When User login with "cyciv@mailinator.com" and "Test@123" and click on "Log in" button
+    When User login with "cyciv@mailinator.com" and "Test@123" and click on "Continue" button
     And User click on "change that" link
     Then User should see "Let’s connect the dots" text on the screen
 

@@ -1,7 +1,7 @@
 Feature: Test PayInvoice Functionality
 
   Scenario: Verify Pay Invoice Successfully
-    When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Log in" button
+    When User login with "hopsmokeautomation3@mailinator.com" and "Password1!" and click on "Continue" button
     Then User should navigate to dashboard of "hopsmokeautomation3@mailinator.com"
     Then User should save Default amount
     Then User should save Default amount of Payable

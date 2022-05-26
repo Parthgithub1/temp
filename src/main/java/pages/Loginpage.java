@@ -30,9 +30,9 @@ public class Loginpage {
 		try {
 			Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 		} catch (Exception e) {
-			commonPage.clickOnLink("Forgot your password?");
+			commonPage.clickOnLink("Reset your password");
 			driver.navigate().back();
-			doLogin(email, "Password1!", "Log in");
+			doLogin(email, "Password1!", "Continue");
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}
