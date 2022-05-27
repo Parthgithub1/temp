@@ -17,6 +17,8 @@ public class Contactlistpage {
 	private By lstOfSearchforContact = By.xpath("//div[contains(@class,'entity-short-card')]/following-sibling::p");
 	private By txtSearchBarforContact = By.xpath("//input[contains(@name ,'search')]");
 	private By newContactAddedName = By.xpath("//span[contains(@class,'InfoHeader_header')]");
+	private By lblBusinessNameinContactListGrid = By.xpath("//td[1]");
+
 	Faker faker = new Faker();
 	String vender, bName;
 
@@ -41,19 +43,22 @@ public class Contactlistpage {
 
 	public void searchNameInSearchBar() {
 		Eventhelper.explicitwait(driver, txtSearchBarforContact);
-		Eventhelper.sendkeys(driver, txtSearchBarforContact, vender);
+		Eventhelper.sendkeys(driver, txtSearchBarforContact, bName);
 	}
 
 	public void clickOnContactListSearchResult() {
-		Eventhelper.click(driver, lstOfSearchforContact);
+		Eventhelper.explicitwaitTextToBePresent(driver, lblBusinessNameinContactListGrid, bName);
+		if (Eventhelper.getTextofElement(driver, lblBusinessNameinContactListGrid).contains(bName)) {
+			Eventhelper.click(driver, lstOfSearchforContact);
+		}
 	}
 
 	public Boolean contactAddedVerification() {
 		boolean flag = false;
 		String actualText = Eventhelper.getTextofElement(driver, newContactAddedName);
-		if(actualText.equalsIgnoreCase(bName)) {
+		if (actualText.equalsIgnoreCase(bName)) {
 			flag = true;
 		}
-		return flag;	
+		return flag;
 	}
 }

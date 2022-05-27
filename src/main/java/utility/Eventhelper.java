@@ -127,6 +127,11 @@ public class Eventhelper {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
+	
+	public static Boolean explicitwaitTextToBePresent(WebDriver driver, By locator,String value) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator,value));
+	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
