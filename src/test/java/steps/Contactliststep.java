@@ -35,4 +35,9 @@ public class Contactliststep {
 	public void user_should_see_the_contact_add_profile() {
 		assertTrue(contactList.contactAddedVerification());
 	}
+	
+	@When("User click on Back button from screen")
+	public void user_click_on_back_button_from_screen() {
+		contactList.clickOnBackButtonfromContactProfileScreen();
+	}
 }

@@ -1,9 +1,7 @@
 package pages;
 
 import org.openqa.selenium.*;
-
 import com.github.javafaker.Faker;
-
 import utility.*;
 
 public class Contactlistpage {
@@ -18,6 +16,7 @@ public class Contactlistpage {
 	private By txtSearchBarforContact = By.xpath("//input[contains(@name ,'search')]");
 	private By newContactAddedName = By.xpath("//span[contains(@class,'InfoHeader_header')]");
 	private By lblBusinessNameinContactListGrid = By.xpath("//td[1]");
+	private By btnBackFromContactProfileScreen = By.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
 
 	Faker faker = new Faker();
 	String vender, bName;
@@ -60,5 +59,9 @@ public class Contactlistpage {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public void clickOnBackButtonfromContactProfileScreen() {
+		Eventhelper.click(driver, btnBackFromContactProfileScreen);
 	}
 }
