@@ -74,5 +74,8 @@ public class Commonsteps {
 	    assertEquals(notificationMessage != null, actualnotifiationcontent);
 	}
 
-
+	@Then("User wait till pop up gets closed")
+	public void user_wait_till_pop_up_gets_closed() {
+		assertTrue(commonPage.isPopUpClose());
+	}
 }

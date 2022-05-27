@@ -17,6 +17,7 @@ public class Commonpage {
 	private By txtEmailAddress = By.xpath("//input[contains(@name ,'email')]");
 	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
+	private By closeIcon = By.xpath("//button[@aria-label='Close']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -75,6 +76,10 @@ public class Commonpage {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public Boolean isPopUpClose() {
+		return Eventhelper.waitUntilElementInvisible(driver, closeIcon);
 	}
 
 }
