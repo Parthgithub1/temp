@@ -108,6 +108,17 @@ public class Eventhelper {
 		}
 		return element;
 	}
+	
+	public static WebElement waitUntilElementVisible(WebDriver driver, WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
+			element = wait.until(ExpectedConditions.visibilityOf(element));
+		} catch (Exception e) {
+			element = wait.until(ExpectedConditions.visibilityOf(element));
+			Log.error("Getting exception in explicit wait --> " + e.toString());
+		}
+		return element;
+	}
 
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
 		Eventhelper.explicitwait(driver, locator);

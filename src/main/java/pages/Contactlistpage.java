@@ -22,8 +22,8 @@ public class Contactlistpage {
 	private By btnBackFromContactProfileScreen = By
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
 	private By btnOfMoreActionsGrid = By.xpath("//tr[1]//div[contains(@id,'actionPopup')]");
-	private By listOfContact = By.xpath("//tr[contains(@class,'TableBody_table__row')]");
-
+	private By tblContactGridList = By
+			.xpath("//div[contains(@class,'entity-short-card business_business_wrapper')]/div//p");
 
 	Faker faker = new Faker();
 	String vender, bName = faker.company().name();;
@@ -48,7 +48,7 @@ public class Contactlistpage {
 	}
 
 	public void searchNameInSearchBar() {
-//		Eventhelper.threadWait(3000);
+		Eventhelper.click(driver, txtSearchBarforContact);
 		Eventhelper.sendkeys(driver, txtSearchBarforContact, bName);
 	}
 
@@ -73,35 +73,30 @@ public class Contactlistpage {
 	}
 
 	public void clickOnMoreOptionBesideContactInfo() {
-		Eventhelper.explicitwaitTextToBePresent(driver, lblBusinessNameinContactListGrid, bName);
-		if (Eventhelper.getTextofElement(driver, lblBusinessNameinContactListGrid).contains(bName)) {
-			Eventhelper.click(driver, btnOfMoreActionsGrid);
-		}
+		Eventhelper.click(driver, btnOfMoreActionsGrid);
 	}
 
 	public void clickOnDeleteOrRestoreContact(String string) {
-		Eventhelper.explicitwaitTextToBePresent(driver, lblBusinessNameinContactListGrid, bName);
-		if (Eventhelper.getTextofElement(driver, lblBusinessNameinContactListGrid).contains(bName)) {
-			Eventhelper.click(driver, By.xpath("//div[text()='"+ string +"']"));
+		Eventhelper.click(driver, By.xpath("//div[text()='" + string + "']"));
+	}
+
+	public boolean seeContacts() {
+		List<WebElement> listOfContactElements = Eventhelper.findElements(driver, tblContactGridList);
+		System.out.println(listOfContactElements);
+		List<String> listOfContactText = new ArrayList<String>();
+		System.out.println(listOfContactText);
+		boolean flag = false;
+		for (WebElement contactElement : listOfContactElements) {
+			Eventhelper.waitUntilElementVisible(driver, contactElement);
+			try {
+				listOfContactText.add(contactElement.getText());
+			} catch (StaleElementReferenceException e) {
+				listOfContactText.add(contactElement.getText());
+			}
 		}
+		if (flag = listOfContactText.contains(bName)) {
+			flag = true;
+		}
+		return flag;
 	}
-		
-	public boolean searchResultWaitofcontact() {
-		Eventhelper.explicitwaitTextToBePresent(driver, lblBusinessNameinContactListGrid, bName);
-		return Eventhelper.isElementDisplayed(driver, lblBusinessNameinContactListGrid);
-	}
-	
-//	public boolean seeDeleteContactinTrash() {
-//		List<WebElement> listofNotificationsElements = Eventhelper.findElements(driver, listOfContact);
-//		System.out.println(listofNotificationsElements);
-//		List<String> listofNotificationsText = new ArrayList<String>();
-//		boolean flag = false;
-//		for (WebElement notificationsElements : listofNotificationsElements) {
-//			listofNotificationsText.add(notificationsElements.getText());
-//		}
-//		if(flag = listofNotificationsText.contains(bName)){
-//			flag = true;
-//		}
-//		return flag;
-//	}
 }

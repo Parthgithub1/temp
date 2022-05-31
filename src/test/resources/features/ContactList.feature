@@ -12,21 +12,26 @@ Feature: Test Contact List Functionality
     When User click on "Submit" button
     Then User should see "Contacts" text on the screen
     Then User wait till pop up gets closed
+    # Search & Profile 
     When User enter search for Name in Searchbar
     When User click on Contact from SearchList
     Then User should see the Contact Add Profile
     When User click on Back button from screen
+    # Search & Delete
     When User enter search for Name in Searchbar
-    And User should wait till Search List displays
     And User click on More Options button beside any Contact
     Then User click on "Delete" Option to delete Contact
+    
+    # Trash & Restore
     Then User click on "Trash" link
-    #Then User should see the deleted Contact record in Trash Tab 
     When User enter search for Name in Searchbar
-    And User should wait till Search List displays
     And User click on More Options button beside any Contact
     Then User click on "Restore to Contacts" Option to Restore Contact
-    #Then User should see the Restore Contact record in Trash Tab 
+    
+    # Back to Contact and Search Record
+    Then User click on "Contacts" link
+    When User enter search for Name in Searchbar
+    And User should see Contact in List
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

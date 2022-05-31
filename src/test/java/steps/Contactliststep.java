@@ -9,7 +9,6 @@ import utility.*;
 
 public class Contactliststep {
 	Contactlistpage contactList = new Contactlistpage(Driverhelper.getDriver());
-	String searchBusinessName;
 
 	@Then("User click on Add New Contact button")
 	public void user_click_on_add_new_contact_button() {
@@ -56,19 +55,9 @@ public class Contactliststep {
 		contactList.clickOnDeleteOrRestoreContact(string);
 	}
 	
-	@Then("User should wait till Search List displays")
-	public void user_should_wait_till_search_list_displays() {
-		assertTrue(contactList.searchResultWaitofcontact());
+	
+	@Then("User should see Contact in List")
+	public void user_should_see_notification() throws InterruptedException {
+		assertTrue(contactList.seeContacts());
 	}
-//	
-//	@Then("User should see the deleted Contact record in Trash Tab")
-//	public void user_should_see_the_deleted_contact_record_in_trash_tab() {
-//		
-//	}
-//	
-//	@Then("User should see the Restore Contact record in Trash Tab")
-//	public void user_should_see_the_restore_contact_record_in_trash_tab() {
-//	   
-//	}
-
 }
