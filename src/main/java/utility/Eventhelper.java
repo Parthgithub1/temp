@@ -58,6 +58,10 @@ public class Eventhelper {
 		}
 	}
 
+	public static void doRefresh(WebDriver driver) {
+		driver.navigate().refresh();
+	}
+
 	public static void sendkeys(WebDriver driver, By locator, String val) {
 		WebElement element = explicitwait(driver, locator);
 		element.clear();
@@ -108,7 +112,7 @@ public class Eventhelper {
 		}
 		return element;
 	}
-	
+
 	public static WebElement waitUntilElementVisible(WebDriver driver, WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try {
@@ -138,10 +142,10 @@ public class Eventhelper {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
-	
-	public static Boolean explicitwaitTextToBePresent(WebDriver driver, By locator,String value) {
+
+	public static Boolean explicitwaitTextToBePresent(WebDriver driver, By locator, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator,value));
+		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, value));
 	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {

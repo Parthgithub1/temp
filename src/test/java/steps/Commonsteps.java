@@ -18,7 +18,7 @@ public class Commonsteps {
 	@When("User click on {string} link")
 	public void user_click_on_link(String linktext) {
 		commonPage.clickOnLink(linktext);
-		Log.info("User is on registration page" + linktext);
+		Log.info("User clicking on " + linktext);
 	}
 	
 	@When("User click on {string} button")

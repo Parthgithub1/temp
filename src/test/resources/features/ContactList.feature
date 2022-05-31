@@ -30,6 +30,7 @@ Feature: Test Contact List Functionality
     
     # Back to Contact and Search Record
     Then User click on "Contacts" link
+    Then User should see "Add contact" text on the screen
     When User enter search for Name in Searchbar
     And User should see Contact in List
     When User click on Profile Drop Down
