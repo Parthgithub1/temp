@@ -58,6 +58,10 @@ public class Eventhelper {
 		}
 	}
 
+	public static void doRefresh(WebDriver driver) {
+		driver.navigate().refresh();
+	}
+
 	public static void sendkeys(WebDriver driver, By locator, String val) {
 		WebElement element = explicitwait(driver, locator);
 		element.clear();
@@ -75,11 +79,11 @@ public class Eventhelper {
 		try {
 			element.click();
 		} catch (ElementClickInterceptedException e) {
-			Eventhelper.clickElementwithjs(driver, locator);
 			Log.error("Getting exception in Click --> " + e.toString());
-		} catch (StaleElementReferenceException e) {
 			Eventhelper.clickElementwithjs(driver, locator);
+		} catch (StaleElementReferenceException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
+			Eventhelper.clickElementwithjs(driver, locator);
 		} catch (NoSuchElementException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
 			Eventhelper.clickElementwithjs(driver, locator);
@@ -92,8 +96,8 @@ public class Eventhelper {
 		try {
 			jsexecutor.executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
-			jsexecutor.executeScript("arguments[0].click();", element);
 			Log.error("Getting exception in click element with JS --> " + e.toString());
+			jsexecutor.executeScript("arguments[0].click();", element);	
 		}
 	}
 
@@ -104,6 +108,17 @@ public class Eventhelper {
 			element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		} catch (Exception e) {
 			element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+			Log.error("Getting exception in explicit wait --> " + e.toString());
+		}
+		return element;
+	}
+
+	public static WebElement waitUntilElementVisible(WebDriver driver, WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
+			element = wait.until(ExpectedConditions.visibilityOf(element));
+		} catch (Exception e) {
+			element = wait.until(ExpectedConditions.visibilityOf(element));
 			Log.error("Getting exception in explicit wait --> " + e.toString());
 		}
 		return element;
@@ -126,6 +141,11 @@ public class Eventhelper {
 	public static WebElement explicitwaitclickable(WebDriver driver, By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+
+	public static Boolean explicitwaitTextToBePresent(WebDriver driver, By locator, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, value));
 	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {
@@ -221,7 +241,7 @@ public class Eventhelper {
 		c.setTime(date);
 		int day = c.get(Calendar.DAY_OF_MONTH);
 		String dayStr = day + suffixes[day];
-		String Outpattern = "MMM";
+		String Outpattern = "MMMM";
 		SimpleDateFormat outsimpleDateFormat = new SimpleDateFormat(Outpattern);
 		String Outputdate = outsimpleDateFormat.format(new Date());
 		return (Outputdate + " " + dayStr);

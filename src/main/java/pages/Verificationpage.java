@@ -61,6 +61,7 @@ public class Verificationpage {
 	}
 
 	public boolean isBeneficialAdded() {
+		Eventhelper.explicitwait(driver, lstIsBeneficialAdded);
 		return Eventhelper.isElementDisplayed(driver, lstIsBeneficialAdded);
 	}
 

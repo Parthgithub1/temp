@@ -1,9 +1,9 @@
 Feature: Test Login Functionality
 
-  @Smoke @Login
+  @Login
   Scenario: Verify Login is Successful with Valid Credentials
-    When User login with "jayti.t@simformsolutions.com" and "Password1!" and click on "Continue" button
-    Then User should navigate to dashboard of "jayti.t@simformsolutions.com"
+    When User login with "qatsmokeautomation03@mailinator.com" and "Password1!" and click on "Continue" button
+    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -16,14 +16,14 @@ Feature: Test Login Functionality
     Then User should see <validationMessage> text on the screen
 
     Examples: 
-      | email                                  | password     | validationMessage                                        |
-      | "hopsmokeautomation2@mailinator.com"   | "Password1"  | "The email and password do not match, please try again." |
-      | "hopsmokeautomation122@mailinator.com" | "Password1!" | "User not found"                                         |
+      | email                                 | password     | validationMessage                                        |
+      | "qatsmokeautomation01@mailinator.com" | "Password1"  | "The email and password do not match, please try again." |
+      | "qatsmokeautomation01@mailinator.com" | "Password1!" | "User not found"                                         |
 
   @Regression
   Scenario: Verify maximum Attempts Validation Message on Login Page
-    When User enter "jayti.s@yopmail.com" in email field
-    When User enter "Test@13" in password field
+    When User enter "qatsmokeautomation01@mailinator.com" in email field
+    When User enter "Password11" in password field
     When User click on "Continue" button
     Then User should see validation message for maximum attempts
 
