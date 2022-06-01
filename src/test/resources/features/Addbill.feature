@@ -2,15 +2,15 @@ Feature: Test AddBill functionality
 
   @Smoke @addbill
   Scenario: Verify Add bill Successfully
-    When User login with "hopsmokeautomation2@mailinator.com" and "Password1!" and click on "Continue" button
-    Then User should navigate to dashboard of "hopsmokeautomation2@mailinator.com"
+    When User login with "qatsmokeautomation05@mailinator.com" and "Password1!" and click on "Continue" button
+    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
     When User click on "Add Bill" link
     When User enter add bill details
     When User click on "Add Bill" button
-   	#When User click on Close button from Payable Card
+    #When User click on Close button from Payable Card
     Then User see the updated payable balance before paying invoice of add bill
     Then User should see notification of add bill on the dashboard
     Then User click on "Payable" Container

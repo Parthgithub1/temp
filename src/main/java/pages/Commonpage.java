@@ -1,13 +1,7 @@
 package pages;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
+import java.util.*;
+import org.openqa.selenium.*;
 import utility.*;
 
 public class Commonpage {
@@ -22,22 +16,23 @@ public class Commonpage {
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
 	}
-	
+
 	public void clickOnLink(String linktext) {
 		By linkxpath = By.partialLinkText(linktext);
 		Eventhelper.click(driver, linkxpath);
 	}
-	
+
 	public void clickOnButton(String buttonname) {
-		By btnXpath = By.xpath("((//button[normalize-space()='"+ buttonname +"']))[1]");
+		By btnXpath = By.xpath("((//button[normalize-space()='" + buttonname + "']))[1]");
 		Eventhelper.explicitwait(driver, btnXpath);
 		Eventhelper.click(driver, btnXpath);
 	}
+
 	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
-	
+
 	public void clickonDropDownofProfile() {
 		Eventhelper.click(driver, xPathofdropDown);
 	}
@@ -46,7 +41,7 @@ public class Commonpage {
 		By btnxpath = By.xpath("//a[normalize-space()='" + text + "']");
 		Eventhelper.click(driver, btnxpath);
 	}
-	
+
 	public void enterEmailAddress(String value) {
 		if (value.contains("random")) {
 			value = UUID.randomUUID().toString() + "@hopscotchautomation.com";
@@ -54,16 +49,16 @@ public class Commonpage {
 		}
 		Eventhelper.sendkeys(driver, txtEmailAddress, value);
 	}
-	
+
 	public void enterPassword(String value) {
 		Eventhelper.sendkeys(driver, txtPassword, value);
 	}
 
-	public void clickonNotificationfromHeader(String linktext) {
-		By btnxpath = By.xpath("(//*[name()='svg'])[4]");		
+	public void clickonNotificationfromHeader() {
+		By btnxpath = By.xpath("//a[@href='/notification']");
 		Eventhelper.click(driver, btnxpath);
 	}
-	
+
 	public boolean seeNotifications(String notificationMessage) {
 		List<WebElement> listofNotificationsElements = Eventhelper.findElements(driver, notificationTableGridxPath);
 		List<String> listofNotificationsText = new ArrayList<String>();
@@ -71,15 +66,13 @@ public class Commonpage {
 		for (WebElement notificationsElements : listofNotificationsElements) {
 			listofNotificationsText.add(notificationsElements.getText());
 		}
-		if(flag = listofNotificationsText.contains(notificationMessage)){
-			//System.out.println("Notification Matched");
+		if (flag = listofNotificationsText.contains(notificationMessage)) {
 			flag = true;
 		}
 		return flag;
 	}
-	
+
 	public Boolean isPopUpClose() {
 		return Eventhelper.waitUntilElementInvisible(driver, closeIcon);
 	}
-
 }

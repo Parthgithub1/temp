@@ -124,11 +124,6 @@ public class Payinvoivesteps {
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
 
-	@When("User click on {string} option from Header")
-	public void user_click_on_option_from_header(String string) {
-	    commonPage.clickonNotificationfromHeader(string);
-	}
-	
 	@When("User enter {string} in Searchbar of {string}")
 	public void user_enter_in_searchbar_of(String Businessname, String AccountingSection) {
 	payInvoice.enterInSearchBar(Businessname, AccountingSection);

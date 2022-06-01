@@ -1,6 +1,5 @@
 package pages;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.*;
@@ -15,15 +14,12 @@ public class Contactlistpage {
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtEmail = By.xpath("//input[@name='email']");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new business')]");
-
 	private By txtSearchBarforContact = By.xpath("//input[contains(@name ,'search')]");
 	private By newContactAddedName = By.xpath("//span[contains(@class,'InfoHeader_header')]");
 	private By lblEmailIdinContactListGrid = By.xpath("//td[2]");
 	private By btnBackFromContactProfileScreen = By
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
 	private By btnOfMoreActionsGrid = By.xpath("//tr[1]//div[contains(@id,'actionPopup')]");
-	private By tblContactGridList = By
-			.xpath("//div[contains(@class,'entity-short-card business_business_wrapper')]/div//p");
 
 	Faker faker = new Faker();
 	String tempEmail;
@@ -34,7 +30,6 @@ public class Contactlistpage {
 	}
 
 	public void enterContactDeatails() {
-
 		Eventhelper.sendkeys(driver, txtBusinessName, bName);
 		Eventhelper.click(driver, btnAddNewBusiness);
 		String firstName = faker.name().firstName();
@@ -58,7 +53,6 @@ public class Contactlistpage {
 	}
 
 	public void clickOnContactListSearchResult() {
-
 		String rowXpath = waitTillContactPresent();
 		if (rowXpath == null) {
 			rowXpath = "";
@@ -66,7 +60,6 @@ public class Contactlistpage {
 		By lstOfSearchforContact = By
 				.xpath(rowXpath + "//div[contains(@class,'entity-short-card')]/following-sibling::p");
 		Eventhelper.click(driver, lstOfSearchforContact);
-
 	}
 
 	public String waitTillContactPresent() {
@@ -75,7 +68,6 @@ public class Contactlistpage {
 		List<WebElement> listOfEle = Eventhelper.findElements(driver, lblEmailIdinContactListGrid);
 		for (int i = 1; i < listOfEle.size(); i++) {
 			for (WebElement ele : listOfEle) {
-
 				try {
 					isEmailmatch = ele.getText().equals(tempEmail);
 				} catch (StaleElementReferenceException e) {
@@ -83,7 +75,6 @@ public class Contactlistpage {
 					searchNameInSearchBar();
 					isEmailmatch = ele.getText().equals(tempEmail);
 				}
-
 				if (isEmailmatch) {
 					rowxpath = "//tr[" + i + "]";
 					break;

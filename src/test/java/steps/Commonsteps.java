@@ -78,4 +78,9 @@ public class Commonsteps {
 	public void user_wait_till_pop_up_gets_closed() {
 		assertTrue(commonPage.isPopUpClose());
 	}
+	
+	@When("User click on Notification option from Header")
+	public void user_click_on_option_from_header() {
+	    commonPage.clickonNotificationfromHeader();
+	}
 }

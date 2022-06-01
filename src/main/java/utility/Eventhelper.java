@@ -79,11 +79,11 @@ public class Eventhelper {
 		try {
 			element.click();
 		} catch (ElementClickInterceptedException e) {
-			Eventhelper.clickElementwithjs(driver, locator);
 			Log.error("Getting exception in Click --> " + e.toString());
-		} catch (StaleElementReferenceException e) {
 			Eventhelper.clickElementwithjs(driver, locator);
+		} catch (StaleElementReferenceException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
+			Eventhelper.clickElementwithjs(driver, locator);
 		} catch (NoSuchElementException e) {
 			Log.error("Getting exception in  Click --> " + e.toString());
 			Eventhelper.clickElementwithjs(driver, locator);
@@ -96,8 +96,8 @@ public class Eventhelper {
 		try {
 			jsexecutor.executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
-			jsexecutor.executeScript("arguments[0].click();", element);
 			Log.error("Getting exception in click element with JS --> " + e.toString());
+			jsexecutor.executeScript("arguments[0].click();", element);	
 		}
 	}
 
@@ -241,7 +241,7 @@ public class Eventhelper {
 		c.setTime(date);
 		int day = c.get(Calendar.DAY_OF_MONTH);
 		String dayStr = day + suffixes[day];
-		String Outpattern = "MMM";
+		String Outpattern = "MMMM";
 		SimpleDateFormat outsimpleDateFormat = new SimpleDateFormat(Outpattern);
 		String Outputdate = outsimpleDateFormat.format(new Date());
 		return (Outputdate + " " + dayStr);
