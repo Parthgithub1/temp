@@ -85,12 +85,7 @@ public class Contactlistpage {
 	}
 
 	public Boolean contactAddedVerification() {
-		boolean flag = false;
-		String actualText = Eventhelper.getTextofElement(driver, newContactAddedName);
-		if (actualText.equalsIgnoreCase(bName)) {
-			flag = true;
-		}
-		return flag;
+		return Eventhelper.getTextofElement(driver, newContactAddedName).equalsIgnoreCase(bName);
 	}
 
 	public void clickOnBackButtonfromContactProfileScreen() {
@@ -115,8 +110,6 @@ public class Contactlistpage {
 		if (xpath == null) {
 			xpath = "";
 		}
-		String emailXpath = xpath + "//td[2]";
-		String email = Eventhelper.getTextofElement(driver, By.xpath(emailXpath));
-		return email.equals(tempEmail);
+		return Eventhelper.getTextofElement(driver, By.xpath(xpath + "//td[2]")).equals(tempEmail);
 	}
 }

@@ -1,6 +1,5 @@
 package steps;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.*;
@@ -28,8 +27,7 @@ public class Commonsteps {
 	
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
-		boolean isTextDisplay = commonPage.isTextDisplayed(expectedText);
-		assertTrue(isTextDisplay);
+		assertTrue(commonPage.isTextDisplayed(expectedText));
 	}
 	
 	@When("User click on Profile Drop Down")
@@ -44,8 +42,7 @@ public class Commonsteps {
 	
 	@Then("User should navigate to dashboard of {string}")
 	public void user_should_navigate_to_dashboard(String email) {
-		boolean isTextDisplay = loginPage.isHompageDisplay(email);
-		assertTrue(isTextDisplay);
+		assertTrue(loginPage.isHompageDisplay(email));
 	}
 	
 	
@@ -70,8 +67,7 @@ public class Commonsteps {
 
 	@Then("User should see {string} notification")
 	public void user_should_see_notification(String notificationMessage) throws InterruptedException {
-		boolean actualnotifiationcontent= commonPage.seeNotifications(notificationMessage);
-	    assertEquals(notificationMessage != null, actualnotifiationcontent);
+		assertTrue(commonPage.isNotificationPresentInList(notificationMessage));
 	}
 
 	@Then("User wait till pop up gets closed")

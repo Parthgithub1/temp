@@ -59,17 +59,13 @@ public class Commonpage {
 		Eventhelper.click(driver, btnxpath);
 	}
 
-	public boolean seeNotifications(String notificationMessage) {
+	public boolean isNotificationPresentInList(String notificationMessage) {
 		List<WebElement> listofNotificationsElements = Eventhelper.findElements(driver, notificationTableGridxPath);
 		List<String> listofNotificationsText = new ArrayList<String>();
-		boolean flag = false;
 		for (WebElement notificationsElements : listofNotificationsElements) {
 			listofNotificationsText.add(notificationsElements.getText());
 		}
-		if (flag = listofNotificationsText.contains(notificationMessage)) {
-			flag = true;
-		}
-		return flag;
+		return listofNotificationsText.contains(notificationMessage);
 	}
 
 	public Boolean isPopUpClose() {
