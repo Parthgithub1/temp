@@ -1,12 +1,17 @@
 package pages;
 
+import java.util.Properties;
+
 import org.openqa.selenium.*;
 import utility.*;
 
 public class Loginpage {
 	private WebDriver driver;
 	private Commonpage commonPage;
-
+	static Propertyreader propertyreader = new Propertyreader();
+	static Properties property = propertyreader.init_prop();
+	
+	
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
@@ -17,10 +22,10 @@ public class Loginpage {
 		return Eventhelper.isElementDisplayed(driver, tstErrorLocator);
 	}
 	
-	public void doLogin(String email, String pass, String login) {
+	public void doLogin(String email, String login) {
 		commonPage.enterEmailAddress(email);
 		System.out.println("Email is :" + email);
-		commonPage.enterPassword(pass);
+		commonPage.enterPassword(property.getProperty("password"));
 		Eventhelper.threadWait(2000);
 		commonPage.clickOnButton(login);
 	}
@@ -32,7 +37,7 @@ public class Loginpage {
 		} catch (Exception e) {
 			commonPage.clickOnLink("Reset your password");
 			driver.navigate().back();
-			doLogin(email, "Password1!", "Continue");
+			doLogin(email, "Continue");
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}

@@ -2,7 +2,7 @@ Feature: Test Fund Management Functionality
 
   @Smoke
   Scenario: Verify User is able to Add and Withdraw Funds Successfully
-    When User login with "qatsmokeautomation03@mailinator.com" and "Password1!" and click on "Continue" button
+    When User login with "qatsmokeautomation03@mailinator.com" and click on "Continue" button
     Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
     Then User should save Default amount
     When User click on "Add funds" button
