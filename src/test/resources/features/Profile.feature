@@ -2,7 +2,7 @@ Feature: Test Profile Functionality
 
   @Smoke @Profile
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
-    When User login with "hopsmokeautomation2@mailinator.com" and "Password1!" and click on "Continue" button
+    When User login with "hopsmokeautomation2@mailinator.com" and click on "Continue" button
     Then User should navigate to dashboard of "hopsmokeautomation2@mailinator.com"
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see <BusinessName> text on the screen
