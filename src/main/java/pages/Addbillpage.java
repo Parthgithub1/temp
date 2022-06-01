@@ -69,6 +69,8 @@ public class Addbillpage {
 	}
 
 	public void clickonCloseIconfromPayableCard() {
-		Eventhelper.click(driver, btnCloseOfPayableCard);
+		if (Eventhelper.isElementDisplayed(driver, btnCloseOfPayableCard)) {
+			Eventhelper.click(driver, btnCloseOfPayableCard);
+		}
 	}
 }
