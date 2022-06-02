@@ -12,6 +12,12 @@ public class Commonpage {
 	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
 	private By closeIcon = By.xpath("//button[@aria-label='Close']");
+	private By frmIframe = By.xpath("//iframe");
+	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
+	private By lstbankname;
+	private By txtbUserName = By.xpath("//label[text()='Username']/following-sibling::input");
+	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
+	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -31,6 +37,11 @@ public class Commonpage {
 	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
+	}
+	
+	public Boolean isTextNotDisplayed(String text) {
+		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
+		return Eventhelper.waitUntilElementInvisible(driver, xpath);
 	}
 
 	public void clickonDropDownofProfile() {
@@ -70,5 +81,21 @@ public class Commonpage {
 
 	public Boolean isPopUpClose() {
 		return Eventhelper.waitUntilElementInvisible(driver, closeIcon);
+	}
+
+	public void addBankInPlaid(String bankName) {
+		lstbankname = By.xpath("(//*[text()='" + bankName + "'])");
+		Eventhelper.switchToFrame(driver, frmIframe);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		clickOnButton("Continue");
+		Eventhelper.click(driver, lstbankname);
+		Eventhelper.sendkeys(driver, txtbUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtbPassword, "pass_good");
+		clickOnButton("Submit");
+		Eventhelper.click(driver, rbtnAddBankPleidChecking);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		clickOnButton("Continue");
+		clickOnButton("Continue");
+		Eventhelper.switchToParentFrame(driver);
 	}
 }
