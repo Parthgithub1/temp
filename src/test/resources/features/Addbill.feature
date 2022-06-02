@@ -2,7 +2,7 @@ Feature: Test AddBill functionality
 
   @Smoke @addbill
   Scenario: Verify Add bill Successfully
-    When User login with "qatsmokeautomation05@mailinator.com" and "Password1!" and click on "Continue" button
+    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button
     Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
@@ -24,10 +24,12 @@ Feature: Test AddBill functionality
     Then User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
     Then User should see notification of payment of add bill on the dashboard
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
 
   Scenario: Verify Add bill Successfully
     #Dev Add Bill steps :-
-    When User login with "hopsmokeautomation2@mailinator.com" and "Password1!" and click on "Log in" button
+    When User login with "qatsmokeautomation03@mailinator.com" and click on "Continue" button
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen

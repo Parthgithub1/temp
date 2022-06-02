@@ -44,13 +44,11 @@ public class Commonsteps {
 	public void user_should_navigate_to_dashboard(String email) {
 		assertTrue(loginPage.isHompageDisplay(email));
 	}
-	
-	
+		
 	@When("User enter {string} in email field")
 	public void user_enter_in_email_field(String emailaddress) {
 		commonPage.enterEmailAddress(emailaddress);
 		Log.info("User is on enter email field value is " + emailaddress);
-
 	}
 	
 	@When("User enter {string} in password field")
@@ -58,13 +56,11 @@ public class Commonsteps {
 		commonPage.enterPassword(password);
 	}
 	
-
-	
-	@When("User login with {string} and {string} and click on {string} button")
-	public void user_login_with_and_and_click_on_button(String email, String pass, String login) {
-		loginPage.doLogin(email, pass, login);
+	@When("User login with {string} and click on {string} button")
+	public void user_login_with_and_click_on_button(String email, String btnname) {
+		loginPage.doLogin(email, btnname);
 	}
-
+		
 	@Then("User should see {string} notification")
 	public void user_should_see_notification(String notificationMessage) throws InterruptedException {
 		assertTrue(commonPage.isNotificationPresentInList(notificationMessage));

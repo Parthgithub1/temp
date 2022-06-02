@@ -39,14 +39,14 @@ public class Sendinvoicesteps {
 	@Then("User should see the invoice on the screen")
 	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
 		sendInvoicePage.sortWithDueDate();
-		List<String> expectedList = new ArrayList<String>();
-		List<String> actualList = sendInvoicePage.seeInvoice();
 		List<List<String>> expected = dataTable.asLists();
+		List<String> expectedList = new ArrayList<String>();
 		for (List<String> columns : expected) {
 			expectedList.add(columns.get(0));
 			expectedList.add(Eventhelper.GetTodaysdateInSpecifiedFormat());
 			expectedList.add(columns.get(1));
 		}
+		List<String> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
 		assertEquals(expectedList, actualList);
 	}
 

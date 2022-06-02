@@ -20,6 +20,7 @@ public class Sendinvoicepage {
 	private By lnkSendInvoice = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
 	private By btnDueDateOnReceivable = By.xpath("(//p[contains(text(),'Due date')])[2]");
 	String receivableBalanceOndashboard, receiableBlanaceOnAccountingPage;
+	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
 	
 	public Sendinvoicepage(WebDriver driver) {
 		this.driver = driver;
@@ -27,7 +28,7 @@ public class Sendinvoicepage {
 
 
 	public float readReceivableBalanceOnDashBoard() {
-        Eventhelper.threadWait(8000);
+        Eventhelper.threadWait(5000);
         return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, lblReceivableBalance ,"receivable-amount").substring(1).replace(",", ""));
     }
 
@@ -45,7 +46,8 @@ public class Sendinvoicepage {
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 
-	public List<String> seeInvoice() {
+	public List<String> seeInvoice(String businessName) {
+		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
 		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
 		List<String> actualData = new ArrayList<String>();
 		for (WebElement columnElement : columnElements) {
