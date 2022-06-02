@@ -1,9 +1,9 @@
 Feature: Test Profile Functionality
 
-  @Smoke @Profile
+  @Smoke @Profile @test
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
-    When User login with "hopsmokeautomation2@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "hopsmokeautomation2@mailinator.com"
+    When User login with "qatsmokeautomation06@mailinator.com" and click on "Continue" button
+    Then User should navigate to dashboard of "qatsmokeautomation06@mailinator.com"
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see <BusinessName> text on the screen
     When User click on Edit Icon beside User name
@@ -29,13 +29,10 @@ Feature: Test Profile Functionality
     Then User should see "Add a bill manually" text on the screen
     Then User click on "Return" button
     Then User should see "About" text on the screen
-    Then User click on "View all" link
-    Then User should see "Hopscotch Balance" text on the screen
-    When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
-    Then User should see <BusinessName> text on the screen
+    Then User should see "History" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | BusinessName             | Handle                    | Industry     | Website                   | YearFound | AboutText                                     |
-      | "hopsmokeautomation2llc" | "@hopsmokeautomation2llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
+      | BusinessName           | Handle                  | Industry     | Website                   | YearFound | AboutText                                     |
+      | "qatsmokeautomation06" | "@qatsmokeautomation06" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |

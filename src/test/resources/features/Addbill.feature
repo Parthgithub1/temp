@@ -24,6 +24,8 @@ Feature: Test AddBill functionality
     Then User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
     Then User should see notification of payment of add bill on the dashboard
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
 
   Scenario: Verify Add bill Successfully
     #Dev Add Bill steps :-
