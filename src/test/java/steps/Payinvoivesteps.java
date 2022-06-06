@@ -67,7 +67,7 @@ public class Payinvoivesteps {
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")
 	public void user_should_save_the_amount_of_hopscotch_balance_from_accounting_page() {
-		fundData.setAmountofhopscotchBalance(homepage.hopscotchBalanceBeforeAddingFund());
+		fundData.setAmountofhopscotchBalance(homepage.getCurrentHopscotchBalanceAmount());
 	}
 
 	@When("User enter {string} in Searchbar")

@@ -2,6 +2,7 @@ package utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -150,6 +151,11 @@ public class Eventhelper {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, value));
 	}
+	
+	public static Boolean waitUntilAttribValueContains(WebDriver driver, By locator, String attrib, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, 120);
+		return wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(locator, attrib, value)));		
+	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -195,12 +201,10 @@ public class Eventhelper {
 	}
 
 	public static void switchToParentFrame(WebDriver driver) {
-
 		driver.switchTo().parentFrame();
 	}
 
 	public static void switchToFrame(WebDriver driver, By locator) {
-
 		driver.switchTo().frame(Eventhelper.findElement(driver, locator));
 	}
 
@@ -256,6 +260,11 @@ public class Eventhelper {
 			amt = amt.replace("-", "");
 		}
 		return Float.parseFloat(amt);
+	}
+	
+	public static float ConvertFloatTo2DecimalFloat(float number) {
+		DecimalFormat df = new DecimalFormat(".00");
+		return Float.valueOf(df.format(number));
 	}
 
 	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
