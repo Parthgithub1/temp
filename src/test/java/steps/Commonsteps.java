@@ -28,12 +28,12 @@ public class Commonsteps {
 
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
-		assertTrue(commonPage.isTextDisplayed(expectedText));
+		assertTrue("Expected text not display :" + expectedText,commonPage.isTextDisplayed(expectedText));
 	}
 
 	@Then("User should not see {string} text on the screen")
-	public void user_should_not_see_text_on_the_screen(String string) {
-		assertTrue(commonPage.isTextNotDisplayed(string));
+	public void user_should_not_see_text_on_the_screen(String expectedText) {
+		assertTrue("Expected text  display : "+ expectedText,commonPage.isTextNotDisplayed(expectedText));
 	}
 
 	@When("User click on Profile Drop Down")
@@ -42,8 +42,8 @@ public class Commonsteps {
 	}
 
 	@Then("User click on {string} option from Profile Drop-Down")
-	public void user_click_on_option_from_profile_drop_down(String string) {
-		commonPage.clickonLinkfromProfileDropDownOption(string);
+	public void user_click_on_option_from_profile_drop_down(String menuOption) {
+		commonPage.clickonLinkfromProfileDropDownOption(menuOption);
 	}
 
 	@Then("User should navigate to dashboard of {string}")

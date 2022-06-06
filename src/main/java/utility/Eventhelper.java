@@ -97,7 +97,7 @@ public class Eventhelper {
 			jsexecutor.executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			Log.error("Getting exception in click element with JS --> " + e.toString());
-			jsexecutor.executeScript("arguments[0].click();", element);	
+			jsexecutor.executeScript("arguments[0].click();", element);
 		}
 	}
 
@@ -125,8 +125,11 @@ public class Eventhelper {
 	}
 
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
-		Eventhelper.explicitwait(driver, locator);
-		return findElement(driver, locator).isDisplayed();
+		try {
+			return findElement(driver, locator).isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
 	}
 
 	public static boolean isElementEnabled(WebDriver driver, By locator) {

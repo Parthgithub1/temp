@@ -38,7 +38,7 @@ public class Commonpage {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
-	
+
 	public Boolean isTextNotDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.waitUntilElementInvisible(driver, xpath);
