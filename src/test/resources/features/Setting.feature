@@ -1,6 +1,6 @@
 Feature: Test Settings Tab Functionality
 
-  @Smoke @Setting
+  @Smoke @Setting @paymentMethodSection
   Scenario: Verify Payment methods on Settings Tab
     When User login with "qatsmokeautomation06@mailinator.com" and click on "Continue" button
     Then User should navigate to dashboard of "qatsmokeautomation06@mailinator.com"
@@ -44,26 +44,21 @@ Feature: Test Settings Tab Functionality
     Then User should not see "Wells Fargo" text on the screen
 
   #Settings > Account Section
-  @Smoke
+  @Smoke @accountSection @Setting
   Scenario Outline: Verify Settings Tab Account Section Functionality
-    When User login with "qatsmokeautomation07@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"
+    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button
+    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User enter <FirstName> in firstname field
-    When User enter <LastName> in lastname field
-    #Then User should see updated Name Details on the Screen like <FirstName>, <LastName>
+    When User enter firstname and lastName data of User
     Then User click on "Save" button
+    Then User should see updated Name Details on the Screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-    Examples: 
-      | FirstName | LastName   |
-      | "hop"     | "testDemo" |
-
-  @Smoke @changePassword
+  @Smoke @changePassword @Setting
   Scenario: Verify Settings Tab Account Section Change Password Functionality
-    When User login with "qatsmokeautomation07@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"
+    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button
+    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Change the Password
@@ -71,8 +66,8 @@ Feature: Test Settings Tab Functionality
     Then User should see "Your password has been changed successfully" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login with "qatsmokeautomation07@mailinator.com" and click on "Continue" button after change password
-    Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"
+    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button after change password
+    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Reset Change the Password
@@ -81,7 +76,7 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Smoke @twoFactorAuthentication
+  @Smoke @twoFactorAuthentication @Setting
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
     When User login with "qatsmokeautomation07@mailinator.com" and click on "Continue" button
     Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"

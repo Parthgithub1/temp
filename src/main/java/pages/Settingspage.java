@@ -2,6 +2,9 @@ package pages;
 
 import java.util.*;
 import org.openqa.selenium.*;
+
+import com.github.javafaker.Faker;
+
 import utility.*;
 
 public class Settingspage {
@@ -10,19 +13,38 @@ public class Settingspage {
 	private Sendinvoicepage sendInvoicePage;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.init_prop();
+	Faker faker = new Faker();
+	String firstName;
+	String lastName;
 
 	private By txtCurrentPassword = By.xpath(" //input[@name='currentPassword']");
 	private By txtNewPassword = By.xpath(" //input[@name='newPassword']");
 	private By txtConfirmPassword = By.xpath(" //input[@name='confirmNewPassword']");
 	private By txtMobileNumber = By.xpath("//input[@name='phone']");
 	private By enterCodeforTwoFactorAuthentication = By.xpath("//input[@name='code']");
+	private By txtFirstName = By.xpath("//input[@name='firstName']");
+	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By toggleOfTwoFactorAuthentication;
 	private By menuIcon, lblBankAccountType;
-
+	
 	public Settingspage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
 		sendInvoicePage = new Sendinvoicepage(driver);
+	}
+	
+	public void enterFirstAndLastName() {
+		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtFirstName);
+		firstName = faker.name().firstName();
+		Eventhelper.sendkeys(driver, txtFirstName, firstName);
+		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtLastName);
+		lastName = faker.name().lastName();
+		Eventhelper.sendkeys(driver, txtLastName, lastName);
+		Eventhelper.autoScrollWindow(driver);
+	}
+	
+	public boolean verificationOfDataForFirstAndLastName() {
+		return Eventhelper.getValueOfAttribute(driver, txtLastName, "value").equalsIgnoreCase(lastName) && Eventhelper.getValueOfAttribute(driver, txtFirstName, "value").equalsIgnoreCase(firstName);
 	}
 
 	public void changePassword() {
@@ -51,7 +73,7 @@ public class Settingspage {
 	}
 	
 	public void enterCodeForTwoFactorAuthentication() {
-		Eventhelper.sendkeys(driver, enterCodeforTwoFactorAuthentication, Constants.enterCodeforTwoFactorAuthentication);
+		Eventhelper.sendkeys(driver, enterCodeforTwoFactorAuthentication, Constants.ENTERCODEFORTWOFACTORAUTHENTICATION);
 	}
 
 	public void clickOnTwoFactorAuthenticationToggle(String twoFactorAuthenticationToggle) {
