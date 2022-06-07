@@ -33,8 +33,10 @@ public class Payinvoivesteps {
 
 	@Then("User should save Default amount of Payable on Accounting Page")
 	public void user_should_save_default_amount_of_payable_on_accounting_page() {
-		Eventhelper.threadWait(5000);
-		payData.setBalanceofPayableonAccountingPage(payInvoice.getexistingBalanceofPayableonAccountingPage());
+		//Eventhelper.threadWait(5000);
+		float getexistingBalanceofPayableonAccountingPage = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		payData.setBalanceofPayableonAccountingPage(getexistingBalanceofPayableonAccountingPage);
+		Log.info("Existing payable balance on accounting screen is:- "+getexistingBalanceofPayableonAccountingPage );
 	}
 
 	@When("User click on Invoice from Payable tab")
@@ -50,7 +52,7 @@ public class Payinvoivesteps {
 	@Then("User should see new amount on the screen for Payables")
 	public void user_should_see_new_amount_on_the_screen_for_payables() {
 		Eventhelper.threadWait(8000);
-		float expectedAmount = payData.getDefaultPayableBalanceatHomePage() - payData.getInvoiceAmounttobePaid();
+		float expectedAmount = payData.getBalanceofPayableonAccountingPage();// - payData.getInvoiceAmounttobePaid();
 		System.out.println(expectedAmount);
 		System.out.println(payData.getDefaultPayableBalanceatHomePage());
 		System.out.println(payData.getInvoiceAmounttobePaid());
@@ -109,7 +111,7 @@ public class Payinvoivesteps {
 	@Then("User should see updated payable amount on the screen")
 	public void user_should_see_updated_payable_amount_on_the_screen() {
 		Eventhelper.threadWait(3000);
-		float expectedAmount = payData.getDefaultPayableBalanceatHomePage();
+		float expectedAmount = payData.getBalanceofPayableonAccountingPage();
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
@@ -117,10 +119,11 @@ public class Payinvoivesteps {
 	@Then("User see the updated payable balance before paying invoice of add bill")
 	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
 		Eventhelper.threadWait(3000);        
-		Log.info(" amount --->"+Addbillsteps.fatchAmount());
-		float expectedAmount = payData.getDefaultPayableBalanceatHomePage()+Addbillsteps.fatchAmount();
-		Log.info("payData.getDefaultPayableBalanceatHomePage()"+payData.getDefaultPayableBalanceatHomePage());
+		//Log.info(" Add bill amount --->"+Addbillsteps.addBillInvoiceAmount());
+		float expectedAmount = payData.getBalanceofPayableonAccountingPage()+Addbillsteps.addBillInvoiceAmount();
+		Log.info("Expected payable amount after add bill :- "+expectedAmount);
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		Log.info("Actual payable balance on accounting page :- "+ actualAmount);
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
 

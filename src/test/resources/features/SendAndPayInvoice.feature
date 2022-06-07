@@ -4,7 +4,8 @@ Feature: Test Send and Pay invoice Functionality
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
-    Then Read Receivable Balance on home screen
+    Then User click on "Receivable" Container
+   Then Read Receivable Balance on accounting screen
     When User click on Send Invoice link
     Then User should see "Invoice a business" text on the screen
     When User enter "qatsmokeautomation07" in searchbox
@@ -30,7 +31,7 @@ Feature: Test Send and Pay invoice Functionality
   Scenario: Verify that user is able to Pay invoice to existing business into hopscotch application
     When User login for "InvoicePay"
     Then User should navigate to dashboard "InvoicePay"
-    When User should save current hopscotch balance
+    #When User should save current hopscotch balance
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
