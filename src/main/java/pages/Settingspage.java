@@ -40,7 +40,7 @@ public class Settingspage {
 		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtLastName);
 		lastName = faker.name().lastName();
 		Eventhelper.sendkeys(driver, txtLastName, lastName);
-		Eventhelper.autoScrollWindow(driver);
+		Eventhelper.autoScrollWindow(driver, Eventhelper.findElement(driver, txtMobileNumber));
 	}
 	
 	public boolean verificationOfDataForFirstAndLastName() {

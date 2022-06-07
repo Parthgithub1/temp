@@ -2,7 +2,7 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @Setting @paymentMethodSection
   Scenario: Verify Payment methods on Settings Tab
-    When User login with "qatsmokeautomation06@mailinator.com" and click on "Continue" button
+    When User login for "paymentMethodSection"
     Then User should navigate to dashboard of "qatsmokeautomation06@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment Methods" link
@@ -46,7 +46,7 @@ Feature: Test Settings Tab Functionality
   #Settings > Account Section
   @Smoke @accountSection @Setting
   Scenario Outline: Verify Settings Tab Account Section Functionality
-    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button
+    When User login for "accountSection"
     Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User enter firstname and lastName data of User
@@ -57,7 +57,7 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @changePassword @Setting
   Scenario: Verify Settings Tab Account Section Change Password Functionality
-    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button
+    When User login for "changePassword"
     Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
@@ -78,7 +78,7 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @twoFactorAuthentication @Setting
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
-    When User login with "qatsmokeautomation07@mailinator.com" and click on "Continue" button
+    When User login for "twoFactorAuthentication"
     Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle
@@ -88,7 +88,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "MFA Enabled" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login with "qatsmokeautomation07@mailinator.com" and click on "Continue" button
+    When User login for "twoFactorAuthentication"
     Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"
     When User enter otp on screen
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down

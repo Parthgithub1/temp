@@ -1,7 +1,6 @@
 package steps;
 
 import static org.junit.Assert.assertTrue;
-
 import io.cucumber.java.en.*;
 import pages.*;
 import userdata.Fundsdata;
@@ -13,6 +12,11 @@ public class Commonsteps {
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
+
+	@When("User login for {string}")
+	public void user_login_for(String feature) {
+		loginPage.doLogin(commonPage.getEmailAsPerFeature(feature));
+	}
 
 	@When("User click on {string} link")
 	public void user_click_on_link(String linktext) {
@@ -27,12 +31,12 @@ public class Commonsteps {
 
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
-		assertTrue("Expected text not display :" + expectedText,commonPage.isTextDisplayed(expectedText));
+		assertTrue("Expected text not display :" + expectedText, commonPage.isTextDisplayed(expectedText));
 	}
 
 	@Then("User should not see {string} text on the screen")
 	public void user_should_not_see_text_on_the_screen(String expectedText) {
-		assertTrue("Expected text  display : "+ expectedText,commonPage.isTextNotDisplayed(expectedText));
+		assertTrue("Expected text  display : " + expectedText, commonPage.isTextNotDisplayed(expectedText));
 	}
 
 	@When("User click on Profile Drop Down")
@@ -59,11 +63,6 @@ public class Commonsteps {
 	@When("User enter {string} in password field")
 	public void user_enter_in_password_field(String password) {
 		commonPage.enterPassword(password);
-	}
-
-	@When("User login with {string} and click on {string} button")
-	public void user_login_with_and_click_on_button(String email, String btnname) {
-		loginPage.doLogin(email, btnname);
 	}
 
 	@Then("User should see {string} notification")

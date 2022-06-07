@@ -2,8 +2,8 @@ Feature: Test AddBill functionality
 
   @Smoke @addbill
   Scenario: Verify Add bill Successfully
-    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
+    When User login for "addbill" 
+    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
@@ -29,7 +29,7 @@ Feature: Test AddBill functionality
 
   Scenario: Verify Add bill Successfully
     #Dev Add Bill steps :-
-    When User login with "qatsmokeautomation03@mailinator.com" and click on "Continue" button
+    When User login for "addbill" 
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen

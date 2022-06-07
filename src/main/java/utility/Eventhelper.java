@@ -278,8 +278,8 @@ public class Eventhelper {
 		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 	
-	public static void autoScrollWindow(WebDriver driver) {
+	public static void autoScrollWindow(WebDriver driver, WebElement element) {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)");
+		jse.executeScript("arguments[0].scrollIntoView();", element);
 	}
 }
