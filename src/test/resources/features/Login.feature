@@ -1,17 +1,9 @@
 Feature: Test Login Functionality
 
-  @Login
+  @Login 
   Scenario: Verify Login is Successful with Valid Credentials
-    When User login for "Login" 
-    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
-    Then User should see "Sign in" text on the screen
-
-  @Login @qatChangesLogin
-  Scenario: Verify Login is Successful with Valid Credentials
-    When User login for "Login" 
-    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
+    When User login for "Login"
+    Then User should navigate to dashboard "Login"
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

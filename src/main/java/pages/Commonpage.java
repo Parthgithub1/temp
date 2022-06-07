@@ -102,36 +102,33 @@ public class Commonpage {
 	}
 
 	public String getEmailAsPerFeature(String feature) {
-		String env = System.getProperty(Constants.ENVIRONMENT);
+		
+		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? "qat" : System.getProperty(Constants.ENVIRONMENT);
 		String credential = null;
-		
-		if (feature == null) {
-			feature = "qatChangesLogin";
-		}
-		
+
 		switch (feature) {
 		case "Login":
 		case "addbill":
 		case "Funds":
 		case "externalInvoice":
 		case "InvoiceSend":
-			credential = env.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat1");
+			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat1");
 			break;
 		case "Profile":
 		case "paymentMethodSection":
-			credential = env.equals("qat") ? property.getProperty("qat6") : property.getProperty("uat2");
+			credential = environment.equals("qat") ? property.getProperty("qat6") : property.getProperty("uat2");
 			break;
 		case "twoFactorAuthentication":
 		case "InvoicePay":
-			credential = env.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat2");
+			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat2");
 			break;
 		case "contact":
 		case "changePassword":
 		case "accountSection":
-			credential = env.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
+			credential = environment.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
 			break;
 		default:
-			credential = env.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");
+			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");
 		}
 		return credential;
 	}

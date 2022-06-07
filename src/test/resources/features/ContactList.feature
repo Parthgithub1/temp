@@ -3,7 +3,7 @@ Feature: Test Contact List Functionality
   @Smoke @contact
   Scenario: Verify New Contacts are added in Contact List
     When User login for "contact" 
-    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
+    Then User should navigate to dashboard "contact"
     And User click on "Contact List" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User click on "Add contact" button

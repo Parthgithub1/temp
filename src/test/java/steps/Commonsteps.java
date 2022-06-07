@@ -17,6 +17,12 @@ public class Commonsteps {
 	public void user_login_for(String feature) {
 		loginPage.doLogin(commonPage.getEmailAsPerFeature(feature));
 	}
+	
+	@Then("User should navigate to dashboard {string}")
+	public void user_should_navigate_to_dashboard(String feature) {
+		String email = commonPage.getEmailAsPerFeature(feature);
+		assertTrue(loginPage.isHompageDisplay(email));
+	}
 
 	@When("User click on {string} link")
 	public void user_click_on_link(String linktext) {
@@ -49,10 +55,10 @@ public class Commonsteps {
 		commonPage.clickonLinkfromProfileDropDownOption(menuOption);
 	}
 
-	@Then("User should navigate to dashboard of {string}")
-	public void user_should_navigate_to_dashboard(String email) {
-		assertTrue(loginPage.isHompageDisplay(email));
-	}
+//	@Then("User should navigate to dashboard of {string}")
+//	public void user_should_navigate_to_dashboard(String email) {
+//		assertTrue(loginPage.isHompageDisplay(email));
+//	}
 
 	@When("User enter {string} in email field")
 	public void user_enter_in_email_field(String emailaddress) {

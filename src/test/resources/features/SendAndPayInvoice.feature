@@ -3,7 +3,7 @@ Feature: Test Send and Pay invoice Functionality
   @Smoke @sendandpayinvoice @InvoiceSend
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
-    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
+    Then User should navigate to dashboard "InvoiceSend"
     Then Read Receivable Balance on home screen
     When User click on Send Invoice link
     Then User should see "Invoice a business" text on the screen
@@ -29,7 +29,7 @@ Feature: Test Send and Pay invoice Functionality
   @Smoke @sendandpayinvoice @InvoicePay
   Scenario: Verify that user is able to Pay invoice to existing business into hopscotch application
     When User login for "InvoicePay"
-    Then User should navigate to dashboard of "qatsmokeautomation07@mailinator.com"
+    Then User should navigate to dashboard "InvoicePay"
     When User should save current hopscotch balance
     Then User should save Default amount of Payable
     Then User click on "Payable" Container
