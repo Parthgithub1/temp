@@ -55,11 +55,6 @@ public class Commonsteps {
 		commonPage.clickonLinkfromProfileDropDownOption(menuOption);
 	}
 
-//	@Then("User should navigate to dashboard of {string}")
-//	public void user_should_navigate_to_dashboard(String email) {
-//		assertTrue(loginPage.isHompageDisplay(email));
-//	}
-
 	@When("User enter {string} in email field")
 	public void user_enter_in_email_field(String emailaddress) {
 		commonPage.enterEmailAddress(emailaddress);
