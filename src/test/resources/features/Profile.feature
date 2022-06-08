@@ -1,9 +1,9 @@
 Feature: Test Profile Functionality
 
-  @Smoke @Profile @test
+  @Smoke @Profile
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
-    When User login with "qatsmokeautomation06@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "qatsmokeautomation06@mailinator.com"
+    When User login for "Profile"
+    Then User should navigate to dashboard "Profile"
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see <BusinessName> text on the screen
     When User click on Edit Icon beside User name

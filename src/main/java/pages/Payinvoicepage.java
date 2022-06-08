@@ -18,9 +18,11 @@ public class Payinvoicepage {
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
 	private By txtSearchBaronAccountingSection;
 	private By payableContanierxPath;
+	private Homepage homepage;
 
 	public Payinvoicepage(WebDriver driver) {
 		this.driver = driver;
+		homepage = new Homepage(driver);
 	}
 
 	public void clickOnContanier(String contanierName) {
@@ -36,7 +38,8 @@ public class Payinvoicepage {
 	}
 
 	public float getexistingBalanceofPayableonAccountingPage() {
-		Eventhelper.threadWait(2000);
+		// Eventhelper.threadWait(2000);
+		homepage.waitUntilAddFundsButtonEnabled();
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__1OW1E')]"),
 				"payable-amount").substring(1).replace(",", ""));

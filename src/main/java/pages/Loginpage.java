@@ -1,8 +1,8 @@
 package pages;
 
 import java.util.Properties;
-
 import org.openqa.selenium.*;
+import io.cucumber.java.*;
 import utility.*;
 
 public class Loginpage {
@@ -10,8 +10,8 @@ public class Loginpage {
 	private Commonpage commonPage;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.init_prop();
-	
-	
+	Scenario scenario;
+
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
@@ -21,15 +21,15 @@ public class Loginpage {
 		By tstErrorLocator = By.cssSelector(".LoginForm_field__content-error__2NPje.LoginForm_attempts-error__2pKNJ");
 		return Eventhelper.isElementDisplayed(driver, tstErrorLocator);
 	}
-	
-	public void doLogin(String email, String login) {
+
+	public void doLogin(String email) {
 		commonPage.enterEmailAddress(email);
 		System.out.println("Email is :" + email);
-		commonPage.enterPassword(property.getProperty("password"));
+		commonPage.enterPassword(Constants.PASSWORD);
 		Eventhelper.threadWait(2000);
-		commonPage.clickOnButton(login);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
-	
+
 	public boolean isHompageDisplay(String email) {
 		By loginBtn = By.xpath("//button[@type='submit']");
 		try {
@@ -37,10 +37,9 @@ public class Loginpage {
 		} catch (Exception e) {
 			commonPage.clickOnLink("Reset your password");
 			driver.navigate().back();
-			doLogin(email, "Continue");
+			doLogin(email);
 		}
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}
-
 
 }
