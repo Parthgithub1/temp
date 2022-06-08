@@ -1,6 +1,6 @@
 Feature: Test Settings Tab Functionality
 
-  @Smoke @Setting @paymentMethodSection
+  @Smoke @Setting @paymentMethodSection 
   Scenario: Verify Payment methods on Settings Tab
     When User login for "paymentMethodSection"
     Then User should navigate to dashboard "paymentMethodSection"
@@ -44,10 +44,10 @@ Feature: Test Settings Tab Functionality
     Then User should not see "Wells Fargo" text on the screen
 
   #Settings > Account Section
-  @Smoke @accountSection @Setting
+  @Smoke @accountSection @Setting 
   Scenario Outline: Verify Settings Tab Account Section Functionality
     When User login for "accountSection"
-    Then User should navigate to dashboard of "qatsmokeautomation05@mailinator.com"
+    Then User should navigate to dashboard "accountSection"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User enter firstname and lastName data of User
     Then User click on "Save" button
@@ -55,7 +55,7 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Smoke @changePassword @Setting
+  @Smoke @changePassword @Setting 
   Scenario: Verify Settings Tab Account Section Change Password Functionality
     When User login for "changePassword"
     Then User should navigate to dashboard "changePassword"
@@ -76,7 +76,7 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Smoke @twoFactorAuthentication @Setting
+  @Smoke @twoFactorAuthentication @Setting 
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
     When User login for "twoFactorAuthentication"
     Then User should navigate to dashboard "twoFactorAuthentication"
