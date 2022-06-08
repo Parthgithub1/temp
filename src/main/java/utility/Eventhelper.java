@@ -2,6 +2,7 @@ package utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -97,7 +98,7 @@ public class Eventhelper {
 			jsexecutor.executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			Log.error("Getting exception in click element with JS --> " + e.toString());
-			jsexecutor.executeScript("arguments[0].click();", element);	
+			jsexecutor.executeScript("arguments[0].click();", element);
 		}
 	}
 
@@ -125,8 +126,11 @@ public class Eventhelper {
 	}
 
 	public static boolean isElementDisplayed(WebDriver driver, By locator) {
-		Eventhelper.explicitwait(driver, locator);
-		return findElement(driver, locator).isDisplayed();
+		try {
+			return findElement(driver, locator).isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
 	}
 
 	public static boolean isElementEnabled(WebDriver driver, By locator) {
@@ -146,6 +150,11 @@ public class Eventhelper {
 	public static Boolean explicitwaitTextToBePresent(WebDriver driver, By locator, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, value));
+	}
+	
+	public static Boolean waitUntilAttribValueContains(WebDriver driver, By locator, String attrib, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, 120);
+		return wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(locator, attrib, value)));		
 	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {
@@ -192,12 +201,10 @@ public class Eventhelper {
 	}
 
 	public static void switchToParentFrame(WebDriver driver) {
-
 		driver.switchTo().parentFrame();
 	}
 
 	public static void switchToFrame(WebDriver driver, By locator) {
-
 		driver.switchTo().frame(Eventhelper.findElement(driver, locator));
 	}
 
@@ -254,16 +261,25 @@ public class Eventhelper {
 		}
 		return Float.parseFloat(amt);
 	}
+	
+	public static float ConvertFloatTo2DecimalFloat(float number) {
+		DecimalFormat df = new DecimalFormat(".00");
+		return Float.valueOf(df.format(number));
+	}
 
 	public static String getValueOfAttribute(WebDriver driver, By locator, String attribute) {
 		WebElement element = Eventhelper.findElement(driver, locator);
 		return element.getAttribute(attribute);
-
 	}
 
 	public static void clearTextwithdoubleClickusingActionClass(WebDriver driver, By locator) {
 		Actions action = new Actions(driver);
 		WebElement element = Eventhelper.findElement(driver, locator);
 		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+	}
+	
+	public static void autoScrollWindow(WebDriver driver, WebElement element) {
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView();", element);
 	}
 }

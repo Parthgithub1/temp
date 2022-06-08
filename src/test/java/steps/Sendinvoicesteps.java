@@ -17,12 +17,10 @@ public class Sendinvoicesteps {
 	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin;
 	String searchBusinessOnReceivable;
 
-	@Then("Read Receivable Balance on home screen")
-	public void read_receivable_balance_on_home_screen() {
-		Eventhelper.threadWait(5000);
-		receivableBalanceOnDashboard = sendInvoicePage.readReceivableBalanceOnDashBoard();
-		Log.info("receivableBalanceOnDashboard before logout is --->" + receivableBalanceOnDashboard);
-
+	@Then("Read Receivable Balance on accounting screen")
+	public void read_receivable_balance_on_accounting_screen() {
+		receivableBalanceOnAccountingPage = sendInvoicePage.receivableBalanceOnAccounting();
+		Log.info("Existing Receivable balance on accounting screen is --->" + receivableBalanceOnAccountingPage);
 	}
 
 	@When("User enter {string} in searchbox")
@@ -53,13 +51,13 @@ public class Sendinvoicesteps {
 	@Then("Receivable balance is updated on the screen with {string}")
 	public void receivable_balance_is_updated_on_the_screen_with(String amount) throws InterruptedException {
 		Eventhelper.threadWait(2000);
-		Float totalExpectedAmount = receivableBalanceOnDashboard + Float.parseFloat(amount);
-		Float actualAmount = sendInvoicePage.reciavableBalanceOnAccounting();
-		Log.info("actualAmount --->" + actualAmount);
-		Log.info("totalExpectedAmount --->" + totalExpectedAmount);
-		Log.info("receivableBalanceOnDashboard" + receivableBalanceOnDashboard);
+		Float totalExpectedAmount = receivableBalanceOnAccountingPage + Float.parseFloat(amount); //receivableBalanceOnDashboard 
+		Log.info("totalExpectedAmount after send invoice --->" + totalExpectedAmount);
+		Float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
+		Log.info("actual receivable Amount after send invoice --->" + actualAmount);
+		//Log.info("receivableBalanceOnDashboard" + receivableBalanceOnDashboard);
 		assertEquals(totalExpectedAmount, actualAmount);
-		receivableBalanceOnAccountingPage = totalExpectedAmount;
+		//receivableBalanceOnAccountingPage = totalExpectedAmount;
 	}
 
 	@Then("Receivable balance is updated on dashboard")
@@ -76,7 +74,8 @@ public class Sendinvoicesteps {
 
 	@Then("User should see updated hopscotch balance on the screen")
 	public void user_should_see_updated_hopscotch_balance_on_the_screen() {
-		receivableBalanceOnDashboardAfterLogin = sendInvoicePage.readReceivableBalanceOnDashBoard();
-		assertEquals(receivableBalanceOnDashboard, receivableBalanceOnDashboardAfterLogin);
+		receivableBalanceOnDashboardAfterLogin = sendInvoicePage.receivableBalanceOnAccounting();
+		//receivableBalanceOnDashboard = sendInvoicePage.readReceivableBalanceOnDashBoard();
+		assertEquals(receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin);
 	}
 }

@@ -31,7 +31,7 @@ public class Addbillsteps {
 		assertTrue(addBillPage.verifyAddBillNotificationOnDashboard());
 	}
 
-	public static float fatchAmount() {
+	public static float addBillInvoiceAmount() {
 		return amount;
 	}
 	

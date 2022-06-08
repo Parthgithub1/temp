@@ -5,13 +5,26 @@ import org.openqa.selenium.*;
 import utility.*;
 
 public class Commonpage {
+	enum Environment{
+		qat,
+		uat,
+		dev;
+	}
 
 	private WebDriver driver;
+	static Propertyreader propertyreader = new Propertyreader();
+	static Properties property = propertyreader.init_prop();
 	private By xPathofdropDown = By.xpath("//img[@alt='Company Logo']");
 	private By txtEmailAddress = By.xpath("//input[contains(@name ,'email')]");
 	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
 	private By closeIcon = By.xpath("//button[@aria-label='Close']");
+	private By frmIframe = By.xpath("//iframe");
+	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
+	private By lstbankname;
+	private By txtbUserName = By.xpath("//label[text()='Username']/following-sibling::input");
+	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
+	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -24,13 +37,17 @@ public class Commonpage {
 
 	public void clickOnButton(String buttonname) {
 		By btnXpath = By.xpath("((//button[normalize-space()='" + buttonname + "']))[1]");
-		Eventhelper.explicitwait(driver, btnXpath);
 		Eventhelper.click(driver, btnXpath);
 	}
 
 	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
+	}
+
+	public Boolean isTextNotDisplayed(String text) {
+		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
+		return Eventhelper.waitUntilElementInvisible(driver, xpath);
 	}
 
 	public void clickonDropDownofProfile() {
@@ -70,5 +87,52 @@ public class Commonpage {
 
 	public Boolean isPopUpClose() {
 		return Eventhelper.waitUntilElementInvisible(driver, closeIcon);
+	}
+
+	public void addBankInPlaid(String bankName) {
+		lstbankname = By.xpath("(//*[text()='" + bankName + "'])");
+		Eventhelper.switchToFrame(driver, frmIframe);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		clickOnButton("Continue");
+		Eventhelper.click(driver, lstbankname);
+		Eventhelper.sendkeys(driver, txtbUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtbPassword, "pass_good");
+		clickOnButton("Submit");
+		Eventhelper.click(driver, rbtnAddBankPleidChecking);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		clickOnButton("Continue");
+		clickOnButton("Continue");
+		Eventhelper.switchToParentFrame(driver);
+	}
+
+	public String getEmailAsPerFeature(String feature) {
+		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.qat.toString() : System.getProperty(Constants.ENVIRONMENT);
+		String credential = null;
+
+		switch (feature) {
+		case "Login":
+		case "addbill":
+		case "Funds":
+		case "externalInvoice":
+		case "InvoiceSend":
+			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat1");
+			break;
+		case "Profile":
+		case "paymentMethodSection":
+			credential = environment.equals("qat") ? property.getProperty("qat6") : property.getProperty("uat2");
+			break;
+		case "twoFactorAuthentication":
+		case "InvoicePay":
+			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat2");
+			break;
+		case "contact":
+		case "changePassword":
+		case "accountSection":
+			credential = environment.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
+			break;
+		default:
+			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");
+		}
+		return credential;
 	}
 }

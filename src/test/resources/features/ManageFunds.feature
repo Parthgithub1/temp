@@ -1,10 +1,10 @@
 Feature: Test Fund Management Functionality
 
-  @Smoke
+  @Smoke @Funds
   Scenario: Verify User is able to Add and Withdraw Funds Successfully
-    When User login with "qatsmokeautomation03@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
-    Then User should save Default amount
+    When User login for "Funds"
+    Then User should navigate to dashboard "Funds"
+    When User should save current hopscotch balance
     When User click on "Add funds" button
     Then User should see "Add funds" model open
     When User enter 2.15 in amount field to "Add" funds
@@ -15,7 +15,7 @@ Feature: Test Fund Management Functionality
     When User click on Close Icon
     Then User should see "Hopscotch Balance" text on the screen
     Then User should see "2.15" amount on the screen
-    Then User should save Default amount
+    When User should save current hopscotch balance
     When User click on "Withdraw" button
     Then User should see "Withdraw funds" model open
     When User enter 1.15 in amount field to "Withdraw" funds

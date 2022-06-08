@@ -1,10 +1,12 @@
 Feature: Test External Invoice
 
-  @Smoke
+  @Smoke @externalInvoice
   Scenario: verify that user is able to send an external invoice to new business into hopscotch application
-    When User login with "qatsmokeautomation03@mailinator.com" and click on "Continue" button
+    When User login for "externalInvoice"
+    Then User should navigate to dashboard "externalInvoice"
     Then Read businessname from the dashboard
-    Then Read Receivable Balance on home screen
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
     When User click on Send Invoice link
     Then User should see "Invoice a business" text on the screen
     Then User is able to add a new business details
@@ -30,8 +32,8 @@ Feature: Test External Invoice
     Then User should see "Completed" text on the screen
     Then User is close the appeared dialog
     When User click on "Sign in" button
-    When User login with "qatsmokeautomation03@mailinator.com" and click on "Continue" button
-    Then User should navigate to dashboard of "qatsmokeautomation03@mailinator.com"
-    Then Read Receivable Balance on home screen
+    When User login for "externalInvoice"
+    Then User should navigate to dashboard "externalInvoice"
+    Then Read Receivable Balance on accounting screen
     Then User should see updated hopscotch balance on the screen
     Then User should see the pay of external invoice notiifcation on the screen
