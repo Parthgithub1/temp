@@ -3,14 +3,11 @@ package steps;
 import static org.junit.Assert.assertTrue;
 import io.cucumber.java.en.*;
 import pages.*;
-import userdata.Fundsdata;
 import utility.*;
 
 public class Commonsteps {
 
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
-	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
-	Fundsdata fundData = new Fundsdata();
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 
 	@When("User login for {string}")

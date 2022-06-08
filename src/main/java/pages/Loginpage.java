@@ -27,7 +27,7 @@ public class Loginpage {
 		System.out.println("Email is :" + email);
 		commonPage.enterPassword(Constants.PASSWORD);
 		Eventhelper.threadWait(2000);
-		commonPage.clickOnButton(Constants.CONTINUEBUTOON);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
 
 	public boolean isHompageDisplay(String email) {

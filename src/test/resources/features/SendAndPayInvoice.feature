@@ -1,6 +1,6 @@
 Feature: Test Send and Pay invoice Functionality
 
-  @Smoke @sendandpayinvoice @InvoiceSend
+  @Smoke @sendandpayinvoice 
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
@@ -26,9 +26,6 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "You sent an invoice to qatsmokeautomation07 for $1.00" notification
     When User click on Profile Drop Down
     Then User click on "Log Out" option from Profile Drop-Down
-
-  @Smoke @sendandpayinvoice @InvoicePay
-  Scenario: Verify that user is able to Pay invoice to existing business into hopscotch application
     When User login for "InvoicePay"
     Then User should navigate to dashboard "InvoicePay"
     #When User should save current hopscotch balance

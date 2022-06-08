@@ -5,11 +5,15 @@ import org.openqa.selenium.*;
 import utility.*;
 
 public class Commonpage {
+	enum Environment{
+		qat,
+		uat,
+		dev;
+	}
 
 	private WebDriver driver;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.init_prop();
-
 	private By xPathofdropDown = By.xpath("//img[@alt='Company Logo']");
 	private By txtEmailAddress = By.xpath("//input[contains(@name ,'email')]");
 	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
@@ -102,8 +106,7 @@ public class Commonpage {
 	}
 
 	public String getEmailAsPerFeature(String feature) {
-		
-		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? "qat" : System.getProperty(Constants.ENVIRONMENT);
+		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.qat.toString() : System.getProperty(Constants.ENVIRONMENT);
 		String credential = null;
 
 		switch (feature) {

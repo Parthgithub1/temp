@@ -59,12 +59,12 @@ public class Settingspage {
 		Eventhelper.sendkeys(driver, txtConfirmPassword, property.getProperty("password"));
 	}
 
-	public void doLoginafterChangePassword(String email, String login) {
+	public void doLoginafterChangePassword(String email) {
 		commonPage.enterEmailAddress(email);
 		System.out.println("Email is :" + email);
-		commonPage.enterPassword(property.getProperty("changePassword"));
+		commonPage.enterPassword(Constants.CHANGEPASSWORD);
 		Eventhelper.threadWait(2000);
-		commonPage.clickOnButton(login);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
 	
 	public void enterMobileNumberforTwoFactorAuthentication(String mobileNumber) {

@@ -9,7 +9,14 @@ import utility.*;
 
 public class Settingssteps {
 	Settingspage settingsPage = new Settingspage(Driverhelper.getDriver());
+	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 
+	@When("User login with {string} and Login again after change password")
+	public void user_login_with_and_click_on_button(String feature) {
+		String email = commonPage.getEmailAsPerFeature(feature);
+		settingsPage.doLoginafterChangePassword(email);
+	}
+	
 	@When("User enter firstname and lastName data of User")
 	public void user_enter_in_firstname_field_and_in_lastname_field() {
 		settingsPage.enterFirstAndLastName();
@@ -38,11 +45,6 @@ public class Settingssteps {
 	@When("User Change the Password")
 	public void user_change_the_password() {
 		settingsPage.changePassword();
-	}
-
-	@When("User login with {string} and click on {string} button after change password")
-	public void user_login_with_and_click_on_button(String email, String btnname) {
-		settingsPage.doLoginafterChangePassword(email, btnname);
 	}
 
 	@When("User Reset Change the Password")

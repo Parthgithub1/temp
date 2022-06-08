@@ -66,7 +66,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Your password has been changed successfully" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login with "qatsmokeautomation05@mailinator.com" and click on "Continue" button after change password
+    When User login with "changePassword" and Login again after change password
     Then User should navigate to dashboard "changePassword"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button

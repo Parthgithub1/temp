@@ -23,5 +23,6 @@ public class Homepage {
 	public void waitUntilAddFundsButtonEnabled() {
 		Eventhelper.explicitwaitclickable(driver, btnAddFunds);
 		Eventhelper.waitUntilAttribValueContains(driver, btnAddFunds, "class", "disable");
+		Eventhelper.threadWait(2000);
 	}
 }

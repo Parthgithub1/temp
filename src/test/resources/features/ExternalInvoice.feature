@@ -6,7 +6,7 @@ Feature: Test External Invoice
     Then User should navigate to dashboard "externalInvoice"
     Then Read businessname from the dashboard
     Then User click on "Receivable" Container
-   Then Read Receivable Balance on accounting screen
+    Then Read Receivable Balance on accounting screen
     When User click on Send Invoice link
     Then User should see "Invoice a business" text on the screen
     Then User is able to add a new business details

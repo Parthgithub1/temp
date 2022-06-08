@@ -1,6 +1,6 @@
 Feature: Test Contact List Functionality
 
-  @Smoke @contact @Jayti
+  @Smoke @contact 
   Scenario: Verify New Contacts are added in Contact List
     When User login for "contact" 
     Then User should navigate to dashboard "contact"

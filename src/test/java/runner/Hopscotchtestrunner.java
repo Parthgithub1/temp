@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features/", glue = { "steps",
-		"cucumber" }, tags = "@Jayti", plugin = { "pretty", "html:target/HtmlReports.html" }, monochrome = true, dryRun = false)
+		"cucumber" }, tags = "@Smoke", plugin = { "pretty", "html:target/HtmlReports.html" }, monochrome = true)
 
 public class Hopscotchtestrunner {
 

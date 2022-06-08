@@ -21,6 +21,8 @@ public class Sendinvoicepage {
 	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
 	private By lnkSendInvoice = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
 	private By btnDueDateOnReceivable = By.xpath("(//p[contains(text(),'Due date')])[2]");
+	private By ddValueOfBusinessSearched = By
+			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	String receivableBalanceOndashboard, receiableBlanaceOnAccountingPage;
 	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
 	private Homepage homepage;
@@ -41,7 +43,7 @@ public class Sendinvoicepage {
 		Eventhelper.sendkeys(driver, txtSearchBar, businessName);
 		selectBusiness = By
 				.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
-		Eventhelper.threadWait(3000);
+		Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, businessName);
 		Eventhelper.click(driver, selectBusiness);
 	}
 
