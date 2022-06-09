@@ -44,7 +44,7 @@ jobs:
           server-password: MAVEN_TOKEN
           
       - name: Run Testsuite environment QAT
-        run: mvn test -Dheadless="true" -Denvironment="qat"
+        run: mvn test -Dheadless="true" -Denvironment="qat" -Dcucumber.filter.tags="@QAT and @Smoke"
         env:
           MAVEN_USERNAME: aws
           MAVEN_TOKEN: ${{ steps.token.outputs.token }}

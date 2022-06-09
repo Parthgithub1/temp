@@ -47,7 +47,7 @@ public class Commonsteps {
 		commonPage.clickonDropDownofProfile();
 	}
 
-	@Then("User click on {string} option from Profile Drop-Down")
+	@When("User click on {string} option from Profile Drop-Down")
 	public void user_click_on_option_from_profile_drop_down(String menuOption) {
 		commonPage.clickonLinkfromProfileDropDownOption(menuOption);
 	}

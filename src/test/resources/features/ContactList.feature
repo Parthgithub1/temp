@@ -1,6 +1,6 @@
 Feature: Test Contact List Functionality
 
-  @Smoke @contact 
+  @Smoke @contact @UAT @QAT
   Scenario: Verify New Contacts are added in Contact List
     When User login for "contact" 
     Then User should navigate to dashboard "contact"
@@ -23,16 +23,16 @@ Feature: Test Contact List Functionality
     Then User click on "Delete" Option to delete Contact
     
     # Trash & Restore
-    Then User click on "Trash" link
+    When User click on "Trash" link
     When User enter search for Name in Searchbar
     And User click on More Options button beside any Contact
-    Then User click on "Restore to Contacts" Option to Restore Contact
+    When User click on "Restore to Contacts" Option to Restore Contact
     
     # Back to Contact and Search Record
-    Then User click on "Contacts" link
+    When User click on "Contacts" link
     Then User should see "Add contact" text on the screen
     When User enter search for Name in Searchbar
     And User should see Contact in List
     When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

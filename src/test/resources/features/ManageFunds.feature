@@ -1,6 +1,6 @@
 Feature: Test Fund Management Functionality
 
-  @Smoke @Funds
+  @Smoke @Funds @UAT @QAT
   Scenario: Verify User is able to Add and Withdraw Funds Successfully
     When User login for "Funds"
     Then User should navigate to dashboard "Funds"
