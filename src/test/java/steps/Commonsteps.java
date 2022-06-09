@@ -14,7 +14,7 @@ public class Commonsteps {
 	public void user_login_for(String feature) {
 		loginPage.doLogin(commonPage.getEmailAsPerFeature(feature));
 	}
-	
+
 	@Then("User should navigate to dashboard {string}")
 	public void user_should_navigate_to_dashboard(String feature) {
 		String email = commonPage.getEmailAsPerFeature(feature);
@@ -82,4 +82,10 @@ public class Commonsteps {
 	public void user_process_add_bank_screen(String bankName) {
 		commonPage.addBankInPlaid(bankName);
 	}
+
+	@When("User hover on {string}")
+	public void user_hover_on(String buttonName) {
+		commonPage.hoverOnButton(buttonName);
+	}
+
 }

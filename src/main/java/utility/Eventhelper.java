@@ -151,10 +151,10 @@ public class Eventhelper {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, value));
 	}
-	
+
 	public static Boolean waitUntilAttribValueContains(WebDriver driver, By locator, String attrib, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, 120);
-		return wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(locator, attrib, value)));		
+		return wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(locator, attrib, value)));
 	}
 
 	public static byte[] getScreenshot(WebDriver driver, String screenshotName) {
@@ -261,7 +261,7 @@ public class Eventhelper {
 		}
 		return Float.parseFloat(amt);
 	}
-	
+
 	public static float ConvertFloatTo2DecimalFloat(float number) {
 		DecimalFormat df = new DecimalFormat(".00");
 		return Float.valueOf(df.format(number));
@@ -272,14 +272,21 @@ public class Eventhelper {
 		return element.getAttribute(attribute);
 	}
 
-	public static void clearTextwithdoubleClickusingActionClass(WebDriver driver, By locator) {
+	public static void useActionClassOperation(WebDriver driver, By locator, String methodName) {
 		Actions action = new Actions(driver);
 		WebElement element = Eventhelper.findElement(driver, locator);
-		action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+		switch (methodName) {
+		case "DoubleClick":
+			action.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+			break;
+		case "Hover":
+			action.moveToElement(element).build().perform();
+			break;
+		}		
 	}
-	
+
 	public static void autoScrollWindow(WebDriver driver, WebElement element) {
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView();", element);
 	}
 }
