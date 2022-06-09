@@ -108,7 +108,7 @@ public class Commonpage {
 		By btnXpath = By.xpath("((//*[normalize-space()='" + buttonname + "']))[1]");
 		Eventhelper.useActionClassOperation(driver, btnXpath, "Hover");
 	}
-	
+
 	public String getEmailAsPerFeature(String feature) {
 		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.qat.toString()
 				: System.getProperty(Constants.ENVIRONMENT);
@@ -136,8 +136,7 @@ public class Commonpage {
 			credential = environment.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
 			break;
 		case "Unverified":
-			credential = environment.equals("qat") ? property.getProperty("unverifieduser")
-					: property.getProperty("unverifieduser");
+			credential = environment.equals("qat") ? property.getProperty("qat4") : property.getProperty("qat3");
 			break;
 		default:
 			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");
