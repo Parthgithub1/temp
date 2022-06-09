@@ -14,7 +14,7 @@ import utility.Log;
 public class Sendinvoicesteps {
 
 	Sendinvoicepage sendInvoicePage = new Sendinvoicepage(Driverhelper.getDriver());
-	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin;
+	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin, totalExpectedAmount;
 	String searchBusinessOnReceivable;
 
 	@Then("Read Receivable Balance on accounting screen")
@@ -49,9 +49,9 @@ public class Sendinvoicesteps {
 	}
 
 	@Then("Receivable balance is updated on the screen with {string}")
-	public void receivable_balance_is_updated_on_the_screen_with(String amount) throws InterruptedException {
+	public void receivable_balance_is_updated_on_the_screen_with(String amount){
 		Eventhelper.threadWait(2000);
-		Float totalExpectedAmount = receivableBalanceOnAccountingPage + Float.parseFloat(amount); //receivableBalanceOnDashboard 
+		totalExpectedAmount = receivableBalanceOnAccountingPage + Float.parseFloat(amount); //receivableBalanceOnDashboard 
 		Log.info("totalExpectedAmount after send invoice --->" + totalExpectedAmount);
 		Float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
 		Log.info("actual receivable Amount after send invoice --->" + actualAmount);
@@ -61,10 +61,10 @@ public class Sendinvoicesteps {
 	}
 
 	@Then("Receivable balance is updated on dashboard")
-	public void receivable_balance_is_updated_on_dashboard() throws InterruptedException {
+	public void receivable_balance_is_updated_on_dashboard() {
 		sendInvoicePage.switchToDashboard();
 		receivableBalanceOnDashboard = sendInvoicePage.readReceivableBalanceOnDashBoard();
-		assertEquals(receivableBalanceOnAccountingPage, receivableBalanceOnDashboard);
+		assertEquals(totalExpectedAmount, receivableBalanceOnDashboard);
 	}
 
 	@When("User click on Send Invoice link")

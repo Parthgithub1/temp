@@ -33,9 +33,9 @@ public class Sendinvoicepage {
 	}
 
 	public float readReceivableBalanceOnDashBoard() {
-		homepage.waitUntilAddFundsButtonEnabled();
+		homepage.waitUntilWithdrawButtonEnabled();
 		return Float.parseFloat(
-				Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "receivable-amount")
+				Eventhelper.getValueOfAttribute(driver, lblReceivableBalance, "receivable-amount")
 						.substring(1).replace(",", ""));
 	}
 

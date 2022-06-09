@@ -1,6 +1,6 @@
 Feature: Test Settings Tab Functionality
 
-  @Smoke @Setting @paymentMethodSection @QAT @UAT 
+  @Smoke @Setting @paymentMethodSection @QAT @UAT
   Scenario: Verify Payment methods on Settings Tab
     When User login for "paymentMethodSection"
     Then User should navigate to dashboard "paymentMethodSection"
@@ -76,7 +76,7 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Smoke @twoFactorAuthentication @Setting @QAT @UAT 
+  @Smoke @twoFactorAuthentication @Setting @QAT @doNotRunOnUAT
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
     When User login for "twoFactorAuthentication"
     Then User should navigate to dashboard "twoFactorAuthentication"

@@ -53,7 +53,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Smoke @UAT
+  @Smoke @sendandpayinvoice @UAT
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
