@@ -1,6 +1,6 @@
 Feature: Test Forgot Password Functionality
 
-  @Smoke @forgotPassword
+  @Smoke @forgotPassword @UAT @QAT
   Scenario Outline: Verify forgot Password is Successful
     When User click on <Forgot Password Link> link
     Then User should see "Reset password" text on the screen
