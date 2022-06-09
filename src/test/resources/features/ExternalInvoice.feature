@@ -1,6 +1,6 @@
 Feature: Test External Invoice
 
-  @Smoke @externalInvoice
+  @Smoke @externalInvoice @doNotRunOnUAT @QAT
   Scenario: verify that user is able to send an external invoice to new business into hopscotch application
     When User login for "externalInvoice"
     Then User should navigate to dashboard "externalInvoice"

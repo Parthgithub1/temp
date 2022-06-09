@@ -123,7 +123,7 @@ public class Commonpage {
 			break;
 		case "twoFactorAuthentication":
 		case "InvoicePay":
-			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat2");
+			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat3");
 			break;
 		case "contact":
 		case "changePassword":
