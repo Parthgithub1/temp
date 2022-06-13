@@ -1,6 +1,6 @@
 Feature: Test External Invoice
 
-  @Smoke @externalInvoice
+  @Smoke @externalInvoice @doNotRunOnUAT @QAT
   Scenario: verify that user is able to send an external invoice to new business into hopscotch application
     When User login for "externalInvoice"
     Then User should navigate to dashboard "externalInvoice"
@@ -34,6 +34,8 @@ Feature: Test External Invoice
     When User click on "Sign in" button
     When User login for "externalInvoice"
     Then User should navigate to dashboard "externalInvoice"
+    Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     Then User should see updated hopscotch balance on the screen
+    Then User click on "Homepage" button to navigate to dashboard
     Then User should see the pay of external invoice notiifcation on the screen

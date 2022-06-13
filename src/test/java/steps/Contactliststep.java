@@ -50,7 +50,7 @@ public class Contactliststep {
 		contactList.clickOnDeleteOrRestoreContact(string);
 	}
 
-	@Then("User click on {string} Option to Restore Contact")
+	@When("User click on {string} Option to Restore Contact")
 	public void user_click_on_restore_contact_option_to_restore_contact(String string) {
 		contactList.clickOnDeleteOrRestoreContact(string);
 	}

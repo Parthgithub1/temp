@@ -83,7 +83,7 @@ public class Profilepage {
 		By industryVerification = By.xpath("//p[contains(@class,'InfoHeader_header__location')]");
 		By webSiteVerification = By.xpath("//a[contains(.,'" + webSite + "')]");
 		By yearFoundVerification = By.xpath("//p[contains(.,'" + yearFound + "')]");
-		
+
 		if (businessName.equals(Eventhelper.getTextofElement(driver, businessNameVerification))
 				&& Eventhelper.getTextofElement(driver, handleVerification).contains(handle)
 				&& Eventhelper.getTextofElement(driver, industryVerification).contains(industry)
@@ -101,5 +101,20 @@ public class Profilepage {
 			flag = true;
 		}
 		return flag;
+	}
+
+	public void enterWebsite(String website) {
+		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtWebsite);
+		Eventhelper.sendkeys(driver, txtWebsite, website);
+	}
+
+	public void enterYearFounded(String yearFounded) {
+		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtYearFoubnded);
+		Eventhelper.sendkeys(driver, txtYearFoubnded, yearFounded);
+	}
+
+	public void enterHandle(String handle) {
+		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtHandle);
+		Eventhelper.sendkeys(driver, txtHandle, handle);
 	}
 }

@@ -39,7 +39,7 @@ public class Payinvoicepage {
 
 	public float getexistingBalanceofPayableonAccountingPage() {
 		// Eventhelper.threadWait(2000);
-		homepage.waitUntilAddFundsButtonEnabled();
+		homepage.waitUntilWithdrawButtonEnabled();
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__1OW1E')]"),
 				"payable-amount").substring(1).replace(",", ""));

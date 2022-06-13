@@ -74,5 +74,19 @@ public class Profilestep {
 			String industry, String website, String yearfound) {
 		assertTrue(profilePage.verificationofUpdatedProfile(businessName, handle, industry, website, yearfound));
 	}
+	
+	@When("User enter {string} in website field")
+	public void user_enter_in_website_field(String webSite) {
+		profilePage.enterWebsite(webSite);
+	}
 
+	@When("User enter {string} in year founded field")
+	public void user_enter_in_year_founded_field(String yearFounded) {
+		profilePage.enterYearFounded(yearFounded);
+	}
+	
+	@When("User enter {string} in handle field")
+	public void user_enter_in_handle_field(String handle) {
+	    profilePage.enterHandle(handle);
+	}
 }

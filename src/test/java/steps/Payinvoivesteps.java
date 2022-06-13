@@ -26,12 +26,12 @@ public class Payinvoivesteps {
 		 payData.setDefaultPayableBalanceatHomePage(payInvoice.getexistingBalanceofPayableofHomePage());
 	}
 
-	@Then("User click on {string} Container")
+	@When("User click on {string} Container")
 	public void user_click_on_container(String string) {
 		payInvoice.clickOnContanier(string);
 	}
 
-	@Then("User should save Default amount of Payable on Accounting Page")
+	@When("User should save Default amount of Payable on Accounting Page")
 	public void user_should_save_default_amount_of_payable_on_accounting_page() {
 		//Eventhelper.threadWait(5000);
 		float getexistingBalanceofPayableonAccountingPage = payInvoice.getexistingBalanceofPayableonAccountingPage();
@@ -44,7 +44,7 @@ public class Payinvoivesteps {
 		payInvoice.clickOnInvoice();
 	}
 
-	@Then("User should see the amount to be Payable")
+	@When("User should see the amount to be Payable")
 	public void user_should_see_the_amount_to_be_payable() {
 		payData.setInvoiceAmounttobePaid(payInvoice.invoiceAmountUserPaying());
 	}

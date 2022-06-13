@@ -17,8 +17,8 @@ public class Commonpage {
 	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
 	private By closeIcon = By.xpath("//button[@aria-label='Close']");
-	private By frmIframe = By.xpath("//iframe");
-	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
+	private By frmIframe = By.xpath("//iframe[contains(@id,'plaid-link')]");
+	private By btnContinueforPlaidProcess = By.xpath("(//button[normalize-space()='Continue'][@role='button'] )[1]");
 	private By lstbankname;
 	private By txtbUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
@@ -35,13 +35,13 @@ public class Commonpage {
 	}
 
 	public void clickOnButton(String buttonname) {
-		By btnXpath = By.xpath("((//button[normalize-space()='" + buttonname + "']))[1]");
+		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[1]");
 		Eventhelper.click(driver, btnXpath);
 	}
 
 	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
-		return Eventhelper.isElementDisplayed(driver, xpath);
+		return Eventhelper.isElementDisplayed(driver, xpath); 
 	}
 
 	public Boolean isTextNotDisplayed(String text) {
@@ -91,16 +91,16 @@ public class Commonpage {
 	public void addBankInPlaid(String bankName) {
 		lstbankname = By.xpath("(//*[text()='" + bankName + "'])");
 		Eventhelper.switchToFrame(driver, frmIframe);
-		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		clickOnButton("Continue");
+		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
+		Eventhelper.click(driver, btnContinueforPlaidProcess);
 		Eventhelper.click(driver, lstbankname);
 		Eventhelper.sendkeys(driver, txtbUserName, "user_good");
 		Eventhelper.sendkeys(driver, txtbPassword, "pass_good");
 		clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
-		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		clickOnButton("Continue");
-		clickOnButton("Continue");
+		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
+		Eventhelper.click(driver, btnContinueforPlaidProcess);
+		Eventhelper.click(driver, btnContinueforPlaidProcess);
 		Eventhelper.switchToParentFrame(driver);
 	}
 
@@ -128,7 +128,7 @@ public class Commonpage {
 			break;
 		case "twoFactorAuthentication":
 		case "InvoicePay":
-			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat2");
+			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat3");
 			break;
 		case "contact":
 		case "changePassword":

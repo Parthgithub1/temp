@@ -82,15 +82,15 @@ public class Registrationpage {
 	public void doRegister(String randomemail) {
 		commonPage.clickOnLink("Sign up");
 		commonPage.enterEmailAddress(randomemail);
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterOTP();
 		enterFirstName("Ronald");
 		enterLastName("Reagan");
 		enterBusinessName("The Ronald Reagan");
-		commonPage.enterPassword("Test@123");
-		commonPage.clickOnButton("Continue");
+		commonPage.enterPassword(Constants.PASSWORD);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterCompanyDetails();
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterAdditionalInformation();
 		commonPage.clickOnButton("Done");
 	}
