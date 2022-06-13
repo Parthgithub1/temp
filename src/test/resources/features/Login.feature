@@ -1,6 +1,6 @@
 Feature: Test Login Functionality
 
-  @Login 
+  @Login
   Scenario: Verify Login is Successful with Valid Credentials
     When User login for "Login"
     Then User should navigate to dashboard "Login"

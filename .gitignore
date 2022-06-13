@@ -4,3 +4,5 @@
 /LoggerFiles/
 .classpath
 .settings/org.eclipse.core.resources.prefs
+.DS_Store
+src/test/java/runner/Hopscotchtestrunner.java

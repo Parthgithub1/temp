@@ -34,10 +34,10 @@ public class Settingspage {
 	}
 	
 	public void enterFirstAndLastName() {
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtFirstName);
+		Eventhelper.useActionClassOperation(driver, txtFirstName, "DoubleClick");
 		firstName = faker.name().firstName();
 		Eventhelper.sendkeys(driver, txtFirstName, firstName);
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtLastName);
+		Eventhelper.useActionClassOperation(driver, txtLastName, "DoubleClick");
 		lastName = faker.name().lastName();
 		Eventhelper.sendkeys(driver, txtLastName, lastName);
 		Eventhelper.autoScrollWindow(driver, Eventhelper.findElement(driver, txtMobileNumber));
@@ -68,7 +68,7 @@ public class Settingspage {
 	}
 	
 	public void enterMobileNumberforTwoFactorAuthentication(String mobileNumber) {
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtMobileNumber);
+		Eventhelper.useActionClassOperation(driver, txtMobileNumber, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtMobileNumber, mobileNumber);
 	}
 	
