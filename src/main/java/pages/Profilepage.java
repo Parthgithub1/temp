@@ -104,17 +104,17 @@ public class Profilepage {
 	}
 
 	public void enterWebsite(String website) {
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtWebsite);
+		Eventhelper.useActionClassOperation(driver, txtWebsite,"DoubleClick");
 		Eventhelper.sendkeys(driver, txtWebsite, website);
 	}
 
 	public void enterYearFounded(String yearFounded) {
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtYearFoubnded);
+		Eventhelper.useActionClassOperation(driver, txtYearFoubnded,"DoubleClick");
 		Eventhelper.sendkeys(driver, txtYearFoubnded, yearFounded);
 	}
 
 	public void enterHandle(String handle) {
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtHandle);
+		Eventhelper.useActionClassOperation(driver, txtHandle,"DoubleClick");
 		Eventhelper.sendkeys(driver, txtHandle, handle);
 	}
 }
