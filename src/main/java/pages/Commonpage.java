@@ -136,7 +136,7 @@ public class Commonpage {
 			credential = environment.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
 			break;
 		case "Unverified":
-			credential = environment.equals("qat") ? property.getProperty("qat4") : property.getProperty("qat3");
+			credential = environment.equals("qat") ? property.getProperty("qat4") : property.getProperty("qat4");
 			break;
 		default:
 			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");

@@ -18,5 +18,5 @@ Feature: Test Forgot Password Functionality
     Then User should see "Verification code resend successfully!" text on the screen
 
     Examples: 
-      | Forgot Password Link  | email                                |
-      | "Reset your password" | "hopsmokeautomation1@mailinator.com" |
+      | Forgot Password Link  | email                                 |
+      | "Reset your password" | "qatsmokeautomation03@mailinator.com" |
