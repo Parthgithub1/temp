@@ -42,7 +42,7 @@ public class Commonpage {
 
 	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
-		return Eventhelper.isElementDisplayed(driver, xpath);
+		return Eventhelper.isElementDisplayed(driver, xpath); 
 	}
 
 	public Boolean isTextNotDisplayed(String text) {
