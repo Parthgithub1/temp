@@ -57,16 +57,16 @@ public class Profilepage {
 
 	public void enterdetailsofBusiness(String businessName, String handle, String industry, String webSite,
 			String yearFound) {
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtBusinessName);
+		Eventhelper.useActionClassOperation(driver, txtBusinessName, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtBusinessName, businessName);
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtHandle);
+		Eventhelper.useActionClassOperation(driver, txtHandle, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtHandle, handle);
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, ddIndustry);
+		Eventhelper.useActionClassOperation(driver, ddIndustry, "DoubleClick");
 		ddSelecteIndustry = By.xpath("//div[text()='" + industry + "']");
 		Eventhelper.click(driver, ddSelecteIndustry);
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtWebsite);
+		Eventhelper.useActionClassOperation(driver, txtWebsite, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtWebsite, webSite);
-		Eventhelper.clearTextwithdoubleClickusingActionClass(driver, txtYearFoubnded);
+		Eventhelper.useActionClassOperation(driver, txtYearFoubnded, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtYearFoubnded, yearFound);
 	}
 

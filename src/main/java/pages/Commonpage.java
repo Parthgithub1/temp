@@ -5,10 +5,8 @@ import org.openqa.selenium.*;
 import utility.*;
 
 public class Commonpage {
-	enum Environment{
-		qat,
-		uat,
-		dev;
+	enum Environment {
+		qat, uat, dev;
 	}
 
 	private WebDriver driver;
@@ -25,6 +23,7 @@ public class Commonpage {
 	private By txtbUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
+	private By lblToolTipText = By.xpath("//div[@class='tooltip-inner']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -105,8 +104,14 @@ public class Commonpage {
 		Eventhelper.switchToParentFrame(driver);
 	}
 
+	public void hoverOnButton(String buttonname) {
+		By btnXpath = By.xpath("((//*[normalize-space()='" + buttonname + "']))[1]");
+		Eventhelper.useActionClassOperation(driver, btnXpath, "Hover");
+	}
+
 	public String getEmailAsPerFeature(String feature) {
-		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.qat.toString() : System.getProperty(Constants.ENVIRONMENT);
+		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.qat.toString()
+				: System.getProperty(Constants.ENVIRONMENT);
 		String credential = null;
 
 		switch (feature) {
@@ -129,6 +134,9 @@ public class Commonpage {
 		case "changePassword":
 		case "accountSection":
 			credential = environment.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
+			break;
+		case "Unverified":
+			credential = environment.equals("qat") ? property.getProperty("qat4") : property.getProperty("qat3");
 			break;
 		default:
 			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");
