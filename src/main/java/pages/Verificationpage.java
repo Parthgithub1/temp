@@ -110,9 +110,8 @@ public class Verificationpage {
 	}
 
 	public void selectDropDownforBusinessType(String valuefromDropDown) {
-		By ddSelecteBusinessType;
 		Eventhelper.click(driver, dropDownofBusinessType1);
-		ddSelecteBusinessType = By.xpath("//div[text()='" + valuefromDropDown + "']");
+		By ddSelecteBusinessType = By.xpath("//div[text()='" + valuefromDropDown + "']");
 		Eventhelper.click(driver, ddSelecteBusinessType);
 	}
 

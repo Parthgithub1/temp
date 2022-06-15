@@ -1,6 +1,6 @@
 Feature: Test Verifcation Functionality
 
-  @Smoke @Verification @doNotRunOnUAT @QAT @r1
+  @Smoke @Verification @doNotRunOnUAT @QAT 
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email
     Then User should see "change that" link
@@ -24,8 +24,8 @@ Feature: Test Verifcation Functionality
     Then User should see Verification Message
 
     
-     @Smoke @Verification @doNotRunOnUAT @QAT @Sole
-  Scenario: verify that user is able to start the verification process into hopscotch application
+  @Smoke @Verification @doNotRunOnUAT @QAT @Sole
+  Scenario: verify that user is able to start the verification process into hopscotch application for Sole Proprietorship
     When User register with "random" email
     Then User should see "change that" link
     When User click on "change that" link
