@@ -33,7 +33,7 @@ public class Sendinvoicepage {
 	}
 
 	public float readReceivableBalanceOnDashBoard() {
-		homepage.waitUntilWithdrawButtonEnabled();
+		homepage.waitUntiAddFundsButtonEnabled();
 		return Float.parseFloat(
 				Eventhelper.getValueOfAttribute(driver, lblReceivableBalance, "receivable-amount")
 						.substring(1).replace(",", ""));

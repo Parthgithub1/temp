@@ -2,12 +2,12 @@ package utility;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -25,6 +25,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Eventhelper {
+	private static SecureRandom random = new SecureRandom();
 
 	// add findelement,findelements, click, sendkeys, explicitwait,
 
@@ -197,6 +198,8 @@ public class Eventhelper {
 		case "enter":
 			element.sendKeys(Keys.ENTER);
 			break;
+		default:
+            break;
 		}
 	}
 
@@ -208,13 +211,12 @@ public class Eventhelper {
 		driver.switchTo().frame(Eventhelper.findElement(driver, locator));
 	}
 
-	public static void getURL(WebDriver driver, String URL) {
-		URL = Environmenthelper.setUrl(System.getProperty("env")) + URL;
-		driver.get(URL);
+	public static void getURL(WebDriver driver, String url) {
+	url = Environmenthelper.setUrl(System.getProperty("env")) + url;
+		driver.get(url);
 	}
 
 	public static String generateRandomNumber() {
-		Random random = new Random();
 		return String.format("%09d", random.nextInt(999999999));
 	}
 
@@ -229,7 +231,7 @@ public class Eventhelper {
 		String pattern = "MMddyyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String inputdate = simpleDateFormat.format(new Date());
-		System.out.println("Date in mm-dd-yyyy format --> " + inputdate);
+		Log.info("Date in mm-dd-yyyy format --> " +inputdate);
 		return inputdate;
 	}
 
@@ -248,10 +250,10 @@ public class Eventhelper {
 		c.setTime(date);
 		int day = c.get(Calendar.DAY_OF_MONTH);
 		String dayStr = day + suffixes[day];
-		String Outpattern = "MMMM";
-		SimpleDateFormat outsimpleDateFormat = new SimpleDateFormat(Outpattern);
-		String Outputdate = outsimpleDateFormat.format(new Date());
-		return (Outputdate + " " + dayStr);
+		String outpattern = "MMMM";
+		SimpleDateFormat outsimpleDateFormat = new SimpleDateFormat(outpattern);
+		String outputdate = outsimpleDateFormat.format(new Date());
+		return (outputdate + " " + dayStr);
 	}
 
 	public static float numberFormat(float x) {
@@ -282,6 +284,8 @@ public class Eventhelper {
 		case "Hover":
 			action.moveToElement(element).build().perform();
 			break;
+		default:
+            break;
 		}		
 	}
 

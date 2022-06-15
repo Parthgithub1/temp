@@ -85,7 +85,7 @@ public class Registrationpage {
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterOTP();
 		enterFirstName("Ronald");
-		enterLastName("Reagan");
+		enterLastName(Constants.LASTNAMESOLEPROPPASS);
 		enterBusinessName("The Ronald Reagan");
 		commonPage.enterPassword(Constants.PASSWORD);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);

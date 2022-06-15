@@ -65,9 +65,15 @@ public class Verificationsteps {
 	public void user_enters_tax_number_of_business(Integer taxNumber) {
 		verificationpage.enterTaxID(taxNumber);
 	}
-	
+
 	@Then("User should see Verification Message")
 	public void user_should_see_verification_message() {
-		Assertions.assertTrue(verificationpage.verificationConfirmation());	
+		Assertions.assertTrue(verificationpage.verificationConfirmation());
 	}
+
+	@When("User enter date of birth of user in Sole Proprietorship verification")
+	public void user_enter_date_of_birth_of_user_in_sole_proprietorship_verification() {
+		verificationpage.enterDateOfBirthdateofSoleProprietorship();
+	}
+
 }

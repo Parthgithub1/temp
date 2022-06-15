@@ -1,12 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import utility.*;
 
 public class AddFundspage {
 	private WebDriver driver;
-	private By txtaddAmount = By.xpath("//input[@name='amount']");
+	private By txtAddAmount = By.xpath("//input[@name='amount']");
 	private By btncloseIcon = By.xpath("//button[@aria-label='Close']");
 
 	public AddFundspage(WebDriver driver) {
@@ -14,8 +13,8 @@ public class AddFundspage {
 	}
 
 	public void enterAmount(float amountofHopscotchBalance) {
-		Eventhelper.isElementDisplayed(driver, txtaddAmount);
-		Eventhelper.sendkeys(driver, txtaddAmount, String.valueOf(amountofHopscotchBalance));
+		Eventhelper.isElementDisplayed(driver, txtAddAmount);
+		Eventhelper.sendkeys(driver, txtAddAmount, String.valueOf(amountofHopscotchBalance));
 	}
 
 	public By getButtonByText(String btnName) {
@@ -42,4 +41,7 @@ public class AddFundspage {
 		return Eventhelper.getTextofElement(driver, xpath);
 	}
 
+	public void clearAmountEnter() {
+		Eventhelper.useActionClassOperation(driver, txtAddAmount, "DoubleClick");
+	}
 }
