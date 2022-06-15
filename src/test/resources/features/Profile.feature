@@ -73,7 +73,7 @@ Feature: Test Profile Functionality
     Examples: 
       | BusinessName             | Handle                    | Industry     | Website                   | YearFound | AboutText                                     |
       | "hopsmokeautomation2llc" | "@hopsmokeautomation2llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
-      
+
   @Regression
   Scenario Outline: Verify User is not able to set invalid website in Edit Profile
     When User login for "Profile"
@@ -98,6 +98,7 @@ Feature: Test Profile Functionality
       | "66565656565"        |
       | "@#$%"               |
       | "www."               |
+      | "www.goog."          |
 
   @Regression
   Scenario Outline: Verify User is not able to set invalid yearFounded in Edit Profile

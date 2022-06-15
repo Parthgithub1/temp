@@ -13,4 +13,5 @@ public class Constants {
 	public static final String PASSWORD = property.getProperty("password");
 	public static final String ENVIRONMENT = "environment";
 	public static final String CHANGEPASSWORD = property.getProperty("changePassword");
+	public static final String LASTNAMESOLEPROPPASS = "SolePropPass";
 }
