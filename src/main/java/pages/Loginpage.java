@@ -39,7 +39,7 @@ public class Loginpage {
 
 	public boolean isAttemptTextDisplayed() {
 		return Eventhelper.isElementDisplayed(driver,
-				By.xpath("(//p[contains(text(),'more attempts before the account becomes locked')])"));
+				By.xpath("(//p[contains(text(),'"+ Constants.NUMBEROFATTEMPTSVALIDATIONMESSAGE +"')])"));
 	}
 
 	public String isValidationDisplayed() {

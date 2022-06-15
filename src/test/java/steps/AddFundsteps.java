@@ -28,16 +28,6 @@ public class AddFundsteps {
 		fundData.setAmountofhopscotchBalance(currentHopscotchBalance);
 	}
 
-	@Then("The {string} button should be {string}")
-	public void the_button_should_be(String btnName, String isStatus) {
-		boolean buttonStatus = addFunds.isButtonEnabled(btnName);
-		if (isStatus.contains("enabled")) {
-			assertTrue(btnName + " Button is Enable", buttonStatus);
-		} else {
-			assertTrue(btnName + " Button is not Enable", !buttonStatus);
-		}
-	}
-
 	@Then("User should see {string} model open")
 	public void user_should_see_model_open(String string) {
 		boolean amountTextDisplay = addFunds.modalHeader(string) != null;
