@@ -7,14 +7,14 @@ public class Environmenthelper {
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.init_prop();
 
-	public static String setUrl(String Env) {
+	public static String setUrl(String env) {
 		String url = null;
 
-		if (Env == null) {
-			Env = "qat";
+		if (env == null) {
+			env = "qat";
 		}
 
-		switch (Env) {
+		switch (env) {
 		case "dev":
 			url = property.getProperty("dev");
 			break;

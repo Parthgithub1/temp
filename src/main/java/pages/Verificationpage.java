@@ -32,9 +32,8 @@ public class Verificationpage {
 	private By txtChasePassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By dropDownofBusinessType1 = By.xpath("//div[@id='businessType']");
-	private By ddSelecteBusinessType;
 	private By verificationText =By.xpath("//div[contains(@class,'VerificationStatus_title')]");
-
+	
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
@@ -70,30 +69,30 @@ public class Verificationpage {
 		Eventhelper.click(driver, btnAddBankDetails);
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.click(driver, lstChase);
 		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
 		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
 		commonPage.clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		commonPage.clickOnButton("Continue");
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.switchToParentFrame(driver);
 	}
 
 	public void addBankExternalInvoice() {
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.click(driver, lstChase);
 		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
 		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
 		commonPage.clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		commonPage.clickOnButton("Continue");
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.switchToParentFrame(driver);
 	}
 
@@ -111,6 +110,7 @@ public class Verificationpage {
 	}
 
 	public void selectDropDownforBusinessType(String valuefromDropDown) {
+		By ddSelecteBusinessType;
 		Eventhelper.click(driver, dropDownofBusinessType1);
 		ddSelecteBusinessType = By.xpath("//div[text()='" + valuefromDropDown + "']");
 		Eventhelper.click(driver, ddSelecteBusinessType);
@@ -137,5 +137,10 @@ public class Verificationpage {
 			 flag=true;
 		}
 		return flag;
+	}
+	
+	public void enterDateOfBirthdateofSoleProprietorship()
+	{
+		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012001");
 	}
 }
