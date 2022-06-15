@@ -14,6 +14,7 @@ public class AddFundsteps {
 	Registrationpage registrationpage = new Registrationpage(Driverhelper.getDriver());
 	Fundsdata fundData = new Fundsdata();
 	Homepage homePage = new Homepage(Driverhelper.getDriver());
+	float currentHopscotchBalance;
 
 	@Then("the {string} button should be enabled | disabled")
 	public void the_button_should_be_enabled(String btnName) {
@@ -22,18 +23,18 @@ public class AddFundsteps {
 
 	@When("User should save current hopscotch balance")
 	public void user_should_save_current_hopscotch_balance() {
-		float currentHopscotchBalance = homePage.getCurrentHopscotchBalanceAmount();
+		 currentHopscotchBalance = homePage.getCurrentHopscotchBalanceAmount();
 		Log.info("Current Hopscotch Balance :" + currentHopscotchBalance);
 		fundData.setAmountofhopscotchBalance(currentHopscotchBalance);
 	}
 
-	@Then("the {string} button should be {string}")
+	@Then("The {string} button should be {string}")
 	public void the_button_should_be(String btnName, String isStatus) {
 		boolean buttonStatus = addFunds.isButtonEnabled(btnName);
 		if (isStatus.contains("enabled")) {
-			assertTrue(btnName + " Button is not Enable", buttonStatus);
+			assertTrue(btnName + " Button is Enable", buttonStatus);
 		} else {
-			assertTrue(btnName + " Button is Enable", !buttonStatus);
+			assertTrue(btnName + " Button is not Enable", !buttonStatus);
 		}
 	}
 
@@ -45,14 +46,11 @@ public class AddFundsteps {
 
 	@When("User enter {double} in amount field to {string} funds")
 	public void user_enter_in_amount_field1(double amount, String fundProcess) {
-
 		float amountToEnter;
 		if (fundProcess.equals("Add")) {
-			amountToEnter = ((float) amount
-					+ Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()));
+			amountToEnter = ((float) amount + Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()));
 		} else {
-			amountToEnter = (Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance())
-					- (float) amount);
+			amountToEnter = (Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()) - (float) amount);
 		}
 		amountToEnter = Eventhelper.ConvertFloatTo2DecimalFloat(amountToEnter);
 		Log.info("User enter in " + fundProcess + " Funds Modal :" + amountToEnter);
@@ -78,15 +76,39 @@ public class AddFundsteps {
 		Eventhelper.threadWait(8000);
 		float expectedAmount = Float.parseFloat(amount);
 		float actualAmount = addFunds.hopscotchBalanceAfterAddingFund();
-
 		Log.info("Actual Amount after withdraw Funds:" + actualAmount);
 		Log.info("Expected Amount after withdraw Funds:" + expectedAmount);
-
 		assertEquals(expectedAmount, actualAmount, 1);
 	}
 
 	@When("User click on Close Icon")
 	public void user_click_on_close_icon() {
 		addFunds.clickonCloseIcon();
+	}
+
+	@When("User again enters the amount to withdraw")
+	public void user_again_enters_the_amount_to_withdraw() {
+		addFunds.clearAmountEnter();
+	}
+
+	@Then("User should see {string} button as disabled if Amount is Less then Zero")
+	public void user_should_see_button_has_if_amount_is_less_then_zero(String btnName) {
+		if(currentHopscotchBalance <= 0.00) {
+			Log.info(btnName + " Button is not Enable : " + !addFunds.isButtonEnabled(btnName));
+			assertTrue(btnName + " Button is not Enable : ", !addFunds.isButtonEnabled(btnName));
+		}
+	}
+	
+	@When("User enter amount to {string} funds")
+	public void user_enter_amount_to_funds(String fundProcess) {
+		Log.info("User enter in " + fundProcess + " Funds Modal :" + currentHopscotchBalance);
+		addFunds.enterAmount(Eventhelper.ConvertFloatTo2DecimalFloat(currentHopscotchBalance));
+	}
+	
+	@When("User enter amount more then current balance to {string} funds")
+	public void user_enter_amount_more_then_current_balance_to_funds(String fundProcess) {
+		float amountToEnter = currentHopscotchBalance + 1;
+		Log.info("User enter in " + fundProcess + " Funds Modal :" + amountToEnter);
+		addFunds.enterAmount(Eventhelper.ConvertFloatTo2DecimalFloat(amountToEnter));
 	}
 }
