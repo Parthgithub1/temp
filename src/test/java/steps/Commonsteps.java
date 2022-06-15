@@ -9,6 +9,7 @@ public class Commonsteps {
 
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
+	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
 
 	@When("User login for {string}")
 	public void user_login_for(String feature) {
@@ -87,5 +88,14 @@ public class Commonsteps {
 	public void user_hover_on(String buttonName) {
 		commonPage.hoverOnButton(buttonName);
 	}
-
+	
+	@Then("The {string} button should be {string}")
+	public void the_button_should_be(String btnName, String isStatus) {
+		boolean buttonStatus = addFunds.isButtonEnabled(btnName);
+		if (isStatus.contains("enabled")) {
+			assertTrue(btnName + " Button is Enable", buttonStatus);
+		} else {
+			assertTrue(btnName + " Button is not Enable", !buttonStatus);
+		}
+	}
 }

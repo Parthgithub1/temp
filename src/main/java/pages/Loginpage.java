@@ -17,11 +17,6 @@ public class Loginpage {
 		commonPage = new Commonpage(driver);
 	}
 
-	public boolean isAttemptTextDisplayed() {
-		By tstErrorLocator = By.cssSelector(".LoginForm_field__content-error__2NPje.LoginForm_attempts-error__2pKNJ");
-		return Eventhelper.isElementDisplayed(driver, tstErrorLocator);
-	}
-
 	public void doLogin(String email) {
 		commonPage.enterEmailAddress(email);
 		System.out.println("Email is :" + email);
@@ -42,4 +37,17 @@ public class Loginpage {
 		return Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 	}
 
+	public boolean isAttemptTextDisplayed() {
+		return Eventhelper.isElementDisplayed(driver,
+				By.xpath("(//p[contains(text(),'"+ Constants.NUMBEROFATTEMPTSVALIDATIONMESSAGE +"')])"));
+	}
+
+	public String isValidationDisplayed() {
+		return Eventhelper.getTextofElement(driver, By.xpath("//div[contains(@class,'LoginForm_signin-error')]"));
+	}
+
+	public String isEmailEnterInCorrectFormat() {
+		return Eventhelper.getTextofElement(driver,
+				By.xpath("//div[contains(@class,'TextInput_form-errors-wrapper__2LlfN')]"));
+	}
 }

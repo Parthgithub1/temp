@@ -6,23 +6,23 @@ import utility.Eventhelper;
 
 public class Homepage {
 	private WebDriver driver;
-	private By btnWithdrawFunds = By.xpath("//button[text()='Withdraw']");
+	private By btnAddFunds = By.xpath("//button[text()='Add funds']");
 
 	public Homepage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public float getCurrentHopscotchBalanceAmount() {
-		waitUntilWithdrawButtonEnabled();
+		waitUntiAddFundsButtonEnabled();
 		return Eventhelper.ConvertFloatTo2DecimalFloat(Float.parseFloat(Eventhelper.getValueOfAttribute(
 				driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"zurobalance-amount").replace("$", "")));
 	}
 
-	public void waitUntilWithdrawButtonEnabled() {
-		Eventhelper.explicitwaitclickable(driver, btnWithdrawFunds);
-		Eventhelper.waitUntilAttribValueContains(driver, btnWithdrawFunds, "class", "disable");
+	public void waitUntiAddFundsButtonEnabled() {
+		Eventhelper.waitUntilAttribValueContains(driver, btnAddFunds, "class", "disable");
+		Eventhelper.explicitwaitclickable(driver, btnAddFunds);
 		Eventhelper.threadWait(5000);
 	}
 }
