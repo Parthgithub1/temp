@@ -64,7 +64,7 @@ public class Externalinvoicepage {
 
 	public String generateExternalurl() {
 		String fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoice-id");
-		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoicee-bizid");
+		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoicee-biz-id");
 		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
 				+ "&emailId=" + tempEmailAddress;
 		sendInvoicePage.switchToDashboard();
