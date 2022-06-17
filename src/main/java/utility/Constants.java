@@ -9,6 +9,7 @@ public class Constants {
 	
 	public static final String IMAGEFOLDER = userDirectoryPath + "/src/test/resources/Images/image.png";
 	public static final String ENTERCODEFORTWOFACTORAUTHENTICATION = "5555";
+	public static final String ENTERWRONGCODEFORVALIDATIONOFTWOFACTORAUTHENTICATION = "2018";
 	public static final String CONTINUEBUTTON = "Continue";
 	public static final String PASSWORD = property.getProperty("password");
 	public static final String ENVIRONMENT = "environment";

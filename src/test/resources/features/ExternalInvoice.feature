@@ -19,8 +19,7 @@ Feature: Test External Invoice
     Then Receivable balance is updated on the screen with "1.00"
     And Search the external invoice in receivable
     Then User should see sent external invoice notiifcation on the screen
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     When User set external invoice url in browser
     Then User should see the businessname of the external invoice sender
     When User enter otp on screen
@@ -39,3 +38,5 @@ Feature: Test External Invoice
     Then User should see updated hopscotch balance on the screen
     Then User click on "Homepage" button to navigate to dashboard
     Then User should see the pay of external invoice notiifcation on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen

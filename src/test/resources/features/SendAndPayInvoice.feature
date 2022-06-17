@@ -24,8 +24,8 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to qatsmokeautomation071 for $1.00" notification
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
     When User login for "InvoicePay"
     Then User should navigate to dashboard "InvoicePay"
     #When User should save current hopscotch balance
@@ -49,8 +49,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You paid an invoice to qatsmokeautomation031 for $1.00" notification
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
   @Smoke @sendandpayinvoice @UAT
@@ -77,8 +76,8 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to hopsmokeautomation3llc for $1.00" notification
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
     When User login for "InvoicePay"
     Then User should navigate to dashboard "InvoicePay"
     #When User should save current hopscotch balance
@@ -102,6 +101,5 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You paid an invoice to hopsmokeautomation1llc for $1.00" notification
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
