@@ -1,6 +1,8 @@
 package pages;
 
 import java.util.List;
+import java.util.Properties;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +12,8 @@ import utility.*;
 public class Registrationpage {
 
 	private WebDriver driver;
+	static Propertyreader propertyreader = new Propertyreader();
+	static Properties property = propertyreader.init_prop();
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtBusinessName = By.xpath("//input[@name='dbaName']");
@@ -87,7 +91,7 @@ public class Registrationpage {
 		enterFirstName("Ronald");
 		enterLastName(Constants.LASTNAMESOLEPROPPASS);
 		enterBusinessName("The Ronald Reagan");
-		commonPage.enterPassword(Constants.PASSWORD);
+		commonPage.enterPassword(property.getProperty("password"));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterCompanyDetails();
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
