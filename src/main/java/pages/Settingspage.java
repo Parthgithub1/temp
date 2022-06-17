@@ -50,7 +50,7 @@ public class Settingspage {
 
 	public void doLoginafterChangePassword(String email) {
 		commonPage.enterEmailAddress(email);
-		commonPage.enterPassword(Constants.CHANGEPASSWORD);
+		commonPage.enterPassword(getPropertyOfPassword);
 		Eventhelper.threadWait(2000);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}

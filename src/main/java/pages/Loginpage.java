@@ -2,7 +2,6 @@ package pages;
 
 import java.util.Properties;
 import org.openqa.selenium.*;
-import io.cucumber.java.*;
 import utility.*;
 
 public class Loginpage {
@@ -10,7 +9,6 @@ public class Loginpage {
 	private Commonpage commonPage;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.init_prop();
-	Scenario scenario;
 
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
@@ -19,8 +17,7 @@ public class Loginpage {
 
 	public void doLogin(String email) {
 		commonPage.enterEmailAddress(email);
-		System.out.println("Email is :" + email);
-		commonPage.enterPassword(Constants.PASSWORD);
+		commonPage.enterPassword(property.getProperty("password"));
 		Eventhelper.threadWait(2000);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
