@@ -57,16 +57,16 @@ public class Profilepage {
 
 	public void enterdetailsofBusiness(String businessName, String handle, String industry, String webSite,
 			String yearFound) {
-		Eventhelper.useActionClassOperation(driver, txtBusinessName, Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtBusinessName, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtBusinessName, businessName);
-		Eventhelper.useActionClassOperation(driver, txtHandle, Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtHandle, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtHandle, handle);
-		Eventhelper.useActionClassOperation(driver, ddIndustry, Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, ddIndustry, "DoubleClick");
 		ddSelecteIndustry = By.xpath("//div[text()='" + industry + "']");
 		Eventhelper.click(driver, ddSelecteIndustry);
-		Eventhelper.useActionClassOperation(driver, txtWebsite, Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtWebsite, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtWebsite, webSite);
-		Eventhelper.useActionClassOperation(driver, txtYearFoubnded, Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtYearFoubnded, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtYearFoubnded, yearFound);
 	}
 
@@ -104,17 +104,17 @@ public class Profilepage {
 	}
 
 	public void enterWebsite(String website) {
-		Eventhelper.useActionClassOperation(driver, txtWebsite,Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtWebsite,"DoubleClick");
 		Eventhelper.sendkeys(driver, txtWebsite, website);
 	}
 
 	public void enterYearFounded(String yearFounded) {
-		Eventhelper.useActionClassOperation(driver, txtYearFoubnded,Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtYearFoubnded,"DoubleClick");
 		Eventhelper.sendkeys(driver, txtYearFoubnded, yearFounded);
 	}
 
 	public void enterHandle(String handle) {
-		Eventhelper.useActionClassOperation(driver, txtHandle,Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtHandle,"DoubleClick");
 		Eventhelper.sendkeys(driver, txtHandle, handle);
 	}
 }

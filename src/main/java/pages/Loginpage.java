@@ -27,7 +27,7 @@ public class Loginpage {
 		try {
 			Eventhelper.waitUntilElementInvisible(driver, loginBtn);
 		} catch (Exception e) {
-			commonPage.clickOnLink(Constants.RESETYOURPASSWORD);
+			commonPage.clickOnLink("Reset your password");
 			driver.navigate().back();
 			doLogin(email);
 		}

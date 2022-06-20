@@ -35,16 +35,16 @@ public class Externalinvoicepage {
 	}
 
 	public void clickToAddNewBusiness() {
-		Eventhelper.sendkeys(driver, txtSearchBar, Constants.SEARCHFORNEWBUSINES);
+		Eventhelper.sendkeys(driver, txtSearchBar, "Search for new business");
 		Eventhelper.click(driver, btnAddNewBusiness);
 	}
 
 	public void enterCustomerDetails() {
 		txtCustomerName = faker.name().firstName();
 		Eventhelper.sendkeys(driver, txtCustomerBusinessName, txtCustomerName);
-		Eventhelper.sendkeys(driver, txtCustomerFirstName,Constants.CUSTOMERFIRSTNAME);
-		Eventhelper.sendkeys(driver, txtCustomerLastName,Constants.CUSTOMERLASTNAME);
-		tempEmailAddress = txtCustomerName + Constants.MAILINATORDOTCOM;
+		Eventhelper.sendkeys(driver, txtCustomerFirstName, "Donald");
+		Eventhelper.sendkeys(driver, txtCustomerLastName, "Trump");
+		tempEmailAddress = txtCustomerName + "@mailinator.com";
 		Eventhelper.sendkeys(driver, txtCustomerEmail, tempEmailAddress);
 	}
 

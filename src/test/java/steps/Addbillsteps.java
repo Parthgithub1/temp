@@ -39,29 +39,5 @@ public class Addbillsteps {
 	public void user_click_on_close_button_from_payable_card() {
 		addBillPage.clickonCloseIconfromPayableCard();
 	}
-	
-	@When("User enter vendor name in vendor")
-	public void user_enter_vendor_name_in_vendor() {
-	   addBillPage.enterVendorName();
-	}
-	
-	@When("User enter {string} as a contact name")
-	public void user_enter_as_a_contact_name(String contactName) {
-	    addBillPage.enterContactName(contactName);
-	}
-	
-	@When("User enter {string} as a amount")
-	public void user_enter_as_a_amount(String amount) {
-	 addBillPage.enterAmount(amount);
-	}
-	
-	@When("User enter {string} as a contact email")
-	public void user_enter_as_a_contact_email(String contactName) {
-	    addBillPage.enterContactEmail(contactName);
-	}
 
-	@When("User enter {string} as a invoice number")
-	public void user_enter_as_a_invoice_number(String invoiceNumber) {
-	   addBillPage.enterInvoiceNumber(invoiceNumber);
-	}
 }

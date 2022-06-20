@@ -32,12 +32,12 @@ public class Addbillpage {
 		Eventhelper.sendkeys(driver, txtVendor, vender);
 		Eventhelper.click(driver, selectVendor);
 		Eventhelper.sendkeys(driver, txtContactName, vender);
-		String tempEmail = vender + Constants.MAILINATORDOTCOM;
+		String tempEmail = vender + "@mailinator.com";
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
 		Eventhelper.sendkeys(driver, txtAmount, "1");
-		Eventhelper.sendkeys(driver, txtInvoiceNumber, Constants.ADDBILLINVOICENUMBER);
+		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
 		Eventhelper.sendkeys(driver, txtDate, Eventhelper.getTodaysDateInSting());
-		Eventhelper.sendkeys(driver, txtMessage, Constants.ADDBILLMESSAGEDETAILS);
+		Eventhelper.sendkeys(driver, txtMessage, "This is the add bill details.");
 		return (float) 1.0;
 	}
 
@@ -47,13 +47,13 @@ public class Addbillpage {
 
 	public void clearBusinessInSearchBar() {
 		Eventhelper.threadWait(3000);
-		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronPayableTab, Constants.BACKSPACE);
+		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronPayableTab, "backspace");
 	}
 
 	public boolean verifyNotificationOfPayOfAddedBill() {
 		sendInvoicePage.switchToDashboard();
 		lblNotification = By.xpath(
-				"(//div[@class='card-content']//p[contains(text(),'"+Constants.ADDBILLPAYNOTIFICATION+"')]//span[contains(text(),'"
+				"(//div[@class='card-content']//p[contains(text(),'It is on its way to')]//span[contains(text(),'"
 						+ vender + "')])[1]");
 		return Eventhelper.isElementDisplayed(driver, lblNotification);
 	}
@@ -62,7 +62,7 @@ public class Addbillpage {
 		Eventhelper.threadWait(5000);
 		sendInvoicePage.switchToDashboard();
 		lblNotification = By.xpath(
-				"(//div[@class='card-content']//p[contains(text(),'"+Constants.ADDBILLNOTIFICATIONONDASHBOARD+"')]//span[contains(text(),'"
+				"(//div[@class='card-content']//p[contains(text(),'sent an invoice for')]//span[contains(text(),'"
 						+ vender + "')])[1]");
 		Eventhelper.explicitwait(driver, lblNotification);
 		return Eventhelper.isElementDisplayed(driver, lblNotification);
@@ -72,27 +72,5 @@ public class Addbillpage {
 		if (Eventhelper.isElementDisplayed(driver, btnCloseOfPayableCard)) {
 			Eventhelper.click(driver, btnCloseOfPayableCard);
 		}
-	}
-	
-	public void enterVendorName() {
-		vender = faker.name().firstName();
-		Eventhelper.sendkeys(driver, txtVendor, vender);
-		Eventhelper.click(driver, selectVendor);
-	}
-	
-	public void enterContactName(String contactName) {
-		Eventhelper.sendkeys(driver, txtContactName,contactName);
-	}
-	
-	public void enterAmount(String amount) {
-		Eventhelper.sendkeys(driver, txtAmount,amount);
-	}
-	
-	public void enterContactEmail(String email) {
-		Eventhelper.sendkeys(driver, txtEmail,email);
-	}
-	
-	public void enterInvoiceNumber(String invoiceNumber) {
-		Eventhelper.sendkeys(driver, txtInvoiceNumber,invoiceNumber);
 	}
 }

@@ -18,9 +18,6 @@ public class Settingspage {
 	private By bankNameCurrentlyAdded = By.xpath("//b[contains(@class,'AccountDetails_bank-name')]");
 	String getPropertyOfPassword = property.getProperty("password");
 	String getPropertyOfChangePassword = property.getProperty("changePassword");
-	private By txtFirstName = By.xpath("//input[@name='firstName']");
-	private By txtLastName = By.xpath("//input[@name='lastName']");
-
 
 	public Settingspage(WebDriver driver) {
 		this.driver = driver;
@@ -51,15 +48,15 @@ public class Settingspage {
 		Eventhelper.sendkeys(driver, txtConfirmPassword, getPropertyOfPassword);
 	}
 
-	 public void doLoginafterChangePassword(String email) {
-	        commonPage.enterEmailAddress(email);
-	        commonPage.enterPassword(getPropertyOfPassword);
-	        Eventhelper.threadWait(2000);
-	        commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-	    }
+	public void doLoginafterChangePassword(String email) {
+		commonPage.enterEmailAddress(email);
+		commonPage.enterPassword(getPropertyOfPassword);
+		Eventhelper.threadWait(2000);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+	}
 
 	public void enterMobileNumberforTwoFactorAuthentication(String mobileNumber) {
-		Eventhelper.useActionClassOperation(driver, txtMobileNumber, Constants.DOUBLECLICK);
+		Eventhelper.useActionClassOperation(driver, txtMobileNumber, "DoubleClick");
 		Eventhelper.sendkeys(driver, txtMobileNumber, mobileNumber);
 	}
 
@@ -76,7 +73,7 @@ public class Settingspage {
 		Eventhelper.click(driver, By.xpath("//b[text()='" + bankName
 				+ "']/ancestor::div[contains(@class,'AccountDetails_payment-method-info__wrapper')]/parent::div/following-sibling::div"));
 	}
-	
+
 	public void switchToDashboard() {
 		sendInvoicePage.switchToDashboard();
 	}
