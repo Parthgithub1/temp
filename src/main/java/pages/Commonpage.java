@@ -60,7 +60,7 @@ public class Commonpage {
 
 	public void enterEmailAddress(String value) {
 		if (value.contains("random")) {
-			value = UUID.randomUUID().toString() + "@hopscotchautomation.com";
+			value = UUID.randomUUID().toString() + Constants.HOPSCOTCHAUTOMATIONDOTCOM;
 			Log.info("Email id is -->" + value);
 		}
 		Eventhelper.sendkeys(driver, txtEmailAddress, value);

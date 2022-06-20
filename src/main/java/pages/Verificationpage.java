@@ -45,7 +45,7 @@ public class Verificationpage {
 	}
 
 	public void enterAddress() {
-		Eventhelper.sendkeys(driver, txtBusinessAddress, "55 Fruit Street");
+		Eventhelper.sendkeys(driver, txtBusinessAddress, Constants.BUSINESSADDRESS);
 		Eventhelper.threadWait(1000);
 		Eventhelper.click(driver, txtBusinessAppartement);
 		Eventhelper.click(driver, txtBusinessAddress);
@@ -56,7 +56,7 @@ public class Verificationpage {
 	public void enterBusinessTax() {
 		Eventhelper.click(driver, ddBusinessTaxType);
 		Eventhelper.click(driver, ddBusinessSelectTaxYype);
-		Eventhelper.sendkeys(driver, txtBusinessTaxID, "444559999");
+		Eventhelper.sendkeys(driver, txtBusinessTaxID, Constants.BUSINESSTAXID);
 	}
 
 	public boolean isBeneficialAdded() {
@@ -121,18 +121,18 @@ public class Verificationpage {
 
 	public void addBeneficial() {
 		Eventhelper.click(driver, btnAddBeneficial);
-		Eventhelper.sendkeys(driver, txtAddBeneficialFirstName, "jack");
-		Eventhelper.sendkeys(driver, txtAddBeneficialLastName, "denial");
-		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012008");
+		Eventhelper.sendkeys(driver, txtAddBeneficialFirstName, Constants.ADDBENEFICIALFIRSTNAME);
+		Eventhelper.sendkeys(driver, txtAddBeneficialLastName, Constants.ADDBENEFICIALLASTNAME);
+		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, Constants.ADDBENEFICIALDATEOFBIRTH);
 		Eventhelper.sendkeys(driver, txtAddBeneficialSSN, Eventhelper.generateRandomNumber());
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
 	
 	public boolean verificationConfirmation() {
 		boolean flag = false;
-		if(Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is complete") || Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is pending")) {
+		if(Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase(Constants.VERIFICATIONISCOMPLETE) || Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase(Constants.VERIFICATIONISPENDING)) {
 			 flag=true;
 		}
 		return flag;
@@ -140,6 +140,6 @@ public class Verificationpage {
 	
 	public void enterDateOfBirthdateofSoleProprietorship()
 	{
-		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012001");
+		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, Constants.SOLEPROPRIETORSHIPDATEOFBIRTH);
 	}
 }

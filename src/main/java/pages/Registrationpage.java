@@ -56,15 +56,15 @@ public class Registrationpage {
 	}
 
 	public void enterCompanyDetails() {
-		Eventhelper.sendkeys(driver, txtAboutYourCompany, "This textarea contains value about company");
+		Eventhelper.sendkeys(driver, txtAboutYourCompany, Constants.REGISTRATIONABOUTYOURCOMPANY);
 	}
 
 	public void enterAdditionalInformation() {
-		Eventhelper.sendkeys(driver, txtWebsite, "https://www.google.com/");
-		Eventhelper.sendkeys(driver, txtCity, "lakesville");
+		Eventhelper.sendkeys(driver, txtWebsite, Constants.REGISTRATIONWEBSITE);
+		Eventhelper.sendkeys(driver, txtCity,Constants.REGISTRATIONCITY);
 		Eventhelper.click(driver, ddState);
 		Eventhelper.click(driver, ddSelecteState);
-		Eventhelper.sendkeys(driver, txtYearFounded, "2022");
+		Eventhelper.sendkeys(driver, txtYearFounded, Constants.REGISTRATIONYEARFOUNDED);
 		Eventhelper.click(driver, ddIndustry);
 		Eventhelper.click(driver, ddSelecteIndustry);
 	}
@@ -80,7 +80,7 @@ public class Registrationpage {
 	}
 
 	public void sendTab() {
-		Eventhelper.sendKeyboardKeys(driver, txtEmailAddress, "tab");
+		Eventhelper.sendKeyboardKeys(driver, txtEmailAddress, Constants.TAB);
 	}
 
 	public void doRegister(String randomemail) {
@@ -88,9 +88,9 @@ public class Registrationpage {
 		commonPage.enterEmailAddress(randomemail);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterOTP();
-		enterFirstName("Ronald");
+		enterFirstName(Constants.REGISTRATIONFIRSTNAME);
 		enterLastName(Constants.LASTNAMESOLEPROPPASS);
-		enterBusinessName("The Ronald Reagan");
+		enterBusinessName(Constants.REGISTRATIONBUSINESSNAME);
 		commonPage.enterPassword(property.getProperty("password"));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterCompanyDetails();
