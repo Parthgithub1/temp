@@ -42,6 +42,6 @@ public class AddFundspage {
 	}
 
 	public void clearAmountEnter() {
-		Eventhelper.useActionClassOperation(driver, txtAddAmount, "DoubleClick");
+		Eventhelper.useActionClassOperation(driver, txtAddAmount, Constants.DOUBLECLICK);
 	}
 }

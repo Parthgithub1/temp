@@ -33,6 +33,5 @@ Feature: Test Contact List Functionality
     Then User should see "Add contact" text on the screen
     When User enter search for Name in Searchbar
     And User should see Contact in List
-    When User click on Profile Drop Down
-    When User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

@@ -23,6 +23,5 @@
     When User click on Profile Drop Down
     Then User click on "Accounting" option from Profile Drop-Down
     Then User should see "No outstanding payables" text on the screen
-    When User click on Profile Drop Down
-    Then User click on "Log Out" option from Profile Drop-Down
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

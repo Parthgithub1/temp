@@ -16,17 +16,7 @@ public class Settingssteps {
 		String email = commonPage.getEmailAsPerFeature(feature);
 		settingsPage.doLoginafterChangePassword(email);
 	}
-	
-	@When("User enter firstname and lastName data of User")
-	public void user_enter_in_firstname_field_and_in_lastname_field() {
-		settingsPage.enterFirstAndLastName();
-	}
-	
-	@Then("User should see updated Name Details on the Screen")
-	public void user_should_see_updated_name_details_on_the_screen() {
-		assertTrue(settingsPage.verificationOfDataForFirstAndLastName());
-	}
-	
+
 	@When("User click on menu of the {string} bank")
 	public void user_click_on_menu_of_the_bank(String string) {
 		settingsPage.clickOnMenuIconOfBank(string);
@@ -65,5 +55,50 @@ public class Settingssteps {
 	@When("User enter Code on screen")
 	public void user_enter_code_on_screen() {
 		settingsPage.enterCodeForTwoFactorAuthentication();
+	}
+
+	@When("User Edit the Password")
+	public void user_edit_the_password() {
+		settingsPage.editChangePasswordValidationCheck();
+	}
+
+	@When("User enter value in current Password field")
+	public void user_enter_in_current_password_field() {
+		settingsPage.enterCurrentPassword();
+	}
+
+	@When("User enter value in new Password field")
+	public void user_enter_in_new_password_field() {
+		settingsPage.enterNewPassword();
+	}
+	
+	@When("User enter value in confirm Password field")
+	public void user_enter_in_confirm_password_field() {
+	   settingsPage.enterConfirmPassword();
+	}
+	
+	@When("User enter {string} in new Password field")
+	public void user_enter_in_new_password_field(String wrongFormatNewPassword) {
+		settingsPage.enterWrongFormatNewPassword(wrongFormatNewPassword);
+	}
+	
+	@When("User try Change the Password")
+	public void user_try_change_the_password() {
+	    settingsPage.enterConfirmPasswordNotMatch();
+	}
+	
+	@When("User enter Wrong Code on screen")
+	public void user_enter_Wrong_code_on_screen() {
+		settingsPage.enterWrongCodeForTwoFactorAuthentication();
+	}
+	
+	@When("User save the bank detail of currrently added bank")
+	public void user_save_the_bank_detail_of_currrently_added_bank() {
+	    settingsPage.getNameOfCurrentBankAdded();
+	}
+	
+	@When("User add existing bank account on Payment Method")
+	public void user_add_existing_bank_account_on_payment_method() {
+		commonPage.addBankInPlaid(settingsPage.getNameOfCurrentBankAdded());
 	}
 }
