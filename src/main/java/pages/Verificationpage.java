@@ -125,9 +125,9 @@ public class Verificationpage {
 		Eventhelper.sendkeys(driver, txtAddBeneficialLastName, "denial");
 		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012008");
 		Eventhelper.sendkeys(driver, txtAddBeneficialSSN, Eventhelper.generateRandomNumber());
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
-		commonPage.clickOnButton("Continue");
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
 	
 	public boolean verificationConfirmation() {

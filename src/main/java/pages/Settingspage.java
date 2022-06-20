@@ -56,7 +56,7 @@ public class Settingspage {
 	}
 
 	public void enterMobileNumberforTwoFactorAuthentication(String mobileNumber) {
-		Eventhelper.useActionClassOperation(driver, txtMobileNumber, "DoubleClick");
+		Eventhelper.useActionClassOperation(driver, txtMobileNumber, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtMobileNumber, mobileNumber);
 	}
 
@@ -90,17 +90,17 @@ public class Settingspage {
 	}
 
 	public void enterCurrentPassword() {
-		Eventhelper.useActionClassOperation(driver, txtCurrentPassword, "DoubleClick");
+		Eventhelper.useActionClassOperation(driver, txtCurrentPassword, Constants.DOUBLECLICK);
 		Eventhelper.sendKeyboardKeys(driver, txtCurrentPassword, "tab");
 	}
 
 	public void enterNewPassword() {
-		Eventhelper.useActionClassOperation(driver, txtNewPassword, "DoubleClick");
+		Eventhelper.useActionClassOperation(driver, txtNewPassword, Constants.DOUBLECLICK);
 		Eventhelper.sendKeyboardKeys(driver, txtNewPassword, "tab");
 	}
 
 	public void enterConfirmPassword() {
-		Eventhelper.useActionClassOperation(driver, txtConfirmPassword, "DoubleClick");
+		Eventhelper.useActionClassOperation(driver, txtConfirmPassword, Constants.DOUBLECLICK);
 		Eventhelper.sendKeyboardKeys(driver, txtConfirmPassword, "tab");
 	}
 

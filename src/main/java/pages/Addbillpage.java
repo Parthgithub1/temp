@@ -32,7 +32,7 @@ public class Addbillpage {
 		Eventhelper.sendkeys(driver, txtVendor, vender);
 		Eventhelper.click(driver, selectVendor);
 		Eventhelper.sendkeys(driver, txtContactName, vender);
-		String tempEmail = vender + "@mailinator.com";
+		String tempEmail = vender + Constants.MAILINATORDOTCOM;
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
 		Eventhelper.sendkeys(driver, txtAmount, "1");
 		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
@@ -72,5 +72,27 @@ public class Addbillpage {
 		if (Eventhelper.isElementDisplayed(driver, btnCloseOfPayableCard)) {
 			Eventhelper.click(driver, btnCloseOfPayableCard);
 		}
+	}
+	
+	public void enterVendorName() {
+		vender = faker.name().firstName();
+		Eventhelper.sendkeys(driver, txtVendor, vender);
+		Eventhelper.click(driver, selectVendor);
+	}
+	
+	public void enterContactName(String contactName) {
+		Eventhelper.sendkeys(driver, txtContactName,contactName);
+	}
+	
+	public void enterAmount(String amount) {
+		Eventhelper.sendkeys(driver, txtAmount,amount);
+	}
+	
+	public void enterContactEmail(String email) {
+		Eventhelper.sendkeys(driver, txtEmail,email);
+	}
+	
+	public void enterInvoiceNumber(String invoiceNumber) {
+		Eventhelper.sendkeys(driver, txtInvoiceNumber,invoiceNumber);
 	}
 }
