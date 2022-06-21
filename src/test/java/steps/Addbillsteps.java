@@ -9,11 +9,26 @@ import utility.*;
 public class Addbillsteps {
 
 	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
+	Sendinvoicepage sendInvoicePage = new Sendinvoicepage(Driverhelper.getDriver());
 	public static float amount;
+
+	@When("User click on Pay or Get Paid link")
+	public void user_click_on_pay_or_get_paid_link() {
+		sendInvoicePage.clickOnPayOrGetPaid();
+	}
 
 	@When("User enter add bill details")
 	public void user_enter_add_bill_details() {
 		amount = addBillPage.addBill();
+	}
+
+	public static float addBillInvoiceAmount() {
+		return amount;
+	}
+
+	@When("User enter the contact deatils for AddBill")
+	public void user_enter_the_contact_deatils_for_add_bill() {
+		addBillPage.addBillContact();
 	}
 
 	@When("User enter search for business in Searchbar")
@@ -31,36 +46,13 @@ public class Addbillsteps {
 		assertTrue(addBillPage.verifyAddBillNotificationOnDashboard());
 	}
 
-	public static float addBillInvoiceAmount() {
-		return amount;
-	}
-	
 	@When("User click on Close button from Payable Card")
 	public void user_click_on_close_button_from_payable_card() {
 		addBillPage.clickonCloseIconfromPayableCard();
 	}
-	@When("User enter vendor name in vendor")
-	public void user_enter_vendor_name_in_vendor() {
-	   addBillPage.enterVendorName();
+
+	@When("User enter search in Searchbar for business")
+	public void user_enter_search_in_searchbar_of() {
+		addBillPage.enterInSearchBar();
 	}
-	
-	@When("User enter {string} as a contact name")
-	public void user_enter_as_a_contact_name(String contactName) {
-	    addBillPage.enterContactName(contactName);
-	}
-	
-	@When("User enter {string} as a amount")
-	public void user_enter_as_a_amount(String amount) {
-	 addBillPage.enterAmount(amount);
-	}
-	
-	@When("User enter {string} as a contact email")
-	public void user_enter_as_a_contact_email(String contactName) {
-	    addBillPage.enterContactEmail(contactName);
-	}
-	@When("User enter {string} as a invoice number")
-	public void user_enter_as_a_invoice_number(String invoiceNumber) {
-	   addBillPage.enterInvoiceNumber(invoiceNumber);
-	}
-	
 }

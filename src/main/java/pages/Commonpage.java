@@ -19,10 +19,10 @@ public class Commonpage {
 	private By closeIcon = By.xpath("//button[@aria-label='Close']");
 	private By frmIframe = By.xpath("//iframe[contains(@id,'plaid-link')]");
 	private By btnContinueforPlaidProcess = By.xpath("(//button[normalize-space()='Continue'][@role='button'] )[1]");
-	private By lstbankname;
 	private By txtbUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
+	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
 	private By lblToolTipText = By.xpath("//div[@class='tooltip-inner']");
 
 	public Commonpage(WebDriver driver) {
@@ -41,7 +41,7 @@ public class Commonpage {
 
 	public Boolean isTextDisplayed(String text) {
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
-		return Eventhelper.isElementDisplayed(driver, xpath); 
+		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
 
 	public Boolean isTextNotDisplayed(String text) {
@@ -89,7 +89,7 @@ public class Commonpage {
 	}
 
 	public void addBankInPlaid(String bankName) {
-		lstbankname = By.xpath("(//*[text()='" + bankName + "'])");
+		By lstbankname = By.xpath("(//*[text()='" + bankName + "'])");
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
 		Eventhelper.click(driver, btnContinueforPlaidProcess);
@@ -143,4 +143,9 @@ public class Commonpage {
 		}
 		return credential;
 	}
+
+	public void switchToDashboard() {
+		Eventhelper.click(driver, lnkDashBoard);
+	}
+
 }

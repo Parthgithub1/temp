@@ -10,7 +10,7 @@ import utility.*;
 public class Contactliststep {
 	Contactlistpage contactList = new Contactlistpage(Driverhelper.getDriver());
 
-	@Then("User click on Add New Contact button")
+	@When("User click on Add New Contact button")
 	public void user_click_on_add_new_contact_button() {
 		contactList.clickOnAddNewBusinessButton();
 	}

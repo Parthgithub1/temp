@@ -1,23 +1,23 @@
- Feature: Test Unverified user Functionality
- @Smoke @unverified @QAT @UAT
+Feature: Test Unverified user Functionality
+
+  @Smoke @unverified @QAT @UAT
   Scenario: Verify unverified user is not able to perform several things
     When User login for "Unverified"
-    Then User should navigate to dashboard "Unverified" 
+    Then User should navigate to dashboard "Unverified"
     Then User should see "Your most recent transactions will appear here." text on the screen
-    When User hover on "Add funds" 
+    When User hover on "Add funds"
     Then User should see "Verify your account first" text on the screen
     When User hover on "Withdraw"
     Then User should see "Verify your account first" text on the screen
-    When User click on Send Invoice link
-    Then User should see "Invoice a business" text on the screen
+    When User click on Pay or Get Paid link
     When User enter "qatsmokeautomation05" in searchbox
     Then User should see "qatsmokeautomation05" text on the screen
-    When User hover on "Invoice"
+    When User hover on "Pay"
+    Then User should see "Verify your account first" text on the screen
+    When User hover on "Get paid"
     Then User should see "Verify your account first" text on the screen
     When User click on Profile Drop Down
     Then User click on "View Profile" option from Profile Drop-Down
-    When User hover on "Add Bill"
-    Then User should see "Verify your account first" text on the screen 
     Then User should see "Your most recent transactions will appear here." text on the screen
     Then User should see "You have not added any info" text on the screen
     When User click on Profile Drop Down
