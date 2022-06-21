@@ -59,7 +59,7 @@ public class Settingssteps {
 
 	@When("User Edit the Password")
 	public void user_edit_the_password() {
-		settingsPage.editChangePasswordValidationCheck();
+		settingsPage.resetPassword();
 	}
 
 	@When("User enter value in current Password field")

@@ -16,11 +16,6 @@ public class ExternalInvoicesteps {
 		externalInvoicePage.clickToAddNewBusiness();
 	}
 
-	@When("User enter customer details")
-	public void user_enter_customer_details() {
-		externalInvoicePage.enterCustomerDetails();
-	}
-
 	@Then("Search the external invoice in receivable")
 	public void search_the_external_invoice_in_receivable() {
 		externalInvoicePage.searchBusinessInGrid();
@@ -61,4 +56,10 @@ public class ExternalInvoicesteps {
 	public void read_businessname_from_the_dashboard() {
 		externalInvoicePage.readBusinessNameOndashboard();
 	}
+	
+	@When("User enter contact details")
+	public void user_enter_contact_details() {
+	    externalInvoicePage.enterConrtactDetails();
+	}
+
 }

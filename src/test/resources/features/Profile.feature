@@ -25,10 +25,6 @@ Feature: Test Profile Functionality
     Then User click on "Upload Another Photo" option
     When User click on "Continue" button
     Then User should see "Updated BusinessProfile Successfully." text on the screen
-    When User click on "Add Bill" link
-    Then User should see "Add a bill manually" text on the screen
-    Then User click on "Return" button
-    Then User should see "About" text on the screen
     Then User should see "History" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -62,10 +58,6 @@ Feature: Test Profile Functionality
     Then User click on "Upload Another Photo" option
     When User click on "Continue" button
     Then User should see "Updated BusinessProfile Successfully." text on the screen
-    When User click on "Add Bill" link
-    Then User should see "Add a bill manually" text on the screen
-    Then User click on "Return" button
-    Then User should see "About" text on the screen
     Then User should see "History" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

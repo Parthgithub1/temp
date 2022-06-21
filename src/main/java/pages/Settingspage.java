@@ -7,7 +7,6 @@ import utility.*;
 public class Settingspage {
 	private WebDriver driver;
 	private Commonpage commonPage;
-	private Sendinvoicepage sendInvoicePage;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.init_prop();
 	private By txtCurrentPassword = By.xpath(" //input[@name='currentPassword']");
@@ -22,7 +21,6 @@ public class Settingspage {
 	public Settingspage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
-		sendInvoicePage = new Sendinvoicepage(driver);
 	}
 
 	public String getNameOfCurrentBankAdded() {
@@ -50,7 +48,7 @@ public class Settingspage {
 
 	public void doLoginafterChangePassword(String email) {
 		commonPage.enterEmailAddress(email);
-		commonPage.enterPassword(getPropertyOfPassword);
+		commonPage.enterPassword(getPropertyOfChangePassword);
 		Eventhelper.threadWait(2000);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
@@ -75,18 +73,12 @@ public class Settingspage {
 	}
 
 	public void switchToDashboard() {
-		sendInvoicePage.switchToDashboard();
+		commonPage.switchToDashboard();
 	}
 
 	public boolean isAccountTypeSet(String bankname, String accontType) {
 		return Eventhelper.isElementDisplayed(driver,
 				By.xpath("//b[text()='" + bankname + "']/following-sibling::div/span[text()='" + accontType + "']"));
-	}
-
-	public void editChangePasswordValidationCheck() {
-		Eventhelper.sendkeys(driver, txtCurrentPassword, getPropertyOfChangePassword);
-		Eventhelper.sendkeys(driver, txtNewPassword, getPropertyOfPassword);
-		Eventhelper.sendkeys(driver, txtConfirmPassword, getPropertyOfPassword);
 	}
 
 	public void enterCurrentPassword() {
