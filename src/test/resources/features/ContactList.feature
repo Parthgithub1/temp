@@ -7,9 +7,8 @@ Feature: Test Contact List Functionality
     And User click on "Contact List" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User click on "Add contact" button
-    Then User should see "Add Contact" text on the screen
     And User enter the Contact deatils
-    When User click on "Submit" button
+    When User click on "Add" button
     Then User should see "Contacts" text on the screen
     Then User wait till pop up gets closed
     # Search & Profile 

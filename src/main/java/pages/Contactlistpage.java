@@ -19,8 +19,6 @@ public class Contactlistpage {
 	private By lblEmailIdinContactListGrid = By.xpath("//td[2]");
 	private By btnBackFromContactProfileScreen = By
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
-	private By btnOfMoreActionsGrid = By.xpath("//tr[1]//div[contains(@id,'actionPopup')]");
-
 	Faker faker = new Faker();
 	String tempEmail;
 	String bName = faker.company().name();
@@ -97,7 +95,7 @@ public class Contactlistpage {
 		if (rowXpath == null) {
 			rowXpath = "";
 		}
-		btnOfMoreActionsGrid = By.xpath(rowXpath + "//div[contains(@id,'actionPopup')]");
+		By btnOfMoreActionsGrid = By.xpath(rowXpath + "//div[contains(@id,'actionPopup')]");
 		Eventhelper.click(driver, btnOfMoreActionsGrid);
 	}
 

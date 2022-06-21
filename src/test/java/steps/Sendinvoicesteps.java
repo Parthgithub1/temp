@@ -60,18 +60,6 @@ public class Sendinvoicesteps {
 		//receivableBalanceOnAccountingPage = totalExpectedAmount;
 	}
 
-	@Then("Receivable balance is updated on dashboard")
-	public void receivable_balance_is_updated_on_dashboard() {
-		sendInvoicePage.switchToDashboard();
-		receivableBalanceOnDashboard = sendInvoicePage.readReceivableBalanceOnDashBoard();
-		assertEquals(totalExpectedAmount, receivableBalanceOnDashboard);
-	}
-
-	@When("User click on Send Invoice link")
-	public void user_click_on_send_invoice_link() {
-		sendInvoicePage.clickOnSendInvoice();
-	}
-
 	@Then("User should see updated hopscotch balance on the screen")
 	public void user_should_see_updated_hopscotch_balance_on_the_screen() {
 		receivableBalanceOnDashboardAfterLogin = sendInvoicePage.receivableBalanceOnAccounting();

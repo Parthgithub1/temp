@@ -21,11 +21,6 @@ public class Payinvoivesteps {
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Homepage homepage = new Homepage(Driverhelper.getDriver());
 
-	@Then("User should save Default amount of Payable")
-	public void user_should_save_default_amount_of_payable() {
-		 payData.setDefaultPayableBalanceatHomePage(payInvoice.getexistingBalanceofPayableofHomePage());
-	}
-
 	@When("User click on {string} Container")
 	public void user_click_on_container(String string) {
 		payInvoice.clickOnContanier(string);
@@ -119,11 +114,8 @@ public class Payinvoivesteps {
 	@Then("User see the updated payable balance before paying invoice of add bill")
 	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
 		Eventhelper.threadWait(3000);        
-		//Log.info(" Add bill amount --->"+Addbillsteps.addBillInvoiceAmount());
-		float expectedAmount = payData.getBalanceofPayableonAccountingPage()+Addbillsteps.addBillInvoiceAmount();
-		Log.info("Expected payable amount after add bill :- "+expectedAmount);
+		float expectedAmount = payData.getBalanceofPayableonAccountingPage()+ Addbillsteps.addBillInvoiceAmount();
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
-		Log.info("Actual payable balance on accounting page :- "+ actualAmount);
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
 

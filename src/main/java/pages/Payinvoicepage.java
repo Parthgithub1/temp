@@ -13,11 +13,7 @@ public class Payinvoicepage {
 	private By btnDate = By.xpath("(//p[contains(text(),'Due date')])[3]");
 	private By invoiceTableGrid = By.xpath("(//table)[3]//tr[1]//td");
 	private By txtSearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
-	private By payableAmountofDashboard = By
-			.xpath("//span[contains(.,'Payable')]/following-sibling::div/span[@id='amount_payable']");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
-	private By txtSearchBaronAccountingSection;
-	private By payableContanierxPath;
 	private Homepage homepage;
 
 	public Payinvoicepage(WebDriver driver) {
@@ -26,19 +22,11 @@ public class Payinvoicepage {
 	}
 
 	public void clickOnContanier(String contanierName) {
-		payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
+		By payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
 		Eventhelper.click(driver, payableContanierxPath);
 	}
 
-	public float getexistingBalanceofPayableofHomePage() {
-		Eventhelper.threadWait(5000);
-		String amountBalanceofPayablesonHomePage = Eventhelper
-				.getValueOfAttribute(driver, payableAmountofDashboard, "payable-amount").substring(1).replace(",", "");
-		return Float.parseFloat(amountBalanceofPayablesonHomePage);
-	}
-
 	public float getexistingBalanceofPayableonAccountingPage() {
-		// Eventhelper.threadWait(2000);
 		homepage.waitUntiAddFundsButtonEnabled();
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__1OW1E')]"),
@@ -119,7 +107,7 @@ public class Payinvoicepage {
 		} else if (AccountingSection.equals("Completed")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
 		}
-		txtSearchBaronAccountingSection = By.xpath(xpath);
+		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, searchPayables);
 	}
 }

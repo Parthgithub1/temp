@@ -9,7 +9,7 @@ import utility.*;
 public class Externalinvoicepage {
 
 	private WebDriver driver;
-	private Sendinvoicepage sendInvoicePage;
+	private Commonpage commonPage;
 	private By rowInvoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td[1]//span[@class='id_receivable']");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
@@ -18,11 +18,14 @@ public class Externalinvoicepage {
 	private By txtCustomerFirstName = By.xpath("//input[@name='customerFirstName']");
 	private By txtCustomerLastName = By.xpath("//input[@name='customerLastName']");
 	private By txtCustomerEmail = By.xpath("//input[@name='customerEmail']");
-	private By lblnotification;
 	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
-	private By lblBusinessNameOnDashboard= By.xpath("//p[contains(@class,'InfoHeader_header')][1]");
-	private By lblBusinessNameOnExternalInvoice=By.xpath("//div[@class='handle']//span[1]");
-	private String txtCustomerName, tempEmailAddress, url,BusinessNameOnDashboard,BusinessNameOnExternalInvoice;
+	private By lblBusinessNameOnDashboard = By.xpath("//p[contains(@class,'InfoHeader_header')][1]");
+	private By lblBusinessNameOnExternalInvoice = By.xpath("//div[@class='handle']//span[1]");
+	private String txtCustomerName;
+	private String tempEmailAddress;
+	private String url;
+	private String businessNameOnDashboard;
+	private String businessNameOnExternalInvoice;
 	Faker faker = new Faker();
 	private Verificationpage verificationPage;
 	static Propertyreader propertyreader = new Propertyreader();
@@ -31,7 +34,7 @@ public class Externalinvoicepage {
 	public Externalinvoicepage(WebDriver driver) {
 		this.driver = driver;
 		verificationPage = new Verificationpage(driver);
-		sendInvoicePage = new Sendinvoicepage(driver);
+		commonPage = new Commonpage(driver);
 	}
 
 	public void clickToAddNewBusiness() {
@@ -57,7 +60,7 @@ public class Externalinvoicepage {
 	public void setURL() {
 		Eventhelper.getURL(driver, url);
 	}
-	
+
 	public void addBankDetails() {
 		verificationPage.addBankExternalInvoice();
 	}
@@ -67,13 +70,13 @@ public class Externalinvoicepage {
 		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoicee-biz-id");
 		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
 				+ "&emailId=" + tempEmailAddress;
-		sendInvoicePage.switchToDashboard();
+		commonPage.switchToDashboard();
 		Log.info("The generated external url :- " + externalURl);
 		return externalURl;
 	}
 
 	public boolean verifyExternalInvoiceNotificationOnDashboard(String notificationContent) {
-		lblnotification = By.xpath("(//div[@class='card-content']//p[contains(text(),'" + notificationContent
+		By lblnotification = By.xpath("(//div[@class='card-content']//p[contains(text(),'" + notificationContent
 				+ "')]//span[contains(text(),'" + txtCustomerName + "')])[1]");
 		return Eventhelper.isElementDisplayed(driver, lblnotification);
 	}
@@ -82,21 +85,20 @@ public class Externalinvoicepage {
 		Eventhelper.click(driver, btnCrossIcon);
 	}
 
-	public void readBusinessNameOndashboard()
-	{
+	public void readBusinessNameOndashboard() {
 		Eventhelper.explicitwait(driver, lblBusinessNameOnDashboard);
-		BusinessNameOnDashboard=Eventhelper.getTextofElement(driver, lblBusinessNameOnDashboard).substring(1);
-		Log.info("BusinessNameOnDashboard is -->"+BusinessNameOnDashboard);
+		businessNameOnDashboard = Eventhelper.getTextofElement(driver, lblBusinessNameOnDashboard).substring(1);
+		Log.info("BusinessNameOnDashboard is -->" + businessNameOnDashboard);
 	}
-	
-	public Boolean verifyExternalInvoiceSender()
-	{
-		Boolean flag=false;
+
+	public Boolean verifyExternalInvoiceSender() {
+		Boolean flag = false;
 		Eventhelper.explicitwait(driver, lblBusinessNameOnExternalInvoice);
-		BusinessNameOnExternalInvoice=(Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice)).substring(1);
-		Log.info("BusinessNameOnExternalInvoice is -->"+BusinessNameOnExternalInvoice);
-		if (BusinessNameOnDashboard.equals(BusinessNameOnExternalInvoice)) {
-			flag=true;
+		businessNameOnExternalInvoice = (Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice))
+				.substring(1);
+		Log.info("BusinessNameOnExternalInvoice is -->" + businessNameOnExternalInvoice);
+		if (businessNameOnDashboard.equals(businessNameOnExternalInvoice)) {
+			flag = true;
 		}
 		return flag;
 	}
