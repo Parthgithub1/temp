@@ -9,7 +9,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Pay or Get Paid link
     When User enter "qatsmokeautomation071" in searchbox
     Then User should see "qatsmokeautomation071" text on the screen
-    When User click on "Get Paid" button
+    When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
     When User enter invoice details like amount is 1 and message is "This is the text of message"
     When User click on "Confirm" button

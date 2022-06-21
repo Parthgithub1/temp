@@ -14,7 +14,7 @@ Feature: Test Unverified user Functionality
     Then User should see "qatsmokeautomation05" text on the screen
     When User hover on "Pay"
     Then User should see "Verify your account first" text on the screen
-    When User hover on "Get Paid"
+    When User hover on "Get paid"
     Then User should see "Verify your account first" text on the screen
     When User click on Profile Drop Down
     Then User click on "View Profile" option from Profile Drop-Down

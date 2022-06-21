@@ -7,11 +7,11 @@ Feature: Test External Invoice
     Then Read businessname from the dashboard
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
-    When User click on Send Invoice link
+    When User click on Pay or Get Paid link
     Then User is able to add a new business details
-    When User enter contact details 
+    When User enter contact details
     When User click on "Add" button
-    When User click on "Get Paid" button 
+    When User click on "Get paid" button
     When User enter invoice details like amount is 1 and message is "This is the text of message"
     When User click on "Confirm" button
     When User click on "Send" button
