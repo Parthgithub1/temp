@@ -47,7 +47,7 @@ public class Externalinvoicepage {
 		Eventhelper.sendkeys(driver, txtCustomerBusinessName, txtCustomerName);
 		Eventhelper.sendkeys(driver, txtCustomerFirstName, "Donald");
 		Eventhelper.sendkeys(driver, txtCustomerLastName, "Trump");
-		tempEmailAddress = txtCustomerName + "@mailinator.com";
+		tempEmailAddress = txtCustomerName + Constants.MAILINATORDOTCOM;
 		Eventhelper.sendkeys(driver, txtCustomerEmail, tempEmailAddress);
 	}
 

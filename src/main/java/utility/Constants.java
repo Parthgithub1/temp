@@ -14,4 +14,7 @@ public class Constants {
 	public static final String ENVIRONMENT = "environment";
 	public static final String LASTNAMESOLEPROPPASS = "SolePropPass";
 	public static final String NUMBEROFATTEMPTSVALIDATIONMESSAGE = "more attempts before the account becomes locked";
+	public static final String MAILINATORDOTCOM = "@mailinator.com";
+	public static final String DOUBLECLICK = "DoubleClick";
+		
 }

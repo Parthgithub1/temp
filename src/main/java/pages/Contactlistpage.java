@@ -34,7 +34,7 @@ public class Contactlistpage {
 		String lastName = faker.name().lastName();
 		Eventhelper.sendkeys(driver, txtFirstName, firstName);
 		Eventhelper.sendkeys(driver, txtLastName, lastName);
-		tempEmail = firstName + lastName + "@mailinator.com";
+		tempEmail = firstName + lastName + Constants.MAILINATORDOTCOM;
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
 		Log.info("Contact Email is :" + tempEmail);
 	}
