@@ -87,4 +87,12 @@ public class Addbillpage {
 		By txtSearchBaronAccountingSection = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
 	}
+	
+	public void enterAmount(String amount) {
+		Eventhelper.sendkeys(driver, txtAmount, amount);
+	}
+	
+	public void enterInvoiceNumber(String invoiceNumber) {
+		Eventhelper.sendkeys(driver, txtInvoiceNumber, invoiceNumber);
+	}
 }
