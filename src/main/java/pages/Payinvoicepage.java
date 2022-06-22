@@ -80,11 +80,6 @@ public class Payinvoicepage {
 		Eventhelper.sendkeys(driver, txtSearchBaronPayableTab, searchPayables);
 	}
 
-	public void clickonNotificationfromHeader(String linktext) {
-		By btnxpath = By.xpath("(//*[name()='svg'])[4]");
-		Eventhelper.click(driver, btnxpath);
-	}
-
 	public boolean seeNotifications() {
 		List<WebElement> columnElements = Eventhelper.findElements(driver, notificationTableGridxPath);
 		List<String> actualData = new ArrayList<String>();
@@ -98,13 +93,13 @@ public class Payinvoicepage {
 		return flag;
 	}
 
-	public void enterInSearchBar(String searchPayables, String AccountingSection) {
+	public void enterInSearchBar(String searchPayables, String accountingSection) {
 		String xpath = null;
-		if (AccountingSection.equals("Payable")) {
+		if (accountingSection.equals("Payable")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
-		} else if (AccountingSection.equals("Receivable")) {
+		} else if (accountingSection.equals("Receivable")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[2]";
-		} else if (AccountingSection.equals("Completed")) {
+		} else if (accountingSection.equals("Completed")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
 		}
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
