@@ -62,4 +62,28 @@ public class ExternalInvoicesteps {
 	    externalInvoicePage.enterConrtactDetails();
 	}
 
+	@When("User enter {string} as a vendor")
+	public void user_enter_as_a_vendor(String businessName) {
+	   externalInvoicePage.enterBusinessName(businessName);
+	}
+	
+	@When("User enter {string} as a Contact first name")
+	public void user_enter_as_a_contact_first_name(String firstName) {
+	   externalInvoicePage.enterFirstName(firstName);
+	}
+	
+	@When("User enter {string} as a Contact last name")
+	public void user_enter_as_a_contact_last_name(String lastName) {
+	    externalInvoicePage.enterLastName(lastName);
+	}
+	
+	@When("User enter {string} as a contact email")
+	public void user_enter_as_a_contact_email(String email) {
+	   externalInvoicePage.enterEmail(email);
+	}
+
+	@When("User press the tab button on {string}")
+	public void user_press_the_tab_button_on(String fieldName) {
+	   externalInvoicePage.performTabOnField(fieldName);
+	}
 }

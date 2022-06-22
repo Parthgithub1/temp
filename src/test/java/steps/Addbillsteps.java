@@ -55,4 +55,14 @@ public class Addbillsteps {
 	public void user_enter_search_in_searchbar_of() {
 		addBillPage.enterInSearchBar();
 	}
+	
+	@When("User enter {string} as a amount")
+	public void user_enter_as_a_amount(String amount) {
+	    addBillPage.enterAmount(amount);
+	}
+
+	@When("User enter {string} as a invoice number")
+	public void user_enter_as_a_invoice_number(String invoiceNumber) {
+	   addBillPage.enterInvoiceNumber(invoiceNumber);
+	}
 }

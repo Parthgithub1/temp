@@ -16,8 +16,7 @@ public class Profilepage {
 	private By txtBusinessName = By.xpath("//input[@name='dbaName']");
 	private By txtHandle = By.xpath("//input[@name='handle']");
 	private By chooseFileImage = By.id("filePicker");
-	private By ddSelecteIndustry;
-
+	
 	public Profilepage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -62,7 +61,7 @@ public class Profilepage {
 		Eventhelper.useActionClassOperation(driver, txtHandle, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtHandle, handle);
 		Eventhelper.useActionClassOperation(driver, ddIndustry, Constants.DOUBLECLICK);
-		ddSelecteIndustry = By.xpath("//div[text()='" + industry + "']");
+		By ddSelecteIndustry = By.xpath("//div[text()='" + industry + "']");
 		Eventhelper.click(driver, ddSelecteIndustry);
 		Eventhelper.useActionClassOperation(driver, txtWebsite, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtWebsite, webSite);

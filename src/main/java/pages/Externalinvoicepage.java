@@ -17,6 +17,10 @@ public class Externalinvoicepage {
 	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
 	private By lblBusinessNameOnDashboard = By.xpath("//p[contains(@class,'InfoHeader_header')][1]");
 	private By lblBusinessNameOnExternalInvoice = By.xpath("//div[@class='handle']//span[1]");
+	private By txtbusinessname = By.xpath("//input[contains(@name ,'vendor')]");
+	private By txtfirstname = By.xpath("//input[@name='firstName']");
+	private By txtlastname = By.xpath("//input[contains(@name ,'lastName')]");
+	private By txtemail = By.xpath("//input[@name='email']");
 	private String txtCustomerName;
 	private String tempEmailAddress;
 	private String url;
@@ -91,10 +95,6 @@ public class Externalinvoicepage {
 	}
 
 	public void enterConrtactDetails() {
-		By txtbusinessname = By.xpath("//input[contains(@name ,'vendor')]");
-		By txtfirstname = By.xpath("//input[@name='firstName']");
-		By txtlastname = By.xpath("//input[contains(@name ,'lastName')]");
-		By txtemail = By.xpath("//input[@name='email']");
 		txtCustomerName = faker.name().firstName();
 		Eventhelper.useActionClassOperation(driver, txtbusinessname, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtbusinessname, txtCustomerName);
@@ -102,5 +102,38 @@ public class Externalinvoicepage {
 		Eventhelper.sendkeys(driver, txtlastname, faker.name().lastName());
 		tempEmailAddress = txtCustomerName + Constants.MAILINATORDOTCOM;
 		Eventhelper.sendkeys(driver, txtemail, tempEmailAddress);
+	}
+
+	public void enterBusinessName(String businessName) {
+			Eventhelper.useActionClassOperation(driver, txtbusinessname, Constants.DOUBLECLICK);
+			Eventhelper.sendkeys(driver, txtbusinessname, businessName);
+	}
+
+	public void enterFirstName(String firstName) {
+			Eventhelper.useActionClassOperation(driver, txtfirstname, Constants.DOUBLECLICK);
+			Eventhelper.sendkeys(driver, txtfirstname, firstName);
+	}
+
+	public void enterLastName(String lastName) {
+		Eventhelper.useActionClassOperation(driver, txtlastname, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtlastname, lastName);
+	}
+
+	public void enterEmail(String email) {
+		Eventhelper.useActionClassOperation(driver, txtemail, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtemail, email);
+	}
+	
+	public void performTabOnField(String field) {
+		if (field.equalsIgnoreCase("first name")) {
+			Eventhelper.sendKeyboardKeys(driver, txtfirstname, "tab");
+		} else if (field.equalsIgnoreCase("last name")) {
+			Eventhelper.sendKeyboardKeys(driver, txtlastname, "tab");
+		} else if (field.equalsIgnoreCase("email")) {
+			Eventhelper.sendKeyboardKeys(driver, txtemail, "tab");
+		} else if (field.equalsIgnoreCase("businessname")) {
+			Eventhelper.useActionClassOperation(driver, txtbusinessname, Constants.DOUBLECLICK);
+			Eventhelper.sendKeyboardKeys(driver, txtbusinessname, "tab");
+		}
 	}
 }
