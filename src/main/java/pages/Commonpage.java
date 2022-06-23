@@ -6,7 +6,18 @@ import utility.*;
 
 public class Commonpage {
 	enum Environment {
-		qat, uat, dev;
+		QAT, UAT;
+
+		public String getenv() {
+			switch (this) {
+			case QAT:
+				return "qat";
+			case UAT:
+				return "uat";
+			default:
+				return "qat";
+			}
+		}
 	}
 
 	private WebDriver driver;
@@ -23,7 +34,6 @@ public class Commonpage {
 	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
-	private By lblToolTipText = By.xpath("//div[@class='tooltip-inner']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -110,7 +120,7 @@ public class Commonpage {
 	}
 
 	public String getEmailAsPerFeature(String feature) {
-		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.qat.toString()
+		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.QAT.getenv()
 				: System.getProperty(Constants.ENVIRONMENT);
 		String credential = null;
 
@@ -120,26 +130,32 @@ public class Commonpage {
 		case "Funds":
 		case "externalInvoice":
 		case "InvoiceSend":
-			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat1");
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat3")
+					: property.getProperty("uat1");
 			break;
 		case "Profile":
 		case "paymentMethodSection":
-			credential = environment.equals("qat") ? property.getProperty("qat6") : property.getProperty("uat2");
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat6")
+					: property.getProperty("uat2");
 			break;
 		case "twoFactorAuthentication":
 		case "InvoicePay":
-			credential = environment.equals("qat") ? property.getProperty("qat7") : property.getProperty("uat3");
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat7")
+					: property.getProperty("uat3");
 			break;
 		case "contact":
 		case "changePassword":
 		case "accountSection":
-			credential = environment.equals("qat") ? property.getProperty("qat5") : property.getProperty("uat2");
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat5")
+					: property.getProperty("uat2");
 			break;
 		case "Unverified":
-			credential = environment.equals("qat") ? property.getProperty("qat4") : property.getProperty("qat4");
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat4")
+					: property.getProperty("qat4");
 			break;
 		default:
-			credential = environment.equals("qat") ? property.getProperty("qat3") : property.getProperty("uat3");
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat3")
+					: property.getProperty("uat3");
 		}
 		return credential;
 	}
@@ -147,5 +163,4 @@ public class Commonpage {
 	public void switchToDashboard() {
 		Eventhelper.click(driver, lnkDashBoard);
 	}
-
 }

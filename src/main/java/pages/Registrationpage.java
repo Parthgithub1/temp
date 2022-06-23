@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utility.*;
 
-
 public class Registrationpage {
 
 	private WebDriver driver;
@@ -27,7 +26,7 @@ public class Registrationpage {
 	private By ddSelecteState = By.xpath("//div[text()='AK']");
 	private By ddIndustry = By.xpath("//div[@id='industry']");
 	private By ddSelecteIndustry = By.xpath("//div[text()='Accounting']");
-	private Commonpage commonPage ;
+	private Commonpage commonPage;
 
 	public Registrationpage(WebDriver driver) {
 		this.driver = driver;
@@ -77,10 +76,6 @@ public class Registrationpage {
 
 	public void clickOnTextbox() {
 		Eventhelper.click(driver, txtEmailAddress);
-	}
-
-	public void sendTab() {
-		Eventhelper.sendKeyboardKeys(driver, txtEmailAddress, "tab");
 	}
 
 	public void doRegister(String randomemail) {

@@ -19,13 +19,13 @@ public class Registrationstep {
 	}
 
 	@When("User enter {string} in businessname field")
-	public void user_enter_in_businessname_field(String bname) {
-		registrationpage.enterBusinessName(bname);
+	public void user_enter_in_businessname_field(String bName) {
+		registrationpage.enterBusinessName(bName);
 	}
-	
+
 	@When("User enter otp on screen")
-    public void user_enter_otp_on_screen() {
-        registrationpage.enterOTP();
+	public void user_enter_otp_on_screen() {
+		registrationpage.enterOTP();
 	}
 
 	@When("user enter additional information")
@@ -36,11 +36,6 @@ public class Registrationstep {
 	@When("User click on the textbox of email")
 	public void user_click_on_the_textbox_of_email() {
 		registrationpage.clickOnTextbox();
-	}
-
-	@When("User press the tab button")
-	public void user_press_the_tab_button() {
-		registrationpage.sendTab();
 	}
 
 	@When("User register with {string} email")

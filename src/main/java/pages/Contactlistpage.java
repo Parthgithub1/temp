@@ -19,6 +19,8 @@ public class Contactlistpage {
 	private By lblEmailIdinContactListGrid = By.xpath("//td[2]");
 	private By btnBackFromContactProfileScreen = By
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
+	private By ddValueOfBusinessSearched = By
+			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	Faker faker = new Faker();
 	String tempEmail;
 	String bName = faker.company().name();
@@ -36,7 +38,24 @@ public class Contactlistpage {
 		Eventhelper.sendkeys(driver, txtLastName, lastName);
 		tempEmail = firstName + lastName + Constants.MAILINATORDOTCOM;
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
-		Log.info("Contact Email is :" + tempEmail);
+	}
+
+	public void enterContactDeatailsForAlreadyLinkedEmail() {
+		Eventhelper.sendkeys(driver, txtBusinessName, bName);
+		Eventhelper.click(driver, btnAddNewBusiness);
+		String firstName = faker.name().firstName();
+		String lastName = faker.name().lastName();
+		Eventhelper.sendkeys(driver, txtFirstName, firstName);
+		Eventhelper.sendkeys(driver, txtLastName, lastName);
+		Eventhelper.sendkeys(driver, txtEmail, "qatsmokeautomation031@mailinator.com");
+	}
+
+	public void enterBusinessName(String bName) {
+		Eventhelper.sendkeys(driver, txtBusinessName, bName);
+		By selectBusiness = By
+				.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + bName + "')]");
+		Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, bName);
+		Eventhelper.click(driver, selectBusiness);
 	}
 
 	public void clickOnAddNewBusinessButton() {
