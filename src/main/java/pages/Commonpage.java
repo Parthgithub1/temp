@@ -120,6 +120,7 @@ public class Commonpage {
 	}
 
 	public String getEmailAsPerFeature(String feature) {
+
 		String environment = (System.getProperty(Constants.ENVIRONMENT) == null) ? Environment.QAT.getenv()
 				: System.getProperty(Constants.ENVIRONMENT);
 		String credential = null;
@@ -151,7 +152,7 @@ public class Commonpage {
 			break;
 		case "Unverified":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat4")
-					: property.getProperty("qat4");
+					: property.getProperty("uat4");
 			break;
 		default:
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat3")
