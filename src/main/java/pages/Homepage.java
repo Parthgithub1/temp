@@ -14,7 +14,7 @@ public class Homepage {
 
 	public float getCurrentHopscotchBalanceAmount() {
 		waitUntiAddFundsButtonEnabled();
-		return Eventhelper.ConvertFloatTo2DecimalFloat(Float.parseFloat(Eventhelper.getValueOfAttribute(
+		return Eventhelper.convertFloatTo2DecimalFloat(Float.parseFloat(Eventhelper.getValueOfAttribute(
 				driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"zurobalance-amount").replace("$", "")));

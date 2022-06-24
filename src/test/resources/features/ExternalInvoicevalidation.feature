@@ -27,8 +27,7 @@ Feature: Test validation on external invoice screen
       | "= is equel"                 | "The name can only contain letters, numbers, and ; , :"  |
       | "***********"                | "The name can only contain letters, numbers, and ; , :"  |
       | "~~!~!`1"                    | "The name can only contain letters, numbers, and ; , :"  |
-      | "Drop in your business name" | "Drop in your business name"                             |
-
+     
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact first name
     When User enter <firstname> as a Contact first name

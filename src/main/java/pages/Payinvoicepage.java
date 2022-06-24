@@ -56,7 +56,7 @@ public class Payinvoicepage {
 		Eventhelper.click(driver, btnCompleted);
 		Eventhelper.click(driver, btnDate);
 		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
-		List<String> actualData = new ArrayList<String>();
+		List<String> actualData = new ArrayList<>();
 		for (WebElement columnElement : columnElements) {
 			actualData.add(columnElement.getText());
 		}
@@ -82,7 +82,7 @@ public class Payinvoicepage {
 
 	public boolean seeNotifications() {
 		List<WebElement> columnElements = Eventhelper.findElements(driver, notificationTableGridxPath);
-		List<String> actualData = new ArrayList<String>();
+		List<String> actualData = new ArrayList<>();
 		boolean flag = false;
 		for (WebElement columnElement : columnElements) {
 			actualData.add(columnElement.getText());

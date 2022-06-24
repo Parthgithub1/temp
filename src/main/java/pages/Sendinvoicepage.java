@@ -2,7 +2,6 @@ package pages;
 
 import java.util.*;
 import org.openqa.selenium.*;
-
 import utility.Eventhelper;
 
 public class Sendinvoicepage {
@@ -53,7 +52,7 @@ public class Sendinvoicepage {
 	public List<String> seeInvoice(String businessName) {
 		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
 		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
-		List<String> actualData = new ArrayList<String>();
+		List<String> actualData = new ArrayList<>();
 		for (WebElement columnElement : columnElements) {
 			actualData.add(columnElement.getText());
 		}
@@ -74,5 +73,10 @@ public class Sendinvoicepage {
 
 	public void sortWithDueDate() {
 		Eventhelper.click(driver, btnDueDateOnReceivable);
+	}
+	
+	public void enterAmountOfInvoice(String amount)
+	{
+		Eventhelper.sendkeys(driver, txtAmount, amount);
 	}
 }
