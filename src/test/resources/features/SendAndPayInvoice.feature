@@ -54,14 +54,13 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    Then User should see "Invoice a business" text on the screen
     When User enter "hopsmokeautomation3llc" in searchbox
     Then User should see "hopsmokeautomation3llc" text on the screen
-    When User click on "Invoice" button
-    Then User should see "Invoice a business" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
     When User enter invoice details like amount is 1 and message is "This is the text of message"
-    When User click on "Continue" button
-    When User click on "Send Invoice" button
+    When User click on "Confirm" button
+    When User click on "Send" button
     Then User should see "Your invoice has been sent successfully" text on the screen
     Then Receivable balance is updated on the screen with "1.00"
     When User enter "hopsmokeautomation3llc" in Searchbar of "Receivable"
@@ -89,7 +88,6 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see update amount of Hopscotch Balance on Accounting Page
     Then User should see invoice details of invoice details on the screen
       | hopsmokeautomation1llc | -$1.00 |
-    Then User click on "Homepage" button to navigate to dashboard
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You paid an invoice to hopsmokeautomation1llc for $1.00" notification

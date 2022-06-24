@@ -87,7 +87,7 @@ public class Commonpage {
 
 	public boolean isNotificationPresentInList(String notificationMessage) {
 		List<WebElement> listofNotificationsElements = Eventhelper.findElements(driver, notificationTableGridxPath);
-		List<String> listofNotificationsText = new ArrayList<String>();
+		List<String> listofNotificationsText = new ArrayList<>();
 		for (WebElement notificationsElements : listofNotificationsElements) {
 			listofNotificationsText.add(notificationsElements.getText());
 		}
