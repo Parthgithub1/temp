@@ -1,7 +1,7 @@
 Feature: Test Registration Functionality
   I want to use this template for my feature file
 
- @Registration
+  @Registration
   Scenario: verify that user is able to register into hopscotch application
     When User click on "Sign up" link
     When User enter "random" in email field
@@ -22,12 +22,12 @@ Feature: Test Registration Functionality
   Scenario: verify that user is able to jump to login page by clicking on sign in on registration page
     When User click on "Sign up" link
     When User click on "Sign in" link
-    Then User should see "Welcome Back!" text on the screen
+    Then User should see "Sign in" text on the screen
 
   @Regression
   Scenario: verify that registered user is not able to again register
     When User click on "Sign up" link
-    When User enter "testuser4@hopscotch.com" in email field
+    When User enter "qatsmokeautomation031@mailinator.com" in email field
     When User click on "Continue" button
     Then User should see "This email address is already being used." text on the screen
 
@@ -54,13 +54,14 @@ Feature: Test Registration Functionality
       | "user@[IPv6:2001:DB8::1]"       | "Please enter a legit email address" |
       | "#@%^%#$@#$@#.com"              | "Please enter a legit email address" |
       | "Joe Smith <email@example.com>" | "Please enter a legit email address" |
-      | "ã�‚ã�„ã�†ã�ˆã�Š@example.com"             | "Please enter a legit email address" |
+      | "ã�‚ã�„ã�†ã�ˆã�Š@example.com"   | "Please enter a legit email address" |
 
   @Regression
   Scenario Outline: verify that user is not able to set invalid first name in registration process
     When User click on "Sign up" link
     When User enter "invalidfirstname@hopscotch.com" in email field
     When User click on "Continue" button
+    When User enter otp on screen
     When User enter <firstname> in firstname field
     Then User should see "Only latin alphabet, hyphen, space, comma, period and apostrophe" text on the screen
 
@@ -78,6 +79,7 @@ Feature: Test Registration Functionality
     When User click on "Sign up" link
     When User enter "invalidlastname@hopscotch.com" in email field
     When User click on "Continue" button
+    When User enter otp on screen
     When User enter <lastname> in lastname field
     Then User should see "Only latin alphabet, hyphen, space, comma, period and apostrophe" text on the screen
 
@@ -95,6 +97,7 @@ Feature: Test Registration Functionality
     When User click on "Sign up" link
     When User enter "invalidbusiaddress@hopscotch.com" in email field
     When User click on "Continue" button
+    When User enter otp on screen
     When User enter <businessname> in businessname field
     Then User should see "The name can only contain letters, numbers" text on the screen
 
@@ -113,6 +116,7 @@ Feature: Test Registration Functionality
     When User click on "Sign up" link
     When User enter "invalidbusiaddress@hopscotch.com" in email field
     When User click on "Continue" button
+    When User enter otp on screen
     When User enter <pass> in password field
     Then User should see <validationMessage> text on the screen
 
@@ -129,23 +133,3 @@ Feature: Test Registration Functionality
       | "@1111"                                     | "Must include an uppercase and lowercase character, a number, and a special character" |
       | "Test@122121212122121212212221212121212121" | "Maximum of 14 characters"                                                             |
       | "Test@12"                                   | "Minimum of 8 characters"                                                              |
-
-  @Regression
-  Scenario: verify that user is able to click on resend code during register process into hopscotch application
-    When User click on "Sign up" link
-    When User enter "random" in email field
-    When User click on "Continue" button
-    When User enter "Steave" in firstname field
-    When User enter "Page" in lastname field
-    When User enter "The Pages" in businessname field
-    When User enter "Test@123" in password field
-    When User click on "Continue" button
-    When User click on "Resend code" button
-    Then User should see "Verification code resend successfully!" text on the screen
-
-  @Regression
-  Scenario: verify that user is not able to leave the email field empty on the during register process into hopscotch application
-    When User click on "Sign up" link
-    When User click on the textbox of email
-    When User press the tab button
-    Then User should see "Drop in your email" text on the screen

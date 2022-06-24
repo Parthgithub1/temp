@@ -42,7 +42,7 @@ public class AddFundsteps {
 		} else {
 			amountToEnter = (Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()) - (float) amount);
 		}
-		amountToEnter = Eventhelper.ConvertFloatTo2DecimalFloat(amountToEnter);
+		amountToEnter = Eventhelper.convertFloatTo2DecimalFloat(amountToEnter);
 		Log.info("User enter in " + fundProcess + " Funds Modal :" + amountToEnter);
 		addFunds.enterAmount(amountToEnter);
 		fundData.setAmountofhopscotchBalance(amountToEnter);
@@ -92,13 +92,13 @@ public class AddFundsteps {
 	@When("User enter amount to {string} funds")
 	public void user_enter_amount_to_funds(String fundProcess) {
 		Log.info("User enter in " + fundProcess + " Funds Modal :" + currentHopscotchBalance);
-		addFunds.enterAmount(Eventhelper.ConvertFloatTo2DecimalFloat(currentHopscotchBalance));
+		addFunds.enterAmount(Eventhelper.convertFloatTo2DecimalFloat(currentHopscotchBalance));
 	}
 	
 	@When("User enter amount more then current balance to {string} funds")
 	public void user_enter_amount_more_then_current_balance_to_funds(String fundProcess) {
 		float amountToEnter = currentHopscotchBalance + 1;
 		Log.info("User enter in " + fundProcess + " Funds Modal :" + amountToEnter);
-		addFunds.enterAmount(Eventhelper.ConvertFloatTo2DecimalFloat(amountToEnter));
+		addFunds.enterAmount(Eventhelper.convertFloatTo2DecimalFloat(amountToEnter));
 	}
 }

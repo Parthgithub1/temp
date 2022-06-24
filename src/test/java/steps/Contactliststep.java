@@ -54,10 +54,19 @@ public class Contactliststep {
 	public void user_click_on_restore_contact_option_to_restore_contact(String string) {
 		contactList.clickOnDeleteOrRestoreContact(string);
 	}
-	
-	
+
 	@Then("User should see Contact in List")
 	public void user_should_see_notification() throws InterruptedException {
 		assertTrue(contactList.seeContacts());
+	}
+
+	@When("User enter {string} in Business name field")
+	public void user_enter_in_business_name_field(String bName) {
+		contactList.enterBusinessName(bName);
+	}
+
+	@When("User enter the Contact deatils with already added email")
+	public void user_enter_the_contact_deatils_with_already_added_email() {
+		contactList.enterContactDeatailsForAlreadyLinkedEmail();
 	}
 }

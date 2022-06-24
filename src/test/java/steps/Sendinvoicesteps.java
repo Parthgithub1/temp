@@ -41,7 +41,7 @@ public class Sendinvoicesteps {
 		List<String> expectedList = new ArrayList<String>();
 		for (List<String> columns : expected) {
 			expectedList.add(columns.get(0));
-			expectedList.add(Eventhelper.GetTodaysdateInSpecifiedFormat());
+			expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
 			expectedList.add(columns.get(1));
 		}
 		List<String> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
@@ -66,4 +66,10 @@ public class Sendinvoicesteps {
 		//receivableBalanceOnDashboard = sendInvoicePage.readReceivableBalanceOnDashBoard();
 		assertEquals(receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin);
 	}
+	
+	@When("user enter {string} as a invoice amount")
+	public void user_enter_as_a_invoice_amount(String amount) {
+	   sendInvoicePage.enterAmountOfInvoice(amount);
+	}
+
 }

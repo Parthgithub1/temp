@@ -224,6 +224,7 @@ public class Eventhelper {
 		try {
 			Thread.sleep(miliSeconds);
 		} catch (Exception e) {
+			Log.info(e);
 		}
 	}
 
@@ -235,7 +236,7 @@ public class Eventhelper {
 		return inputdate;
 	}
 
-	public static String GetTodaysdateInSpecifiedFormat() {
+	public static String getTodaysdateInSpecifiedFormat() {
 		String[] suffixes = // 0 1 2 3 4 5 6 7 8 9
 				{ "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
 						// 10 11 12 13 14 15 16 17 18 19
@@ -264,7 +265,7 @@ public class Eventhelper {
 		return Float.parseFloat(amt);
 	}
 
-	public static float ConvertFloatTo2DecimalFloat(float number) {
+	public static float convertFloatTo2DecimalFloat(float number) {
 		DecimalFormat df = new DecimalFormat(".00");
 		return Float.valueOf(df.format(number));
 	}

@@ -2,7 +2,7 @@ Feature: Test Contact List Functionality
 
   @Smoke @contact @UAT @QAT
   Scenario: Verify New Contacts are added in Contact List
-    When User login for "contact" 
+    When User login for "contact"
     Then User should navigate to dashboard "contact"
     And User click on "Contact List" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
@@ -11,7 +11,7 @@ Feature: Test Contact List Functionality
     When User click on "Add" button
     Then User should see "Contacts" text on the screen
     Then User wait till pop up gets closed
-    # Search & Profile 
+    # Search & Profile
     When User enter search for Name in Searchbar
     When User click on Contact from SearchList
     Then User should see the Contact Add Profile
@@ -20,17 +20,34 @@ Feature: Test Contact List Functionality
     When User enter search for Name in Searchbar
     And User click on More Options button beside any Contact
     Then User click on "Delete" Option to delete Contact
-    
     # Trash & Restore
     When User click on "Trash" link
     When User enter search for Name in Searchbar
     And User click on More Options button beside any Contact
     When User click on "Restore to Contacts" Option to Restore Contact
-    
     # Back to Contact and Search Record
     When User click on "Contacts" link
     Then User should see "Add contact" text on the screen
     When User enter search for Name in Searchbar
     And User should see Contact in List
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @contacts @UAT @QAT
+  Scenario: Verify Already Contact Added Validations for Contact feature
+    When User login for "contact"
+    Then User should navigate to dashboard "contact"
+    And User click on "Contact List" button to navigate to dashboard
+    Then User should see "Contacts" text on the screen
+    When User click on "Add contact" button
+    When User enter "qatsmokeautomation031" in Business name field
+    When User click on "Add" button
+    Then User should see "Contact already added" text on the screen
+    When User click on "Cancel" button
+    When User click on "Add contact" button
+    And User enter the Contact deatils with already added email
+    When User click on "Add" button
+    Then User should see "Email is already associated with qatsmokeautomation031" text on the screen
+    When User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
