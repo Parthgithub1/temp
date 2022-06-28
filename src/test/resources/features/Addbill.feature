@@ -23,7 +23,7 @@ Feature: Test AddBill functionality
     When User enter search in Searchbar for business
     When User click on Invoice from Payable tab
     When User should see the amount to be Payable
-    Then User should see "Payable Dashboard" text on the screen
+    Then User should see "Payable dashboard" text on the screen
     When User click on "Pay" button
     When User click on "Confirm" button
     Then User should see "It is on its way to" text on the screen

@@ -5,7 +5,7 @@ Feature: Test Settings Tab Functionality
     When User login for "paymentMethodSection"
     Then User should navigate to dashboard "paymentMethodSection"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment Methods" link
+    When User click on "Payment methods" link
     Then User click on "Add account" button
     When User process add "Wells Fargo" bank screen
     Then User should see "Wells Fargo" text on the screen
@@ -91,7 +91,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > Change Password Section Negative Cases
-  @Regression @changePassword @Setting @QAT @UAT @CurrentPasswordValidation
+  @Regression @Setting @CurrentPasswordValidation
   Scenario: Verify Settings Tab Account Section Change Password Functionality Validations Message
     When User login for "changePassword"
     Then User should navigate to dashboard "changePassword"
@@ -105,7 +105,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > Change Password Section Negative Cases
-  @Regression @changePassword @Setting @QAT @UAT @emptyPasswordFieldValidations
+  @Regression @Setting @emptyPasswordFieldValidations
   Scenario: Verify Settings Tab Account Section Change Password Validations Message
     When User login for "changePassword"
     Then User should navigate to dashboard "changePassword"
@@ -122,7 +122,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > Change Password Section Negative Cases
-  @Regression @changePassword @Setting @QAT @UAT @newPasswordValidations
+  @Regression @Setting @newPasswordValidations
   Scenario: Verify Settings Tab Account Section Change Password Validations Message
     When User login for "changePassword"
     Then User should navigate to dashboard "changePassword"
@@ -135,7 +135,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > Change Password Section Negative Cases
-  @Regression @changePassword @Setting @QAT @UAT @newPasswordValidation
+  @Regression @Setting @newPasswordValidation
   Scenario: Verify Settings Tab Account Section Change Password Validations Message
     When User login for "changePassword"
     Then User should navigate to dashboard "changePassword"
@@ -148,7 +148,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > Change Password Section Negative Cases
-  @Regression @changePassword @Setting @QAT @UAT @ConfirmPasswordDoNotMatch
+  @Regression @Setting @ConfirmPasswordDoNotMatch
   Scenario: Verify Settings Tab Account Section Change Password Functionality
     When User login for "changePassword"
     Then User should navigate to dashboard "changePassword"
@@ -161,7 +161,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > twoFactorAuthentication Section Negative Cases
-  @Regression @twoFactorAuthentication @Setting @QAT @doNotRunOnUAT @ValidationforWrongCode
+  @Regression @Setting @ValidationforWrongCode
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
     When User login for "twoFactorAuthentication"
     Then User should navigate to dashboard "twoFactorAuthentication"
@@ -176,12 +176,12 @@ Feature: Test Settings Tab Functionality
     Then User should see "Sign in" text on the screen
 
   #Settings > Already Added Bank Details Section Negative Cases
-  @Regression @paymentMethodSection @Setting @QAT @ValidationForAlreadyAddedBank
+  @Regression @Setting @ValidationForAlreadyAddedBank
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
     When User login for "paymentMethodSection"
     Then User should navigate to dashboard "paymentMethodSection"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment Methods" link
+    When User click on "Payment methods" link
     When User save the bank detail of currrently added bank
     Then User click on "Add account" button
     When User add existing bank account on Payment Method

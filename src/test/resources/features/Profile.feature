@@ -7,7 +7,7 @@ Feature: Test Profile Functionality
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see <BusinessName> text on the screen
     When User click on Edit Icon beside User name
-    Then User should see "Edit Profile" text on the screen of Edit form
+    Then User should see "Edit profile" text on the screen of Edit form
     When User enter <BusinessName> in Business Name field and <Handle> in Handle field and <Industry> from Industry drop-down and <Website> in Website field and <YearFound> in Year founded field
     Then User click on "Change Logo" button
     Then User should see "Upload image" text on the screen
@@ -40,7 +40,7 @@ Feature: Test Profile Functionality
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see <BusinessName> text on the screen
     When User click on Edit Icon beside User name
-    Then User should see "Edit Profile" text on the screen of Edit form
+    Then User should see "Edit profile" text on the screen of Edit form
     When User enter <BusinessName> in Business Name field and <Handle> in Handle field and <Industry> from Industry drop-down and <Website> in Website field and <YearFound> in Year founded field
     Then User click on "Change Logo" button
     Then User should see "Upload image" text on the screen
