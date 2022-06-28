@@ -24,7 +24,7 @@ Feature: Test Contact List Functionality
     When User click on "Trash" link
     When User enter search for Name in Searchbar
     And User click on More Options button beside any Contact
-    When User click on "Restore to Contacts" Option to Restore Contact
+    When User click on "Restore to contacts" Option to Restore Contact
     # Back to Contact and Search Record
     When User click on "Contacts" link
     Then User should see "Add contact" text on the screen

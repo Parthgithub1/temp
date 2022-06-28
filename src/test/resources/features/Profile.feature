@@ -9,9 +9,9 @@ Feature: Test Profile Functionality
     When User click on Edit Icon beside User name
     Then User should see "Edit profile" text on the screen of Edit form
     When User enter <BusinessName> in Business Name field and <Handle> in Handle field and <Industry> from Industry drop-down and <Website> in Website field and <YearFound> in Year founded field
-    Then User click on "Change Logo" button
+    Then User click on "Change logo" button
     Then User should see "Upload image" text on the screen
-    Then User click on "Change Picture" option
+    Then User click on "Change picture" option
     When User click on "Continue" button from Upload image popup
     Then User should see "Updated BusinessProfile Successfully." text on the screen
     Then User should see updated Profile Details on the Screen like <BusinessName> , <Handle> , <Industry>, <Website>, <YearFound>
@@ -22,7 +22,7 @@ Feature: Test Profile Functionality
     Then User should see updated Data of About <AboutText> in Profile
     When User click on Edit Icon from Banner
     Then User should see "Change banner" text on the screen
-    Then User click on "Upload Another Photo" option
+    Then User click on "Upload another photo" option
     When User click on "Continue" button
     Then User should see "Updated BusinessProfile Successfully." text on the screen
     Then User should see "History" text on the screen
@@ -33,7 +33,7 @@ Feature: Test Profile Functionality
       | BusinessName           | Handle                  | Industry     | Website                   | YearFound | AboutText                                     |
       | "qatsmokeautomation06" | "@qatsmokeautomation06" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
 
-  @Smoke @Profile @UAT
+  @Smokes @Profile @UAT
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
     When User login for "Profile"
     Then User should navigate to dashboard "Profile"
@@ -42,9 +42,9 @@ Feature: Test Profile Functionality
     When User click on Edit Icon beside User name
     Then User should see "Edit profile" text on the screen of Edit form
     When User enter <BusinessName> in Business Name field and <Handle> in Handle field and <Industry> from Industry drop-down and <Website> in Website field and <YearFound> in Year founded field
-    Then User click on "Change Logo" button
+    Then User click on "Change logo" button
     Then User should see "Upload image" text on the screen
-    Then User click on "Change Picture" option
+    Then User click on "Change picture" option
     When User click on "Continue" button from Upload image popup
     Then User should see "Updated BusinessProfile Successfully." text on the screen
     Then User should see updated Profile Details on the Screen like <BusinessName> , <Handle> , <Industry>, <Website>, <YearFound>
@@ -55,7 +55,7 @@ Feature: Test Profile Functionality
     Then User should see updated Data of About <AboutText> in Profile
     When User click on Edit Icon from Banner
     Then User should see "Change banner" text on the screen
-    Then User click on "Upload Another Photo" option
+    Then User click on "Upload another photo" option
     When User click on "Continue" button
     Then User should see "Updated BusinessProfile Successfully." text on the screen
     Then User should see "History" text on the screen
