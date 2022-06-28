@@ -1,6 +1,6 @@
 Feature: Test Settings Tab Functionality
 
-  @Smoke @Setting @paymentMethodSection @QAT @UAT
+  @Smoke @Setting @paymentMethodSection @QAT @UAT 
   Scenario: Verify Payment methods on Settings Tab
     When User login for "paymentMethodSection"
     Then User should navigate to dashboard "paymentMethodSection"
@@ -18,26 +18,26 @@ Feature: Test Settings Tab Functionality
     Then User should see "Wells Fargo" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment Methods" link
+    When User click on "Payment methods" link
     When User click on menu of the "Wells Fargo" bank
     #Set as deposite account
     When User click on "Set as Deposit account" link
-    Then User should see "Wells Fargo" as "Deposit Account"
+    Then User should see "Wells Fargo" as "Deposit account"
     When User switch to dashboard
     When User click on "Withdraw" button
     Then User should see "Wells Fargo" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment Methods" link
+    When User click on "Payment methods" link
     When User click on menu of the "Chase" bank
     When User click on "Set as Deposit account" link
-    Then User should see "Chase" as "Deposit Account"
+    Then User should see "Chase" as "Deposit account"
     When User click on menu of the "Chase" bank
     When User click on "Set as Funding account" link
     Then User should see "Chase" as "Funding account"
     #delete bank account Chas
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment Methods" link
+    When User click on "Payment methods" link
     When User click on menu of the "Wells Fargo" bank
     When User click on "Delete" link
     When User click on "Delete" button
