@@ -1,6 +1,6 @@
 Feature: Test Send and Pay invoice Functionality
 
-  @Smoke @sendandpayinvoice @QAT @run
+  @Smoke @sendandpayinvoice @QAT
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
