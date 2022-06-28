@@ -16,5 +16,6 @@ public class Constants {
 	public static final String NUMBEROFATTEMPTSVALIDATIONMESSAGE = "more attempts before the account becomes locked";
 	public static final String MAILINATORDOTCOM = "@mailinator.com";
 	public static final String DOUBLECLICK = "DoubleClick";
-		
+	public static final String RECEIVABLE = "Receivable";
+	public static final String PAYABLE = "Payable";			
 }

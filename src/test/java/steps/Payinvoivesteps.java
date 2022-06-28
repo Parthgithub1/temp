@@ -11,7 +11,8 @@ import utility.*;
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
-
+    Sendinvoicepage sendInvoice= new Sendinvoicepage(Driverhelper.getDriver());
+	
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
@@ -20,6 +21,7 @@ public class Payinvoivesteps {
 	Payinvoicedata payData = new Payinvoicedata();
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Homepage homepage = new Homepage(Driverhelper.getDriver());
+	float amountOfRejectedCard, getexistingBalanceofPayableonAccountingPage;
 
 	@When("User click on {string} Container")
 	public void user_click_on_container(String string) {
@@ -28,10 +30,10 @@ public class Payinvoivesteps {
 
 	@When("User should save Default amount of Payable on Accounting Page")
 	public void user_should_save_default_amount_of_payable_on_accounting_page() {
-		//Eventhelper.threadWait(5000);
-		float getexistingBalanceofPayableonAccountingPage = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		// Eventhelper.threadWait(5000);
+		getexistingBalanceofPayableonAccountingPage = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		payData.setBalanceofPayableonAccountingPage(getexistingBalanceofPayableonAccountingPage);
-		Log.info("Existing payable balance on accounting screen is:- "+getexistingBalanceofPayableonAccountingPage );
+		Log.info("Existing payable balance on accounting screen is:- " + getexistingBalanceofPayableonAccountingPage);
 	}
 
 	@When("User click on Invoice from Payable tab")
@@ -53,7 +55,7 @@ public class Payinvoivesteps {
 		System.out.println(payData.getInvoiceAmounttobePaid());
 		assertEquals(expectedAmount, payData.getBalanceofPayableonAccountingPage(), 0);
 	}
-	
+
 	@Then("User should see update amount of Hopscotch Balance on Accounting Page")
 	public void user_should_see_update_amount_of_hopscotch_balance_on_accounting_page() {
 		Eventhelper.threadWait(8000);
@@ -93,11 +95,12 @@ public class Payinvoivesteps {
 
 	@Then("User should see updated amount of Completed Payable Balance")
 	public void user_should_see_updated_amount_of_completed_payable_balance() {
-		float updateHopscotchBalanceCompletedPayables = payData.getExistingBalanceofCompletedPayables() + payData.getInvoiceAmounttobePaid();
+		float updateHopscotchBalanceCompletedPayables = payData.getExistingBalanceofCompletedPayables()
+				+ payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalanceCompletedPayables);
-		assertEquals(updateHopscotchBalanceCompletedPayables, fundData.getAmountofhopscotchBalance() , 1);
+		assertEquals(updateHopscotchBalanceCompletedPayables, fundData.getAmountofhopscotchBalance(), 1);
 	}
-	
+
 	@Then("User click on {string} button to navigate to dashboard")
 	public void user_click_on_button_to_navigate_to_dashboard(String buttoname) {
 		commonPage.clickonLinkfromProfileDropDownOption(buttoname);
@@ -110,17 +113,31 @@ public class Payinvoivesteps {
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
-	
+
 	@Then("User see the updated payable balance before paying invoice of add bill")
 	public void user_see_the_updated_payable_balance_before_paying_invoice_of_add_bill() {
-		Eventhelper.threadWait(3000);        
-		float expectedAmount = payData.getBalanceofPayableonAccountingPage()+ Addbillsteps.addBillInvoiceAmount();
+		Eventhelper.threadWait(3000);
+		float expectedAmount = payData.getBalanceofPayableonAccountingPage() + Addbillsteps.addBillInvoiceAmount();
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
 
 	@When("User enter {string} in Searchbar of {string}")
 	public void user_enter_in_searchbar_of(String Businessname, String AccountingSection) {
-	payInvoice.enterInSearchBar(Businessname, AccountingSection);
+		payInvoice.enterInSearchBar(Businessname, AccountingSection);
+	}
+
+	@Then("User should see the amount of the card for rejection")
+	public void user_should_see_the_amount_of_the_card_for_rejection() {
+		amountOfRejectedCard = sendInvoice.invoiceAmount("Payable");
+	}
+
+	@Then("Payable balance is updated on the screen once user Reject invoice")
+	public void payable_balance_is_updated_on_the_screen_once_user_reject_invoice() {
+		float expectedAmount = getexistingBalanceofPayableonAccountingPage - amountOfRejectedCard;
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
+		Log.info("Expected amount is " + expectedAmount);
+		Log.info("Actual amount is " + actualAmount);
+		assertEquals(expectedAmount, actualAmount, 0);
 	}
 }
