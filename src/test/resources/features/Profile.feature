@@ -33,7 +33,7 @@ Feature: Test Profile Functionality
       | BusinessName           | Handle                  | Industry     | Website                   | YearFound | AboutText                                     |
       | "qatsmokeautomation06" | "@qatsmokeautomation06" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
 
-  @Smokes @Profile @UAT
+  @Smoke @Profile @UAT
   Scenario Outline: Verify Profile is being Upadted for Edit Profile
     When User login for "Profile"
     Then User should navigate to dashboard "Profile"

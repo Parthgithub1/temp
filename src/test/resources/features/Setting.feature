@@ -1,6 +1,6 @@
 Feature: Test Settings Tab Functionality
 
-  @Smoke @Setting @paymentMethodSection @QAT @UAT @test
+  @Smoke @Setting @paymentMethodSection @QAT @UAT 
   Scenario: Verify Payment methods on Settings Tab
     When User login for "paymentMethodSection"
     Then User should navigate to dashboard "paymentMethodSection"
