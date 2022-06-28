@@ -4,7 +4,7 @@ Feature: Test Contact List Functionality
   Scenario: Verify New Contacts are added in Contact List
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact List" button to navigate to dashboard
+    And User click on "Contact list" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User click on "Add contact" button
     And User enter the Contact deatils
@@ -33,11 +33,11 @@ Feature: Test Contact List Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @contacts @UAT @QAT
+  @Regression @contact
   Scenario: Verify Already Contact Added Validations for Contact feature
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact List" button to navigate to dashboard
+    And User click on "Contact list" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User click on "Add contact" button
     When User enter "qatsmokeautomation031" in Business name field
