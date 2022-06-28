@@ -6,7 +6,7 @@ Feature: Test Negative cases on Profile
     When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
     Then User should see "qatsmokeautomation06" text on the screen
     When User click on Edit Icon beside User name
-    Then User should see "Edit Profile" text on the screen of Edit form
+    Then User should see "Edit profile" text on the screen of Edit form
 
   @Regression
   Scenario Outline: Verify User is not able to set invalid website in Edit Profile
