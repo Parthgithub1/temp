@@ -80,16 +80,10 @@ public class Eventhelper {
 		WebElement element = explicitwaitclickable(driver, locator);
 		try {
 			element.click();
-		} catch (ElementClickInterceptedException e) {
+		} catch (ElementClickInterceptedException | StaleElementReferenceException | NoSuchElementException e) {
 			Log.error("Getting exception in Click --> " + e.toString());
 			Eventhelper.clickElementwithjs(driver, locator);
-		} catch (StaleElementReferenceException e) {
-			Log.error("Getting exception in  Click --> " + e.toString());
-			Eventhelper.clickElementwithjs(driver, locator);
-		} catch (NoSuchElementException e) {
-			Log.error("Getting exception in  Click --> " + e.toString());
-			Eventhelper.clickElementwithjs(driver, locator);
-		}
+		} 
 	}
 
 	public static void clickElementwithjs(WebDriver driver, By locator) {
@@ -223,7 +217,8 @@ public class Eventhelper {
 	public static void threadWait(long miliSeconds) {
 		try {
 			Thread.sleep(miliSeconds);
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 			Log.info(e);
 		}
 	}

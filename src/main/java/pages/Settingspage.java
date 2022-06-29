@@ -8,7 +8,7 @@ public class Settingspage {
 	private WebDriver driver;
 	private Commonpage commonPage;
 	static Propertyreader propertyreader = new Propertyreader();
-	static Properties property = propertyreader.init_prop();
+	static Properties property = propertyreader.initProp();
 	private By txtCurrentPassword = By.xpath(" //input[@name='currentPassword']");
 	private By txtNewPassword = By.xpath(" //input[@name='newPassword']");
 	private By txtConfirmPassword = By.xpath(" //input[@name='confirmNewPassword']");
