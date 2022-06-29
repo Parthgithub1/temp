@@ -18,7 +18,6 @@ Feature: Test validation on add bill screen
 
     Examples: 
       | Amount           |
-      | "21212121221221" |
       | ".00"            |
 
   @Regression 

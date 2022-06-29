@@ -29,7 +29,7 @@ public class Externalinvoicepage {
 	Faker faker = new Faker();
 	private Verificationpage verificationPage;
 	static Propertyreader propertyreader = new Propertyreader();
-	static Properties property = propertyreader.init_prop();
+	static Properties property = propertyreader.initProp();
 
 	public Externalinvoicepage(WebDriver driver) {
 		this.driver = driver;

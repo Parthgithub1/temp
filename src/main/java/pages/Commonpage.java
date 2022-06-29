@@ -22,7 +22,7 @@ public class Commonpage {
 
 	private WebDriver driver;
 	static Propertyreader propertyreader = new Propertyreader();
-	static Properties property = propertyreader.init_prop();
+	static Properties property = propertyreader.initProp();
 	private By xPathofdropDown = By.xpath("//img[@alt='Company Logo']");
 	private By txtEmailAddress = By.xpath("//input[contains(@name ,'email')]");
 	private By txtPassword = By.xpath("//input[contains(@name ,'password')]");
@@ -131,6 +131,7 @@ public class Commonpage {
 		case "Funds":
 		case "externalInvoice":
 		case "InvoiceSend":
+		case "deatiledInvoicePay":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat3")
 					: property.getProperty("uat1");
 			break;
@@ -147,6 +148,7 @@ public class Commonpage {
 		case "contact":
 		case "changePassword":
 		case "accountSection":
+		case "deatiledInvoice":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat5")
 					: property.getProperty("uat2");
 			break;
