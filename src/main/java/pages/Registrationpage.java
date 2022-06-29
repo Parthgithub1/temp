@@ -12,7 +12,7 @@ public class Registrationpage {
 
 	private WebDriver driver;
 	static Propertyreader propertyreader = new Propertyreader();
-	static Properties property = propertyreader.init_prop();
+	static Properties property = propertyreader.initProp();
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtBusinessName = By.xpath("//input[@name='dbaName']");

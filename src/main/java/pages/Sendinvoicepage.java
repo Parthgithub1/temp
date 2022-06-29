@@ -2,7 +2,9 @@ package pages;
 
 import java.util.*;
 import org.openqa.selenium.*;
+import utility.Constants;
 import utility.Eventhelper;
+import utility.Log;
 
 public class Sendinvoicepage {
 
@@ -17,11 +19,12 @@ public class Sendinvoicepage {
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
 	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
 	private By lnkPayOrGetPaid = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
-	private By btnDueDateOnReceivable = By.xpath("(//p[contains(text(),'Due date')])[2]");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	String receiableBlanaceOnAccountingPage;
 	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
+	private By btnSearchedcardonreceivable = By
+			.xpath("//span[@class='TransactionList_bizName__2vORu'][1][normalize-space()='qatsmokeautomation071']");
 	private Homepage homepage;
 
 	public Sendinvoicepage(WebDriver driver) {
@@ -66,17 +69,67 @@ public class Sendinvoicepage {
 						.substring(1).replace(",", ""));
 	}
 
+	public float invoiceAmount(String accountingSection) {
+		Eventhelper.threadWait(2000);
+		Float amount = null;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			amount = Float.parseFloat(Eventhelper
+					.getTextofElement(driver, By
+							.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[1]"))
+					.substring(1).replace(",", ""));
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			amount = Float.parseFloat(Eventhelper
+					.getTextofElement(driver, By
+							.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[2]"))
+					.substring(1).replace(",", ""));
+		}
+		Log.info("Balance on the opened card in receivable is :-" + amount);
+		return amount;
+	}
+
 	public void clickOnPayOrGetPaid() {
 		Eventhelper.explicitwait(driver, lnkPayOrGetPaid);
 		Eventhelper.click(driver, lnkPayOrGetPaid);
 	}
 
-	public void sortWithDueDate() {
-		Eventhelper.click(driver, btnDueDateOnReceivable);
+	public void sortWithDueDate(String accountingSection) {
+		By btnDuedate = null;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[1]");
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[2]");
+		}
+		Eventhelper.click(driver, btnDuedate);
 	}
-	
-	public void enterAmountOfInvoice(String amount)
-	{
+
+	public void enterAmountOfInvoice(String amount) {
 		Eventhelper.sendkeys(driver, txtAmount, amount);
+	}
+
+	public void clickOnMenuButtonOfCard(String accountingSection) {
+		By btnMenuOnReceivableCard = null;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			btnMenuOnReceivableCard = By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[1]");
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			btnMenuOnReceivableCard = By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[2]");
+		}
+		Eventhelper.click(driver, btnMenuOnReceivableCard);
+		Log.info("clicked on menu");
+	}
+
+	public void clickOnSearchedCardReceivavle() {
+		Eventhelper.click(driver, btnSearchedcardonreceivable);
+	}
+
+	public boolean isMessageOnCard(String message, String accountingSection) {
+		Boolean isTextOnScreen = false;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[1]");
+			isTextOnScreen = Eventhelper.isElementDisplayed(driver, xpath);
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[2]");
+			isTextOnScreen = Eventhelper.isElementDisplayed(driver, xpath);
+		}
+		return isTextOnScreen;
 	}
 }

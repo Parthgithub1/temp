@@ -8,7 +8,7 @@ public class Loginpage {
 	private WebDriver driver;
 	private Commonpage commonPage;
 	static Propertyreader propertyreader = new Propertyreader();
-	static Properties property = propertyreader.init_prop();
+	static Properties property = propertyreader.initProp();
 
 	public Loginpage(WebDriver driver) {
 		this.driver = driver;
