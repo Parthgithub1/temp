@@ -18,7 +18,7 @@ public class Sendinvoicepage {
 	private By lblreceivableBalanceonAccounting = By.xpath(
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
 	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
-	private By lnkPayOrGetPaid = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
+	private By lnkPayOrGetPaid = By.xpath("//a[@href='/vendors']");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	String receiableBlanaceOnAccountingPage;
