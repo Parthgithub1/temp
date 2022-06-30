@@ -87,12 +87,19 @@ public class Addbillpage {
 		By txtSearchBaronAccountingSection = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
 	}
-	
+
 	public void enterAmount(String amount) {
 		Eventhelper.sendkeys(driver, txtAmount, amount);
 	}
-	
+
 	public void enterInvoiceNumber(String invoiceNumber) {
 		Eventhelper.sendkeys(driver, txtInvoiceNumber, invoiceNumber);
+	}
+
+	public boolean isDeleteInvoiceNotificationSent() {
+		lblNotification = By.xpath(
+				"(//div[@class='card-content']//p[contains(text(),'You have rejected an invoice from ')]//span[contains(text(),'"
+						+ vender + "')])[1]");
+		return Eventhelper.isElementDisplayed(driver, lblNotification);
 	}
 }
