@@ -67,18 +67,7 @@ public class Verificationpage {
 	public void addBank() {
 		Eventhelper.threadWait(2000);
 		Eventhelper.click(driver, btnAddBankDetails);
-		Eventhelper.switchToFrame(driver, frmIframe);
-		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		Eventhelper.click(driver, lstChase);
-		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
-		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
-		commonPage.clickOnButton("Submit");
-		Eventhelper.click(driver, rbtnAddBankPleidChecking);
-		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
-		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		Eventhelper.switchToParentFrame(driver);
+		addBankExternalInvoice();
 	}
 
 	public void addBankExternalInvoice() {
