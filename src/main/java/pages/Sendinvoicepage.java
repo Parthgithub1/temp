@@ -131,4 +131,9 @@ public class Sendinvoicepage {
 		}
 		return isTextOnScreen;
 	}
+
+	public void clickOnConfirmButtonforMarkasInvoice(String buttonname) {
+		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[2]");
+		Eventhelper.click(driver, btnXpath);
+	}
 }
