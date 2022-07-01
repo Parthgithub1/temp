@@ -25,7 +25,7 @@ public class Verificationpage {
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
-	private By frmIframe = By.xpath("//iframe");
+	private By frmIframe = By.xpath("/iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
 	private By txtChaseUserName = By.xpath("//label[text()='Username']/following-sibling::input");
