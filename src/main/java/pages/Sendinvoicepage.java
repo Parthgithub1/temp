@@ -18,7 +18,7 @@ public class Sendinvoicepage {
 	private By lblreceivableBalanceonAccounting = By.xpath(
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
 	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
-	private By lnkPayOrGetPaid = By.xpath("//a[@href='/vendors']");
+	private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	String receiableBlanaceOnAccountingPage;
@@ -70,11 +70,18 @@ public class Sendinvoicepage {
 
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
-		int index= accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1: 2;
-		Float amount = Float.parseFloat(Eventhelper
-				.getTextofElement(driver, By
-						.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])["+index+"]"))
-				.substring(1).replace(",", ""));
+		Float amount = null;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			amount = Float.parseFloat(Eventhelper
+					.getTextofElement(driver, By
+							.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[1]"))
+					.substring(1).replace(",", ""));
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			amount = Float.parseFloat(Eventhelper
+					.getTextofElement(driver, By
+							.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[2]"))
+					.substring(1).replace(",", ""));
+		}
 		Log.info("Balance on the opened card in receivable is :-" + amount);
 		return amount;
 	}
@@ -85,8 +92,12 @@ public class Sendinvoicepage {
 	}
 
 	public void sortWithDueDate(String accountingSection) {
-		int index= accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1: 2;
-		By btnDuedate = By.xpath("(//p[contains(text(),'Due date')])["+index+"]");
+		By btnDuedate = null;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[1]");
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[2]");
+		}
 		Eventhelper.click(driver, btnDuedate);
 	}
 
@@ -95,8 +106,12 @@ public class Sendinvoicepage {
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
-		int index= accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1: 2;
-		By btnMenuOnReceivableCard =By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])["+index+"]");
+		By btnMenuOnReceivableCard = null;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			btnMenuOnReceivableCard = By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[1]");
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			btnMenuOnReceivableCard = By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[2]");
+		}
 		Eventhelper.click(driver, btnMenuOnReceivableCard);
 		Log.info("clicked on menu");
 	}
@@ -106,8 +121,19 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
-		int index= accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1: 2;
-		By xpath = By.xpath("(//*[contains(text(),'" + message + "')])["+index+"]") ;
-		return Eventhelper.isElementDisplayed(driver, xpath);
+		Boolean isTextOnScreen = false;
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[1]");
+			isTextOnScreen = Eventhelper.isElementDisplayed(driver, xpath);
+		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
+			By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[2]");
+			isTextOnScreen = Eventhelper.isElementDisplayed(driver, xpath);
+		}
+		return isTextOnScreen;
+	}
+
+	public void clickOnConfirmButtonforMarkasInvoice(String buttonname) {
+		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[2]");
+		Eventhelper.click(driver, btnXpath);
 	}
 }

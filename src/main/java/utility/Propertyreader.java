@@ -16,7 +16,7 @@ public class Propertyreader {
 			property.load(ip);
 
 		} catch (IOException e) {
-			Log.info(e.getMessage());
+			e.printStackTrace();
 		}
 
 		return property;
