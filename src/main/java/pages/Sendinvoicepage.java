@@ -18,13 +18,12 @@ public class Sendinvoicepage {
 	private By lblreceivableBalanceonAccounting = By.xpath(
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
 	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
-	private By lnkPayOrGetPaid = By.xpath("//span[contains(@class,'Button_btn__icon')]//*[name()='svg']");
+	private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	String receiableBlanaceOnAccountingPage;
 	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
-	private By btnSearchedcardonreceivable = By
-			.xpath("//span[@class='TransactionList_bizName__2vORu'][1][normalize-space()='qatsmokeautomation071']");
+	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]");
 	private Homepage homepage;
 
 	public Sendinvoicepage(WebDriver driver) {

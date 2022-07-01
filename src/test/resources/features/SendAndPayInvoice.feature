@@ -47,7 +47,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Smoke @sendandpayinvoices @UAT
+  @Smoke @sendandpayinvoice @UAT
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
@@ -178,5 +178,29 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "Your invoice to qatsmokeautomation071 for $1.00 was Rejected" notification
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @downloadInvoice @Regression
+  Scenario: Verify that user is able to Download the invoice in hopscotch
+    When User login for "InvoicePay"
+    Then User should navigate to dashboard "InvoicePay"
+    Then User click on "Payable" Container
+    When User enter "qatsmokeautomation031" in Searchbar of "Payable"
+    When User click on Invoice from Payable tab
+    Then User should see "Payable dashboard" text on the screen
+    When User click on the menu icon of the card on "Payable"
+    When User click on "Download" link
+    Then User should see the downloaded file in folder
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+    When User login for "InvoiceSend"
+    Then User should navigate to dashboard "InvoiceSend"
+    Then User click on "Receivable" Container
+    When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
+    When User click on Invoice from Receivable tab
+    When User click on the menu icon of the card on "Receivable"
+    When User click on "Download" link
+    Then User should see the downloaded file in folder
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

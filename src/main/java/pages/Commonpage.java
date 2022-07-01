@@ -137,6 +137,7 @@ public class Commonpage {
 			break;
 		case "Profile":
 		case "paymentMethodSection":
+		case "downloadInvoice":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat6")
 					: property.getProperty("uat2");
 			break;
