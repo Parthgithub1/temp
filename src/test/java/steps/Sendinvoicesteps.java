@@ -137,4 +137,16 @@ public class Sendinvoicesteps {
 		assertTrue(found, "Downloaded document is not found");
 		downloadFile.deleteOnExit();
 	}
+
+	@When("User click on {string} button to mark Invoice as received")
+	public void user_click_on_button_to_mark_invoice_as_received(String buttoname) {
+		sendInvoicePage.clickOnConfirmButtonforMarkasInvoice(buttoname);
+	}
+
+	@Then("Receivable balance is updated on the screen once user mark invoice as received")
+	public void receivable_balance_is_updated_on_the_screen_once_user_mark_invoice_as_received() {
+		float expectedAmount = receivableBalanceOnAccountingPage - amountOfInvoice;
+		float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
 }
