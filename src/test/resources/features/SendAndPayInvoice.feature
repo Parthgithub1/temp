@@ -202,5 +202,42 @@ Feature: Test Send and Pay invoice Functionality
     When User click on the menu icon of the card on "Receivable"
     When User click on "Download" link
     Then User should see the downloaded file in folder
+
+  @markReceived @Regression
+  Scenario: Verify that user is able to Download the invoice in hopscotch
+    When User login for "markReceivedInvoice"
+    Then User should navigate to dashboard "markReceivedInvoice"
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
+    When User click on Pay or Get Paid link
+    When User enter "qatsmokeautomation031" in searchbox
+    Then User should see "qatsmokeautomation031" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
+    When User enter invoice details like amount is 1 and message is "This is the text of message"
+    When User click on "Confirm" button
+    When User click on "Send" button
+    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then Read Receivable Balance on accounting screen
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "You sent an invoice to qatsmokeautomation031 for $1.00" notification
+    When User click on "Homepage" link
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
+    When User enter "qatsmokeautomation031" in Searchbar of "Receivable"
+    Then User should see the invoice on the screen
+      | qatsmokeautomation031 | +$1.00 |
+    When User click on Invoice from Receivable tab
+    Then User should see the amount to be receivable
+    When User click on the menu icon of the card on "Receivable"
+    When User click on "Mark received" link
+    When User click on "Confirm" button to mark Invoice as received
+    Then Receivable balance is updated on the screen once user mark invoice as received
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "You marked received the payment for the invoice from qatsmokeautomation031 for $1.00" notification
+    When User click on "Homepage" link
+    Then User click on "Receivable" Container
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
