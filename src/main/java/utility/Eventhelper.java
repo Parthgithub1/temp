@@ -228,11 +228,16 @@ public class Eventhelper {
 		}
 	}
 
-	public static String getTodaysDateInSting() {
-		String pattern = "MMddyyyy";
+	public static String getDate(int day) {
+		Date dt = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(dt);
+		c.add(Calendar.DATE, day);
+		dt = c.getTime();
+		String pattern = "MM/dd/yyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		String inputdate = simpleDateFormat.format(new Date());
-		Log.info("Date in mm-dd-yyyy format --> " + inputdate);
+		String inputdate = simpleDateFormat.format(dt);
+		Log.info("Date in mm-dd-yyyy format latest --> " + inputdate);
 		return inputdate;
 	}
 

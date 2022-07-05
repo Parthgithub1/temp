@@ -35,8 +35,8 @@ public class Detailedinvoicepage {
 	}
 
 	public void enterDetailsOfItemForInvoice() {
-		Eventhelper.sendkeys(driver, btnInvoiceDate, Eventhelper.getTodaysDateInSting());
-		Eventhelper.sendkeys(driver, btnDueDate, Eventhelper.getTodaysDateInSting());
+		Eventhelper.sendkeys(driver, btnInvoiceDate, Eventhelper.getDate(0));
+		Eventhelper.sendkeys(driver, btnDueDate, Eventhelper.getDate(0));
 		Eventhelper.sendkeys(driver, txtItemDescriptionForInvoice, itemDescription);
 		Eventhelper.sendkeys(driver, txtItemQuantity, "2");
 		Eventhelper.sendkeys(driver, txtItemRate, "2");

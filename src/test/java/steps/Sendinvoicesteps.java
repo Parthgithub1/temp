@@ -57,6 +57,8 @@ public class Sendinvoicesteps {
 	public void receivable_balance_is_updated_on_the_screen_with(String amount) {
 		Eventhelper.threadWait(2000);
 		totalExpectedAmount = receivableBalanceOnAccountingPage + Float.parseFloat(amount); // receivableBalanceOnDashboard
+		Log.info(amount);
+		Log.info(receivableBalanceOnAccountingPage);
 		Log.info("totalExpectedAmount after send invoice --->" + totalExpectedAmount);
 		Float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
 		Log.info("actual receivable Amount after send invoice --->" + actualAmount);
@@ -148,5 +150,10 @@ public class Sendinvoicesteps {
 		float expectedAmount = receivableBalanceOnAccountingPage - amountOfInvoice;
 		float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
 		assertEquals(expectedAmount, actualAmount, 0);
+	}
+	
+	@When("User enter invoice details like amount is {int} and message is {string} for future date")
+	public void user_enter_invoice_details_like_amount_is_and_message_is_for_future_date(int amount, String memo) {
+	  sendInvoicePage.sendInvoiceForFutureDate(amount, memo);
 	}
 }
