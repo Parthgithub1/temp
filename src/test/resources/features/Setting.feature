@@ -39,7 +39,7 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
     When User click on menu of the "Wells Fargo" bank
-    When User click on "Delete" link
+    When User click on "Delete account" link
     When User click on "Delete" button
     Then User should not see "Wells Fargo" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down

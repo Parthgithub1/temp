@@ -22,7 +22,11 @@ public class Payinvoicepage {
 	}
 
 	public void clickOnContanier(String contanierName) {
+		Eventhelper.waitUntilAttribValueContains(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"data-loaded", "true");
 		By payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
+		Eventhelper.threadWait(5000);
 		Eventhelper.click(driver, payableContanierxPath);
 	}
 

@@ -14,19 +14,6 @@ Feature: Test validation on send invoice
     Then User should see "Sign in" text on the screen
 
   @Regression
-  Scenario: Verify that user is not able to leave amount field blank on send invoice into hopscotch application
-    When User login for "InvoiceSend"
-    Then User should navigate to dashboard "InvoiceSend"
-    When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation071" in searchbox
-    Then User should see "qatsmokeautomation071" text on the screen
-    When User click on "Get paid" button
-    When User click on "Confirm" button
-    Then User should see "Drop in an amount" text on the screen
-    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
-    Then User should see "Sign in" text on the screen
-
-  @Regression
   Scenario: Verify that user is not able to send an invoice whose amount is greater than the invoice limit on send invoice into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
