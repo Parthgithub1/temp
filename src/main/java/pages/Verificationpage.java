@@ -25,15 +25,15 @@ public class Verificationpage {
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
-	private By frmIframe = By.xpath("//iframe");
+	private By frmIframe = By.xpath("//iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
 	private By lstChase = By.xpath("(//*[text()='Chase'])");
 	private By txtChaseUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtChasePassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By dropDownofBusinessType1 = By.xpath("//div[@id='businessType']");
-	private By verificationText =By.xpath("//div[contains(@class,'VerificationStatus_title')]");
-	
+	private By verificationText = By.xpath("//div[contains(@class,'VerificationStatus_title')]");
+
 	public Verificationpage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
@@ -67,7 +67,18 @@ public class Verificationpage {
 	public void addBank() {
 		Eventhelper.threadWait(2000);
 		Eventhelper.click(driver, btnAddBankDetails);
-		addBankExternalInvoice();
+		Eventhelper.switchToFrame(driver, frmIframe);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		Eventhelper.click(driver, lstChase);
+		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
+		commonPage.clickOnButton("Submit");
+		Eventhelper.click(driver, rbtnAddBankPleidChecking);
+		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		Eventhelper.switchToParentFrame(driver);
 	}
 
 	public void addBankExternalInvoice() {
@@ -118,17 +129,17 @@ public class Verificationpage {
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
-	
+
 	public boolean verificationConfirmation() {
 		boolean flag = false;
-		if(Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is complete") || Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is pending")) {
-			 flag=true;
+		if (Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is complete")
+				|| Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is pending")) {
+			flag = true;
 		}
 		return flag;
 	}
-	
-	public void enterDateOfBirthdateofSoleProprietorship()
-	{
+
+	public void enterDateOfBirthdateofSoleProprietorship() {
 		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012001");
 	}
 }

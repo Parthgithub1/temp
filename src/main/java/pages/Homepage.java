@@ -14,14 +14,13 @@ public class Homepage {
 
 	public float getCurrentHopscotchBalanceAmount() {
 		waitUntiAddFundsButtonEnabled();
-		return Eventhelper.convertFloatTo2DecimalFloat(Float.parseFloat(Eventhelper.getValueOfAttribute(
-				driver,
+		return Eventhelper.convertFloatTo2DecimalFloat(Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"zurobalance-amount").replace("$", "")));
 	}
 
 	public void waitUntiAddFundsButtonEnabled() {
-		Eventhelper.waitUntilAttribValueContains(driver, btnAddFunds, "class", "disable");
+		Eventhelper.waitUntilAttribValueNotContains(driver, btnAddFunds, "class", "disable");
 		Eventhelper.explicitwaitclickable(driver, btnAddFunds);
 		Eventhelper.threadWait(5000);
 	}

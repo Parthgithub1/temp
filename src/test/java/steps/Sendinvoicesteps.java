@@ -1,8 +1,9 @@
 package steps;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Sendinvoicesteps {
 	Sendinvoicepage sendInvoicePage = new Sendinvoicepage(Driverhelper.getDriver());
 	Payinvoicedata payData = new Payinvoicedata();
 	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin,
-			totalExpectedAmount, amountOfCancelledCard, amountOfRejectedCard;
+			totalExpectedAmount, amountOfInvoice, amountOfRejectedCard;
 	String searchBusinessOnReceivable;
 
 	@Then("Read Receivable Balance on accounting screen")
@@ -89,13 +90,13 @@ public class Sendinvoicesteps {
 
 	@Then("User should see the amount to be receivable")
 	public void user_should_see_the_amount_to_be_receivable() {
-		amountOfCancelledCard = sendInvoicePage.invoiceAmount("Receivable");
+		amountOfInvoice = sendInvoicePage.invoiceAmount("Receivable");
 	}
 
 	@Then("Receivable balance is updated on the screen once user cancelled invoice")
 	public void receivable_balance_is_updated_on_the_screen_once_user_cancelled_invoice() {
 		Eventhelper.threadWait(2000);
-		totalExpectedAmount = receivableBalanceOnAccountingPage - amountOfCancelledCard;
+		totalExpectedAmount = receivableBalanceOnAccountingPage - amountOfInvoice;
 		Log.info("totalExpectedAmount after send invoice --->" + totalExpectedAmount);
 		Float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
 		Log.info("actual receivable Amount after send invoice --->" + actualAmount);
@@ -103,13 +104,49 @@ public class Sendinvoicesteps {
 		assertEquals(totalExpectedAmount, actualAmount);
 	}
 
-    @Then("User should see {string} text on the card of {string}")
+	@Then("User should see {string} text on the card of {string}")
 	public void user_should_see_text_on_the_card_of(String message, String accoutingSection) {
 		assertTrue(sendInvoicePage.isMessageOnCard(message, accoutingSection));
 	}
-	
+
 	@When("User sort the invoice with due date on {string}")
 	public void user_sort_the_invoice_with_due_date_on(String accountingSection) {
-	sendInvoicePage.sortWithDueDate(accountingSection);
+		sendInvoicePage.sortWithDueDate(accountingSection);
+	}
+
+	@When("User should see the downloaded file in folder")
+	public void user_should_see_the_downloaded_file_in_folder() {
+		File folder = new File(System.getProperty("user.dir"));
+		Eventhelper.threadWait(2000);
+		// List the files on that folder
+		File[] listOfFiles = folder.listFiles();
+		boolean found = false;
+		File downloadFile = null;
+		// Look for the file in the files
+		// You should write smart REGEX according to the filename
+		for (File listOfFile : listOfFiles) {
+			if (listOfFile.isFile()) {
+				String fileName = listOfFile.getName();
+				System.out.println("File " + listOfFile.getName());
+				if (fileName.contains("invoice_")) {
+					downloadFile = new File(fileName);
+					found = true;
+				}
+			}
+		}
+		assertTrue(found, "Downloaded document is not found");
+		downloadFile.deleteOnExit();
+	}
+
+	@When("User click on {string} button to mark Invoice as received")
+	public void user_click_on_button_to_mark_invoice_as_received(String buttoname) {
+		sendInvoicePage.clickOnConfirmButtonforMarkasInvoice(buttoname);
+	}
+
+	@Then("Receivable balance is updated on the screen once user mark invoice as received")
+	public void receivable_balance_is_updated_on_the_screen_once_user_mark_invoice_as_received() {
+		float expectedAmount = receivableBalanceOnAccountingPage - amountOfInvoice;
+		float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
+		assertEquals(expectedAmount, actualAmount, 0);
 	}
 }

@@ -1,5 +1,7 @@
 package utility;
 
+import java.util.*;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,7 +16,7 @@ public class Driverhelper {
 
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	public WebDriver setDriver(String browser,Boolean headless) {
+	public WebDriver setDriver(String browser, Boolean headless) {
 
 		if (browser == null) {
 			browser = "chrome";
@@ -22,11 +24,16 @@ public class Driverhelper {
 		if (headless == null) {
 			headless = false;
 		}
-		
+
 		switch (browser) {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
-			if(headless) {
+
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
+			options.setExperimentalOption("prefs", chromePrefs);
+			if (headless) {
 				options.setHeadless(true);
 				options.addArguments("window-size=1920,1080");
 			}
@@ -35,7 +42,7 @@ public class Driverhelper {
 			break;
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
-			if(headless) {
+			if (headless) {
 				foptions.setHeadless(true);
 			}
 			WebDriverManager.firefoxdriver().setup();

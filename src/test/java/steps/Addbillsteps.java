@@ -65,9 +65,4 @@ public class Addbillsteps {
 	public void user_enter_as_a_invoice_number(String invoiceNumber) {
 	   addBillPage.enterInvoiceNumber(invoiceNumber);
 	}
-	
-	@Then("User should see delete invoice notification on the screen")
-	public void user_should_see_delete_invoice_notification_on_the_screen() {
-	   assertTrue(addBillPage.isDeleteInvoiceNotificationSent());
-	}
 }
