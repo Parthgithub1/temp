@@ -11,8 +11,8 @@ import utility.*;
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
-    Sendinvoicepage sendInvoice= new Sendinvoicepage(Driverhelper.getDriver());
-	
+	Sendinvoicepage sendInvoice = new Sendinvoicepage(Driverhelper.getDriver());
+
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
@@ -138,6 +138,13 @@ public class Payinvoivesteps {
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		Log.info("Expected amount is " + expectedAmount);
 		Log.info("Actual amount is " + actualAmount);
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
+
+	@Then("Payable balance is updated on the screen once user delete invoice")
+	public void payable_balance_is_updated_on_the_screen_once_user_delete_invoice() {
+		float expectedAmount = getexistingBalanceofPayableonAccountingPage - Addbillsteps.addBillInvoiceAmount();
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
 }

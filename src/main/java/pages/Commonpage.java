@@ -21,6 +21,7 @@ public class Commonpage {
 	}
 
 	private WebDriver driver;
+	private Homepage homePage;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.initProp();
 	private By xPathofdropDown = By.xpath("//img[@alt='Company Logo']");
@@ -37,6 +38,7 @@ public class Commonpage {
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
+		homePage = new Homepage(driver);
 	}
 
 	public void clickOnLink(String linktext) {
@@ -82,6 +84,7 @@ public class Commonpage {
 
 	public void clickonNotificationfromHeader() {
 		By btnxpath = By.xpath("//a[@href='/notification']");
+		homePage.waituntillDataLoadedOnTheDashboard();
 		Eventhelper.click(driver, btnxpath);
 	}
 
@@ -151,6 +154,7 @@ public class Commonpage {
 		case "changePassword":
 		case "accountSection":
 		case "deatiledInvoice":
+		case "rejectInvoice":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat5")
 					: property.getProperty("uat2");
 			break;
