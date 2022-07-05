@@ -39,6 +39,7 @@ public class Sendinvoicepage {
 
 	public void searchBusiness(String businessName) {
 		Eventhelper.sendkeys(driver, txtSearchBar, businessName);
+		Eventhelper.threadWait(1000);
 		By selectBusiness = By
 				.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
 		Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, businessName);
@@ -47,7 +48,7 @@ public class Sendinvoicepage {
 
 	public void sendInvoice(int amount, String message) {
 		Eventhelper.sendkeys(driver, txtAmount, String.valueOf(amount));
-		Eventhelper.sendkeys(driver, txtdate, Eventhelper.getTodaysDateInSting());
+		Eventhelper.sendkeys(driver, txtdate, Eventhelper.getDate(0));
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 
@@ -70,19 +71,11 @@ public class Sendinvoicepage {
 
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
-		Float amount = null;
-		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
-			amount = Float.parseFloat(Eventhelper
-					.getTextofElement(driver, By
-							.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[1]"))
-					.substring(1).replace(",", ""));
-		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
-			amount = Float.parseFloat(Eventhelper
-					.getTextofElement(driver, By
-							.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[2]"))
-					.substring(1).replace(",", ""));
-		}
-		Log.info("Balance on the opened card in receivable is :-" + amount);
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
+		Float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
+				.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[" + index + "]"))
+				.substring(1).replace(",", ""));
+	Log.info("Balance on the opened card in receivable is :-" + amount);
 		return amount;
 	}
 
@@ -92,12 +85,8 @@ public class Sendinvoicepage {
 	}
 
 	public void sortWithDueDate(String accountingSection) {
-		By btnDuedate = null;
-		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
-			btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[1]");
-		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
-			btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[2]");
-		}
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
+		By btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[" + index + "]");
 		Eventhelper.click(driver, btnDuedate);
 	}
 
@@ -106,12 +95,9 @@ public class Sendinvoicepage {
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
-		By btnMenuOnReceivableCard = null;
-		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
-			btnMenuOnReceivableCard = By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[1]");
-		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
-			btnMenuOnReceivableCard = By.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[2]");
-		}
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
+		By btnMenuOnReceivableCard = By
+				.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[" + index + "]");
 		Eventhelper.click(driver, btnMenuOnReceivableCard);
 		Log.info("clicked on menu");
 	}
@@ -121,19 +107,20 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
-		Boolean isTextOnScreen = false;
-		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
-			By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[1]");
-			isTextOnScreen = Eventhelper.isElementDisplayed(driver, xpath);
-		} else if (accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)) {
-			By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[2]");
-			isTextOnScreen = Eventhelper.isElementDisplayed(driver, xpath);
-		}
-		return isTextOnScreen;
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
+		By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[" + index + "]");
+		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
 
 	public void clickOnConfirmButtonforMarkasInvoice(String buttonname) {
 		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[2]");
 		Eventhelper.click(driver, btnXpath);
+	}
+	
+	public void sendInvoiceForFutureDate(int amount, String message) {
+		Eventhelper.sendkeys(driver, txtAmount, String.valueOf(amount));
+		Eventhelper.useActionClassOperation(driver, txtdate, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtdate, Eventhelper.getDate(1));
+		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 }

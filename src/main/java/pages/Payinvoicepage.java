@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utility.Eventhelper;
+import utility.Log;
 
 public class Payinvoicepage {
 	private WebDriver driver;
@@ -22,11 +23,14 @@ public class Payinvoicepage {
 	}
 
 	public void clickOnContanier(String contanierName) {
-		Eventhelper.waitUntilAttribValueContains(driver,
+		Log.info("Value of is data laoded before :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
-				"data-loaded", "true");
+				"data-loaded"));
+		homepage.waituntillDataLoadedOnTheDashboard();
+		Log.info("Value of is data laoded after :-" + Eventhelper.getValueOfAttribute(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"data-loaded"));
 		By payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
-		Eventhelper.threadWait(5000);
 		Eventhelper.click(driver, payableContanierxPath);
 	}
 

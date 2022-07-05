@@ -33,7 +33,7 @@ public class Addbillpage {
 	public float addBill() {
 		Eventhelper.sendkeys(driver, txtAmount, "1");
 		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
-		Eventhelper.sendkeys(driver, txtDate, Eventhelper.getTodaysDateInSting());
+		Eventhelper.sendkeys(driver, txtDate, Eventhelper.getDate(0));
 		Eventhelper.sendkeys(driver, txtMessage, "This is the add bill details.");
 		return (float) 1.0;
 	}

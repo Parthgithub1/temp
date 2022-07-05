@@ -48,7 +48,7 @@ public class Payinvoivesteps {
 
 	@Then("User should see new amount on the screen for Payables")
 	public void user_should_see_new_amount_on_the_screen_for_payables() {
-		Eventhelper.threadWait(8000);
+		homepage.waitUntiAddFundsButtonEnabled();
 		float expectedAmount = payData.getBalanceofPayableonAccountingPage();// - payData.getInvoiceAmounttobePaid();
 		System.out.println(expectedAmount);
 		System.out.println(payData.getDefaultPayableBalanceatHomePage());
@@ -58,7 +58,7 @@ public class Payinvoivesteps {
 
 	@Then("User should see update amount of Hopscotch Balance on Accounting Page")
 	public void user_should_see_update_amount_of_hopscotch_balance_on_accounting_page() {
-		Eventhelper.threadWait(8000);
+		homepage.waitUntiAddFundsButtonEnabled();
 		float updateHopscotchBalance = fundData.getAmountofhopscotchBalance() - payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalance);
 		assertEquals(updateHopscotchBalance, fundData.getAmountofhopscotchBalance(), 1);
