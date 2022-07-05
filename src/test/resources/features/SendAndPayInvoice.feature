@@ -136,8 +136,8 @@ Feature: Test Send and Pay invoice Functionality
 
   @rejectinvoice @Regression
   Scenario: Verify that user is able to reject the invoice in hopscotch
-    When User login for "InvoiceSend"
-    Then User should navigate to dashboard "InvoiceSend"
+    When User login for "rejectInvoice"
+    Then User should navigate to dashboard "rejectInvoice"
     Then User click on "Receivable" Container
     #Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
@@ -156,7 +156,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User should navigate to dashboard "InvoicePay"
     Then User click on "Payable" Container
     Then User should save Default amount of Payable on Accounting Page
-    When User enter "qatsmokeautomation031" in Searchbar of "Payable"
+    When User enter "qatsmokeautomation05" in Searchbar of "Payable"
     And User sort the invoice with due date on "Payable"
     #Then User should see the invoice on the screen
     #| qatsmokeautomation031 | +$1.00 |
@@ -170,11 +170,11 @@ Feature: Test Send and Pay invoice Functionality
     Then Payable balance is updated on the screen once user Reject invoice
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You have rejected an invoice from qatsmokeautomation031 for $1.00" notification
+    Then User should see "You have rejected an invoice from qatsmokeautomation05 for $1.00" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login for "InvoiceSend"
-    Then User should navigate to dashboard "InvoiceSend"
+    When User login for "rejectInvoice"
+    Then User should navigate to dashboard "rejectInvoice"
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "Your invoice to qatsmokeautomation071 for $1.00 was Rejected" notification
@@ -204,7 +204,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see the downloaded file in folder
 
   @markReceived @Regression
-  Scenario: Verify that user is able to Download the invoice in hopscotch
+  Scenario: Verify that user is able to Mark Invoice as Received in hopscotch
     When User login for "markReceivedInvoice"
     Then User should navigate to dashboard "markReceivedInvoice"
     Then User click on "Receivable" Container
@@ -242,7 +242,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-    @Regression @futuredayInvoice
+  @Regression @futuredayInvoice
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
