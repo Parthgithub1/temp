@@ -11,8 +11,8 @@ import utility.*;
 public class Payinvoivesteps {
 
 	Payinvoicepage payInvoice = new Payinvoicepage(Driverhelper.getDriver());
-    Sendinvoicepage sendInvoice= new Sendinvoicepage(Driverhelper.getDriver());
-	
+	Sendinvoicepage sendInvoice = new Sendinvoicepage(Driverhelper.getDriver());
+
 	Loginpage loginPage = new Loginpage(Driverhelper.getDriver());
 	Addbillpage addBillPage = new Addbillpage(Driverhelper.getDriver());
 	AddFundspage addFunds = new AddFundspage(Driverhelper.getDriver());
@@ -48,7 +48,7 @@ public class Payinvoivesteps {
 
 	@Then("User should see new amount on the screen for Payables")
 	public void user_should_see_new_amount_on_the_screen_for_payables() {
-		Eventhelper.threadWait(8000);
+		homepage.waitUntiAddFundsButtonEnabled();
 		float expectedAmount = payData.getBalanceofPayableonAccountingPage();// - payData.getInvoiceAmounttobePaid();
 		System.out.println(expectedAmount);
 		System.out.println(payData.getDefaultPayableBalanceatHomePage());
@@ -58,7 +58,7 @@ public class Payinvoivesteps {
 
 	@Then("User should see update amount of Hopscotch Balance on Accounting Page")
 	public void user_should_see_update_amount_of_hopscotch_balance_on_accounting_page() {
-		Eventhelper.threadWait(8000);
+		homepage.waitUntiAddFundsButtonEnabled();
 		float updateHopscotchBalance = fundData.getAmountofhopscotchBalance() - payData.getInvoiceAmounttobePaid();
 		Log.info(updateHopscotchBalance);
 		assertEquals(updateHopscotchBalance, fundData.getAmountofhopscotchBalance(), 1);
@@ -138,6 +138,13 @@ public class Payinvoivesteps {
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		Log.info("Expected amount is " + expectedAmount);
 		Log.info("Actual amount is " + actualAmount);
+		assertEquals(expectedAmount, actualAmount, 0);
+	}
+
+	@Then("Payable balance is updated on the screen once user delete invoice")
+	public void payable_balance_is_updated_on_the_screen_once_user_delete_invoice() {
+		float expectedAmount = getexistingBalanceofPayableonAccountingPage - Addbillsteps.addBillInvoiceAmount();
+		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
 }

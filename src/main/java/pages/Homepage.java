@@ -24,4 +24,12 @@ public class Homepage {
 		Eventhelper.explicitwaitclickable(driver, btnAddFunds);
 		Eventhelper.threadWait(5000);
 	}
+	
+	public void waituntillDataLoadedOnTheDashboard()
+	{
+		Eventhelper.waitUntilAttribValueContains(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"data-loaded", "true");
+		Eventhelper.threadWait(5000);	
+	}
 }

@@ -50,7 +50,7 @@ public class AddFundsteps {
 
 	@Then("User should see {string} amount on the screen")
 	public void user_should_see_amount_on_the_screen(String expectedAmountTobeChanged) {
-		Eventhelper.threadWait(8000);
+		homePage.waituntillDataLoadedOnTheDashboard();
 		float totalExpectedAmountBalance = fundData.getAmountofhopscotchBalance()
 				+ fundData.getAmountofhopscotchBalance() - Float.parseFloat(expectedAmountTobeChanged);
 		DecimalFormat df = new DecimalFormat(".00");
@@ -63,7 +63,7 @@ public class AddFundsteps {
 
 	@Then("User should see {string} amount on the screen for withdraw")
 	public void user_should_see_amount_on_the_screen_for_withdraw(String amount) {
-		Eventhelper.threadWait(8000);
+		homePage.waituntillDataLoadedOnTheDashboard();
 		float expectedAmount = Float.parseFloat(amount);
 		float actualAmount = addFunds.hopscotchBalanceAfterAddingFund();
 		Log.info("Actual Amount after withdraw Funds:" + actualAmount);
@@ -84,7 +84,6 @@ public class AddFundsteps {
 	@Then("User should see {string} button as disabled if Amount is Less then Zero")
 	public void user_should_see_button_has_if_amount_is_less_then_zero(String btnName) {
 		if(currentHopscotchBalance <= 0.00) {
-			Log.info(btnName + " Button is not Enable : " + !addFunds.isButtonEnabled(btnName));
 			assertTrue(btnName + " Button is not Enable : ", !addFunds.isButtonEnabled(btnName));
 		}
 	}
