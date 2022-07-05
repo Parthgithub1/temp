@@ -83,7 +83,7 @@ public class Eventhelper {
 		} catch (ElementClickInterceptedException | StaleElementReferenceException | NoSuchElementException e) {
 			Log.error("Getting exception in Click --> " + e.toString());
 			Eventhelper.clickElementwithjs(driver, locator);
-		} 
+		}
 	}
 
 	public static void clickElementwithjs(WebDriver driver, By locator) {
@@ -149,6 +149,11 @@ public class Eventhelper {
 
 	public static Boolean waitUntilAttribValueContains(WebDriver driver, By locator, String attrib, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, 120);
+		return wait.until(ExpectedConditions.attributeContains(locator, attrib, value));
+	}
+
+	public static Boolean waitUntilAttribValueNotContains(WebDriver driver, By locator, String attrib, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		return wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(locator, attrib, value)));
 	}
 
@@ -193,7 +198,7 @@ public class Eventhelper {
 			element.sendKeys(Keys.ENTER);
 			break;
 		default:
-            break;
+			break;
 		}
 	}
 
@@ -206,7 +211,7 @@ public class Eventhelper {
 	}
 
 	public static void getURL(WebDriver driver, String url) {
-	url = Environmenthelper.setUrl(System.getProperty("env")) + url;
+		url = Environmenthelper.setUrl(System.getProperty("env")) + url;
 		driver.get(url);
 	}
 
@@ -227,7 +232,7 @@ public class Eventhelper {
 		String pattern = "MMddyyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String inputdate = simpleDateFormat.format(new Date());
-		Log.info("Date in mm-dd-yyyy format --> " +inputdate);
+		Log.info("Date in mm-dd-yyyy format --> " + inputdate);
 		return inputdate;
 	}
 
@@ -281,8 +286,8 @@ public class Eventhelper {
 			action.moveToElement(element).build().perform();
 			break;
 		default:
-            break;
-		}		
+			break;
+		}
 	}
 
 	public static void autoScrollWindow(WebDriver driver, WebElement element) {
