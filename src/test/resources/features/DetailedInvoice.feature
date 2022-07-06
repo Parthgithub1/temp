@@ -1,6 +1,6 @@
 Feature: Test DetailedInvoice View Functionality
 
-  @Regression @detailedInvoiceGetPaid 
+  @Regression @detailedInvoiceGetPaid
   Scenario: Verify that user is able to send invoice with Detailed View
     When User login for "deatiledInvoice"
     Then User should navigate to dashboard "deatiledInvoice"
@@ -54,7 +54,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @detailedInvoicePay 
+  @Regression @detailedInvoicePay
   Scenario: Verify that user is able to send invoice with Detailed View
     When User login for "deatiledInvoice"
     Then User should navigate to dashboard "deatiledInvoice"

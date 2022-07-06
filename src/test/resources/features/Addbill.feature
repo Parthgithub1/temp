@@ -26,7 +26,7 @@ Feature: Test AddBill functionality
     Then User should see "Payable dashboard" text on the screen
     When User click on "Pay" button
     When User click on "Confirm" button
-    Then User should see "It is on its way to" text on the screen
+    #Then User should see "It is on its way to" text on the screen
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
     Then User click on "Homepage" button to navigate to dashboard
