@@ -52,14 +52,41 @@ public class Sendinvoicepage {
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 
-	public List<String> seeInvoice(String businessName) {
+//	public List<List<String>> seeInvoice(String businessName) {
+//		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
+//		int noOfRowFromTable = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr")).size();
+//
+//		List<String> rowData = null;
+//		List<WebElement> list;
+//		List<List<String>> allRowData = new ArrayList<List<String>>();
+//		for (int i = 1; i < noOfRowFromTable; i++) {
+//			rowData = new ArrayList<String>();
+//			list = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr[" + i + "]/td"));
+//			for (WebElement ele : list) {
+//				rowData.add(ele.getText());
+//			}
+//			allRowData.add(rowData);
+//		}
+//		Log.info(allRowData);
+//		return allRowData;
+//	}
+
+	public List<List<String>> seeInvoice(String businessName) {
 		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
-		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
-		List<String> actualData = new ArrayList<>();
-		for (WebElement columnElement : columnElements) {
-			actualData.add(columnElement.getText());
+		int noofRows = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr")).size();
+
+		List<String> rowData = null;
+		List<WebElement> listwe;
+		List<List<String>> allrowdata = new ArrayList<List<String>>();
+		for (int i = 1; i < noofRows; i++) {
+			rowData = new ArrayList<String>();
+			listwe = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr[" + i + "]/td"));
+			for (WebElement ele : listwe) {
+				rowData.add(ele.getText());
+			}
+			allrowdata.add(rowData);
 		}
-		return actualData;
+		return allrowdata;
 	}
 
 	public float receivableBalanceOnAccounting() {
@@ -75,7 +102,7 @@ public class Sendinvoicepage {
 		Float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
 				.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[" + index + "]"))
 				.substring(1).replace(",", ""));
-	Log.info("Balance on the opened card in receivable is :-" + amount);
+		Log.info("Balance on the opened card in receivable is :-" + amount);
 		return amount;
 	}
 
@@ -116,7 +143,7 @@ public class Sendinvoicepage {
 		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[2]");
 		Eventhelper.click(driver, btnXpath);
 	}
-	
+
 	public void sendInvoiceForFutureDate(int amount, String message) {
 		Eventhelper.sendkeys(driver, txtAmount, String.valueOf(amount));
 		Eventhelper.useActionClassOperation(driver, txtdate, Constants.DOUBLECLICK);

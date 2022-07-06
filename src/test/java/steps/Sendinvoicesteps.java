@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.cucumber.java.en.*;
-import pages.Sendinvoicepage;
+import pages.*;
 import userdata.Payinvoicedata;
 import utility.Driverhelper;
 import utility.Eventhelper;
@@ -17,6 +17,7 @@ import utility.Log;
 public class Sendinvoicesteps {
 
 	Sendinvoicepage sendInvoicePage = new Sendinvoicepage(Driverhelper.getDriver());
+	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Payinvoicedata payData = new Payinvoicedata();
 	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin,
 			totalExpectedAmount, amountOfInvoice, amountOfRejectedCard;
@@ -39,6 +40,27 @@ public class Sendinvoicesteps {
 		sendInvoicePage.sendInvoice(amount, message);
 	}
 
+//	@Then("User should see the invoice on the screen")
+//	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
+//		sendInvoicePage.sortWithDueDate("Receivable");
+//		List<List<String>> expected = dataTable.asLists();
+//		List<String> expectedList = new ArrayList<String>();
+//		for (List<String> columns : expected) {
+//			expectedList.add(columns.get(0));
+//			expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
+//			expectedList.add(columns.get(1));
+//		}
+//		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
+//		boolean listOfRowForInvoice = false;
+//		for(List<String> list : actualList) {
+//			listOfRowForInvoice = list.equals(expectedList);
+//			System.out.println(listOfRowForInvoice);
+//			break;
+//		}
+//		Log.info("List : " + listOfRowForInvoice);
+//		assertTrue(listOfRowForInvoice);
+//	}
+
 	@Then("User should see the invoice on the screen")
 	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
 		sendInvoicePage.sortWithDueDate("Receivable");
@@ -49,8 +71,15 @@ public class Sendinvoicesteps {
 			expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
 			expectedList.add(columns.get(1));
 		}
-		List<String> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
-		assertEquals(expectedList, actualList);
+		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
+
+		boolean test = false;
+		for (List<String> list : actualList) {
+			test = list.equals(expectedList);
+			System.out.println(test);
+			break;
+		}
+		assertTrue(test);
 	}
 
 	@Then("Receivable balance is updated on the screen with {string}")
@@ -151,9 +180,9 @@ public class Sendinvoicesteps {
 		float actualAmount = sendInvoicePage.receivableBalanceOnAccounting();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
-	
+
 	@When("User enter invoice details like amount is {int} and message is {string} for future date")
 	public void user_enter_invoice_details_like_amount_is_and_message_is_for_future_date(int amount, String memo) {
-	  sendInvoicePage.sendInvoiceForFutureDate(amount, memo);
+		sendInvoicePage.sendInvoiceForFutureDate(amount, memo);
 	}
 }
