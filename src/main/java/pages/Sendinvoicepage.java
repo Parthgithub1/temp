@@ -52,25 +52,6 @@ public class Sendinvoicepage {
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 
-//	public List<List<String>> seeInvoice(String businessName) {
-//		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
-//		int noOfRowFromTable = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr")).size();
-//
-//		List<String> rowData = null;
-//		List<WebElement> list;
-//		List<List<String>> allRowData = new ArrayList<List<String>>();
-//		for (int i = 1; i < noOfRowFromTable; i++) {
-//			rowData = new ArrayList<String>();
-//			list = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr[" + i + "]/td"));
-//			for (WebElement ele : list) {
-//				rowData.add(ele.getText());
-//			}
-//			allRowData.add(rowData);
-//		}
-//		Log.info(allRowData);
-//		return allRowData;
-//	}
-
 	public List<List<String>> seeInvoice(String businessName) {
 		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
 		int noofRows = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr")).size();

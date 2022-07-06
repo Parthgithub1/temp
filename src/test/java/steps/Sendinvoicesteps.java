@@ -40,27 +40,6 @@ public class Sendinvoicesteps {
 		sendInvoicePage.sendInvoice(amount, message);
 	}
 
-//	@Then("User should see the invoice on the screen")
-//	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
-//		sendInvoicePage.sortWithDueDate("Receivable");
-//		List<List<String>> expected = dataTable.asLists();
-//		List<String> expectedList = new ArrayList<String>();
-//		for (List<String> columns : expected) {
-//			expectedList.add(columns.get(0));
-//			expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
-//			expectedList.add(columns.get(1));
-//		}
-//		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
-//		boolean listOfRowForInvoice = false;
-//		for(List<String> list : actualList) {
-//			listOfRowForInvoice = list.equals(expectedList);
-//			System.out.println(listOfRowForInvoice);
-//			break;
-//		}
-//		Log.info("List : " + listOfRowForInvoice);
-//		assertTrue(listOfRowForInvoice);
-//	}
-
 	@Then("User should see the invoice on the screen")
 	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
 		sendInvoicePage.sortWithDueDate("Receivable");
@@ -72,14 +51,14 @@ public class Sendinvoicesteps {
 			expectedList.add(columns.get(1));
 		}
 		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
-
-		boolean test = false;
+		boolean isInvoicePresent = false;
 		for (List<String> list : actualList) {
-			test = list.equals(expectedList);
-			System.out.println(test);
-			break;
+			isInvoicePresent = list.equals(expectedList);
+			if (isInvoicePresent) {
+				break;
+			}
 		}
-		assertTrue(test);
+		assertTrue(isInvoicePresent);
 	}
 
 	@Then("Receivable balance is updated on the screen with {string}")
