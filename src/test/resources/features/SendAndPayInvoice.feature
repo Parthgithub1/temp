@@ -96,13 +96,13 @@ Feature: Test Send and Pay invoice Functionality
 
   @cancelinvoice @Regression
   Scenario: Verify that user is able to cancel the invoice in hopscotch
-    When User login for "InvoiceSend"
-    Then User should navigate to dashboard "InvoiceSend"
+    When User login for "InvoicePay"
+    Then User should navigate to dashboard "InvoicePay"
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation071" in searchbox
-    Then User should see "qatsmokeautomation071" text on the screen
+    When User enter "qatsmokeautomation05" in searchbox
+    Then User should see "qatsmokeautomation05" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
     When User enter invoice details like amount is 1 and message is "This invoice has been created to be cancelled."
@@ -111,9 +111,9 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Your invoice has been sent successfully" text on the screen
     Then Receivable balance is updated on the screen with "1.00"
     Then Read Receivable Balance on accounting screen
-    When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
+    When User enter "qatsmokeautomation05" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation071 | +$1.00 |
+      | qatsmokeautomation05 | +$1.00 |
     When User click on Invoice from Receivable tab
     Then User should see "This invoice has been created to be cancelled." text on the card of "Receivable"
     Then User should see the amount to be receivable
@@ -123,14 +123,14 @@ Feature: Test Send and Pay invoice Functionality
     Then Receivable balance is updated on the screen once user cancelled invoice
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You have cancelled an invoice of qatsmokeautomation071 for $1.00" notification
+    Then User should see "You have cancelled an invoice of qatsmokeautomation05 for $1.00" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login for "InvoicePay"
-    Then User should navigate to dashboard "InvoicePay"
+    When User login for "accountSection"
+    Then User should navigate to dashboard "accountSection"
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "Your invoice to qatsmokeautomation031 for $1.00 was cancelled" notification
+    Then User should see "Your invoice to qatsmokeautomation071 for $1.00 was cancelled" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -183,10 +183,10 @@ Feature: Test Send and Pay invoice Functionality
 
   @downloadInvoice @Regression
   Scenario: Verify that user is able to Download the invoice in hopscotch
-    When User login for "InvoicePay"
-    Then User should navigate to dashboard "InvoicePay"
+    When User login for "rejectInvoice"
+    Then User should navigate to dashboard "rejectInvoice"
     Then User click on "Payable" Container
-    When User enter "qatsmokeautomation031" in Searchbar of "Payable"
+    #When User enter "qatsmokeautomation071" in Searchbar of "Payable"
     When User click on Invoice from Payable tab
     Then User should see "Payable dashboard" text on the screen
     When User click on the menu icon of the card on "Payable"
@@ -194,10 +194,10 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see the downloaded file in folder
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login for "InvoiceSend"
-    Then User should navigate to dashboard "InvoiceSend"
+    When User login for "twoFactorAuthentication"
+    Then User should navigate to dashboard "twoFactorAuthentication"
     Then User click on "Receivable" Container
-    When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
+    #When User enter "qatsmokeautomation05" in Searchbar of "Receivable"
     When User click on Invoice from Receivable tab
     When User click on the menu icon of the card on "Receivable"
     When User click on "Download" link
@@ -244,13 +244,13 @@ Feature: Test Send and Pay invoice Functionality
 
   @Regression @futuredayInvoice
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
-    When User login for "InvoiceSend"
-    Then User should navigate to dashboard "InvoiceSend"
+    When User login for "twoFactorAuthentication"
+    Then User should navigate to dashboard "twoFactorAuthentication"
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation071" in searchbox
-    Then User should see "qatsmokeautomation071" text on the screen
+    When User enter "qatsmokeautomation05" in searchbox
+    Then User should see "qatsmokeautomation05" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
     When User enter invoice details like amount is 1 and message is "This is the text of message for future date" for future date
@@ -258,15 +258,15 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Send" button
     Then User should see "Your invoice has been sent successfully" text on the screen
     Then Receivable balance is updated on the screen with "1.00"
-    When User enter "qatsmokeautomation031" in Searchbar of "Receivable"
+    When User enter "qatsmokeautomation05" in Searchbar of "Receivable"
     And User sort the invoice with due date on "Receivable"
     When User click on Invoice from Receivable tab
     Then User should see "This is the text of message for future date" text on the card of "Receivable"
     Then User should see "Coming up" text on the card of "Receivable"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login for "InvoicePay"
-    Then User should navigate to dashboard "InvoicePay"
+    When User login for "rejectInvoice"
+    Then User should navigate to dashboard "rejectInvoice"
     Then User click on "Payable" Container
     Then User should save Default amount of Payable on Accounting Page
     When User enter "qatsmokeautomation071" in Searchbar of "Payable"

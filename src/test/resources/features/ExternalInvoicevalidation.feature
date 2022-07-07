@@ -14,20 +14,20 @@ Feature: Test validation on external invoice screen
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | vendor                       | validationMessage                                        |
-      | "   "                        | "Business name cannot contain leading or trailing space" |
-      | "busi "                      | "Business name cannot contain leading or trailing space" |
-      | "@23232"                     | "The name can only contain letters, numbers, and ; , :"  |
-      | "@   ()"                     | "The name can only contain letters, numbers, and ; , :"  |
-      | "The[ business name"         | "The name can only contain letters, numbers, and ; , :"  |
-      | "The]Business"               | "The name can only contain letters, numbers, and ; , :"  |
-      | "~The business name"         | "The name can only contain letters, numbers, and ; , :"  |
-      | "?the name"                  | "The name can only contain letters, numbers, and ; , :"  |
-      | "\\ the slash"               | "The name can only contain letters, numbers, and ; , :"  |
-      | "= is equel"                 | "The name can only contain letters, numbers, and ; , :"  |
-      | "***********"                | "The name can only contain letters, numbers, and ; , :"  |
-      | "~~!~!`1"                    | "The name can only contain letters, numbers, and ; , :"  |
-     
+      | vendor               | validationMessage                                        |
+      | "   "                | "Business name cannot contain leading or trailing space" |
+      | "busi "              | "Business name cannot contain leading or trailing space" |
+      | "@23232"             | "The name can only contain letters, numbers, and ; , :"  |
+      | "@   ()"             | "The name can only contain letters, numbers, and ; , :"  |
+      | "The[ business name" | "The name can only contain letters, numbers, and ; , :"  |
+      | "The]Business"       | "The name can only contain letters, numbers, and ; , :"  |
+      | "~The business name" | "The name can only contain letters, numbers, and ; , :"  |
+      | "?the name"          | "The name can only contain letters, numbers, and ; , :"  |
+      | "\\ the slash"       | "The name can only contain letters, numbers, and ; , :"  |
+      | "= is equel"         | "The name can only contain letters, numbers, and ; , :"  |
+      | "***********"        | "The name can only contain letters, numbers, and ; , :"  |
+      | "~~!~!`1"            | "The name can only contain letters, numbers, and ; , :"  |
+
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact first name
     When User enter <firstname> as a Contact first name
@@ -36,15 +36,14 @@ Feature: Test validation on external invoice screen
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | firstname        | validationMessage                                      |
-      | "@   ()"         | "Only latin alphabet, hyphen, space, comma and period" |
-      | "[]fdgdfg"       | "Only latin alphabet, hyphen, space, comma and period" |
-      | ";;;;;"          | "Only latin alphabet, hyphen, space, comma and period" |
-      | "~wee"           | "Only latin alphabet, hyphen, space, comma and period" |
-      | "David#Nomathan" | "Only latin alphabet, hyphen, space, comma and period" |
-      | "%test%"         | "Only latin alphabet, hyphen, space, comma and period" |
-      | "first "         | "First name cannot contain leading or trailing space"  |
-      | " First"         | "First name cannot contain leading or trailing space"  |
+      | firstname        | validationMessage                                       |
+      | "@   ()"         | "The name can only contain letters, numbers, and ; , :" |
+      | "[]fdgdfg"       | "The name can only contain letters, numbers, and ; , :" |
+      | "~wee"           | "The name can only contain letters, numbers, and ; , :" |
+      | "David#Nomathan" | "The name can only contain letters, numbers, and ; , :" |
+      | "%test%"         | "The name can only contain letters, numbers, and ; , :" |
+      | "first "         | "First name cannot contain leading or trailing space"   |
+      | " First"         | "First name cannot contain leading or trailing space"   |
 
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact first name
@@ -54,15 +53,14 @@ Feature: Test validation on external invoice screen
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | lastname         | validationMessage                                      |
-      | "@   ()"         | "Only latin alphabet, hyphen, space, comma and period" |
-      | "[]fdgdfg"       | "Only latin alphabet, hyphen, space, comma and period" |
-      | ";;;;;"          | "Only latin alphabet, hyphen, space, comma and period" |
-      | "~wee"           | "Only latin alphabet, hyphen, space, comma and period" |
-      | "David#Nomathan" | "Only latin alphabet, hyphen, space, comma and period" |
-      | "%test%"         | "Only latin alphabet, hyphen, space, comma and period" |
-      | "last "          | "Last name cannot contain leading or trailing space"   |
-      | " last"          | "Last name cannot contain leading or trailing space"   |
+      | lastname         | validationMessage                                       |
+      | "@   ()"         | "The name can only contain letters, numbers, and ; , :" |
+      | "[]fdgdfg"       | "The name can only contain letters, numbers, and ; , :" |
+      | "~wee"           | "The name can only contain letters, numbers, and ; , :" |
+      | "David#Nomathan" | "The name can only contain letters, numbers, and ; , :" |
+      | "%test%"         | "The name can only contain letters, numbers, and ; , :" |
+      | "last "          | "Last name cannot contain leading or trailing space"    |
+      | " last"          | "Last name cannot contain leading or trailing space"    |
 
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact email address
