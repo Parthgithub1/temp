@@ -20,6 +20,7 @@ Feature: Test External Invoice
     And Search the external invoice in receivable
     Then User should see sent external invoice notiifcation on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
     When User set external invoice url in browser
     Then User should see the businessname of the external invoice sender
     When User enter otp on screen

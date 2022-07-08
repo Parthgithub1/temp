@@ -212,6 +212,7 @@ public class Eventhelper {
 
 	public static void getURL(WebDriver driver, String url) {
 		url = Environmenthelper.setUrl(System.getProperty("env")) + url;
+		Log.info("URL:" + url);
 		driver.get(url);
 	}
 
