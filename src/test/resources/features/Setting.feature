@@ -2,8 +2,8 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @Setting @paymentMethodSection @QAT @UAT 
   Scenario: Verify Payment methods on Settings Tab
-    When User login for "paymentMethodSection"
-    Then User should navigate to dashboard "paymentMethodSection"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
     Then User click on "Add account" button
@@ -47,8 +47,8 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @changePassword @Setting @QAT @UAT
   Scenario: Verify Settings Tab Account Section Change Password Functionality
-    When User login for "changePassword"
-    Then User should navigate to dashboard "changePassword"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Change the Password
@@ -56,8 +56,8 @@ Feature: Test Settings Tab Functionality
     Then User should see "Your password has been changed successfully" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login with "changePassword" and Login again after change password
-    Then User should navigate to dashboard "changePassword"
+    When User login with "Settings" and Login again after change password
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Reset Change the Password
@@ -68,8 +68,8 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @twoFactorAuthentication @Setting @QAT @doNotRunOnUAT
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
-    When User login for "twoFactorAuthentication"
-    Then User should navigate to dashboard "twoFactorAuthentication"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle
     When User enter "8523647592" in Mobile Number field
@@ -78,8 +78,8 @@ Feature: Test Settings Tab Functionality
     Then User should see "MFA Enabled" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login for "twoFactorAuthentication"
-    Then User should navigate to dashboard "twoFactorAuthentication"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User enter otp on screen
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle
@@ -93,8 +93,8 @@ Feature: Test Settings Tab Functionality
   #Settings > Change Password Section Negative Cases
   @Regression @Setting @CurrentPasswordValidation
   Scenario: Verify Settings Tab Account Section Change Password Functionality Validations Message
-    When User login for "changePassword"
-    Then User should navigate to dashboard "changePassword"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Edit the Password
@@ -107,8 +107,8 @@ Feature: Test Settings Tab Functionality
   #Settings > Change Password Section Negative Cases
   @Regression @Setting @emptyPasswordFieldValidations
   Scenario: Verify Settings Tab Account Section Change Password Validations Message
-    When User login for "changePassword"
-    Then User should navigate to dashboard "changePassword"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User enter value in current Password field
@@ -124,8 +124,8 @@ Feature: Test Settings Tab Functionality
   #Settings > Change Password Section Negative Cases
   @Regression @Setting @newPasswordValidations
   Scenario: Verify Settings Tab Account Section Change Password Validations Message
-    When User login for "changePassword"
-    Then User should navigate to dashboard "changePassword"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User enter "Test" in new Password field
@@ -137,8 +137,8 @@ Feature: Test Settings Tab Functionality
   #Settings > Change Password Section Negative Cases
   @Regression @Setting @newPasswordValidation
   Scenario: Verify Settings Tab Account Section Change Password Validations Message
-    When User login for "changePassword"
-    Then User should navigate to dashboard "changePassword"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User enter "password123" in new Password field
@@ -150,8 +150,8 @@ Feature: Test Settings Tab Functionality
   #Settings > Change Password Section Negative Cases
   @Regression @Setting @ConfirmPasswordDoNotMatch
   Scenario: Verify Settings Tab Account Section Change Password Functionality
-    When User login for "changePassword"
-    Then User should navigate to dashboard "changePassword"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User try Change the Password
@@ -163,8 +163,8 @@ Feature: Test Settings Tab Functionality
   #Settings > twoFactorAuthentication Section Negative Cases
   @Regression @Setting @ValidationforWrongCode
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
-    When User login for "twoFactorAuthentication"
-    Then User should navigate to dashboard "twoFactorAuthentication"
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle
     When User enter "8523647592" in Mobile Number field
@@ -177,9 +177,9 @@ Feature: Test Settings Tab Functionality
 
   #Settings > Already Added Bank Details Section Negative Cases
   @Regression @Setting @ValidationForAlreadyAddedBank
-  Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
-    When User login for "paymentMethodSection"
-    Then User should navigate to dashboard "paymentMethodSection"
+  Scenario: Verify Settings Tab Account Section User can not add Same Bank validation Message Functionality
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
     When User save the bank detail of currrently added bank
