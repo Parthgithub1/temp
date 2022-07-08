@@ -31,8 +31,8 @@ Feature: Test Fund Management Functionality
 
   @Regression @AddFundsDigit @Amount
   Scenario: Verify User is able to check validation message for Add Funds
-    When User login for "markReceivedInvoice"
-    Then User should navigate to dashboard "markReceivedInvoice"
+    When User login for "Funds"
+    Then User should navigate to dashboard "Funds"
     When User click on "Add funds" button
     Then User should see "Add funds" model open
     When User enter 00.00 in amount field to "Add" funds
@@ -43,8 +43,8 @@ Feature: Test Fund Management Functionality
 
   @Regression @WithdrawFundsDigit @Amount
   Scenario: Verify User is able to check validation message for Withdraw
-    When User login for "markReceivedInvoice"
-    Then User should navigate to dashboard "markReceivedInvoice"
+    When User login for "Funds"
+    Then User should navigate to dashboard "Funds"
     When User click on "Withdraw" button
     Then User should see "Withdraw funds" model open
     When User enter 00.00 in amount field to "Withdraw" funds
@@ -59,8 +59,8 @@ Feature: Test Fund Management Functionality
 
   @Regression @WithdrawButtonDisabledWhenamountisZero @Amount
   Scenario: Verify User is able to see Withdraw button in disabled status when amount is Less or Equals Zero
-    When User login for "markReceivedInvoice"
-    Then User should navigate to dashboard "markReceivedInvoice"
+    When User login for "Funds"
+    Then User should navigate to dashboard "Funds"
     When User should save current hopscotch balance
     When User click on "Withdraw" button
     When User enter amount to "Withdraw" funds
