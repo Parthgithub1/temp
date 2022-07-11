@@ -277,7 +277,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @FactorInvoice @run
+  @Regression @FactorInvoice
   Scenario: Verify that user is able to send factored invoice to existing business into hopscotch application
     When User login for "FactorInvoiceSend"
     Then User should navigate to dashboard "FactorInvoiceSend"
