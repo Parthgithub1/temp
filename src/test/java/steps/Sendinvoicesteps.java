@@ -9,6 +9,7 @@ import java.util.List;
 
 import io.cucumber.java.en.*;
 import pages.*;
+import userdata.Fundsdata;
 import userdata.Payinvoicedata;
 import utility.Driverhelper;
 import utility.Eventhelper;
@@ -18,9 +19,11 @@ public class Sendinvoicesteps {
 
 	Sendinvoicepage sendInvoicePage = new Sendinvoicepage(Driverhelper.getDriver());
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
+	Homepage homepage = new Homepage(Driverhelper.getDriver());
+	Fundsdata fundData = new Fundsdata();
 	Payinvoicedata payData = new Payinvoicedata();
 	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin,
-			totalExpectedAmount, amountOfInvoice, amountOfRejectedCard;
+			totalExpectedAmount, amountOfInvoice, amountOfRejectedCard, flowedAmount;
 	String searchBusinessOnReceivable;
 
 	@Then("Read Receivable Balance on accounting screen")
@@ -103,8 +106,8 @@ public class Sendinvoicesteps {
 		amountOfInvoice = sendInvoicePage.invoiceAmount("Receivable");
 	}
 
-	@Then("Receivable balance is updated on the screen once user cancelled invoice")
-	public void receivable_balance_is_updated_on_the_screen_once_user_cancelled_invoice() {
+	@Then("Receivable balance is updated on the screen")
+	public void receivable_balance_is_updated_on_the_screen() {
 		Eventhelper.threadWait(2000);
 		totalExpectedAmount = receivableBalanceOnAccountingPage - amountOfInvoice;
 		Log.info("totalExpectedAmount after send invoice --->" + totalExpectedAmount);
@@ -164,4 +167,49 @@ public class Sendinvoicesteps {
 	public void user_enter_invoice_details_like_amount_is_and_message_is_for_future_date(int amount, String memo) {
 		sendInvoicePage.sendInvoiceForFutureDate(amount, memo);
 	}
+
+	@When("User click on the flow button")
+	public void user_click_on_the_flow_button() {
+		sendInvoicePage.clickOnFlowButton();
+	}
+
+	@Then("User should read flow amount of the card")
+	public void user_should_read_flow_amount_of_the_card() {
+		flowedAmount = sendInvoicePage.flowedAmount();
+	}
+
+	@When("User click on Accept and Agree lable")
+	public void user_click_on_accept_and_agree_lable() {
+		sendInvoicePage.clickOnAcceptAndAgree();
+	}
+
+	@When("User click on get button in card")
+	public void user_click_on_get_button_in_card() {
+		sendInvoicePage.clickOnGetButton();
+	}
+
+	@Then("Hopscotch balance is updated on the screen")
+	public void hopscotch_balance_is_updated_on_the_screen() {
+		float expected =  Eventhelper.convertFloatTo2DecimalFloat(Payinvoivesteps.currentHopscotchBalance())+ flowedAmount;  
+		float actual = Eventhelper.convertFloatTo2DecimalFloat(homepage.getCurrentHopscotchBalanceAmount());
+		assertEquals(expected, actual, 0);
+	}
+
+	@When("User click on invoice from {string} tab")
+	public void user_click_on_invoice_from_tab(String accountingSection) {
+		sendInvoicePage.clickOnInvoice(accountingSection);
+	}
+
+	@Then("User should see the flowed amount is display on the screen")
+	public void user_should_see_the_flowed_amount_is_display_on_the_screen() {
+		float actualFlowedAmount = sendInvoicePage.flowedAmountOnCompletedInvoice();
+		assertEquals(flowedAmount, actualFlowedAmount, 0);
+	}
+
+	@Then("User should see actual invoice amount on the screen")
+	public void user_should_see_actual_invoice_amount_on_the_screen() {
+		float amountOfOpenedInvoiceInCompleted = sendInvoicePage.invoiceAmount("Completed");
+		assertEquals(amountOfInvoice, amountOfOpenedInvoiceInCompleted, 0);
+	}
+
 }
