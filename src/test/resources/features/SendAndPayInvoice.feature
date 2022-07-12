@@ -120,7 +120,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on the menu icon of the card on "Receivable"
     When User click on "Cancel" link
     When User click on "Yes, Cancel" button
-    Then Receivable balance is updated on the screen once user cancelled invoice
+    Then Receivable balance is updated on the screen
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You have cancelled an invoice of qatsmokeautomation15 for $1.00" notification
@@ -163,11 +163,11 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Invoice from Payable tab
     Then User should see "This invoice has been created to be rejected." text on the card of "Payable"
     #When User click on the menu icon of the card on "Payable"
-    Then User should see the amount of the card for rejection
+    Then User should see the amount of the card
     When User click on the menu icon of the card on "Payable"
     When User click on "Reject" link
     When User click on "Yes, Reject" button
-    Then Payable balance is updated on the screen once user Reject invoice
+    Then Payable balance is updated on the screen
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You have rejected an invoice from qatsmokeautomation19 for $1.00" notification
@@ -276,3 +276,74 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Coming up" text on the card of "Payable"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
+
+  @Regression @FactorInvoice
+  Scenario: Verify that user is able to send factored invoice to existing business into hopscotch application
+    When User login for "FactorInvoiceSend"
+    Then User should navigate to dashboard "FactorInvoiceSend"
+    Then User click on "Receivable" Container
+    Then User should save the amount of Hopscotch Balance from Accounting Page
+    Then Read Receivable Balance on accounting screen
+    When User click on Pay or Get Paid link
+    When User enter "TestCRSqat04" in searchbox
+    Then User should see "TestCRSqat04" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
+    When User enter invoice details like amount is 1 and message is "Factor invoice" for future date
+    When User click on "Confirm" button
+    When User click on "Send" button
+    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then Receivable balance is updated on the screen with "1.00"
+    Then Read Receivable Balance on accounting screen
+    When User enter "TestCRSqat04" in Searchbar of "Receivable"
+    And User sort the invoice with due date on "Receivable"
+    When User click on Invoice from Receivable tab
+    Then User should see the amount to be receivable
+    When User click on the flow button
+    Then User should read flow amount of the card
+    When User click on get button in card
+    When User click on Accept and Agree lable
+    When User click on "Confirm Flow" button
+    Then Receivable balance is updated on the screen
+    Then Hopscotch balance is updated on the screen
+    When User click on "Completed" button
+    When User enter "TestCRSqat04" in Searchbar of "Completed"
+    And User sort the invoice with due date on "Completed"
+    Then User should see the flowed amount is display on the screen
+    When User click on invoice from "Completed" tab
+    Then User should see actual invoice amount on the screen
+    #Then User should see "Flowed" text on the card of "Completed"
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "Cash is Flowing! Funds from an invoice to TestCRSqat04 have been unlocked and $0.97 has been added to your Hopscotch balance." notification
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+    When User login for "FactorInvoicePay"
+    Then User should navigate to dashboard "FactorInvoicePay"
+    Then User click on "Payable" Container
+    When User should save Default amount of Payable on Accounting Page
+    Then User should see "Hopscotch Balance" text on the screen
+    When User enter "TestCRSqat03" in Searchbar of "Payable"
+    And User sort the invoice with due date on "Payable"
+    When User click on Invoice from Payable tab
+    Then User should see the amount of the card
+    Then User should see "Payable dashboard" text on the screen
+    When User click on "Pay" button
+    Then User should see "Payable dashboard" text on the screen
+    When User click on "Confirm" button
+    Then Payable balance is updated on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+    When User login for "FactorInvoiceSend"
+    Then User should navigate to dashboard "FactorInvoiceSend"
+    Then User click on "Receivable" Container
+    When User click on "Completed" button
+    When User enter "TestCRSqat04" in Searchbar of "Completed"
+    And User sort the invoice with due date on "Completed"
+    When User click on invoice from "Completed" tab
+    Then User should see "Paid by customer" text on the card of "Completed"
+     When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "Flow complete! On" text on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen 
