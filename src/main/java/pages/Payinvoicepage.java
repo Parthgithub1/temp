@@ -23,11 +23,11 @@ public class Payinvoicepage {
 	}
 
 	public void clickOnContanier(String contanierName) {
-		Log.info("Value of is data laoded before :-" + Eventhelper.getValueOfAttribute(driver,
+		Log.info("Value of is data loaded before :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"data-loaded"));
 		homepage.waituntillDataLoadedOnTheDashboard();
-		Log.info("Value of is data laoded after :-" + Eventhelper.getValueOfAttribute(driver,
+		Log.info("Value of is data loaded after :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"data-loaded"));
 		By payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");

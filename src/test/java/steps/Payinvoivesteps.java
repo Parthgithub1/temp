@@ -22,6 +22,7 @@ public class Payinvoivesteps {
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Homepage homepage = new Homepage(Driverhelper.getDriver());
 	float amountOfRejectedCard, getexistingBalanceofPayableonAccountingPage;
+	static float hopscotchBalance;
 
 	@When("User click on {string} Container")
 	public void user_click_on_container(String string) {
@@ -66,9 +67,10 @@ public class Payinvoivesteps {
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")
 	public void user_should_save_the_amount_of_hopscotch_balance_from_accounting_page() {
-		fundData.setAmountofhopscotchBalance(homepage.getCurrentHopscotchBalanceAmount());
+		hopscotchBalance=homepage.getCurrentHopscotchBalanceAmount();
+		fundData.setAmountofhopscotchBalance(hopscotchBalance);
 	}
-
+	
 	@When("User enter {string} in Searchbar")
 	public void user_enter_in_searchbar(String string) {
 		payInvoice.enterInSearchBar(string);
@@ -127,13 +129,13 @@ public class Payinvoivesteps {
 		payInvoice.enterInSearchBar(Businessname, AccountingSection);
 	}
 
-	@Then("User should see the amount of the card for rejection")
-	public void user_should_see_the_amount_of_the_card_for_rejection() {
+	@Then("User should see the amount of the card")
+	public void user_should_see_the_amount_of_the_card() {
 		amountOfRejectedCard = sendInvoice.invoiceAmount("Payable");
 	}
 
-	@Then("Payable balance is updated on the screen once user Reject invoice")
-	public void payable_balance_is_updated_on_the_screen_once_user_reject_invoice() {
+	@Then("Payable balance is updated on the screen")
+	public void payable_balance_is_updated_on_the_screen() {
 		float expectedAmount = getexistingBalanceofPayableonAccountingPage - amountOfRejectedCard;
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		Log.info("Expected amount is " + expectedAmount);
@@ -146,5 +148,9 @@ public class Payinvoivesteps {
 		float expectedAmount = getexistingBalanceofPayableonAccountingPage - Addbillsteps.addBillInvoiceAmount();
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
+	}
+	
+	public static float currentHopscotchBalance() {
+	return hopscotchBalance;	
 	}
 }

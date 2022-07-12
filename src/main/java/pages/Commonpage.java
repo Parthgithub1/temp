@@ -184,6 +184,14 @@ public class Commonpage {
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat16")
 					: property.getProperty("uat4");
 			break;
+		case "FactorInvoiceSend":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs1")
+					: property.getProperty("uat4");
+			break;
+		case "FactorInvoicePay":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs2")
+					: property.getProperty("uat4");
+			break;
 		default:
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat11")
 					: property.getProperty("uat3");
