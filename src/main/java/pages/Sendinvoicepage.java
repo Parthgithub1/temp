@@ -80,7 +80,7 @@ public class Sendinvoicepage {
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
 		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
-		Float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
+		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
 				.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[" + index + "]"))
 				.substring(1).replace(",", ""));
 		Log.info("Balance on the opened card in receivable is :- " + amount);
@@ -140,7 +140,7 @@ public class Sendinvoicepage {
 
 	public float flowedAmount() {
 		Eventhelper.threadWait(2000);
-		Float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//h2[@class='decimal'])[2]"))
+		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//h2[@class='decimal'])[2]"))
 				.substring(1).replace(",", "").replace(" ", ""));
 		Log.info("Flowed amount is" + amount);
 		return amount;
