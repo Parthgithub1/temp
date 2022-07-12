@@ -129,41 +129,71 @@ public class Commonpage {
 		String credential = null;
 
 		switch (feature) {
-		case "Login":
 		case "addbill":
-		case "Funds":
-		case "externalInvoice":
-		case "InvoiceSend":
 		case "deatiledInvoicePay":
-			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat3")
+		case "externalInvoice":
+		case "Login":
+		case "Funds":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat11")
 					: property.getProperty("uat1");
 			break;
-		case "Profile":
-		case "paymentMethodSection":
-		case "downloadInvoice":
-		case "markReceivedInvoice":
-			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat6")
+		case "deatiledInvoice":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat20")
+					: property.getProperty("uat1");
+			break;
+		case "InvoicePay":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat13")
 					: property.getProperty("uat2");
 			break;
-		case "twoFactorAuthentication":
-		case "InvoicePay":
-			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat7")
+		case "InvoiceSend":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat14")
+					: property.getProperty("uat3");
+			break;
+		case "markReceivedInvoice":
+		case "downloadInvoice":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat21")
+					: property.getProperty("uat3");
+			break;
+		case "cancelInvoice":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat18")
+					: property.getProperty("uat3");
+			break;
+		case "rejectInvoice":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat19")
+					: property.getProperty("uat3");
+			break;
+		case "futureDayInvoice":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat17")
 					: property.getProperty("uat3");
 			break;
 		case "contact":
-		case "changePassword":
-		case "accountSection":
-		case "deatiledInvoice":
-		case "rejectInvoice":
-			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat5")
+		case "cancelInvoiceNotificationCheck":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat15")
 					: property.getProperty("uat2");
 			break;
 		case "Unverified":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat4")
 					: property.getProperty("uat4");
 			break;
+		case "Profile":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat6")
+					: property.getProperty("uat4");
+			break;
+		case "Settings":
+		case "rejectInvoiceNotificationCheck":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat16")
+					: property.getProperty("uat4");
+			break;
+		case "FactorInvoiceSend":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs1")
+					: property.getProperty("uat4");
+			break;
+		case "FactorInvoicePay":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs2")
+					: property.getProperty("uat4");
+			break;
 		default:
-			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat3")
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat11")
 					: property.getProperty("uat3");
 		}
 		return credential;

@@ -79,11 +79,11 @@ public class Sendinvoicepage {
 
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
-		Float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
 				.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[" + index + "]"))
 				.substring(1).replace(",", ""));
-		Log.info("Balance on the opened card in receivable is :-" + amount);
+		Log.info("Balance on the opened card in receivable is :- " + amount);
 		return amount;
 	}
 
@@ -93,7 +93,7 @@ public class Sendinvoicepage {
 	}
 
 	public void sortWithDueDate(String accountingSection) {
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
 		By btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[" + index + "]");
 		Eventhelper.click(driver, btnDuedate);
 	}
@@ -103,7 +103,7 @@ public class Sendinvoicepage {
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
 		By btnMenuOnReceivableCard = By
 				.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[" + index + "]");
 		Eventhelper.click(driver, btnMenuOnReceivableCard);
@@ -115,8 +115,8 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : 2;
-		By xpath = By.xpath("(//*[contains(text(),'" + message + "')])[" + index + "]");
+		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='"+message+"'])["+index+"]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
 
@@ -126,9 +126,50 @@ public class Sendinvoicepage {
 	}
 
 	public void sendInvoiceForFutureDate(int amount, String message) {
+		int date = message.equalsIgnoreCase("Factor invoice") ? 33 : 1;
 		Eventhelper.sendkeys(driver, txtAmount, String.valueOf(amount));
 		Eventhelper.useActionClassOperation(driver, txtdate, Constants.DOUBLECLICK);
-		Eventhelper.sendkeys(driver, txtdate, Eventhelper.getDate(1));
+		Eventhelper.sendkeys(driver, txtdate, Eventhelper.getDate(date));
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
+
+	public void clickOnFlowButton() {
+		By btnflow = By.xpath("(//button[@type='button'][normalize-space()='Flow'])[2]");
+		Eventhelper.click(driver, btnflow);
+	}
+
+	public float flowedAmount() {
+		Eventhelper.threadWait(2000);
+		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//h2[@class='decimal'])[2]"))
+				.substring(1).replace(",", "").replace(" ", ""));
+		Log.info("Flowed amount is" + amount);
+		return amount;
+	}
+
+	public void clickOnGetButton() {
+		By btnget = By.xpath("(//button[contains(text(),'Get')])[1]");
+		Eventhelper.click(driver, btnget);
+	}
+
+	public void clickOnAcceptAndAgree() {
+		By lblAcceptAndAgree = By.xpath("//label[normalize-space()='Agree & accept']");
+		Eventhelper.click(driver, lblAcceptAndAgree);
+	}
+
+	public void clickOnInvoice(String accountingSection)
+	{
+		int index= accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		By invoice= By.xpath("(//table[@role='presentation'])["+index+"]//tr[1]//td[1]");
+		Eventhelper.click(driver, invoice);
+	}
+	
+	public float flowedAmountOnCompletedInvoice()
+	{
+		Eventhelper.threadWait(1000);
+		float amt= Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//table[@role='presentation'])[3]//tr[1]//td[3]//span"))
+				.substring(2).replace(",", ""));
+		Log.info("amt value is :- "+amt);
+		return amt;
+	}
+
 }

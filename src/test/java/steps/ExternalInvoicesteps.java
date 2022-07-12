@@ -23,8 +23,8 @@ public class ExternalInvoicesteps {
 	
 	@When("User set external invoice url in browser")
 	public void user_set_external_invoice_url_in_browser() {
-		externalInvoicePage.setURL();
 		Eventhelper.threadWait(1000);
+		externalInvoicePage.setURL();
 	}
 
 	@Then("User enter bank details")

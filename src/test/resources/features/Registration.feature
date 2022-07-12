@@ -63,13 +63,12 @@ Feature: Test Registration Functionality
     When User click on "Continue" button
     When User enter otp on screen
     When User enter <firstname> in firstname field
-    Then User should see "Only latin alphabet, hyphen, space, comma, period and apostrophe" text on the screen
+    Then User should see "The name can only contain letters, numbers, and ; , :" text on the screen
 
     Examples: 
       | firstname        |
       | "@   ()"         |
       | "[]fdgdfg"       |
-      | ";;;;;"          |
       | "~wee"           |
       | "David#Nomathan" |
       | "%test%"         |
@@ -81,13 +80,12 @@ Feature: Test Registration Functionality
     When User click on "Continue" button
     When User enter otp on screen
     When User enter <lastname> in lastname field
-    Then User should see "Only latin alphabet, hyphen, space, comma, period and apostrophe" text on the screen
+    Then User should see "The name can only contain letters, numbers, and ; , :" text on the screen
 
     Examples: 
       | lastname         |
       | "@   ()"         |
       | "[]fdgdfg"       |
-      | ";;;;;"          |
       | "~wee"           |
       | "David#Nomathan" |
       | "%test%"         |
