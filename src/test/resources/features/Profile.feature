@@ -64,4 +64,4 @@ Feature: Test Profile Functionality
 
     Examples: 
       | BusinessName             | Handle                    | Industry     | Website                   | YearFound | AboutText                                     |
-      | "hopsmokeautomation2llc" | "@hopsmokeautomation2llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
+      | "hopsmokeautomation3llc" | "@hopsmokeautomation3llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |

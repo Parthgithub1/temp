@@ -147,7 +147,7 @@ public class Commonpage {
 			break;
 		case "InvoiceSend":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat14")
-					: property.getProperty("uat3");
+					: property.getProperty("uat1");
 			break;
 		case "markReceivedInvoice":
 		case "downloadInvoice":
@@ -169,7 +169,7 @@ public class Commonpage {
 		case "contact":
 		case "cancelInvoiceNotificationCheck":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat15")
-					: property.getProperty("uat2");
+					: property.getProperty("uat1");
 			break;
 		case "Unverified":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat4")
@@ -177,12 +177,12 @@ public class Commonpage {
 			break;
 		case "Profile":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat6")
-					: property.getProperty("uat4");
+					: property.getProperty("uat3");
 			break;
 		case "Settings":
 		case "rejectInvoiceNotificationCheck":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat16")
-					: property.getProperty("uat4");
+					: property.getProperty("uat3");
 			break;
 		case "FactorInvoiceSend":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs1")
