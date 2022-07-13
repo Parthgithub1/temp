@@ -1,7 +1,6 @@
 package steps;
 
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 import io.cucumber.java.en.*;
 import pages.*;
 import utility.*;
@@ -14,9 +13,9 @@ public class DetailedInvoicesteps {
 		detailedInvoice.clickOnDetailedInvoiceToggle(invoiceType);
 	}
 
-	@When("User click on {string} button and enter Tax Rate")
-	public void user_click_on_button_and_enter_tax_rate(String addTaxButton) {
-		detailedInvoice.clickOnAddTaxButtonAndEnterTax(addTaxButton);
+	@When("User click on {string} button and enter Tax Rate {float}")
+	public void user_click_on_button_and_enter_tax_rate(String addTaxButton, float taxRate) {
+		detailedInvoice.clickOnAddTaxButtonAndEnterTax(addTaxButton, taxRate);
 	}
 
 	@When("User enter Item Details for Invoice")
@@ -47,5 +46,10 @@ public class DetailedInvoicesteps {
 	@Then("User should see the deatails added in Invoice")
 	public void user_should_see_the_deatails_added_in_invoice() {
 		assertTrue(detailedInvoice.verificationOfDeatilsAddedInInvoice());
+	}
+
+	@Then("User should see Tax value added in Invoice")
+	public void user_should_see_tax_value_added_in_invoice() {
+		assertTrue(detailedInvoice.isTaxAmountAdded());
 	}
 }

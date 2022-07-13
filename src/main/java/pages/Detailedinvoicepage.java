@@ -12,12 +12,15 @@ public class Detailedinvoicepage {
 	private By txtItemRate = By.xpath("//input[@name='rate']");
 	private By btnDueDate = By.xpath("//div/input[@name='detailedDueDate']");
 	private By btnInvoiceDate = By.xpath("//div/input[@name='detailedInvoiceDate']");
-//	private By radioButtonOfTax = By.xpath("//input[@id='taxed']");
+	private By rbtnTax = By.xpath("(//div[contains(@class,'Checkbox_checkbox-control')])[1]");
 	private By amountTotal = By.xpath("//div[contains(@class,'InvoiceForm_itemAmount')]");
 	private By txtSubTotal = By.xpath("//div[contains(@class,'InvoiceForm_invoice-sub_total')]//span");
 	private By btnCloseInvoice = By.xpath("(//button[contains(@class,'CloseButton_close-button')])[1]");
+	private By txtTaxAmountAdded = By.xpath("(//div[contains(@class,'InvoiceForm_invoice-tax')])[1]//span");
+	private By txtAddTaxRate = By.xpath("(//p[contains(text(),'Tax Rate')]/following-sibling::div//input)[1]");
 	Faker faker = new Faker();
 	String itemDescription = faker.food().ingredient();
+	float taxRateAmount;
 
 	public Detailedinvoicepage(WebDriver driver) {
 		this.driver = driver;
@@ -28,10 +31,10 @@ public class Detailedinvoicepage {
 		Eventhelper.click(driver, toggleDetailedInvoiceButton);
 	}
 
-	public void clickOnAddTaxButtonAndEnterTax(String addTaxButton) {
+	public void clickOnAddTaxButtonAndEnterTax(String addTaxButton, float taxRate) {
 		Eventhelper.click(driver, By.xpath("(//button[normalize-space()='" + addTaxButton + "'])[1]"));
-		Eventhelper.sendkeys(driver, By.xpath("(//p[contains(text(),'Tax Rate')]/following-sibling::div//input)[1]"),
-				"15");
+		taxRateAmount = taxRate;
+		Eventhelper.sendkeys(driver, txtAddTaxRate, String.valueOf(taxRate));
 	}
 
 	public void enterDetailsOfItemForInvoice() {
@@ -40,7 +43,7 @@ public class Detailedinvoicepage {
 		Eventhelper.sendkeys(driver, txtItemDescriptionForInvoice, itemDescription);
 		Eventhelper.sendkeys(driver, txtItemQuantity, "2");
 		Eventhelper.sendkeys(driver, txtItemRate, "2");
-//		Eventhelper.click(driver, radioButtonOfTax);
+		Eventhelper.click(driver, rbtnTax);
 	}
 
 	public Boolean isIteamAmountAndSubtotalAmountMatched() {
@@ -48,9 +51,15 @@ public class Detailedinvoicepage {
 				.equals(Eventhelper.getTextofElement(driver, txtSubTotal).replace("$", ""));
 	}
 
+	public Boolean isTaxAmountAdded() {
+		return (Float.parseFloat(Eventhelper.getTextofElement(driver, amountTotal).replace("$", "")) * taxRateAmount)
+				/ 100 == Float.parseFloat(Eventhelper.getTextofElement(driver, txtTaxAmountAdded).replace("$", ""));
+	}
+
 	public Boolean isIteamAmountMatchedWithRateAndQty() {
 		float expectedAmtValue = Float.parseFloat(Eventhelper.getValueOfAttribute(driver, txtItemQuantity, "value"))
 				* Float.parseFloat(Eventhelper.getValueOfAttribute(driver, txtItemRate, "value"));
+
 		float actualAmtValue = Float.parseFloat(Eventhelper.getTextofElement(driver, amountTotal).replace("$", ""));
 		return expectedAmtValue == actualAmtValue;
 	}
