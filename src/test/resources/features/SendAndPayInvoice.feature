@@ -54,8 +54,8 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    When User enter "hopsmokeautomation3llc" in searchbox
-    Then User should see "hopsmokeautomation3llc" text on the screen
+    When User enter "hopsmokeautomation2llc" in searchbox
+    Then User should see "hopsmokeautomation2llc" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
     When User enter invoice details like amount is 1 and message is "This is the text of message"
@@ -63,12 +63,12 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Send" button
     Then User should see "Your invoice has been sent successfully" text on the screen
     Then Receivable balance is updated on the screen with "1.00"
-    When User enter "hopsmokeautomation3llc" in Searchbar of "Receivable"
+    When User enter "hopsmokeautomation2llc" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | hopsmokeautomation3llc | +$1.00 |
+      | hopsmokeautomation2llc | +$1.00 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to hopsmokeautomation3llc for $1.00" notification
+    Then User should see "You sent an invoice to hopsmokeautomation2llc for $1.00" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "InvoicePay"
@@ -342,8 +342,8 @@ Feature: Test Send and Pay invoice Functionality
     And User sort the invoice with due date on "Completed"
     When User click on invoice from "Completed" tab
     Then User should see "Paid by customer" text on the card of "Completed"
-     When User click on Notification option from Header
+    When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "Flow complete! On" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
-    Then User should see "Sign in" text on the screen 
+    Then User should see "Sign in" text on the screen
