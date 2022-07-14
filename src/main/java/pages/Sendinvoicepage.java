@@ -17,8 +17,7 @@ public class Sendinvoicepage {
 			.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span[@id='amount_receivable']");
 	private By lblreceivableBalanceonAccounting = By.xpath(
 			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
-	private By invoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td");
-	private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
+		private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	String receiableBlanaceOnAccountingPage;
@@ -77,9 +76,16 @@ public class Sendinvoicepage {
 						.substring(1).replace(",", ""));
 	}
 
+	public int getIndex(String accountingSection) {
+	      if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+	        return 1;
+	      }
+	      return accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)  ? 2 : 3;
+	    }
+	
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		int index = getIndex(accountingSection);
 		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
 				.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[" + index + "]"))
 				.substring(1).replace(",", ""));
@@ -93,7 +99,7 @@ public class Sendinvoicepage {
 	}
 
 	public void sortWithDueDate(String accountingSection) {
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		int index = getIndex(accountingSection);
 		By btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[" + index + "]");
 		Eventhelper.click(driver, btnDuedate);
 	}
@@ -103,7 +109,7 @@ public class Sendinvoicepage {
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		int index = getIndex(accountingSection);
 		By btnMenuOnReceivableCard = By
 				.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[" + index + "]");
 		Eventhelper.click(driver, btnMenuOnReceivableCard);
@@ -115,7 +121,7 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
-		int index = accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		int index = getIndex(accountingSection);
 		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='"+message+"'])["+index+"]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
@@ -158,7 +164,7 @@ public class Sendinvoicepage {
 
 	public void clickOnInvoice(String accountingSection)
 	{
-		int index= accountingSection.equalsIgnoreCase(Constants.PAYABLE) ? 1 : accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)? 2:3;
+		int index= getIndex(accountingSection);
 		By invoice= By.xpath("(//table[@role='presentation'])["+index+"]//tr[1]//td[1]");
 		Eventhelper.click(driver, invoice);
 	}
