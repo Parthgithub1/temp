@@ -24,6 +24,7 @@ public class Contactlistpage {
 	Faker faker = new Faker();
 	String tempEmail;
 	String bName = faker.company().name();
+	int countOfContactOnDashboard;
 
 	public Contactlistpage(WebDriver driver) {
 		this.driver = driver;
@@ -129,4 +130,33 @@ public class Contactlistpage {
 		}
 		return Eventhelper.getTextofElement(driver, By.xpath(xpath + "//td[2]")).equals(tempEmail);
 	}
+
+	public void readCountOfContactOndashboard() {
+		Eventhelper.waitUntilAttribValueContains(driver,
+				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				"data-loaded", "true");
+		By lblCountOfContactOnDashboard = By
+				.xpath("//a[@href='/contacts' and contains(@class,'Link_link__2RtK3 CompanyInfo_client-link')]//span");
+		String contactOnDashboard  = Eventhelper.getTextofElement(driver, lblCountOfContactOnDashboard);
+		Log.info(contactOnDashboard);
+		countOfContactOnDashboard = Integer
+				.parseInt(contactOnDashboard.substring(contactOnDashboard.indexOf("(") + 1, contactOnDashboard.indexOf(")")));
+		Log.info("Count of contact list on the dashboard:- " + countOfContactOnDashboard);
+	}
+
+	public boolean isContactCountMatchOnContactListPage() {
+		By lblCountOfContactOnContactPage = By.xpath("//p[@class='contacts-amount']");
+		String contactOnContactListPage = Eventhelper.getTextofElement(driver, lblCountOfContactOnContactPage);
+		Log.info(contactOnContactListPage);
+		return countOfContactOnDashboard == Integer
+				.parseInt(contactOnContactListPage.substring(contactOnContactListPage.indexOf("(") + 1, contactOnContactListPage.indexOf(")")));
+	}
+
+	public boolean isCountOfTotalContactRowsMatched() {
+		By contactRows = By.xpath("//tbody//tr");
+		int count = Eventhelper.findElements(driver, contactRows).size();
+		Log.info("Total rows on the contactlist are :-" + count);
+		return count == countOfContactOnDashboard;
+	}
+
 }
