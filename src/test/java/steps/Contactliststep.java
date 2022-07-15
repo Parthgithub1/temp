@@ -69,4 +69,20 @@ public class Contactliststep {
 	public void user_enter_the_contact_deatils_with_already_added_email() {
 		contactList.enterContactDeatailsForAlreadyLinkedEmail();
 	}
+
+	@Then("User should read count of contact on the dashboard")
+	public void user_should_read_count_of_contact_on_the_dashboard() {
+		contactList.readCountOfContactOndashboard();
+	}
+
+	@Then("User should match count of contact on contact screen with the count of dashboard")
+	public void user_should_match_count_of_contact_on_contact_screen_with_the_count_of_dashboard() {
+		assertTrue(contactList.isContactCountMatchOnContactListPage());
+	}
+
+	@Then("User should count the rows of contact and match with the count of dashboard's count")
+	public void user_should_count_the_rows_of_contact_and_match_with_the_count_of_dashboard_s_count() {
+		assertTrue(contactList.isCountOfTotalContactRowsMatched());
+	}
+
 }

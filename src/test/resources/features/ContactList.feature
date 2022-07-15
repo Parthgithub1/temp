@@ -33,7 +33,7 @@ Feature: Test Contact List Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @contact
+  @Regression @contact 
   Scenario: Verify Already Contact Added Validations for Contact feature
     When User login for "contact"
     Then User should navigate to dashboard "contact"
@@ -49,5 +49,39 @@ Feature: Test Contact List Functionality
     When User click on "Add" button
     Then User should see "Email is already associated with qatsmokeautomation031" text on the screen
     When User click on "Cancel" button
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @contact
+  Scenario: Verify contact count of dashboard with the count of contact on contact list
+    When User login for "contact"
+    Then User should navigate to dashboard "contact"
+    Then User should read count of contact on the dashboard
+    And User click on "Contact list" button to navigate to dashboard
+    Then User should see "Contacts" text on the screen
+    Then User should match count of contact on contact screen with the count of dashboard
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @contact
+  Scenario: Verify contact count of on contact list should match with the total rows of contacts
+    When User login for "contact"
+    Then User should navigate to dashboard "contact"
+    Then User should read count of contact on the dashboard
+    And User click on "Contact list" button to navigate to dashboard
+    Then User should see "Contacts" text on the screen
+    Then User should count the rows of contact and match with the count of dashboard's count
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @contact
+  Scenario: Verify Business, email and contact name are present on the contact list page
+    When User login for "contact"
+    Then User should navigate to dashboard "contact"
+    And User click on "Contact list" button to navigate to dashboard
+    Then User should see "Contacts" text on the screen
+    Then User should see "Business" text on the screen
+    Then User should see "Email" text on the screen
+    Then User should see "Contact name" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
