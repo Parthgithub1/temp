@@ -67,10 +67,10 @@ public class Payinvoivesteps {
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")
 	public void user_should_save_the_amount_of_hopscotch_balance_from_accounting_page() {
-		hopscotchBalance=homepage.getCurrentHopscotchBalanceAmount();
+		hopscotchBalance = homepage.getCurrentHopscotchBalanceAmount();
 		fundData.setAmountofhopscotchBalance(hopscotchBalance);
 	}
-	
+
 	@When("User enter {string} in Searchbar")
 	public void user_enter_in_searchbar(String string) {
 		payInvoice.enterInSearchBar(string);
@@ -149,8 +149,15 @@ public class Payinvoivesteps {
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		assertEquals(expectedAmount, actualAmount, 0);
 	}
-	
+
 	public static float currentHopscotchBalance() {
-	return hopscotchBalance;	
+		return hopscotchBalance;
+	}
+
+	// Step of InvoiceScheduling for : Then User should see that Payable Balance is
+	// not Updated after scheduling invoice
+	@Then("User should see that Payable Balance is not Updated after scheduling invoice")
+	public void user_should_see_that_payable_balance_is_not_updated_after_scheduling_invoice() {
+		assertEquals(getexistingBalanceofPayableonAccountingPage, payData.getBalanceofPayableonAccountingPage(), 0);
 	}
 }

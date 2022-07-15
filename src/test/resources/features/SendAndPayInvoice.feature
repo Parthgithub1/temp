@@ -277,7 +277,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @FactorInvoice
+  @Regression @factorInvoice
   Scenario: Verify that user is able to send factored invoice to existing business into hopscotch application
     When User login for "FactorInvoiceSend"
     Then User should navigate to dashboard "FactorInvoiceSend"
@@ -345,5 +345,23 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "Flow complete! On" text on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @overDue
+  Scenario: Verify that user is able to pay overdue invoice of existing business into hopscotch application
+    When User login for "Overdue"
+    Then User should navigate to dashboard "Overdue"
+    Then User click on "Payable" Container
+    Then User should see "Hopscotch Balance" text on the screen
+    When User should save Default amount of Payable on Accounting Page
+    When User click on Invoice from Payable tab
+    Then User should see "Overdue" text on the card of "Payable"
+    Then User should see the amount of the card
+    Then User should see "Payable dashboard" text on the screen
+    When User click on "Pay" button
+    Then User should see "Payable dashboard" text on the screen
+    When User click on "Confirm" button
+    Then Payable balance is updated on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
