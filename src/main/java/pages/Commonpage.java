@@ -201,6 +201,10 @@ public class Commonpage {
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat23")
 					: property.getProperty("uat4");
 			break;
+		case "invoiceUnScheduling":
+			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat22")
+					: property.getProperty("uat4");
+			break;
 		default:
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat11")
 					: property.getProperty("uat3");
