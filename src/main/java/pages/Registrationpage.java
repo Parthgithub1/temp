@@ -86,7 +86,7 @@ public class Registrationpage {
 		enterOTP();
 		enterFirstName("Ronald");
 		enterLastName(lastName);
-		enterBusinessName("TestTP" + Eventhelper.generateRandomNumberWith1Prefix(4, 9999));
+		enterBusinessName("TestTP " + Eventhelper.generateRandomNumberWith1Prefix(4,9999));
 		commonPage.enterPassword(property.getProperty("password"));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterCompanyDetails();
