@@ -78,14 +78,15 @@ public class Registrationpage {
 		Eventhelper.click(driver, txtEmailAddress);
 	}
 
-	public void doRegister(String randomemail) {
+	public void doRegister(String randomemail, String businessType) {
+		String lastName = businessType.equalsIgnoreCase("Sole Proprietorship") ? "SolePropPass" : "BizPass";
 		commonPage.clickOnLink("Sign up");
 		commonPage.enterEmailAddress(randomemail);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterOTP();
 		enterFirstName("Ronald");
-		enterLastName(Constants.LASTNAMESOLEPROPPASS);
-		enterBusinessName("The Ronald Reagan");
+		enterLastName(lastName);
+		enterBusinessName("TestTP" + Eventhelper.generateRandomNumberWith1Prefix(4, 9999));
 		commonPage.enterPassword(property.getProperty("password"));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterCompanyDetails();
