@@ -216,8 +216,8 @@ public class Eventhelper {
 		driver.get(url);
 	}
 
-	public static String generateRandomNumber() {
-		return String.format("%09d", random.nextInt(999999999));
+	public static String generateRandomNumberWith1Prefix(int no, int maxRange) {
+		return String.format("1" + "%" + (no) + "d", random.nextInt(maxRange)).replace(' ', '0');
 	}
 
 	public static void threadWait(long miliSeconds) {
