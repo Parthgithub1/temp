@@ -38,9 +38,9 @@ public class Registrationstep {
 		registrationpage.clickOnTextbox();
 	}
 
-	@When("User register with {string} email")
-	public void user_register_with_email(String string) {
-		registrationpage.doRegister(string);
+	@When("User register with {string} email for {string}")
+	public void user_register_with_email_for(String email, String businessType) {
+		registrationpage.doRegister(email, businessType);
 	}
 
 	@When("User enter company details")
