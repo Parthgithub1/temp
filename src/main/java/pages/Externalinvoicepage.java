@@ -13,7 +13,7 @@ public class Externalinvoicepage {
 	private By rowInvoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td[1]//span[@class='id_receivable']");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
-	private By btnAddNewBusiness = By.xpath("//span[normalize-space()='as a new business']");
+	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact to pay or get paid')]");
 	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
 	private By lblBusinessNameOnDashboard = By.xpath("//p[contains(@class,'InfoHeader_header')][1]");
 	private By lblBusinessNameOnExternalInvoice = By.xpath("//div[@class='handle']//span[1]");
