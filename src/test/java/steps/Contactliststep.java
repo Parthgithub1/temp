@@ -85,4 +85,60 @@ public class Contactliststep {
 		assertTrue(contactList.isCountOfTotalContactRowsMatched());
 	}
 
+	@When("User read the data of business column")
+	public void user_read_the_data_of_business_column() {
+		contactList.readBusinessNameInList();
+	}
+
+	@Then("User should see sorted business name on the contact list screen")
+	public void user_should_see_sorted_business_name_on_the_contact_list_screen() {
+		assertTrue(contactList.isBusinessnameSorted());
+	}
+
+	@When("User read the data of email column")
+	public void user_read_the_data_of_email_column() {
+		contactList.readEmail();
+	}
+
+	@Then("User should see sorted email on the contact list screen")
+	public void user_should_see_sorted_email_on_the_contact_list_screen() {
+		assertTrue(contactList.isEmailSorted());
+	}
+
+	@When("User read the data of contact name column")
+	public void user_read_the_data_of_contact_name_column() {
+		contactList.readContactName();
+	}
+
+	@Then("User should see sorted contact name on the contact list screen")
+	public void user_should_see_sorted_contact_name_on_the_contact_list_screen() {
+		assertTrue(contactList.isContactNmaeSorted());
+	}
+
+	@Then("User should see that add contact button is not available on trash screen")
+	public void user_should_see_that_add_contact_button_is_not_available_on_trash_screen() {
+		assertTrue(contactList.isAddContactButtonPresentOnTrashScreen());
+	}
+
+	@Then("User should read the count of trash contact on screen")
+	public void user_should_read_the_count_of_trash_contact_on_screen() {
+		contactList.countOfContactOntrash();
+	}
+
+	@Then("User should see the count of trash contact on screen is updated with {int}")
+	public void user_should_see_the_count_of_trash_contact_on_screen_is_updated_with(Integer countOfDeletedContact) {
+		//assertTrue(contactList.iscountOfContactOnTrashUpdated(countOfDeletedContact));
+		assertTrue(contactList.isCountOfContactDeleted(countOfDeletedContact, "Trash"));
+	}
+
+	@When("user should read the count of contact on the contact screen")
+	public void user_should_read_the_count_of_contact_on_the_contact_screen() {
+		contactList.countOfContactOnContacListPage();
+	}
+
+	@Then("User should see the count of trash contact on screen is decreased with {int}")
+	public void user_should_see_the_count_of_trash_contact_on_screen_is_decreased_with(Integer countOfDeletedContact) {
+		assertTrue(contactList.isCountOfContactDeleted(countOfDeletedContact, "Contact"));
+	}
+
 }

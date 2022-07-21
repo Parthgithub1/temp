@@ -1,7 +1,6 @@
 package pages;
 
-import java.util.List;
-
+import java.util.*;
 import org.openqa.selenium.*;
 import com.github.javafaker.Faker;
 import utility.*;
@@ -21,6 +20,13 @@ public class Contactlistpage {
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
+	private By lblCountOfContactOnContactPage = By.xpath("//p[@class='contacts-amount']");
+	private List<String> list = new ArrayList<>();
+	private List<String> emailList = new ArrayList<>();
+	private List<String> contactNameList = new ArrayList<>();
+	private int countOfContactOntrash;
+	private int countOfContactOnContactListPage;
+
 	Faker faker = new Faker();
 	String tempEmail;
 	String bName = faker.company().name();
@@ -137,19 +143,22 @@ public class Contactlistpage {
 				"data-loaded", "true");
 		By lblCountOfContactOnDashboard = By
 				.xpath("//a[@href='/contacts' and contains(@class,'Link_link__2RtK3 CompanyInfo_client-link')]//span");
-		String contactOnDashboard  = Eventhelper.getTextofElement(driver, lblCountOfContactOnDashboard);
+		String contactOnDashboard = Eventhelper.getTextofElement(driver, lblCountOfContactOnDashboard);
 		Log.info(contactOnDashboard);
-		countOfContactOnDashboard = Integer
-				.parseInt(contactOnDashboard.substring(contactOnDashboard.indexOf("(") + 1, contactOnDashboard.indexOf(")")));
+		countOfContactOnDashboard = Integer.parseInt(
+				contactOnDashboard.substring(contactOnDashboard.indexOf("(") + 1, contactOnDashboard.indexOf(")")));
 		Log.info("Count of contact list on the dashboard:- " + countOfContactOnDashboard);
 	}
 
-	public boolean isContactCountMatchOnContactListPage() {
-		By lblCountOfContactOnContactPage = By.xpath("//p[@class='contacts-amount']");
+	public int countOfContactOnContactScreen() {
+		Eventhelper.threadWait(1000);
 		String contactOnContactListPage = Eventhelper.getTextofElement(driver, lblCountOfContactOnContactPage);
-		Log.info(contactOnContactListPage);
-		return countOfContactOnDashboard == Integer
-				.parseInt(contactOnContactListPage.substring(contactOnContactListPage.indexOf("(") + 1, contactOnContactListPage.indexOf(")")));
+		return Integer.parseInt(contactOnContactListPage.substring(contactOnContactListPage.indexOf("(") + 1,
+				contactOnContactListPage.indexOf(")")));
+	}
+
+	public boolean isContactCountMatchOnContactListPage() {
+		return countOfContactOnDashboard == countOfContactOnContactScreen();
 	}
 
 	public boolean isCountOfTotalContactRowsMatched() {
@@ -157,6 +166,81 @@ public class Contactlistpage {
 		int count = Eventhelper.findElements(driver, contactRows).size();
 		Log.info("Total rows on the contactlist are :-" + count);
 		return count == countOfContactOnDashboard;
+	}
+
+	public List<String> readContactListColumn(String columnname) {
+		List<String> listDataOfColumn = new ArrayList<>();
+		String afterxpath = null;
+
+		if (columnname.equalsIgnoreCase(Constants.BUSINESSNMAME)) {
+			afterxpath = "]//td[\" + 1+ \"]//div[contains(@class,'entity-short-card__info business')]";
+		} else if (columnname.equalsIgnoreCase(Constants.EMAIL)) {
+			afterxpath = "]//td[" + 2 + "]//div[contains(@class,'email_email__2FaK3')]";
+		} else if (columnname.equalsIgnoreCase(Constants.CONTACTNAME)) {
+			afterxpath = "]//td[\"+3+ \"]//p[contains(@class,'contactName_contact-name')]";
+		}
+
+		List<WebElement> listwe1 = null;
+		for (int i = 1; i <= Eventhelper.findElements(driver, By.xpath("//table//tbody//tr")).size(); i++) {
+			listwe1 = Eventhelper.findElements(driver, By.xpath("//table//tbody//tr[" + i + afterxpath));
+			for (WebElement e : listwe1) {
+				listDataOfColumn.add(e.getText().toLowerCase());
+			}
+		}
+		return listDataOfColumn;
+	}
+
+	public void readBusinessNameInList() {
+		list = readContactListColumn(Constants.BUSINESSNMAME);
+		list.sort(Comparator.reverseOrder());
+	}
+
+	public boolean isBusinessnameSorted() {
+		return list.equals(readContactListColumn(Constants.BUSINESSNMAME));
+	}
+
+	public void readEmail() {
+		emailList = readContactListColumn(Constants.EMAIL);
+		emailList.sort(Comparator.reverseOrder());
+	}
+
+	public boolean isEmailSorted() {
+		return emailList.equals(readContactListColumn(Constants.EMAIL));
+	}
+
+	public void readContactName() {
+		contactNameList = readContactListColumn(Constants.CONTACTNAME);
+		contactNameList.sort(Comparator.reverseOrder());
+	}
+
+	public boolean isContactNmaeSorted() {
+		return contactNameList.equals(readContactListColumn(Constants.CONTACTNAME));
+	}
+
+	public boolean isAddContactButtonPresentOnTrashScreen() {
+		Eventhelper.doRefresh(driver);
+		By btnAddContact = By.xpath("//button[normalize-space()='Add contact']");
+		return Eventhelper.waitUntilElementInvisible(driver, btnAddContact);
+	}
+
+	public void countOfContactOntrash() {
+		countOfContactOntrash = countOfContactOnContactScreen();
+		Log.info("Count of contact on trash " + countOfContactOntrash);
+	}
+
+	public void countOfContactOnContacListPage() {
+		countOfContactOnContactListPage = countOfContactOnContactScreen();
+	}
+
+	public boolean isCountOfContactDeleted(int countOfDeletedRecord, String caseForPage) {
+		int actual = countOfContactOnContactScreen();
+		int expected = 0;
+		if (caseForPage.equalsIgnoreCase("Trash")) {
+			expected = countOfContactOntrash + countOfDeletedRecord;
+		} else if (caseForPage.equalsIgnoreCase("Contact")) {
+			expected = countOfContactOnContactListPage - countOfDeletedRecord;
+		}
+		return actual == expected;
 	}
 
 }
