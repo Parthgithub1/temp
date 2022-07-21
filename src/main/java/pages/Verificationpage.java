@@ -124,7 +124,7 @@ public class Verificationpage {
 		Eventhelper.sendkeys(driver, txtAddBeneficialFirstName, "jack");
 		Eventhelper.sendkeys(driver, txtAddBeneficialLastName, "denial");
 		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012008");
-		Eventhelper.sendkeys(driver, txtAddBeneficialSSN, Eventhelper.generateRandomNumber());
+		Eventhelper.sendkeys(driver, txtAddBeneficialSSN, Eventhelper.generateRandomNumberWith1Prefix(8, 99999999));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
