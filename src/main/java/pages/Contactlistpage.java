@@ -13,7 +13,7 @@ public class Contactlistpage {
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtEmail = By.xpath("//input[@name='email']");
-	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new business')]");
+	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact to pay or get paid')]");
 	private By txtSearchBarforContact = By.xpath("//input[contains(@name ,'search')]");
 	private By newContactAddedName = By.xpath("//span[contains(@class,'InfoHeader_header')]");
 	private By lblEmailIdinContactListGrid = By.xpath("//td[2]");
