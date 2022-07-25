@@ -9,6 +9,8 @@ import utility.*;
 
 public class Contactliststep {
 	Contactlistpage contactList = new Contactlistpage(Driverhelper.getDriver());
+	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
+	String businessName;
 
 	@When("User click on Add New Contact button")
 	public void user_click_on_add_new_contact_button() {
@@ -127,7 +129,6 @@ public class Contactliststep {
 
 	@Then("User should see the count of trash contact on screen is updated with {int}")
 	public void user_should_see_the_count_of_trash_contact_on_screen_is_updated_with(Integer countOfDeletedContact) {
-		//assertTrue(contactList.iscountOfContactOnTrashUpdated(countOfDeletedContact));
 		assertTrue(contactList.isCountOfContactDeleted(countOfDeletedContact, "Trash"));
 	}
 
@@ -141,4 +142,18 @@ public class Contactliststep {
 		assertTrue(contactList.isCountOfContactDeleted(countOfDeletedContact, "Contact"));
 	}
 
+	@When("User read the business name of first contact and click on business name")
+	public void user_read_the_business_name_of_first_contact_and_click_on_business_name() {
+		businessName = contactList.readAndClickOnBusinessName();
+	}
+
+	@Then("User should see the business name on the profile screen")
+	public void user_should_see_the_business_name_on_the_profile_screen() {
+		assertTrue(commonPage.isTextDisplayed(businessName));
+	}
+
+	@Then("User should see the contact list count on the screen is updated with {int}")
+	public void user_should_see_the_contact_list_count_on_the_screen_is_updated_with(Integer count) {
+		assertTrue(contactList.isCountMatchAfterContactRestore(count));
+	}
 }
