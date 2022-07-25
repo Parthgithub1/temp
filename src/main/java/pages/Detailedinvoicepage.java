@@ -7,20 +7,18 @@ import utility.*;
 public class Detailedinvoicepage {
 
 	private WebDriver driver;
-	private By txtItemDescriptionForInvoice = By.xpath("//textarea[@name='description']");
 	private By txtItemQuantity = By.xpath("//input[@name='quantity']");
 	private By txtItemRate = By.xpath("//input[@name='rate']");
-	private By btnDueDate = By.xpath("//div/input[@name='detailedDueDate']");
-	private By btnInvoiceDate = By.xpath("//div/input[@name='detailedInvoiceDate']");
-	private By rbtnTax = By.xpath("(//div[contains(@class,'Checkbox_checkbox-control')])[1]");
 	private By amountTotal = By.xpath("//div[contains(@class,'InvoiceForm_itemAmount')]");
 	private By txtSubTotal = By.xpath("//div[contains(@class,'InvoiceForm_invoice-sub_total')]//span");
 	private By btnCloseInvoice = By.xpath("(//button[contains(@class,'CloseButton_close-button')])[1]");
 	private By txtTaxAmountAdded = By.xpath("(//div[contains(@class,'InvoiceForm_invoice-tax')])[1]//span");
 	private By txtAddTaxRate = By.xpath("(//p[contains(text(),'Tax Rate')]/following-sibling::div//input)[1]");
 	Faker faker = new Faker();
-	String itemDescription = faker.food().ingredient();
+	int amountOfItems;
+	int countOfRowAdded;
 	float taxRateAmount;
+	String itemDescription;
 
 	public Detailedinvoicepage(WebDriver driver) {
 		this.driver = driver;
@@ -37,23 +35,30 @@ public class Detailedinvoicepage {
 		Eventhelper.sendkeys(driver, txtAddTaxRate, String.valueOf(taxRate));
 	}
 
-	public void enterDetailsOfItemForInvoice() {
-		Eventhelper.sendkeys(driver, btnInvoiceDate, Eventhelper.getDate(0));
-		Eventhelper.sendkeys(driver, btnDueDate, Eventhelper.getDate(0));
-		Eventhelper.sendkeys(driver, txtItemDescriptionForInvoice, itemDescription);
-		Eventhelper.sendkeys(driver, txtItemQuantity, "2");
-		Eventhelper.sendkeys(driver, txtItemRate, "2");
-		Eventhelper.click(driver, rbtnTax);
+	public void enterMultipleItemsInInvoice() {
+		int noOfRow = Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']")).size();
+		int quantity = 2;
+		int rate = 2;
+		for (int i = 1; i <= noOfRow; i++) {
+			itemDescription = faker.food().ingredient();
+			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//textarea[@name='description']"), itemDescription);
+			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//input[@name='quantity']"),
+					String.valueOf(quantity));
+			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//input[@name='rate']"), String.valueOf(rate));
+			Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'Checkbox_checkbox-control')]"));
+			Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'InvoiceForm_itemAmount')]"));
+		}
+		amountOfItems = quantity * rate * noOfRow;
 	}
 
 	public Boolean isIteamAmountAndSubtotalAmountMatched() {
-		return Eventhelper.getTextofElement(driver, amountTotal).replace("$", "")
-				.equals(Eventhelper.getTextofElement(driver, txtSubTotal).replace("$", ""));
+		String subtotal = Eventhelper.getTextofElement(driver, txtSubTotal).replace("$", "");
+		return amountOfItems == Integer.parseInt(subtotal.substring(0, subtotal.indexOf(".")));
 	}
 
 	public Boolean isTaxAmountAdded() {
-		return (Float.parseFloat(Eventhelper.getTextofElement(driver, amountTotal).replace("$", "")) * taxRateAmount)
-				/ 100 == Float.parseFloat(Eventhelper.getTextofElement(driver, txtTaxAmountAdded).replace("$", ""));
+		return (amountOfItems * taxRateAmount) / 100 == Float
+				.parseFloat(Eventhelper.getTextofElement(driver, txtTaxAmountAdded).replace("$", ""));
 	}
 
 	public Boolean isIteamAmountMatchedWithRateAndQty() {
@@ -73,7 +78,18 @@ public class Detailedinvoicepage {
 	}
 
 	public Boolean verificationOfDeatilsAddedInInvoice() {
-		By iteamName = By.xpath("(//table)[2]//tr//td//p[1]");
+		By iteamName = By.xpath("(//p[contains(text(),'" + itemDescription + "')])[1]");
 		return itemDescription.equals(Eventhelper.getTextofElement(driver, iteamName));
+	}
+
+	public void deleteRowAdded() {
+		countOfRowAdded = Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']")).size();
+		Eventhelper.sendkeys(driver, By.xpath("//tr[3]//textarea[@name='description']"), faker.food().ingredient());
+		Eventhelper.click(driver, By.xpath("(//button[@type='button'])[4]"));
+	}
+
+	public Boolean isRowDeleted() {
+		return (countOfRowAdded - 1) == Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']"))
+				.size();
 	}
 }
