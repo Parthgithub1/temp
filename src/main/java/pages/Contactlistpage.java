@@ -8,6 +8,7 @@ import utility.*;
 public class Contactlistpage {
 
 	private WebDriver driver;
+	Faker faker = new Faker();
 	private By txtBusinessName = By.xpath("//input[contains(@name ,'vendor')]");
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");
 	private By txtLastName = By.xpath("//input[@name='lastName']");
@@ -21,16 +22,15 @@ public class Contactlistpage {
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	private By lblCountOfContactOnContactPage = By.xpath("//p[@class='contacts-amount']");
-	private List<String> list = new ArrayList<>();
-	private List<String> emailList = new ArrayList<>();
-	private List<String> contactNameList = new ArrayList<>();
-	private int countOfContactOntrash;
-	private int countOfContactOnContactListPage;
-
-	Faker faker = new Faker();
+	List<String> list = new ArrayList<>();
+	List<String> emailList = new ArrayList<>();
+	List<String> contactNameList = new ArrayList<>();
+	int countOfContactOntrash;
+	int countOfContactOnContactListPage;
+	int countOfContactBeforeContactRestore;
+	int countOfContactOnDashboard;
 	String tempEmail;
 	String bName = faker.company().name();
-	int countOfContactOnDashboard;
 
 	public Contactlistpage(WebDriver driver) {
 		this.driver = driver;
@@ -239,8 +239,21 @@ public class Contactlistpage {
 			expected = countOfContactOntrash + countOfDeletedRecord;
 		} else if (caseForPage.equalsIgnoreCase("Contact")) {
 			expected = countOfContactOnContactListPage - countOfDeletedRecord;
+			countOfContactBeforeContactRestore = expected;
 		}
 		return actual == expected;
+	}
+
+	public String readAndClickOnBusinessName() {
+		By businessNameOfFirstCell = By.xpath(
+				"//table[@class='TableBody_table_wrapper__3P9up']//tbody//tr[1]//td[1]//div[contains(@class,'entity-short-card__info business_business__message')]");
+		String businessName = Eventhelper.getTextofElement(driver, businessNameOfFirstCell);
+		Eventhelper.click(driver, businessNameOfFirstCell);
+		return businessName;
+	}
+
+	public boolean isCountMatchAfterContactRestore(int countOfRestoredContact) {
+		return countOfContactOnContactScreen() == (countOfContactBeforeContactRestore + countOfRestoredContact);
 	}
 
 }
