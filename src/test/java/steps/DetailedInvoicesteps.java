@@ -7,6 +7,7 @@ import utility.*;
 
 public class DetailedInvoicesteps {
 	Detailedinvoicepage detailedInvoice = new Detailedinvoicepage(Driverhelper.getDriver());
+	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 
 	@When("User click on {string} option for Invoice")
 	public void user_click_on_option_for_invoice(String invoiceType) {
@@ -20,7 +21,7 @@ public class DetailedInvoicesteps {
 
 	@When("User enter Item Details for Invoice")
 	public void user_enter_item_details_for_invoice() {
-		detailedInvoice.enterDetailsOfItemForInvoice();
+		detailedInvoice.enterMultipleItemsInInvoice();
 	}
 
 	@Then("User should see Total Amount and subtotal amount are matched")
@@ -51,5 +52,16 @@ public class DetailedInvoicesteps {
 	@Then("User should see Tax value added in Invoice")
 	public void user_should_see_tax_value_added_in_invoice() {
 		assertTrue(detailedInvoice.isTaxAmountAdded());
+	}
+
+	@When("User remove the added row for adding item Details")
+	public void user_remove_the_added_row_for_adding_item_details() {
+		commonPage.clickOnButton("Add item");
+		detailedInvoice.deleteRowAdded();
+	}
+
+	@Then("User should verify that added row is deleted")
+	public void user_should_verify_that_added_row_is_deleted() {
+		assertTrue(detailedInvoice.isRowDeleted());
 	}
 }
