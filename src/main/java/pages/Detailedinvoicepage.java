@@ -89,6 +89,7 @@ public class Detailedinvoicepage {
 	}
 
 	public Boolean isRowDeleted() {
+	// Here 1 is a count of deleted row of item in detailed invoice.
 		return (countOfRowAdded - 1) == Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']"))
 				.size();
 	}
