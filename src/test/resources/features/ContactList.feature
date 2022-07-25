@@ -137,5 +137,19 @@ Feature: Test Contact List Functionality
     Then User should see the count of trash contact on screen is updated with 1
     And User click on More Options button beside any Contact
     When User click on "Restore to contacts" Option to Restore Contact
+    When User click on "Contacts" link
+    Then User should see "Contacts" text on the screen
+    Then User should see the contact list count on the screen is updated with 1
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @contact
+  Scenario: Verify that user is able to open the profile of user by tapping on the business name from contact list.
+    When User login for "contact"
+    Then User should navigate to dashboard "contact"
+    And User click on "Contact list" button to navigate to dashboard
+    Then User should see "Contacts" text on the screen
+    When User read the business name of first contact and click on business name
+    Then User should see the business name on the profile screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
