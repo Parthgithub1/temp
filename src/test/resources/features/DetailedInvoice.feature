@@ -13,20 +13,23 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see "Invoice details" text on the screen
     When User click on "Detailed" option for Invoice
     When User click on "Add Tax" button and enter Tax Rate 15.00
+    When User click on "Add item" button
     When User enter Item Details for Invoice
+    When User remove the added row for adding item Details
+    Then User should verify that added row is deleted
     Then User should see Total Amount and subtotal amount are matched
     Then User should see amount value for Item added
     When User click on "Confirm" button
     Then User should see Tax value added in Invoice
     When User click on "Send" button
     Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "4.60"
+    Then Receivable balance is updated on the screen with "9.20"
     When User enter "qatsmokeautomation11" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation11 | +$4.60 |
+      | qatsmokeautomation11 | +$9.20 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation11 for $4.60" notification
+    Then User should see "You sent an invoice to qatsmokeautomation11 for $9.20" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "deatiledInvoicePay"
@@ -48,10 +51,10 @@ Feature: Test DetailedInvoice View Functionality
     Then User should save Default amount of Payable on Accounting Page
     Then User should see new amount on the screen for Payables
     Then User should see invoice details of invoice details on the screen
-      | qatsmokeautomation20 | -$4.60 |
+      | qatsmokeautomation20 | -$9.20 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You paid an invoice to qatsmokeautomation20 for $4.60" notification
+    Then User should see "You paid an invoice to qatsmokeautomation20 for $9.20" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
