@@ -22,7 +22,7 @@ public class Contactlistpage {
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
 	private By lblCountOfContactOnContactPage = By.xpath("//p[@class='contacts-amount']");
-	List<String> list = new ArrayList<>();
+	List<String> businessNameList = new ArrayList<>();
 	List<String> emailList = new ArrayList<>();
 	List<String> contactNameList = new ArrayList<>();
 	int countOfContactOntrash;
@@ -191,12 +191,12 @@ public class Contactlistpage {
 	}
 
 	public void readBusinessNameInList() {
-		list = readContactListColumn(Constants.BUSINESSNMAME);
-		list.sort(Comparator.reverseOrder());
+		businessNameList = readContactListColumn(Constants.BUSINESSNMAME);
+		businessNameList.sort(Comparator.reverseOrder());
 	}
 
 	public boolean isBusinessnameSorted() {
-		return list.equals(readContactListColumn(Constants.BUSINESSNMAME));
+		return businessNameList.equals(readContactListColumn(Constants.BUSINESSNMAME));
 	}
 
 	public void readEmail() {
