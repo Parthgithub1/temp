@@ -36,23 +36,26 @@ public class AddFundsteps {
 
 	@When("User enter {double} in amount field to {string} funds")
 	public void user_enter_in_amount_field1(double amount, String fundProcess) {
-		float amountToEnter;
-		if (fundProcess.equals("Add")) {
-			amountToEnter = ((float) amount + Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()));
+		float amountToEnter=0;
+		if (fundProcess.equals("Add")) { 
+			if (fundData.getAmountofhopscotchBalance() < 0) {
+				amountToEnter = ((float) amount + Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()));
+			} else  {
+				amountToEnter = ((float) amount);
+			}
 		} else {
 			amountToEnter = (Eventhelper.numberFormat(fundData.getAmountofhopscotchBalance()) - (float) amount);
 		}
 		amountToEnter = Eventhelper.convertFloatTo2DecimalFloat(amountToEnter);
 		Log.info("User enter in " + fundProcess + " Funds Modal :" + amountToEnter);
 		addFunds.enterAmount(amountToEnter);
-		fundData.setAmountofhopscotchBalance(amountToEnter);
+		fundData.setAmountofhopscotchBalance(amountToEnter+fundData.getAmountofhopscotchBalance());
 	}
 
 	@Then("User should see {string} amount on the screen")
 	public void user_should_see_amount_on_the_screen(String expectedAmountTobeChanged) {
 		homePage.waituntillDataLoadedOnTheDashboard();
-		float totalExpectedAmountBalance = fundData.getAmountofhopscotchBalance()
-				+ fundData.getAmountofhopscotchBalance() - Float.parseFloat(expectedAmountTobeChanged);
+		float totalExpectedAmountBalance =   fundData.getAmountofhopscotchBalance();
 		DecimalFormat df = new DecimalFormat(".00");
 		float expectedHopscotchBalanceAfterAddingFund = Float.valueOf(df.format(totalExpectedAmountBalance));
 		float actualHopscotchBalanceAfterAddingFund = addFunds.hopscotchBalanceAfterAddingFund();

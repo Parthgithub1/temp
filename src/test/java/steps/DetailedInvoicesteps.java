@@ -64,4 +64,14 @@ public class DetailedInvoicesteps {
 	public void user_should_verify_that_added_row_is_deleted() {
 		assertTrue(detailedInvoice.isRowDeleted());
 	}
+
+	@When("User select the Date to send Invoice after {int} days")
+	public void user_select_the_date_to_send_invoice_after_days(Integer paymentTermsPeriod) {
+		detailedInvoice.setDateForInvoices(paymentTermsPeriod);
+	}
+
+	@Then("User should see the Due Date according to the Payment Term Selection of {int} days")
+	public void user_should_see_the_due_date_according_to_the_payment_term_selection_of_days(Integer dueDate) {
+		assertTrue(detailedInvoice.paymentTermsDate(dueDate));
+	}
 }

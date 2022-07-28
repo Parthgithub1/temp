@@ -9,7 +9,6 @@ import utility.*;
 public class Externalinvoicepage {
 
 	private WebDriver driver;
-	private Commonpage commonPage;
 	private By rowInvoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td[1]//span[@class='id_receivable']");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
@@ -34,7 +33,6 @@ public class Externalinvoicepage {
 	public Externalinvoicepage(WebDriver driver) {
 		this.driver = driver;
 		verificationPage = new Verificationpage(driver);
-		commonPage = new Commonpage(driver);
 	}
 
 	public void clickToAddNewBusiness() {
@@ -61,7 +59,6 @@ public class Externalinvoicepage {
 		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoicee-biz-id");
 		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
 				+ "&emailId=" + tempEmailAddress;
-		commonPage.switchToDashboard();
 		Log.info("The generated external url :- " + externalURl);
 		return externalURl;
 	}
@@ -105,13 +102,13 @@ public class Externalinvoicepage {
 	}
 
 	public void enterBusinessName(String businessName) {
-			Eventhelper.useActionClassOperation(driver, txtbusinessname, Constants.DOUBLECLICK);
-			Eventhelper.sendkeys(driver, txtbusinessname, businessName);
+		Eventhelper.useActionClassOperation(driver, txtbusinessname, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtbusinessname, businessName);
 	}
 
 	public void enterFirstName(String firstName) {
-			Eventhelper.useActionClassOperation(driver, txtfirstname, Constants.DOUBLECLICK);
-			Eventhelper.sendkeys(driver, txtfirstname, firstName);
+		Eventhelper.useActionClassOperation(driver, txtfirstname, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtfirstname, firstName);
 	}
 
 	public void enterLastName(String lastName) {
@@ -123,7 +120,7 @@ public class Externalinvoicepage {
 		Eventhelper.useActionClassOperation(driver, txtemail, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtemail, email);
 	}
-	
+
 	public void performTabOnField(String field) {
 		if (field.equalsIgnoreCase("first name")) {
 			Eventhelper.sendKeyboardKeys(driver, txtfirstname, "tab");
