@@ -16,5 +16,8 @@ public class Constants {
 	public static final String MAILINATORDOTCOM = "@mailinator.com";
 	public static final String DOUBLECLICK = "DoubleClick";
 	public static final String RECEIVABLE = "Receivable";
-	public static final String PAYABLE = "Payable";
+	public static final String PAYABLE = "Payable";	
+	public static final String EMAIL = "Email";	
+	public static final String BUSINESSNMAME = "BusinessName";	
+	public static final String CONTACTNAME = "Contact name";	
 }
