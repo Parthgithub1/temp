@@ -58,7 +58,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @detailedInvoicePay
+  @Smoke @detailedInvoicePay @QAT @UAT
   Scenario: Verify that user is able to send invoice with Detailed View for Add Bill optioon
     When User login for "deatiledInvoice"
     Then User should navigate to dashboard "deatiledInvoice"
@@ -96,5 +96,110 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see updated payable amount on the screen
     Then User click on "Homepage" button to navigate to dashboard
     Then User should see notification of payment of add bill on the dashboard
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @detailedInvoiceGetPaidWithDifferentDueDates @90DaysPaymentTerms
+  Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 90 days Payment Terms
+    When User login for "deatiledInvoice"
+    Then User should navigate to dashboard "deatiledInvoice"
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
+    When User click on Pay or Get Paid link
+    When User enter "qatsmokeautomation071" in searchbox
+    Then User should see "qatsmokeautomation071" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
+    When User click on "Detailed" option for Invoice
+    When User click on "Add Tax" button and enter Tax Rate 15.00
+    When User select the Date to send Invoice after 90 days
+    When User click on "Add item" button
+    When User enter Item Details for Invoice
+    When User remove the added row for adding item Details
+    Then User should verify that added row is deleted
+    Then User should see Total Amount and subtotal amount are matched
+    Then User should see amount value for Item added
+    When User click on "Confirm" button
+    Then User should see the Due Date according to the Payment Term Selection of 90 days
+    Then User should see Tax value added in Invoice
+    When User click on "Send" button
+    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then Receivable balance is updated on the screen with "9.20"
+    When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
+    Then User should see the invoice on the screen
+      | qatsmokeautomation071 | +$9.20 |
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "You sent an invoice to qatsmokeautomation071 for $9.20" notification
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @detailedInvoiceGetPaidWithDifferentDueDates @60DaysPaymentTerms
+  Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 60 days Payment Terms
+    When User login for "deatiledInvoice"
+    Then User should navigate to dashboard "deatiledInvoice"
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
+    When User click on Pay or Get Paid link
+    When User enter "qatsmokeautomation071" in searchbox
+    Then User should see "qatsmokeautomation071" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
+    When User click on "Detailed" option for Invoice
+    When User click on "Add Tax" button and enter Tax Rate 15.00
+    When User select the Date to send Invoice after 60 days
+    When User click on "Add item" button
+    When User enter Item Details for Invoice
+    When User remove the added row for adding item Details
+    Then User should verify that added row is deleted
+    Then User should see Total Amount and subtotal amount are matched
+    Then User should see amount value for Item added
+    When User click on "Confirm" button
+    Then User should see the Due Date according to the Payment Term Selection of 60 days
+    Then User should see Tax value added in Invoice
+    When User click on "Send" button
+    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then Receivable balance is updated on the screen with "9.20"
+    When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
+    Then User should see the invoice on the screen
+      | qatsmokeautomation071 | +$9.20 |
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "You sent an invoice to qatsmokeautomation071 for $9.20" notification
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+  @Regression @detailedInvoiceGetPaidWithDifferentDueDates @30DaysPaymentTerms
+  Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 30 days Payment Terms
+    When User login for "deatiledInvoice"
+    Then User should navigate to dashboard "deatiledInvoice"
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
+    When User click on Pay or Get Paid link
+    When User enter "qatsmokeautomation071" in searchbox
+    Then User should see "qatsmokeautomation071" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
+    When User click on "Detailed" option for Invoice
+    When User click on "Add Tax" button and enter Tax Rate 15.00
+    When User select the Date to send Invoice after 30 days
+    When User click on "Add item" button
+    When User enter Item Details for Invoice
+    When User remove the added row for adding item Details
+    Then User should verify that added row is deleted
+    Then User should see Total Amount and subtotal amount are matched
+    Then User should see amount value for Item added
+    When User click on "Confirm" button
+    Then User should see the Due Date according to the Payment Term Selection of 30 days
+    Then User should see Tax value added in Invoice
+    When User click on "Send" button
+    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then Receivable balance is updated on the screen with "9.20"
+    When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
+    Then User should see the invoice on the screen
+      | qatsmokeautomation071 | +$9.20 |
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    Then User should see "You sent an invoice to qatsmokeautomation071 for $9.20" notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
