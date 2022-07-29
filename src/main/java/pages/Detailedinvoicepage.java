@@ -7,6 +7,9 @@ import utility.*;
 public class Detailedinvoicepage {
 
 	private WebDriver driver;
+	private By invoiceDateSelector = By.xpath("//input[@name='detailedInvoiceDate']");
+	private By invoiceDueDate = By.xpath("//input[@name='detailedDueDate']");
+	private By drpPaymentTerms = By.xpath("//div[contains(@class,'select__form-field__placeholder')]");
 	private By txtItemQuantity = By.xpath("//input[@name='quantity']");
 	private By txtItemRate = By.xpath("//input[@name='rate']");
 	private By amountTotal = By.xpath("//div[contains(@class,'InvoiceForm_itemAmount')]");
@@ -89,8 +92,21 @@ public class Detailedinvoicepage {
 	}
 
 	public Boolean isRowDeleted() {
-	// Here 1 is a count of deleted row of item in detailed invoice.
+		// Here 1 is a count of deleted row of item in detailed invoice.
 		return (countOfRowAdded - 1) == Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']"))
 				.size();
+	}
+
+	public void setDateForInvoices(int paymentTermsPeriod) {
+		Eventhelper.click(driver, invoiceDateSelector);
+		Eventhelper.sendkeys(driver, invoiceDateSelector, Eventhelper.getDate(0));
+		Eventhelper.click(driver, drpPaymentTerms);
+		By paymentTerms = By.xpath("//div[text()='Net " + paymentTermsPeriod + "']");
+		Eventhelper.click(driver, paymentTerms);
+	}
+
+	public Boolean paymentTermsDate(int dueDate) {
+		return Eventhelper.getDate(dueDate)
+				.equalsIgnoreCase(Eventhelper.getValueOfAttribute(driver, invoiceDueDate, "value"));
 	}
 }
