@@ -59,7 +59,7 @@ public class Contactliststep {
 
 	@Then("User should see Contact in List")
 	public void user_should_see_notification() throws InterruptedException {
-		assertTrue("Contact Not found in the constact list",contactList.seeContacts());
+		assertTrue(contactList.seeContacts(),"Contact Not found in the constact list");
 	}
 
 	@When("User enter {string} in Business name field")
