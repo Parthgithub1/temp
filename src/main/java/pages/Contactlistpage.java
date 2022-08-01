@@ -16,7 +16,7 @@ public class Contactlistpage {
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact to pay or get paid')]");
 	private By txtSearchBarforContact = By.xpath("//input[contains(@name ,'search')]");
 	private By newContactAddedName = By.xpath("//span[contains(@class,'InfoHeader_header')]");
-	private By lblEmailIdinContactListGrid = By.xpath("//td[2]");
+	private By lblBusinessNameinContactListGrid = By.xpath("//td[1]");
 	private By btnBackFromContactProfileScreen = By
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
 	private By ddValueOfBusinessSearched = By
@@ -72,7 +72,7 @@ public class Contactlistpage {
 	public void searchNameInSearchBar() {
 		Eventhelper.threadWait(1500);
 		Eventhelper.click(driver, txtSearchBarforContact);
-		Eventhelper.sendkeys(driver, txtSearchBarforContact, tempEmail);
+		Eventhelper.sendkeys(driver, txtSearchBarforContact, bName);
 		Eventhelper.threadWait(1500);
 	}
 
@@ -89,15 +89,15 @@ public class Contactlistpage {
 	public String waitTillContactPresent() {
 		String rowxpath = null;
 		boolean isEmailmatch;
-		List<WebElement> listOfEle = Eventhelper.findElements(driver, lblEmailIdinContactListGrid);
+		List<WebElement> listOfEle = Eventhelper.findElements(driver, lblBusinessNameinContactListGrid);
 		for (int i = 1; i < listOfEle.size(); i++) {
 			for (WebElement ele : listOfEle) {
 				try {
-					isEmailmatch = ele.getText().equals(tempEmail);
+					isEmailmatch = ele.getText().equals(bName);
 				} catch (StaleElementReferenceException e) {
 					Eventhelper.doRefresh(driver);
 					searchNameInSearchBar();
-					isEmailmatch = ele.getText().equals(tempEmail);
+					isEmailmatch = ele.getText().equals(bName);
 				}
 				if (isEmailmatch) {
 					rowxpath = "//tr[" + i + "]";
@@ -134,7 +134,10 @@ public class Contactlistpage {
 		if (xpath == null) {
 			xpath = "";
 		}
-		return Eventhelper.getTextofElement(driver, By.xpath(xpath + "//td[2]")).equals(tempEmail);
+		return Eventhelper
+				.getTextofElement(driver,
+						By.xpath(xpath + "//td[1]//div[contains(@class,'entity-short-card__info business')]"))
+				.equals(bName);
 	}
 
 	public void readCountOfContactOndashboard() {
