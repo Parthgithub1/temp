@@ -12,7 +12,7 @@ public class Sendinvoicepage {
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtAmount = By.xpath("//input[@name='customerAmount']");
 	private By txtdate = By.xpath("//input[@name='customerDueDate']");
-	private By txtMessage = By.xpath("//textarea[@placeholder='Memo (optional)']");
+	private By txtMessage = By.xpath("//textarea[contains(@class,'TextInput_field-input__2WzH2')]");
 	private By lblReceivableBalance = By
 			.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span[@id='amount_receivable']");
 	private By lblreceivableBalanceonAccounting = By.xpath(

@@ -48,6 +48,7 @@ public class Commonpage {
 
 	public void clickOnButton(String buttonname) {
 		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[1]");
+		Eventhelper.explicitwait(driver, btnXpath);
 		Eventhelper.click(driver, btnXpath);
 	}
 
