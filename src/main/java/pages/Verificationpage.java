@@ -27,7 +27,7 @@ public class Verificationpage {
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
-	private By lstChase = By.xpath("(//*[text()='Chase'])");
+	private By lstChase = By.xpath("(//*[text()='Wells Fargo'])");
 	private By txtChaseUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtChasePassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
@@ -123,7 +123,7 @@ public class Verificationpage {
 		Eventhelper.click(driver, btnAddBeneficial);
 		Eventhelper.sendkeys(driver, txtAddBeneficialFirstName, "jack");
 		Eventhelper.sendkeys(driver, txtAddBeneficialLastName, "denial");
-		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012008");
+		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012002");
 		Eventhelper.sendkeys(driver, txtAddBeneficialSSN, Eventhelper.generateRandomNumberWith1Prefix(8, 99999999));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.click(driver, rbtnAddBeneficialSameAsLegalAddress);
