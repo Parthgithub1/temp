@@ -84,6 +84,7 @@ public class Registrationpage {
 		commonPage.enterEmailAddress(randomemail);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterOTP();
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterFirstName("Ronald");
 		enterLastName(lastName);
 		enterBusinessName("TestTP " + Eventhelper.generateRandomNumberWith1Prefix(4,9999));
