@@ -7,6 +7,7 @@ Feature: Test Registration Functionality
     When User enter "random" in email field
     When User click on "Continue" button
     When User enter otp on screen
+    When User click on "Continue" button
     When User enter "John" in firstname field
     When User enter "Deer" in lastname field
     When User enter "The John Dear" in businessname field
@@ -16,7 +17,7 @@ Feature: Test Registration Functionality
     When User click on "Continue" button
     When user enter additional information
     When User click on "Done" button
-    Then User should see "Verify your account first." text on the screen
+    Then User should see "Welcome to Hopscotch" text on the screen
 
   @Regression
   Scenario: verify that user is able to jump to login page by clicking on sign in on registration page
