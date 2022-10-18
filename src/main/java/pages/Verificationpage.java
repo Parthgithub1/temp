@@ -27,9 +27,9 @@ public class Verificationpage {
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
-	private By lstChase = By.xpath("(//*[text()='Wells Fargo'])");
-	private By txtChaseUserName = By.xpath("//label[text()='Username']/following-sibling::input");
-	private By txtChasePassword = By.xpath("//label[text()='Password']/following-sibling::input");
+	private By lstBankName = By.xpath("(//*[text()='Fidelity'])");
+	private By txtBankUserName = By.xpath("//label[text()='Username']/following-sibling::input");
+	private By txtBankPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By dropDownofBusinessType1 = By.xpath("//div[@id='businessType']");
 	private By verificationText = By.xpath("//div[contains(@class,'VerificationStatus_title')]");
@@ -70,9 +70,9 @@ public class Verificationpage {
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		Eventhelper.click(driver, lstChase);
-		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
-		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
+		Eventhelper.click(driver, lstBankName);
+		Eventhelper.sendkeys(driver, txtBankUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtBankPassword, "pass_good");
 		commonPage.clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
@@ -85,9 +85,9 @@ public class Verificationpage {
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		Eventhelper.click(driver, lstChase);
-		Eventhelper.sendkeys(driver, txtChaseUserName, "user_good");
-		Eventhelper.sendkeys(driver, txtChasePassword, "pass_good");
+		Eventhelper.click(driver, lstBankName);
+		Eventhelper.sendkeys(driver, txtBankUserName, "user_good");
+		Eventhelper.sendkeys(driver, txtBankPassword, "pass_good");
 		commonPage.clickOnButton("Submit");
 		Eventhelper.click(driver, rbtnAddBankPleidChecking);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);

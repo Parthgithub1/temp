@@ -3,14 +3,17 @@ Feature: Test Verifcation Functionality
   @Smoke @Verification @doNotRunOnUAT @QAT @Company
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email for "Company"
+    When User click on "do this later" link
     Then User should see "here" link
     When User click on "here" link
     Then User should see "Let’s get you verified" text on the screen
     Then User click on "Continue" button
     When User click on Drop-down to select Business type and select "Company" from options
     Then User click on "Continue" button
+    Then User should see "Legal business name" text on the screen
     And User enter "The Automation Kim" in Legal business name field
     And User click on "Continue" button
+    Then User should see "Legal business address" text on the screen
     And user process business address screen
     And User click on "Continue" button
     Then User should see "Enter your Tax-ID number" text on the screen
@@ -28,6 +31,7 @@ Feature: Test Verifcation Functionality
   @Smoke @Verification @doNotRunOnUAT @QAT @Sole
   Scenario: verify that user is able to start the verification process into hopscotch application for Sole Proprietorship
     When User register with "random" email for "Sole Proprietorship"
+    When User click on "do this later" link
     Then User should see "here" link
     When User click on "here" link
     Then User should see "Let’s get you verified" text on the screen
