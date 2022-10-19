@@ -2,6 +2,7 @@ package pages;
 
 import java.util.*;
 import org.openqa.selenium.*;
+import com.github.javafaker.Faker;
 import utility.*;
 
 public class Commonpage {
@@ -22,6 +23,7 @@ public class Commonpage {
 
 	private WebDriver driver;
 	private Homepage homePage;
+	Faker faker = new Faker();
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.initProp();
 	private By xPathofdropDown = By.xpath("//img[@alt='Company Logo']");
@@ -73,7 +75,7 @@ public class Commonpage {
 
 	public void enterEmailAddress(String value) {
 		if (value.contains("random")) {
-			value = UUID.randomUUID().toString() + Constants.MAILINATORDOTCOM;
+			value=(faker.name().firstName() + faker.name().lastName() + Constants.MAILINATORDOTCOM).toString().toLowerCase();
 			Log.info("Email id is -->" + value);
 		}
 		Eventhelper.sendkeys(driver, txtEmailAddress, value);
