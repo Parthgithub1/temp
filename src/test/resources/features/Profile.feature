@@ -13,18 +13,18 @@ Feature: Test Profile Functionality
     Then User should see "Upload image" text on the screen
     Then User click on "Change picture" option
     When User click on "Continue" button from Upload image popup
-    Then User should see "Updated BusinessProfile Successfully." text on the screen
+    Then User should see "Your profile has been updated" text on the screen
     Then User should see updated Profile Details on the Screen like <BusinessName> , <Handle> , <Industry>, <Website>, <YearFound>
     Then User click on Edit Icon to add details for About Section
     When User enter <AboutText> in about textarea
     Then User click on "Save" button
-    Then User should see "Updated BusinessProfile Successfully." text on the screen
+    Then User should see "Your profile has been updated" text on the screen
     Then User should see updated Data of About <AboutText> in Profile
     When User click on Edit Icon from Banner
     Then User should see "Change banner" text on the screen
     Then User click on "Upload another photo" option
     When User click on "Continue" button
-    Then User should see "Updated BusinessProfile Successfully." text on the screen
+    Then User should see "Your profile has been updated" text on the screen
     Then User should see "History" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -46,18 +46,18 @@ Feature: Test Profile Functionality
     Then User should see "Upload image" text on the screen
     Then User click on "Change picture" option
     When User click on "Continue" button from Upload image popup
-    Then User should see "Updated BusinessProfile Successfully." text on the screen
+    Then User should see "Your profile has been updated" text on the screen
     Then User should see updated Profile Details on the Screen like <BusinessName> , <Handle> , <Industry>, <Website>, <YearFound>
     Then User click on Edit Icon to add details for About Section
     When User enter <AboutText> in about textarea
     Then User click on "Save" button
-    Then User should see "Updated BusinessProfile Successfully." text on the screen
+    Then User should see "Your profile has been updated" text on the screen
     Then User should see updated Data of About <AboutText> in Profile
     When User click on Edit Icon from Banner
     Then User should see "Change banner" text on the screen
     Then User click on "Upload another photo" option
     When User click on "Continue" button
-    Then User should see "Updated BusinessProfile Successfully." text on the screen
+    Then User should see "Your profile has been updated" text on the screen
     Then User should see "History" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
