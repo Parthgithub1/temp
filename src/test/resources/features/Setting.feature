@@ -7,41 +7,41 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
     Then User click on "Add account" button
-    When User process add "Wells Fargo" bank screen
-    Then User should see "Wells Fargo" text on the screen
-    When User click on menu of the "Wells Fargo" bank
+    When User process add "Fidelity" bank screen
+    Then User should see "Fidelity" text on the screen
+    When User click on menu of the "Fidelity" bank
     #Set as funding account
     When User click on "Set as Funding account" link
-    Then User should see "Wells Fargo" as "Funding account"
+    Then User should see "Fidelity" as "Funding account"
     When User switch to dashboard
     When User click on "Add funds" button
-    Then User should see "Wells Fargo" text on the screen
+    Then User should see "Fidelity" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
-    When User click on menu of the "Wells Fargo" bank
+    When User click on menu of the "Fidelity" bank
     #Set as deposite account
     When User click on "Set as Deposit account" link
-    Then User should see "Wells Fargo" as "Deposit account"
+    Then User should see "Fidelity" as "Deposit account"
     When User switch to dashboard
     When User click on "Withdraw" button
-    Then User should see "Wells Fargo" text on the screen
+    Then User should see "Fidelity" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
-    When User click on menu of the "Chase" bank
+    When User click on menu of the "Stash" bank
     When User click on "Set as Deposit account" link
-    Then User should see "Chase" as "Deposit account"
-    When User click on menu of the "Chase" bank
+    Then User should see "Stash" as "Deposit account"
+    When User click on menu of the "Stash" bank
     When User click on "Set as Funding account" link
-    Then User should see "Chase" as "Funding account"
-    #delete bank account Chas
+    Then User should see "Stash" as "Funding account"
+    #delete bank account
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
-    When User click on menu of the "Wells Fargo" bank
+    When User click on menu of the "Fidelity" bank
     When User click on "Delete account" link
     When User click on "Delete" button
-    Then User should not see "Wells Fargo" text on the screen
+    Then User should not see "Fidelity" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
