@@ -4,7 +4,7 @@ Feature: Test Contact List Functionality
   Scenario: Verify New Contacts are added in Contact List
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User click on "Add contact" button
     And User enter the Contact deatils

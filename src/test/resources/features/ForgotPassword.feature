@@ -15,7 +15,7 @@ Feature: Test Forgot Password Functionality
     When User enter <email> in email field
     When User click on "Submit" button
     When User click on "Resend" button
-    Then User should see "Verification code resend successfully!" text on the screen
+    Then User should see "Please check your registered email for the token." text on the screen
 
     Examples: 
       | Forgot Password Link  | email                                 |

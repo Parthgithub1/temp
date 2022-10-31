@@ -60,9 +60,10 @@ public class Payinvoivesteps {
 	@Then("User should see update amount of Hopscotch Balance on Accounting Page")
 	public void user_should_see_update_amount_of_hopscotch_balance_on_accounting_page() {
 		homepage.waitUntiAddFundsButtonEnabled();
-		float updateHopscotchBalance = fundData.getAmountofhopscotchBalance() - payData.getInvoiceAmounttobePaid();
-		Log.info(updateHopscotchBalance);
-		assertEquals(updateHopscotchBalance, fundData.getAmountofhopscotchBalance(), 1);
+		float updateHopscotchBalance = hopscotchBalance - payData.getInvoiceAmounttobePaid();
+		Log.info("Updated hopscotch balance is :- " + updateHopscotchBalance);
+		assertEquals(updateHopscotchBalance, homepage.getCurrentHopscotchBalanceAmount(), 1);
+		Log.info("homepage.getCurrentHopscotchBalanceAmount() :- " + homepage.getCurrentHopscotchBalanceAmount());
 	}
 
 	@Then("User should save the amount of Hopscotch Balance from Accounting Page")

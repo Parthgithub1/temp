@@ -12,13 +12,15 @@ Feature: Test External Invoice
     When User enter contact details
     When User click on "Add" button
     When User click on "Get paid" button
-    When User enter invoice details like amount is 1 and message is "This is the text of message"
+    When User enter invoice details like amount is 2 and message is "This is the text of message"
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    Then Receivable balance is updated on the screen with "2.00"
     And Search the external invoice in receivable
     When User switch to dashboard
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
     Then User should see sent external invoice notiifcation on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -38,7 +40,9 @@ Feature: Test External Invoice
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     Then User should see updated hopscotch balance on the screen
-    Then User click on "Homepage" button to navigate to dashboard
+    Then User click on "Home" button to navigate to dashboard
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
     Then User should see the pay of external invoice notiifcation on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
