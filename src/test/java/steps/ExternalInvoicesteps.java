@@ -34,12 +34,12 @@ public class ExternalInvoicesteps {
 
 	@Then("User should see sent external invoice notiifcation on the screen")
 	public void user_should_see_sent_external_innvoice_notiifcation_on_the_screen() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("You sent an invoice to"));
+		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("SentExternalInvoice"));
 	}
 
 	@Then("User should see the pay of external invoice notiifcation on the screen")
 	public void user_should_see_the_pay_of_external_invoice_on_the_screen() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("paid an invoice for"));
+		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("Payment"));
 	}
 
 	@Then("User is close the appeared dialog")

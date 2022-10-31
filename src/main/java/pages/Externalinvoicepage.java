@@ -27,12 +27,14 @@ public class Externalinvoicepage {
 
 	Faker faker = new Faker();
 	private Verificationpage verificationPage;
+	private Commonpage commonPage;
 	static Propertyreader propertyreader = new Propertyreader();
 	static Properties property = propertyreader.initProp();
 
 	public Externalinvoicepage(WebDriver driver) {
 		this.driver = driver;
 		verificationPage = new Verificationpage(driver);
+		commonPage = new Commonpage(driver);
 	}
 
 	public void clickToAddNewBusiness() {
@@ -63,10 +65,14 @@ public class Externalinvoicepage {
 		return externalURl;
 	}
 
-	public boolean verifyExternalInvoiceNotificationOnDashboard(String notificationContent) {
-		By lblnotification = By.xpath("(//div[@class='card-content']//p[contains(text(),'" + notificationContent
-				+ "')]//span[contains(text(),'" + txtCustomerName + "')])[1]");
-		return Eventhelper.isElementDisplayed(driver, lblnotification);
+	public boolean verifyExternalInvoiceNotificationOnDashboard(String typeOfNotificationForExternalInvoice) {
+		if (typeOfNotificationForExternalInvoice.equalsIgnoreCase("SentExternalInvoice")) {
+			return commonPage.isNotificationPresentInList(
+					"You sent an invoice to " + txtCustomerName + ". We'll let you know once it's been paid.");
+		} else {
+			return commonPage.isNotificationPresentInList(
+					txtCustomerName + " paid your invoice. Your Hopscotch Balance has been updated.");
+		}
 	}
 
 	public void closeDialogbox() {
