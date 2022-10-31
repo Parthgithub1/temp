@@ -17,7 +17,10 @@ Feature: Test AddBill functionality
     When User click on "Add" button
     When User click on Close button from Payable Card
     Then User see the updated payable balance before paying invoice of add bill
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
     Then User should see notification of add bill on the dashboard
+    Then User click on "Home" button to navigate to dashboard
     Then User click on "Payable" Container
     Then User should see "Hopscotch Balance" text on the screen
     When User enter search in Searchbar for business
@@ -29,7 +32,9 @@ Feature: Test AddBill functionality
     #Then User should see "It is on its way to" text on the screen
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
-    Then User click on "Homepage" button to navigate to dashboard
+    Then User click on "Home" button to navigate to dashboard
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
     Then User should see notification of payment of add bill on the dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

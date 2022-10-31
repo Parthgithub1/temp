@@ -60,21 +60,12 @@ public class Addbillpage {
 	}
 
 	public boolean verifyNotificationOfPayOfAddedBill() {
-		commonPage.switchToDashboard();
-		lblNotification = By.xpath(
-				"(//div[@class='card-content']//p[contains(text(),'It is on its way to')]//span[contains(text(),'"
-						+ vender + "')])[1]");
-		return Eventhelper.isElementDisplayed(driver, lblNotification);
+		return commonPage.isNotificationPresentInList("Your payment to " + vender + " is on its way!");
 	}
 
 	public boolean verifyAddBillNotificationOnDashboard() {
 		Eventhelper.threadWait(5000);
-		commonPage.switchToDashboard();
-		lblNotification = By.xpath(
-				"(//div[@class='card-content']//p[contains(text(),'sent an invoice for')]//span[contains(text(),'"
-						+ vender + "')])[1]");
-		Eventhelper.explicitwait(driver, lblNotification);
-		return Eventhelper.isElementDisplayed(driver, lblNotification);
+		return commonPage.isNotificationPresentInList(vender + " sent you an invoice.");
 	}
 
 	public void clickonCloseIconfromPayableCard() {
