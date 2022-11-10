@@ -48,7 +48,7 @@ public class Detailedinvoicepage {
 			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//input[@name='quantity']"),
 					String.valueOf(quantity));
 			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//input[@name='rate']"), String.valueOf(rate));
-			Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'Checkbox_checkbox-control')]"));
+			//Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'Checkbox_checkbox-control')]"));
 			Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'InvoiceForm_itemAmount')]"));
 		}
 		amountOfItems = quantity * rate * noOfRow;
