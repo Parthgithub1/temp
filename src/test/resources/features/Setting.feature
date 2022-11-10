@@ -53,7 +53,7 @@ Feature: Test Settings Tab Functionality
     When User click on "change password" button
     When User Change the Password
     Then User click on "Save" button
-    Then User should see "Your password has been changed successfully" text on the screen
+    Then User should see "Your password has been updated" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login with "Settings" and Login again after change password
@@ -62,7 +62,7 @@ Feature: Test Settings Tab Functionality
     When User click on "change password" button
     When User Reset Change the Password
     Then User click on "Save" button
-    Then User should see "Your password has been changed successfully" text on the screen
+    Then User should see "Your password has been updated" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -75,7 +75,7 @@ Feature: Test Settings Tab Functionality
     When User enter "8523647592" in Mobile Number field
     When User enter Code on screen
     Then User click on "Submit" button
-    Then User should see "MFA Enabled" text on the screen
+    Then User should see "Two-factor authentication enabled" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "Settings"
@@ -83,10 +83,10 @@ Feature: Test Settings Tab Functionality
     When User enter otp on screen
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle
-    Then User should see "Please check your registered device for the token." text on the screen
+    Then User should see "We sent a security code to your device." text on the screen
     When User enter Code on screen
     Then User click on "Submit" button
-    Then User should see "MFA Disabled" text on the screen
+    Then User should see "Two-factor authentication disabled" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 

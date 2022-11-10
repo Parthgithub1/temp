@@ -18,7 +18,7 @@ public class Addbillpage {
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
-	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact to pay or get paid')]");
+	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 
 	private By lblNotification;
 	Faker faker = new Faker();
