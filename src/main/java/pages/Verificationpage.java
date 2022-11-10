@@ -21,7 +21,7 @@ public class Verificationpage {
 	private By txtAddBeneficialBirthDate = By.xpath("//label[@for='birthday']/following-sibling::div//input");
 	private By txtAddBeneficialSSN = By.xpath("//input[@id='ownerSSN']");
 	private By rbtnAddBeneficialSameAsLegalAddress = By
-			.xpath("//label[normalize-space()='Same as legal business address']");
+			.xpath("//label[normalize-space()='Click this if your business and home address are the same.']");
 	private By lstIsBeneficialAdded = By.xpath("//p[contains(@class,'BeneficialOwner_name')]");
 	private By verifiedIcon = By.cssSelector(".VerificationStar_active__2Y_Gu");
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");

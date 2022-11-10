@@ -42,7 +42,7 @@ Feature: Test Verifcation Functionality
     And User click on "Continue" button
     And user process business address screen
     And User click on "Continue" button
-    Then User should see "Enter your Tax-ID number" text on the screen
+    Then User should see "Enter your SSN" text on the screen
     And User enters 121212121 taxNumber of Business
     When User click on "Submit" button
     When User process add bank screen
