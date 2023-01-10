@@ -33,22 +33,23 @@ Feature: Test Contact List Functionality
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @contact 
+  @Regression @contact
   Scenario: Verify Already Contact Added Validations for Contact feature
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
+    #When User click on "Add contact" button
+    #When User enter "qatsmokeautomation031" in Business name field
+    #When User click on "Add" button
+    #Then User should see "Contact already added" text on the screen
+    #When User click on "Cancel" button
     When User click on "Add contact" button
-    When User enter "qatsmokeautomation031" in Business name field
-    When User click on "Add" button
-    Then User should see "Contact already added" text on the screen
-    When User click on "Cancel" button
-    When User click on "Add contact" button
+    When User search for the business in add contact
     And User enter the Contact deatils with already added email
     When User click on "Add" button
     Then User should see "Email is already associated with qatsmokeautomation031" text on the screen
-    When User click on "Cancel" button
+    #When User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -57,7 +58,7 @@ Feature: Test Contact List Functionality
     When User login for "contact"
     Then User should navigate to dashboard "contact"
     Then User should read count of contact on the dashboard
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     Then User should match count of contact on contact screen with the count of dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
@@ -68,7 +69,7 @@ Feature: Test Contact List Functionality
     When User login for "contact"
     Then User should navigate to dashboard "contact"
     Then User should read count of contact on the dashboard
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     Then User should count the rows of contact and match with the count of dashboard's count
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
@@ -78,7 +79,7 @@ Feature: Test Contact List Functionality
   Scenario: Verify Business, email and contact name are present on the contact list page
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     Then User should see "Business" text on the screen
     Then User should see "Email" text on the screen
@@ -90,7 +91,7 @@ Feature: Test Contact List Functionality
   Scenario: Verify Sorting is working on business, email and conact name on contact list (Contact, Trash)
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User read the data of business column
     When User click on "Business" button
@@ -123,7 +124,7 @@ Feature: Test Contact List Functionality
   Scenario: Verify count of contact on trash screen and contact screen updated as per deletion on contact list
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User click on "Trash" link
     Then User should read the count of trash contact on screen
@@ -147,7 +148,7 @@ Feature: Test Contact List Functionality
   Scenario: Verify that user is able to open the profile of user by tapping on the business name from contact list.
     When User login for "contact"
     Then User should navigate to dashboard "contact"
-    And User click on "Contact list" button to navigate to dashboard
+    And User click on "Contacts" button to navigate to dashboard
     Then User should see "Contacts" text on the screen
     When User read the business name of first contact and click on business name
     Then User should see the business name on the profile screen

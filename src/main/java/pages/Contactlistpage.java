@@ -47,9 +47,13 @@ public class Contactlistpage {
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
 	}
 
-	public void enterContactDeatailsForAlreadyLinkedEmail() {
+	public void searchForBusinessInAddContact()
+	{
 		Eventhelper.sendkeys(driver, txtBusinessName, bName);
 		Eventhelper.click(driver, btnAddNewBusiness);
+	}
+	
+	public void enterContactDeatailsForAlreadyLinkedEmail() {
 		String firstName = faker.name().firstName();
 		String lastName = faker.name().lastName();
 		Eventhelper.sendkeys(driver, txtFirstName, firstName);
@@ -257,6 +261,5 @@ public class Contactlistpage {
 
 	public boolean isCountMatchAfterContactRestore(int countOfRestoredContact) {
 		return countOfContactOnContactScreen() == (countOfContactBeforeContactRestore + countOfRestoredContact);
-	}
-
+	}	
 }

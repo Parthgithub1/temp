@@ -19,23 +19,32 @@ public class Addbillpage {
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
+	private By btnPayOnAddContact= By.xpath("(//form//button)[1]");
 
 	private By lblNotification;
 	Faker faker = new Faker();
 	String vender;
 	String tempEmail;
-
+	String externalURlForBill;
+	
 	public Addbillpage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
 	}
 
 	public float addBill() {
-		Eventhelper.sendkeys(driver, txtAmount, "1");
+		Eventhelper.sendkeys(driver, txtAmount, "2");
 		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
 		Eventhelper.sendkeys(driver, txtDate, Eventhelper.getDate(0));
 		Eventhelper.sendkeys(driver, txtMessage, "This is the add bill details.");
-		return (float) 1.0;
+		return (float) 2.0;
+	}
+	
+	public void addOterDetailsForBill() {
+		Eventhelper.sendkeys(driver, txtAmount, "43424242342");
+		Eventhelper.sendkeys(driver, txtInvoiceNumber, "1001");
+		Eventhelper.sendkeys(driver, txtDate, Eventhelper.getDate(0));
+		Eventhelper.sendkeys(driver, txtMessage, "BusinessInvoiceLimit was exceeded. display on the screen when user click on add");
 	}
 
 	public void addBillContact() {
@@ -45,6 +54,7 @@ public class Addbillpage {
 		Eventhelper.sendkeys(driver, txtLastName, lastName);
 		tempEmail = firstName + lastName + "@mailinator.com";
 		Eventhelper.sendkeys(driver, txtEmail, tempEmail);
+		Eventhelper.sendKeyboardKeys(driver, txtEmail, "tab");
 	}
 
 	public void searchBusinessInSearchBar() {
@@ -77,6 +87,22 @@ public class Addbillpage {
 	public void enterInSearchBar() {
 		By txtSearchBaronAccountingSection = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
+		genererateBillURL();
+	}
+	
+	public void genererateBillURL()
+	{
+		By rowBillInvoiceTableGrid = By.xpath("(//table)[1]//tr[1]//td[1]//span[contains(@class,'id_payable')]");
+		String fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowBillInvoiceTableGrid, "invoice-id");
+		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowBillInvoiceTableGrid, "invoicee-biz-id");
+	    externalURlForBill = "receivable-payment?invoiceId=" + fetchInvoiceid + "&invoicedBizId=" + fetchinvoiceeBizId
+				+ "&emailId=" + tempEmail;
+		Log.info("The generated external url for the bill is  :- " + externalURlForBill);
+	}
+	
+	public void setURL()
+	{
+		Eventhelper.getURL(driver, externalURlForBill);
 	}
 
 	public void enterAmount(String amount) {
@@ -88,9 +114,12 @@ public class Addbillpage {
 	}
 
 	public boolean isDeleteInvoiceNotificationSent() {
-		lblNotification = By.xpath(
-				"(//div[@class='card-content']//p[contains(text(),'You have rejected an invoice from ')]//span[contains(text(),'"
-						+ vender + "')])[1]");
-		return Eventhelper.isElementDisplayed(driver, lblNotification);
+		String deleteInvoiceNotificationText= "You rejected "+vender+"'s invoice.";	
+		return commonPage.isNotificationPresentInList(deleteInvoiceNotificationText);
+	}
+	
+	public void clickOnPayButtonOnAddContact()
+	{
+		Eventhelper.useActionClassOperation(driver,btnPayOnAddContact,"Click");
 	}
 }

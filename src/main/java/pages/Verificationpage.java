@@ -27,7 +27,7 @@ public class Verificationpage {
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
-	private By lstBankName = By.xpath("(//*[text()='Fidelity'])");
+	private By lstBankName = By.xpath("(//*[text()='Navy Federal Credit Union'])");
 	private By txtBankUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtBankPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
@@ -41,11 +41,12 @@ public class Verificationpage {
 	}
 
 	public void enterLegalBusinessName(String legalbusnienssname) {
+		Eventhelper.threadWait(1000);
 		Eventhelper.sendkeys(driver, txtLegalBusinessName, legalbusnienssname);
 	}
 
 	public void enterAddress() {
-		Eventhelper.sendkeys(driver, txtBusinessAddress, "55 Fruit Street");
+		Eventhelper.sendkeys(driver, txtBusinessAddress, "660 Madison Avenue");
 		Eventhelper.threadWait(1000);
 		Eventhelper.click(driver, txtBusinessAppartement);
 		Eventhelper.click(driver, txtBusinessAddress);
@@ -66,6 +67,7 @@ public class Verificationpage {
 
 	public void addBank() {
 		Eventhelper.threadWait(2000);
+		Eventhelper.waitUntilAttribValueContains(driver, By.xpath("//iframe[@title='Plaid Link']"),"title","Plaid Link");
 		Eventhelper.click(driver, btnAddBankDetails);
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnAddBankContinue);

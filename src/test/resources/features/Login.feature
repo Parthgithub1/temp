@@ -8,7 +8,7 @@ Feature: Test Login Functionality
     Then User click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @UserDataNotCorrect 
+  @Regression @UserDataNotCorrect
   Scenario Outline: Verify Validations for Email_Password
     When User enter <email> in email field
     When User enter <password> in password field
@@ -26,17 +26,17 @@ Feature: Test Login Functionality
     When User click on "Continue" button
     Then User should see validation message for maximum attempts
 
-  @Regression @EmailFormat 
+  @Regression @EmailFormat
   Scenario: Verify user enters Email in correct format validations 
     When User enter "qatsmo" in email field
-    Then User should see "Please enter a legit email address" validation message for email format
+    Then User should see "Drop in a valid email address" validation message for email format
 
-  @Regression @PrivacyLink 
+  @Regression @PrivacyLink
   Scenario: Verify that User click on Privacy Policy Link
     When User click on "Privacy Policy" link
     Then User should see "Privacy Policy" text on the screen
 
-  @Regression @TermsLink 
+  @Regression @TermsLink
   Scenario: Verify that User click on Term of Use Link
     When User click on "Terms of Use" link
     Then User should see "Terms of Use" text on the screen

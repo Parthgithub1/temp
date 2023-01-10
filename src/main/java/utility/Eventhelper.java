@@ -291,6 +291,9 @@ public class Eventhelper {
 		case "Hover":
 			action.moveToElement(element).build().perform();
 			break;
+		case "Click":
+			action.moveToElement(element).click().perform();
+			break;
 		default:
 			break;
 		}

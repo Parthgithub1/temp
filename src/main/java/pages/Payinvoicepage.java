@@ -30,14 +30,14 @@ public class Payinvoicepage {
 		Log.info("Value of is data loaded after :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"data-loaded"));
-		By payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/span");
+		By payableContanierxPath = By.xpath("//span[contains(.,'" + contanierName + "')]/following-sibling::div/div");
 		Eventhelper.click(driver, payableContanierxPath);
 	}
 
 	public float getexistingBalanceofPayableonAccountingPage() {
 		homepage.waitUntiAddFundsButtonEnabled();
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
-				By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__1OW1E')]"),
+				By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]"),
 				"payable-amount").substring(1).replace(",", ""));
 	}
 
@@ -56,7 +56,7 @@ public class Payinvoicepage {
 
 	public void clickOnInvoice() {
 		Eventhelper.threadWait(2000);
-		By invoicexpath = By.xpath("//*[contains(@class,'TransactionList_bizName__2vORu')]");
+		By invoicexpath = By.xpath("//*[contains(@class,'TransactionList_bizName__')]");
 		Eventhelper.click(driver, invoicexpath);
 	}
 
@@ -112,5 +112,19 @@ public class Payinvoicepage {
 		}
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, searchPayables);
+	}
+	
+	public void cleanSearchBar(String accountingSection) {
+		String xpath = null;
+		if (accountingSection.equals("Payable")) {
+			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
+		} else if (accountingSection.equals("Receivable")) {
+			xpath = "(//input[@aria-label='Search in the data grid'])[2]";
+		} else if (accountingSection.equals("Completed")) {
+			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
+		}
+		By txtSearchBaronAccountingSection = By.xpath(xpath);
+		Eventhelper.useActionClassOperation(driver, txtSearchBaronAccountingSection, "DoubleClick");
+		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
 	}
 }

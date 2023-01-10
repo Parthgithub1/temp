@@ -28,7 +28,7 @@ Feature: Test Registration Functionality
   @Regression
   Scenario: verify that registered user is not able to again register
     When User click on "Sign up" link
-    When User enter "qatsmokeautomation031@mailinator.com" in email field
+    When User enter "qa1@mailinator.com" in email field
     When User click on "Continue" button
     Then User should see "This email address is already being used." text on the screen
 
@@ -39,23 +39,23 @@ Feature: Test Registration Functionality
     Then User should see <emailValidationMessage> text on the screen
 
     Examples: 
-      | invalidEmail                    | emailValidationMessage               |
-      | "abc.123@example..com"          | "Please enter a legit email address" |
-      | "abc123@@example.com"           | "Please enter a legit email address" |
-      | "@example.com"                  | "Please enter a legit email address" |
-      | "uset@"                         | "Please enter a legit email address" |
-      | " "                             | "Please enter a legit email address" |
-      | "@.com"                         | "Please enter a legit email address" |
-      | "abc.def@mail#archive.com"      | "Please enter a legit email address" |
-      | "abc.def@mail"                  | "Please enter a legit email address" |
-      | "abcdefghijklmnopqrstu"         | "Please enter a legit email address" |
-      | "ABCDEFGHIJKLMNOPQRSTU"         | "Please enter a legit email address" |
-      | "0123456789"                    | "Please enter a legit email address" |
-      | "Abc.example.com"               | "Please enter a legit email address" |
-      | "user@[IPv6:2001:DB8::1]"       | "Please enter a legit email address" |
-      | "#@%^%#$@#$@#.com"              | "Please enter a legit email address" |
-      | "Joe Smith <email@example.com>" | "Please enter a legit email address" |
-      | "ã�‚ã�„ã�†ã�ˆã�Š@example.com"   | "Please enter a legit email address" |
+      | invalidEmail                    | emailValidationMessage          |
+      | "abc.123@example..com"          | "Drop in a valid email address" |
+      | "abc123@@example.com"           | "Drop in a valid email address" |
+      | "@example.com"                  | "Drop in a valid email address" |
+      | "uset@"                         | "Drop in a valid email address" |
+      | " "                             | "Drop in a valid email address" |
+      | "@.com"                         | "Drop in a valid email address" |
+      | "abc.def@mail#archive.com"      | "Drop in a valid email address" |
+      | "abc.def@mail"                  | "Drop in a valid email address" |
+      | "abcdefghijklmnopqrstu"         | "Drop in a valid email address" |
+      | "ABCDEFGHIJKLMNOPQRSTU"         | "Drop in a valid email address" |
+      | "0123456789"                    | "Drop in a valid email address" |
+      | "Abc.example.com"               | "Drop in a valid email address" |
+      | "user@[IPv6:2001:DB8::1]"       | "Drop in a valid email address" |
+      | "#@%^%#$@#$@#.com"              | "Drop in a valid email address" |
+      | "Joe Smith <email@example.com>" | "Drop in a valid email address" |
+      | "ã�‚ã�„ã�†ã�ˆã�Š@example.com"   | "Drop in a valid email address" |
 
   @Regression
   Scenario Outline: verify that user is not able to set invalid first name in registration process
@@ -63,8 +63,9 @@ Feature: Test Registration Functionality
     When User enter "invalidfirstname@hopscotch.com" in email field
     When User click on "Continue" button
     When User enter otp on screen
+    When User click on "Continue" button
     When User enter <firstname> in firstname field
-    Then User should see "The name can only contain letters, numbers, and ; , :" text on the screen
+    Then User should see "Only alphanumeric characters are accepted" text on the screen
 
     Examples: 
       | firstname        |
@@ -80,8 +81,9 @@ Feature: Test Registration Functionality
     When User enter "invalidlastname@hopscotch.com" in email field
     When User click on "Continue" button
     When User enter otp on screen
+    When User click on "Continue" button
     When User enter <lastname> in lastname field
-    Then User should see "The name can only contain letters, numbers, and ; , :" text on the screen
+    Then User should see "Only alphanumeric characters are accepted" text on the screen
 
     Examples: 
       | lastname         |
@@ -97,8 +99,9 @@ Feature: Test Registration Functionality
     When User enter "invalidbusiaddress@hopscotch.com" in email field
     When User click on "Continue" button
     When User enter otp on screen
+    When User click on "Continue" button
     When User enter <businessname> in businessname field
-    Then User should see "The name can only contain letters, numbers" text on the screen
+    Then User should see "Only alphanumeric characters are accepted" text on the screen
 
     Examples: 
       | businessname         |
@@ -116,19 +119,20 @@ Feature: Test Registration Functionality
     When User enter "invalidbusiaddress@hopscotch.com" in email field
     When User click on "Continue" button
     When User enter otp on screen
+    When User click on "Continue" button
     When User enter <pass> in password field
     Then User should see <validationMessage> text on the screen
 
     Examples: 
-      | pass                                        | validationMessage                                                                      |
-      | "user1@automation.com"                      | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "11111111"                                  | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "aaaaaaaa"                                  | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "AAAAAAAA"                                  | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "user1111"                                  | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "USER1111"                                  | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "user@1111"                                 | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "USER@1111"                                 | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "@1111"                                     | "Must include an uppercase and lowercase character, a number, and a special character" |
-      | "Test@122121212122121212212221212121212121" | "Maximum of 14 characters"                                                             |
-      | "Test@12"                                   | "Minimum of 8 characters"                                                              |
+      | pass                                        | validationMessage                                                            |
+      | "user1@automation.com"                      | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "11111111"                                  | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "aaaaaaaa"                                  | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "AAAAAAAA"                                  | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "user1111"                                  | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "USER1111"                                  | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "user@1111"                                 | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "USER@1111"                                 | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "@1111"                                     | "Strengthen your password with uppercase, lowercase, and special characters" |
+      | "Test@122121212122121212212221212121212121" | "Maximum of 30 characters"                                                   |
+      | "Test@12"                                   | "Minimum of 8 characters"                                                    |
