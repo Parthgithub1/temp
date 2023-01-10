@@ -21,6 +21,11 @@ public class Addbillsteps {
 	public void user_enter_add_bill_details() {
 		amount = addBillPage.addBill();
 	}
+	
+	@When("User click on Pay button")
+	public void user_click_on_pay_button() {
+	   addBillPage.clickOnPayButtonOnAddContact();
+	}
 
 	public static float addBillInvoiceAmount() {
 		return amount;
@@ -70,4 +75,15 @@ public class Addbillsteps {
 	public void user_should_see_delete_invoice_notification_on_the_screen() {
 		assertTrue(addBillPage.isDeleteInvoiceNotificationSent());
 	}
+
+	@When("User set bill receive payment in browser")
+	public void user_set_bill_receive_payment_in_browser() {
+		addBillPage.setURL();
+	}
+	
+	@When("User enter other bill deatails")
+	public void user_enter_other_bill_deatails() {
+	   addBillPage.addOterDetailsForBill();
+	}
+
 }

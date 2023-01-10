@@ -156,4 +156,10 @@ public class Contactliststep {
 	public void user_should_see_the_contact_list_count_on_the_screen_is_updated_with(Integer count) {
 		assertTrue(contactList.isCountMatchAfterContactRestore(count));
 	}
+	
+	@When("User search for the business in add contact")
+	public void user_search_for_the_business_in_add_contact() {
+	    contactList.searchForBusinessInAddContact();
+	}
+
 }

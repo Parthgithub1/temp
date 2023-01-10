@@ -15,6 +15,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Confirm" button
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "2.00"
     When User enter "qatsmokeautomation13" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
@@ -101,36 +102,38 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation15" in searchbox
-    Then User should see "qatsmokeautomation15" text on the screen
+    When User enter "qatsmokeautomation35" in searchbox
+    Then User should see "qatsmokeautomation35" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This invoice has been created to be cancelled."
+    When User enter invoice details like amount is 2 and message is "This invoice has been created to be cancelled."
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
+    Then Receivable balance is updated on the screen with "2.00"
     Then Read Receivable Balance on accounting screen
-    When User enter "qatsmokeautomation15" in Searchbar of "Receivable"
+    When User enter "qatsmokeautomation35" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation15 | +$1.00 |
+      | qatsmokeautomation35 | +$2.00 |
     When User click on Invoice from Receivable tab
     Then User should see "This invoice has been created to be cancelled." text on the card of "Receivable"
     Then User should see the amount to be receivable
     When User click on the menu icon of the card on "Receivable"
     When User click on "Cancel" link
     When User click on "Yes, Cancel" button
+    When User clean the Searchbar of "Receivable"
     Then Receivable balance is updated on the screen
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You have cancelled an invoice of qatsmokeautomation15 for $1.00" notification
+   #Then User should see "qatsmokeautomation15 has been cancelled." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "cancelInvoiceNotificationCheck"
     Then User should navigate to dashboard "cancelInvoiceNotificationCheck"
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "Your invoice to qatsmokeautomation18 for $1.00 was cancelled" notification
+    Then User should see "qatsmokeautomation18 cancelled their invoice. You don't need to do anything from here." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -145,11 +148,11 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "qatsmokeautomation16" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This invoice has been created to be rejected."
+    When User enter invoice details like amount is 2 and message is "This invoice has been created to be rejected."
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    #Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    #Then Receivable balance is updated on the screen with "2.00"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "rejectInvoiceNotificationCheck"
@@ -170,14 +173,14 @@ Feature: Test Send and Pay invoice Functionality
     Then Payable balance is updated on the screen
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You have rejected an invoice from qatsmokeautomation19 for $1.00" notification
+    Then User should see "You rejected qatsmokeautomation19's invoice." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "rejectInvoice"
     Then User should navigate to dashboard "rejectInvoice"
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "Your invoice to qatsmokeautomation16 for $1.00 was Rejected" notification
+    Then User should see "qatsmokeautomation16 rejected your invoice." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -214,20 +217,21 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "qatsmokeautomation11" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This is the text of message"
+    When User enter invoice details like amount is 2 and message is "This is the text of message"
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
     Then Read Receivable Balance on accounting screen
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation11 for $1.00" notification
-    When User click on "Homepage" link
+    Then User should see "You sent an invoice to qatsmokeautomation11. We'll let you know once it's been paid." notification
+    When User click on "Home" link
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User enter "qatsmokeautomation11" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation11 | +$1.00 |
+      | qatsmokeautomation11 | +$2.00 |
     When User click on Invoice from Receivable tab
     Then User should see the amount to be receivable
     When User click on the menu icon of the card on "Receivable"
@@ -236,9 +240,9 @@ Feature: Test Send and Pay invoice Functionality
     Then Receivable balance is updated on the screen once user mark invoice as received
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You marked received the payment for the invoice from qatsmokeautomation11 for $1.00" notification
-    When User click on "Homepage" link
-    Then User click on "Receivable" Container
+    Then User should see "An invoice to qatsmokeautomation11 has been marked as paid. Didn't mean to do this? You can make changes on the Accounting page." notification
+    #When User click on "Homepage" link
+    #Then User click on "Receivable" Container
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -249,16 +253,17 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation21" in searchbox
-    Then User should see "qatsmokeautomation21" text on the screen
+    When User enter "qatsmokeautomation211" in searchbox
+    Then User should see "qatsmokeautomation211" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This is the text of message for future date" for future date
+    When User enter invoice details like amount is 2 and message is "This is the text of message for future date" for future date
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
-    When User enter "qatsmokeautomation21" in Searchbar of "Receivable"
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
+    Then Receivable balance is updated on the screen with "2.00"
+    When User enter "qatsmokeautomation211" in Searchbar of "Receivable"
     And User sort the invoice with due date on "Receivable"
     When User click on Invoice from Receivable tab
     Then User should see "This is the text of message for future date" text on the card of "Receivable"

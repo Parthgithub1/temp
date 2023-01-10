@@ -26,6 +26,7 @@ public class AddFundspage {
 	}
 
 	public boolean isButtonEnabled(String text) {
+		Log.info("withdraw button "+Eventhelper.isElementEnabled(driver, getButtonByText(text)));
 		return Eventhelper.isElementEnabled(driver, getButtonByText(text));
 	}
 

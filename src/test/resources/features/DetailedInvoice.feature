@@ -65,8 +65,9 @@ Feature: Test DetailedInvoice View Functionality
     When User click on Pay or Get Paid link
     When User enter search for business in Searchbar
     When User enter the contact deatils for AddBill
-    When User click on "Add" button
-    When User click on "Pay" button
+    When User click on Pay button
+    #When User click on "Pay" button
+    #When User click on "Pay" button
     When User click on "Detailed" option for Invoice
     #When User click on "Add Tax" button and enter Tax Rate 15.00
     When User enter Item Details for Invoice
@@ -98,12 +99,22 @@ Feature: Test DetailedInvoice View Functionality
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
     Then User click on "Home" button to navigate to dashboard
-     When User click on Notification option from Header
+    When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see notification of payment of add bill on the dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-
+    When User set bill receive payment in browser
+    When User enter security code to verify the user on the screen
+    When User click on "Confirm" button
+    When user select Bank type "plaid" for the external payment 
+    Then User enter bank details
+    When User click on Pay button in external payment
+    When User click on the confirm payment button in extternal payment
+    Then User should see "Transaction complete" text on the screen
+    Then User is close the appeared dialog
+    Then User should see "Download receipt" text on the screen
+   
   @Regression @detailedInvoiceGetPaidWithDifferentDueDates @90DaysPaymentTerms
   Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 90 days Payment Terms
     When User login for "deatiledInvoice"

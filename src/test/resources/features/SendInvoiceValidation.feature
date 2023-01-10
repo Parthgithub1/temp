@@ -5,11 +5,11 @@ Feature: Test validation on send invoice
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation071" in searchbox
-    Then User should see "qatsmokeautomation071" text on the screen
+    When User enter "qatsmokeautomation06" in searchbox
+    Then User should see "qatsmokeautomation06" text on the screen
     When User click on "Get paid" button
     When user enter "0.00" as a invoice amount
-    Then User should see "Please enter legit amount" text on the screen
+    Then User should see "Please enter a valid amount" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -18,8 +18,8 @@ Feature: Test validation on send invoice
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation071" in searchbox
-    Then User should see "qatsmokeautomation071" text on the screen
+    When User enter "qatsmokeautomation06" in searchbox
+    Then User should see "qatsmokeautomation06" text on the screen
     When User click on "Get paid" button
     When user enter "123123121232.00" as a invoice amount
     When User click on "Confirm" button
