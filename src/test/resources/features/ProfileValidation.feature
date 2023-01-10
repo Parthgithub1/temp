@@ -1,5 +1,5 @@
-Feature: Test Negative cases on Profile 
-  
+Feature: Test Negative cases on Profile
+
   Background: 
     When User login for "Profile"
     Then User should navigate to dashboard "Profile"
@@ -11,7 +11,7 @@ Feature: Test Negative cases on Profile
   @Regression
   Scenario Outline: Verify User is not able to set invalid website in Edit Profile
     When User enter <website> in website field
-    Then User should see "Please enter a valid web address" text on the screen
+    Then User should see "Drop in a valid web address" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -51,11 +51,9 @@ Feature: Test Negative cases on Profile
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | Handle                    | validationMessage                                     |
-      | "ytyt"                    | "Must start with @ and contain latin alphabet, digit" |
-      | "@,,.,."                  | "Must start with @ and contain latin alphabet, digit" |
-      | "@dgfdd,,,"               | "Must start with @ and contain latin alphabet, digit" |
-      | "@Zap enterprise limited" | "Must start with @ and contain latin alphabet, digit" |
-      | "@@@@@@"                  | "Must start with @ and contain latin alphabet, digit" |
-      | "42152"                   | "Must start with @ and contain latin alphabet, digit" |
-      | "   "                     | "Drop in your handle name"                            |
+      | Handle   | validationMessage                                            |
+      | "ytyt"   | "Must start with @ and only contain alphanumeric characters" |
+      | "@,,.,." | "Must start with @ and only contain alphanumeric characters" |
+      | "@@@@@@" | "Must start with @ and only contain alphanumeric characters" |
+      | "42152"  | "Must start with @ and only contain alphanumeric characters" |
+      | "   "    | "Drop in your handle name"                                   |

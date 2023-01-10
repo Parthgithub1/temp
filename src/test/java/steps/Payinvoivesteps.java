@@ -129,6 +129,11 @@ public class Payinvoivesteps {
 	public void user_enter_in_searchbar_of(String Businessname, String AccountingSection) {
 		payInvoice.enterInSearchBar(Businessname, AccountingSection);
 	}
+	
+	@When("User clean the Searchbar of {string}")
+	public void user_clean_the_searchbar_of(String AccountingSection) {
+	    payInvoice.cleanSearchBar(AccountingSection);
+	}
 
 	@Then("User should see the amount of the card")
 	public void user_should_see_the_amount_of_the_card() {

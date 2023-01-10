@@ -2,6 +2,7 @@ package pages;
 
 import java.util.Properties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import com.github.javafaker.Faker;
 import utility.*;
@@ -9,17 +10,20 @@ import utility.*;
 public class Externalinvoicepage {
 
 	private WebDriver driver;
-	private By rowInvoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td[1]//span[@class='id_receivable']");
+	private By rowInvoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td[1]//span[contains(@class,'id_receivable')]");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
 	private By lblBusinessNameOnDashboard = By.xpath("//p[contains(@class,'InfoHeader_header')][1]");
-	private By lblBusinessNameOnExternalInvoice = By.xpath("//div[@class='handle']//span[1]");
+	private By lblBusinessNameOnExternalInvoice = By
+			.xpath("//div[contains(@class,'entity-short-card__info InvoicerDetails_business')]");
 	private By txtbusinessname = By.xpath("//input[contains(@name ,'vendor')]");
 	private By txtfirstname = By.xpath("//input[@name='firstName']");
 	private By txtlastname = By.xpath("//input[contains(@name ,'lastName')]");
 	private By txtemail = By.xpath("//input[@name='email']");
+	private By txtCode = By.xpath("//input[@name='code']");
+	private By btnCloseInvoiceInReceivable= By.xpath("(//button[contains(@class,'close-btn')])[2]");
 	private String txtCustomerName;
 	private String tempEmailAddress;
 	private String url;
@@ -137,6 +141,44 @@ public class Externalinvoicepage {
 		} else if (field.equalsIgnoreCase("businessname")) {
 			Eventhelper.useActionClassOperation(driver, txtbusinessname, Constants.DOUBLECLICK);
 			Eventhelper.sendKeyboardKeys(driver, txtbusinessname, "tab");
+		}
+	}
+
+	public void enterAuthCode() {
+		Eventhelper.sendkeys(driver, txtCode, "5555");
+	}
+
+	public void selectBank(String bankType) {
+		By btnBankType;
+		if (bankType.equalsIgnoreCase("plaid")) {
+			btnBankType = By.xpath("//label[@for='Plaid']");
+		} else {
+			btnBankType = By.xpath("//input[@id='Direct']");
+		}
+		Eventhelper.waitUntilAttribValueContains(driver, By.xpath("//iframe[@title='Plaid Link']"),"title","Plaid Link");
+		Eventhelper.clickElementwithjs(driver, btnBankType);
+		Log.info("Clicked on is done ---->"+ btnBankType);
+	}
+	
+	public void clickOnButton(String buttonName)
+	{
+		By btnName;
+		if (buttonName.equalsIgnoreCase("Pay")) {
+			 btnName= By.xpath("//span[@class='label-pay']");
+		} else {
+			btnName= By.xpath("//span[@class='label-confirm-pay']");
+		}		
+		Eventhelper.click(driver, btnName);
+	}
+	
+	public void setEnvironmentURL()
+	{
+		Eventhelper.getURL(driver, "login");
+	}
+	
+	public void clickonCloseIconfromReceivableCard() {
+		if (Eventhelper.isElementDisplayed(driver, btnCloseInvoiceInReceivable)) {
+			Eventhelper.click(driver, btnCloseInvoiceInReceivable);
 		}
 	}
 }
