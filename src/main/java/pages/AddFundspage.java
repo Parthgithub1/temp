@@ -34,7 +34,7 @@ public class AddFundspage {
 		Eventhelper.threadWait(5000);
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
-				"zurobalance-amount").replace("$", ""));
+				"zurobalance-amount").replace("$", "").replace(",", ""));
 	}
 
 	public String modalHeader(String text) {

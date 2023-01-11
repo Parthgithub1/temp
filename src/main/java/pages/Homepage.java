@@ -16,7 +16,7 @@ public class Homepage {
 		waitUntiAddFundsButtonEnabled();
 		return Eventhelper.convertFloatTo2DecimalFloat(Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
-				"zurobalance-amount").replace("$", "")));
+				"zurobalance-amount").replace("$", "").replace(",", "")));
 	}
 
 	public void waitUntiAddFundsButtonEnabled() {
