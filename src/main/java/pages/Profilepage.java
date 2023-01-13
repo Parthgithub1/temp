@@ -77,7 +77,7 @@ public class Profilepage {
 	public boolean verificationofUpdatedProfile(String businessName, String handle, String industry, String webSite,
 			String yearFound) {
 		boolean flag = false;
-		By businessNameVerification = By.xpath("//span[@class='InfoHeader_header__title__SCnPj']");
+		By businessNameVerification = By.xpath("//span[ contains(@class,'InfoHeader_header__title') ]");
 		By handleVerification = By.xpath("//p[contains(@class,'InfoHeader_header__handle')]");
 		By industryVerification = By.xpath("//p[contains(@class,'InfoHeader_header__location')]");
 		By webSiteVerification = By.xpath("//a[contains(.,'" + webSite + "')]");

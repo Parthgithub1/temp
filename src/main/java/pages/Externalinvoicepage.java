@@ -24,6 +24,7 @@ public class Externalinvoicepage {
 	private By txtemail = By.xpath("//input[@name='email']");
 	private By txtCode = By.xpath("//input[@name='code']");
 	private By btnCloseInvoiceInReceivable= By.xpath("(//button[contains(@class,'close-btn')])[2]");
+	private By btnGetPaidOnAddContact = By.xpath("//form//button[text()='Get paid']");
 	private String txtCustomerName;
 	private String tempEmailAddress;
 	private String url;
@@ -180,5 +181,10 @@ public class Externalinvoicepage {
 		if (Eventhelper.isElementDisplayed(driver, btnCloseInvoiceInReceivable)) {
 			Eventhelper.click(driver, btnCloseInvoiceInReceivable);
 		}
+	}
+	
+	public void clickOnGetPaidButton()
+	{
+		Eventhelper.useActionClassOperation(driver, btnGetPaidOnAddContact, "Click");
 	}
 }
