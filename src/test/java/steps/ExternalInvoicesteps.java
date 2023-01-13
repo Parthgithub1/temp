@@ -111,10 +111,14 @@ public class ExternalInvoicesteps {
 	public void user_again_login_in_environment() {
 		externalInvoicePage.setEnvironmentURL();
 	}
-	
+
 	@When("User click on Close button from receivable Card")
 	public void user_click_on_close_button_from_receivable_card() {
-	    externalInvoicePage.clickonCloseIconfromReceivableCard();
+		externalInvoicePage.clickonCloseIconfromReceivableCard();
 	}
 
+	@When("user click on Get paid button")
+	public void user_click_on_get_paid_button() {
+		externalInvoicePage.clickOnGetPaidButton();
+	}
 }
