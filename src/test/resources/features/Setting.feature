@@ -1,6 +1,6 @@
 Feature: Test Settings Tab Functionality
 
-  @Smoke @Setting @paymentMethodSection @QAT @UAT 
+  @Smoke @Setting @paymentMethodSection @QAT @UAT
   Scenario: Verify Payment methods on Settings Tab
     When User login for "Settings"
     Then User should navigate to dashboard "Settings"
@@ -99,7 +99,7 @@ Feature: Test Settings Tab Functionality
     When User click on "change password" button
     When User Edit the Password
     Then User click on "Save" button
-    Then User should see "Your current password does not match" text on the screen
+    Then User should see "Incorrect current password" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -142,7 +142,7 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User enter "password123" in new Password field
-    Then User should see "Must include an uppercase and lowercase character, a number, and a special character" text on the screen
+    Then User should see "Strengthen your password with uppercase, lowercase, and special characters" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -170,7 +170,7 @@ Feature: Test Settings Tab Functionality
     When User enter "8523647592" in Mobile Number field
     When User enter Wrong Code on screen
     Then User click on "Submit" button
-    Then User should see "The code you entered is incorrect." text on the screen
+    Then User should see "Invalid Two-factor authentication token" text on the screen
     When User click on "Two factor authentication" toggle
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -185,6 +185,6 @@ Feature: Test Settings Tab Functionality
     When User save the bank detail of currrently added bank
     Then User click on "Add account" button
     When User add existing bank account on Payment Method
-    Then User should see "You have already linked this account to Hopscotch. You cannot link the same account twice." text on the screen
+    Then User should see "This account has already been linked" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

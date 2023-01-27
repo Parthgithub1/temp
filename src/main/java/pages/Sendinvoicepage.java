@@ -20,14 +20,18 @@ public class Sendinvoicepage {
 		private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
 	private By ddValueOfBusinessSearched = By
 			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
-	String receiableBlanaceOnAccountingPage;
+	String receiableBlanaceOnAccountingPage, cancelInvoiceNo, cancelNotification;
 	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
 	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]");
+	private By btnCloseFlowDialogBox = By.xpath("//button[@aria-label='Close']//*[name()='svg']");
+	private By lblInvoiceNoForCancelInvoice= By.xpath("(//span[contains(@class,'id_receivable')])[1]");
 	private Homepage homepage;
+	private Commonpage commonPage;
 
 	public Sendinvoicepage(WebDriver driver) {
 		this.driver = driver;
 		homepage = new Homepage(driver);
+		commonPage = new Commonpage(driver);
 	}
 
 	public float readReceivableBalanceOnDashBoard() {
@@ -100,6 +104,7 @@ public class Sendinvoicepage {
 
 	public void sortWithDueDate(String accountingSection) {
 		int index = getIndex(accountingSection);
+		Eventhelper.threadWait(1000);
 		By btnDuedate = By.xpath("(//p[contains(text(),'Due date')])[" + index + "]");
 		Eventhelper.click(driver, btnDuedate);
 	}
@@ -128,7 +133,9 @@ public class Sendinvoicepage {
 
 	public void clickOnConfirmButtonforMarkasInvoice(String buttonname) {
 		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[2]");
+		Eventhelper.explicitwait(driver, btnXpath);
 		Eventhelper.click(driver, btnXpath);
+		Eventhelper.waitUntilElementInvisible(driver, btnXpath);
 	}
 
 	public void sendInvoiceForFutureDate(int amount, String message) {
@@ -176,6 +183,23 @@ public class Sendinvoicepage {
 				.substring(2).replace(",", ""));
 		Log.info("amt value is :- "+amt);
 		return amt;
+	}
+	
+	public void clickOnCloseOfFlowDialogBox()
+	{
+		Eventhelper.click(driver, btnCloseFlowDialogBox);
+	}
+	
+	public void readInvoiceNumberForCancellInvoice()
+	{
+		cancelInvoiceNo=Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
+		Log.info("Cancel invoice number is"+cancelInvoiceNo);
+	}
+	
+	public boolean isCancelNotificationExistInNotificationList()
+	{
+		cancelNotification= "Invoice "+cancelInvoiceNo+" to qatsmokeautomation35 has been cancelled.";
+	    return commonPage.isNotificationPresentInList(cancelNotification);		
 	}
 
 }

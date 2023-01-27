@@ -63,6 +63,27 @@ public class Sendinvoicesteps {
 		}
 		assertTrue(isInvoicePresent);
 	}
+	
+	@Then("User should see the invoice on the screen for {string} days payment term")
+	public void user_should_see_the_invoice_on_the_screen_for_days_payment_term(String number_of_days, io.cucumber.datatable.DataTable dataTable) {
+		sendInvoicePage.sortWithDueDate("Receivable");
+		List<List<String>> expected = dataTable.asLists();
+		List<String> expectedList = new ArrayList<String>();
+		for (List<String> columns : expected) {
+			expectedList.add(columns.get(0));
+			expectedList.add(Eventhelper.getInvoiceDueDateInSpecifiedFormat(Integer.parseInt(number_of_days)));
+			expectedList.add(columns.get(1));
+		}
+		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
+		boolean isInvoicePresent = false;
+		for (List<String> list : actualList) {
+			isInvoicePresent = list.equals(expectedList);
+			if (isInvoicePresent) {
+				break;
+			}
+		}
+		assertTrue(isInvoicePresent);
+	}
 
 	@Then("Receivable balance is updated on the screen with {string}")
 	public void receivable_balance_is_updated_on_the_screen_with(String amount) {
@@ -210,6 +231,21 @@ public class Sendinvoicesteps {
 	public void user_should_see_actual_invoice_amount_on_the_screen() {
 		float amountOfOpenedInvoiceInCompleted = sendInvoicePage.invoiceAmount("Completed");
 		assertEquals(amountOfInvoice, amountOfOpenedInvoiceInCompleted, 0);
+	}
+	
+	@Then("User click on close button to close the flow dialog")
+	public void user_click_on_close_button_to_close_the_flow_dialog() {
+	   sendInvoicePage.clickOnCloseOfFlowDialogBox();
+	}
+	
+	@When("User read the invoice no from the receivable")
+	public void user_read_the_invoice_no_from_the_receivable() {
+	   sendInvoicePage.readInvoiceNumberForCancellInvoice();
+	}
+
+	@Then("User should see the notification of cancelled invoice")
+	public void user_should_see_the_notification_of_cancelled_invoice() {
+	   assertTrue(sendInvoicePage.isCancelNotificationExistInNotificationList());
 	}
 
 }

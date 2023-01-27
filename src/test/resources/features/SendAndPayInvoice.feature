@@ -59,17 +59,18 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "hopsmokeautomation2llc" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This is the text of message"
+    When User enter invoice details like amount is 2 and message is "This is the text of message"
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
+    Then Receivable balance is updated on the screen with "2.00"
     When User enter "hopsmokeautomation2llc" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | hopsmokeautomation2llc | +$1.00 |
+      | hopsmokeautomation2llc | +$2.00 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to hopsmokeautomation2llc for $1.00" notification
+    Then User should see "You sent an invoice to hopsmokeautomation2llc. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "InvoicePay"
@@ -88,10 +89,10 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see new amount on the screen for Payables
     Then User should see update amount of Hopscotch Balance on Accounting Page
     Then User should see invoice details of invoice details on the screen
-      | hopsmokeautomation1llc | -$1.00 |
+      | hopsmokeautomation1llc | -$2.00 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You paid an invoice to hopsmokeautomation1llc for $1.00" notification
+    Then User should see "You successfully paid hopsmokeautomation1llc's invoice." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -116,6 +117,7 @@ Feature: Test Send and Pay invoice Functionality
     When User enter "qatsmokeautomation35" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
       | qatsmokeautomation35 | +$2.00 |
+    When User read the invoice no from the receivable
     When User click on Invoice from Receivable tab
     Then User should see "This invoice has been created to be cancelled." text on the card of "Receivable"
     Then User should see the amount to be receivable
@@ -126,6 +128,7 @@ Feature: Test Send and Pay invoice Functionality
     Then Receivable balance is updated on the screen
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
+    Then User should see the notification of cancelled invoice
    #Then User should see "qatsmokeautomation15 has been cancelled." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -237,6 +240,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on the menu icon of the card on "Receivable"
     When User click on "Mark received" link
     When User click on "Confirm" button to mark Invoice as received
+    When User clean the Searchbar of "Receivable"
     Then Receivable balance is updated on the screen once user mark invoice as received
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
@@ -275,7 +279,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Payable" Container
     Then User should save Default amount of Payable on Accounting Page
     When User enter "qatsmokeautomation17" in Searchbar of "Payable"
-    And User sort the invoice with due date on "Payable"
+    #And User sort the invoice with due date on "Payable"
     When User click on Invoice from Payable tab
     Then User should see "This is the text of message for future date" text on the card of "Payable"
     Then User should see "Coming up" text on the card of "Payable"
@@ -294,11 +298,13 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "TestCRSqat04" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "Factor invoice" for future date
+    When User enter invoice details like amount is 2 and message is "Factor invoice" for future date
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    Then User click on close button to close the flow dialog
+    When User click on Close button from receivable Card
+    Then Receivable balance is updated on the screen with "2.00"
     Then Read Receivable Balance on accounting screen
     When User enter "TestCRSqat04" in Searchbar of "Receivable"
     And User sort the invoice with due date on "Receivable"
@@ -309,6 +315,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on get button in card
     When User click on Accept and Agree lable
     When User click on "Confirm Flow" button
+    When User clean the Searchbar of "Receivable"
     Then Receivable balance is updated on the screen
     Then Hopscotch balance is updated on the screen
     When User click on "Completed" button
@@ -317,10 +324,10 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see the flowed amount is display on the screen
     When User click on invoice from "Completed" tab
     Then User should see actual invoice amount on the screen
-    #Then User should see "Flowed" text on the card of "Completed"
+    #Then User should see "Flowed" text on the card of "Completed" - alread commented
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "Cash is Flowing! Funds from an invoice to TestCRSqat04 have been unlocked and $0.97 has been added to your Hopscotch balance." notification
+    Then User should see "Cash is Flowing! Funds from an invoice to TestCRSqat04 have been unlocked and $1.92 has been added to your Hopscotch Balance." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "FactorInvoicePay"
@@ -336,6 +343,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Pay" button
     Then User should see "Payable dashboard" text on the screen
     When User click on "Confirm" button
+    When User clean the Searchbar of "Payable"
     Then Payable balance is updated on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

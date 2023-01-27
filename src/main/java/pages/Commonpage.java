@@ -186,7 +186,7 @@ public class Commonpage {
 		case "rejectInvoiceNotificationCheck":
 		case "invoiceSchedulingSend":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat16")
-					: property.getProperty("uat4");
+					: property.getProperty("uat3");
 			break;
 		case "FactorInvoiceSend":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs1")

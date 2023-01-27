@@ -17,16 +17,16 @@ Feature: Test validation on external invoice screen
       | vendor               | validationMessage                                        |
       | "   "                | "Business name cannot contain leading or trailing space" |
       | "busi "              | "Business name cannot contain leading or trailing space" |
-      | "@23232"             | "The name can only contain letters, numbers, and ; , :"  |
-      | "@   ()"             | "The name can only contain letters, numbers, and ; , :"  |
-      | "The[ business name" | "The name can only contain letters, numbers, and ; , :"  |
-      | "The]Business"       | "The name can only contain letters, numbers, and ; , :"  |
-      | "~The business name" | "The name can only contain letters, numbers, and ; , :"  |
-      | "?the name"          | "The name can only contain letters, numbers, and ; , :"  |
-      | "\\ the slash"       | "The name can only contain letters, numbers, and ; , :"  |
-      | "= is equel"         | "The name can only contain letters, numbers, and ; , :"  |
-      | "***********"        | "The name can only contain letters, numbers, and ; , :"  |
-      | "~~!~!`1"            | "The name can only contain letters, numbers, and ; , :"  |
+      | "@23232"             | "Only alphanumeric characters are accepted"  |
+      | "@   ()"             | "Only alphanumeric characters are accepted"  |
+      | "The[ business name" | "Only alphanumeric characters are accepted"  |
+      | "The]Business"       | "Only alphanumeric characters are accepted"  |
+      | "~The business name" | "Only alphanumeric characters are accepted"  |
+      | "?the name"          | "Only alphanumeric characters are accepted"  |
+      | "\\ the slash"       | "Only alphanumeric characters are accepted"  |
+      | "= is equel"         | "Only alphanumeric characters are accepted"  |
+      | "***********"        | "Only alphanumeric characters are accepted"  |
+      | "~~!~!`1"            | "Only alphanumeric characters are accepted"  |
 
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact first name
@@ -36,14 +36,14 @@ Feature: Test validation on external invoice screen
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | firstname        | validationMessage                                       |
-      | "@   ()"         | "The name can only contain letters, numbers, and ; , :" |
-      | "[]fdgdfg"       | "The name can only contain letters, numbers, and ; , :" |
-      | "~wee"           | "The name can only contain letters, numbers, and ; , :" |
-      | "David#Nomathan" | "The name can only contain letters, numbers, and ; , :" |
-      | "%test%"         | "The name can only contain letters, numbers, and ; , :" |
-      | "first "         | "First name cannot contain leading or trailing space"   |
-      | " First"         | "First name cannot contain leading or trailing space"   |
+      | firstname        | validationMessage                                     |
+      | "@   ()"         | "Only alphanumeric characters are accepted"           |
+      | "[]fdgdfg"       | "Only alphanumeric characters are accepted"           |
+      | "~wee"           | "Only alphanumeric characters are accepted"           |
+      | "David#Nomathan" | "Only alphanumeric characters are accepted"           |
+      | "%test%"         | "Only alphanumeric characters are accepted"           |
+      | "first "         | "First name cannot contain leading or trailing space" |
+      | " First"         | "First name cannot contain leading or trailing space" |
 
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact first name
@@ -53,19 +53,19 @@ Feature: Test validation on external invoice screen
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | lastname         | validationMessage                                       |
-      | "@   ()"         | "The name can only contain letters, numbers, and ; , :" |
-      | "[]fdgdfg"       | "The name can only contain letters, numbers, and ; , :" |
-      | "~wee"           | "The name can only contain letters, numbers, and ; , :" |
-      | "David#Nomathan" | "The name can only contain letters, numbers, and ; , :" |
-      | "%test%"         | "The name can only contain letters, numbers, and ; , :" |
-      | "last "          | "Last name cannot contain leading or trailing space"    |
-      | " last"          | "Last name cannot contain leading or trailing space"    |
+      | lastname         | validationMessage                                    |
+      | "@   ()"         | "Only alphanumeric characters are accepted"          |
+      | "[]fdgdfg"       | "Only alphanumeric characters are accepted"          |
+      | "~wee"           | "Only alphanumeric characters are accepted"          |
+      | "David#Nomathan" | "Only alphanumeric characters are accepted"          |
+      | "%test%"         | "Only alphanumeric characters are accepted"          |
+      | "last "          | "Last name cannot contain leading or trailing space" |
+      | " last"          | "Last name cannot contain leading or trailing space" |
 
   @Regression
   Scenario Outline: Verify that user is not able to set invalid contact email address
     When User enter <invalidEmail> as a contact email
-    Then User should see "Please enter a legit email address" text on the screen
+    Then User should see "Drop in a valid email address" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -91,27 +91,27 @@ Feature: Test validation on external invoice screen
   @Regression
   Scenario: verify that user is not able to leave the contact firstname field empty
     When User press the tab button on "first name"
-    Then User should see "Drop in your first name" text on the screen
+    Then User should see "Drop in a valid first name" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
   @Regression
-  Scenario: verify that user is not able to leave the contact firstname field empty
+  Scenario: verify that user is not able to leave the contact lastname field empty
     When User press the tab button on "last name"
-    Then User should see "Drop in your last name" text on the screen
+    Then User should see "Drop in a valid last name" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
   @Regression
-  Scenario: verify that user is not able to leave the contact firstname field empty
+  Scenario: verify that user is not able to leave the contact email field empty
     When User press the tab button on "email"
-    Then User should see "Drop in your email" text on the screen
+    Then User should see "Drop in a valid email address" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
   @Regression
   Scenario: verify that user is not able to leave the contact firstname field empty
     When User press the tab button on "businessname"
-    Then User should see "Drop in your business name" text on the screen
+    Then User should see "Drop in a business name" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

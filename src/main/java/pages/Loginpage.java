@@ -45,6 +45,6 @@ public class Loginpage {
 
 	public String isEmailEnterInCorrectFormat() {
 		return Eventhelper.getTextofElement(driver,
-				By.xpath("//div[contains(@class,'TextInput_form-errors-wrapper__2LlfN')]"));
+				By.xpath("//div[contains(@class,'TextInput_form-errors-wrapper__')]"));
 	}
 }

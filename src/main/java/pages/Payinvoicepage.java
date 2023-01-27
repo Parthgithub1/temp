@@ -125,6 +125,7 @@ public class Payinvoicepage {
 		}
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.useActionClassOperation(driver, txtSearchBaronAccountingSection, "DoubleClick");
+		Eventhelper.threadWait(1000);
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
 	}
 }

@@ -23,12 +23,21 @@ public class Externalinvoicepage {
 	private By txtlastname = By.xpath("//input[contains(@name ,'lastName')]");
 	private By txtemail = By.xpath("//input[@name='email']");
 	private By txtCode = By.xpath("//input[@name='code']");
-	private By btnCloseInvoiceInReceivable= By.xpath("(//button[contains(@class,'close-btn')])[2]");
+	private By btnCloseInvoiceInReceivable = By.xpath("(//button[contains(@class,'close-btn')])[2]");
 	private By btnGetPaidOnAddContact = By.xpath("//form//button[text()='Get paid']");
+	private By lblCancelBanner = By.xpath("//p[@class='toast__message']");
+	private By txtRoutingNumber = By.xpath("//input[@name='routingNumber']");
+	private By txtAccountingNumber = By.xpath("//input[@name='accountNumber']");
+	private By lblBankLogo = By.xpath("//img[contains(@class,'TextInput_input-icon')]");
+	private By txtAccountingName = By.xpath("//input[@name='accountHoldersName']");
+	private By btnPayOrPaid;
+	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
+
 	private String txtCustomerName;
 	private String tempEmailAddress;
 	private String url;
 	private String businessNameOnDashboard;
+	private String cancelInvoiceNo;
 
 	Faker faker = new Faker();
 	private Verificationpage verificationPage;
@@ -67,6 +76,8 @@ public class Externalinvoicepage {
 		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
 				+ "&emailId=" + tempEmailAddress;
 		Log.info("The generated external url :- " + externalURl);
+		cancelInvoiceNo = Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
+		Log.info("Cancel invoice number is" + cancelInvoiceNo);
 		return externalURl;
 	}
 
@@ -74,6 +85,12 @@ public class Externalinvoicepage {
 		if (typeOfNotificationForExternalInvoice.equalsIgnoreCase("SentExternalInvoice")) {
 			return commonPage.isNotificationPresentInList(
 					"You sent an invoice to " + txtCustomerName + ". We'll let you know once it's been paid.");
+		} else if (typeOfNotificationForExternalInvoice.equalsIgnoreCase("MarkReceivedExternalInvoice")) {
+			return commonPage.isNotificationPresentInList("An invoice to " + txtCustomerName
+					+ " has been marked as paid. Didn't mean to do this? You can make changes on the Accounting page.");
+		} else if (typeOfNotificationForExternalInvoice.equalsIgnoreCase("CancelledExternalInvoice")) {
+			return commonPage.isNotificationPresentInList(
+					"Invoice " + cancelInvoiceNo + " to " + txtCustomerName + " has been cancelled.");
 		} else {
 			return commonPage.isNotificationPresentInList(
 					txtCustomerName + " paid your invoice. Your Hopscotch Balance has been updated.");
@@ -94,7 +111,7 @@ public class Externalinvoicepage {
 		Boolean flag = false;
 		Eventhelper.explicitwait(driver, lblBusinessNameOnExternalInvoice);
 		String businessNameOnExternalInvoice = (Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice))
-				.substring(1);
+				.substring(0);
 		Log.info("BusinessNameOnExternalInvoice is -->" + businessNameOnExternalInvoice);
 		if (businessNameOnDashboard.equals(businessNameOnExternalInvoice)) {
 			flag = true;
@@ -154,37 +171,55 @@ public class Externalinvoicepage {
 		if (bankType.equalsIgnoreCase("plaid")) {
 			btnBankType = By.xpath("//label[@for='Plaid']");
 		} else {
-			btnBankType = By.xpath("//input[@id='Direct']");
+			btnBankType = By.xpath("//label[@for='Direct']");
 		}
-		Eventhelper.waitUntilAttribValueContains(driver, By.xpath("//iframe[@title='Plaid Link']"),"title","Plaid Link");
+		Eventhelper.waitUntilAttribValueContains(driver, By.xpath("//iframe[@title='Plaid Link']"), "title",
+				"Plaid Link");
 		Eventhelper.clickElementwithjs(driver, btnBankType);
-		Log.info("Clicked on is done ---->"+ btnBankType);
+		Log.info("Clicked on is done ---->" + btnBankType);
 	}
-	
-	public void clickOnButton(String buttonName)
-	{
+
+	public void enterBankDetailManually(String buttonName) {
+		Eventhelper.sendkeys(driver, txtRoutingNumber, "063109935");
+		Eventhelper.click(driver, txtAccountingNumber);
+		Eventhelper.explicitwait(driver, lblBankLogo);
+		Eventhelper.sendkeys(driver, txtAccountingNumber, "1454645465464");
+		Eventhelper.sendkeys(driver, txtAccountingName, "Hop and company");
+		if (buttonName.equalsIgnoreCase("Save and Pay")) {
+			btnPayOrPaid = By.xpath("//button//span[contains(text(),'Pay')]");
+		} else {
+			btnPayOrPaid = By.xpath("//button//span[contains(text(),'paid')]");
+		}
+		Eventhelper.click(driver, btnPayOrPaid);
+	}
+
+	public void clickOnButton(String buttonName) {
 		By btnName;
 		if (buttonName.equalsIgnoreCase("Pay")) {
-			 btnName= By.xpath("//span[@class='label-pay']");
+			btnName = By.xpath("//span[@class='label-pay']");
 		} else {
-			btnName= By.xpath("//span[@class='label-confirm-pay']");
-		}		
+			btnName = By.xpath("//span[@class='label-confirm-pay']");
+		}
 		Eventhelper.click(driver, btnName);
 	}
-	
-	public void setEnvironmentURL()
-	{
+
+	public void setEnvironmentURL() {
 		Eventhelper.getURL(driver, "login");
 	}
-	
+
 	public void clickonCloseIconfromReceivableCard() {
 		if (Eventhelper.isElementDisplayed(driver, btnCloseInvoiceInReceivable)) {
 			Eventhelper.click(driver, btnCloseInvoiceInReceivable);
 		}
 	}
-	
-	public void clickOnGetPaidButton()
-	{
+
+	public void clickOnGetPaidButton() {
 		Eventhelper.useActionClassOperation(driver, btnGetPaidOnAddContact, "Click");
+	}
+
+	public boolean isCancellBannerDisplayedOnTheScreen(String bannerMessage) {
+		Log.info(bannerMessage);
+		Log.info("This is the run time capture" + Eventhelper.getTextofElement(driver, lblCancelBanner));
+		return bannerMessage.equals(Eventhelper.getTextofElement(driver, lblCancelBanner));
 	}
 }
