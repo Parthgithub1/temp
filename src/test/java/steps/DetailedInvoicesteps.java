@@ -80,4 +80,8 @@ public class DetailedInvoicesteps {
 	    detailedInvoice.enterMultipleItemsInDetailedInvoice();
 	}
 	
+	@When("User click on the share link button in payable")
+	public void user_click_on_the_share_link_button_in_payable() {
+	    detailedInvoice.clickOnShareLinkButtonInPayable();
+	}
 }

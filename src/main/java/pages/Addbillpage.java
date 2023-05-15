@@ -21,7 +21,6 @@ public class Addbillpage {
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 	private By btnPayOnAddContact= By.xpath("(//form//button)[1]");
 
-	private By lblNotification;
 	Faker faker = new Faker();
 	String vender;
 	String tempEmail;

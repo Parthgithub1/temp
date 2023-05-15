@@ -3,7 +3,9 @@ package steps;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -246,6 +248,36 @@ public class Sendinvoicesteps {
 	@Then("User should see the notification of cancelled invoice")
 	public void user_should_see_the_notification_of_cancelled_invoice() {
 	   assertTrue(sendInvoicePage.isCancelNotificationExistInNotificationList());
+	}
+	
+	@When("User scroll down to reach to the share link button and hover on sharelink in receivable")
+	public void user_scroll_down_to_reach_to_the_share_link_button_and_hover_on_sharelink_in_receivable() {
+	  sendInvoicePage.moveToShareLinkButtonInReceivableCardandHoverOnIt();
+	}
+
+	@When("User set copied link in browser as per dependent on platform")
+	public void user_set_copied_link_in_browser_as_per_dependent_on_platform() {
+	   sendInvoicePage.setCopiedLinkInBrowser();
+	}
+	
+	@When("User read the invoice id from the receivable")
+	public void user_read_the_invoice_id_from_the_receivable() {
+	   sendInvoicePage.readInvoiceId();
+	}
+	
+	@Then("User should see the invoice no on the invoice card in receivable")
+	public void user_should_see_the_invoice_no_on_the_invoice_card_in_receivable() {
+	    assertTrue(sendInvoicePage.isInvoiceNoPresentOnTheInvoiceCard());
+	}
+	
+	@Then("User should verified the invoice no on the external invoice screen")
+	public void user_should_verified_the_invoice_no_on_the_external_invoice_screen() {
+	    assertTrue(sendInvoicePage.isInvoiceNoDisplayOnTheScreen());
+	}
+
+	@Then("User should see place holder text of the searchbar of the business")
+	public void user_should_see_place_holder_text_of_the_searchbar_of_the_business() {
+	    assertTrue(sendInvoicePage.isPlaceHolderPresentInSearchBusiness());
 	}
 
 }

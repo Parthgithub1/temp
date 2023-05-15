@@ -2,6 +2,9 @@ package pages;
 
 import java.util.*;
 import org.openqa.selenium.*;
+
+import com.github.dockerjava.api.model.Event;
+
 import utility.Constants;
 import utility.Eventhelper;
 import utility.Log;
@@ -15,16 +18,23 @@ public class Sendinvoicepage {
 	private By txtMessage = By.xpath("//textarea[contains(@class,'TextInput_field-input__')]");
 	private By lblReceivableBalance = By
 			.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span[@id='amount_receivable']");
-	private By lblreceivableBalanceonAccounting = By.xpath(
-			"//div[@class='tableVisible']//div[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]");
-		private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
+	private By lblreceivableBalanceonAccounting = By.xpath("//div[@id='amount_receivable']");
+	private By lnkPayOrGetPaid = By.xpath("//header//a[contains(@href,'vendors')]");
 	private By ddValueOfBusinessSearched = By
-			.xpath("//div[contains(@class,'entity-short-card__info CompanyCard_company__name')]//span/span");
-	String receiableBlanaceOnAccountingPage, cancelInvoiceNo, cancelNotification;
+			.xpath("//div[contains(@class,'entity-short-card CompanyCard_company')]//span/span");
+	String receiableBlanaceOnAccountingPage;
+	String cancelInvoiceNo;
+	String cancelNotification;
+	String invoiceId;
+
 	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
 	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]");
 	private By btnCloseFlowDialogBox = By.xpath("//button[@aria-label='Close']//*[name()='svg']");
-	private By lblInvoiceNoForCancelInvoice= By.xpath("(//span[contains(@class,'id_receivable')])[1]");
+	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
+	private By btnShareLinkInReceivable = By.xpath("(//button[normalize-space()='Share Link'])[2]");
+	private By lblInvoiceID = By.xpath(
+			"(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')])[2]//div[contains(@class,'entity-short-card__help-text')]");
+	private By lblInvoiceNoOnExternalInvoice =By.xpath("//div[@class='invoice-action__num']");
 	private Homepage homepage;
 	private Commonpage commonPage;
 
@@ -41,12 +51,17 @@ public class Sendinvoicepage {
 	}
 
 	public void searchBusiness(String businessName) {
-		Eventhelper.sendkeys(driver, txtSearchBar, businessName);
-		Eventhelper.threadWait(1000);
-		By selectBusiness = By
-				.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
-		Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, businessName);
-		Eventhelper.click(driver, selectBusiness);
+		if (businessName.equals("Search the business")) {
+			Eventhelper.sendkeys(driver, txtSearchBar, businessName);
+		} else {
+			Eventhelper.sendkeys(driver, txtSearchBar, businessName);
+			Eventhelper.threadWait(1000);
+			By selectBusiness = By
+					.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
+			Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, businessName);
+			Eventhelper.click(driver, selectBusiness);
+
+		}
 	}
 
 	public void sendInvoice(int amount, String message) {
@@ -75,18 +90,19 @@ public class Sendinvoicepage {
 
 	public float receivableBalanceOnAccounting() {
 		Eventhelper.threadWait(5000);
+		Log.info("The original value is :-  "+Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "data-balance"));
 		return Float.parseFloat(
-				Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "receivable-amount")
-						.substring(1).replace(",", ""));
+				Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "data-balance")
+						.substring(0).replace(",", ""));
 	}
 
 	public int getIndex(String accountingSection) {
-	      if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
-	        return 1;
-	      }
-	      return accountingSection.equalsIgnoreCase(Constants.RECEIVABLE)  ? 2 : 3;
-	    }
-	
+		if (accountingSection.equalsIgnoreCase(Constants.PAYABLE)) {
+			return 1;
+		}
+		return accountingSection.equalsIgnoreCase(Constants.RECEIVABLE) ? 2 : 3;
+	}
+
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
 		int index = getIndex(accountingSection);
@@ -127,7 +143,8 @@ public class Sendinvoicepage {
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
 		int index = getIndex(accountingSection);
-		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='"+message+"'])["+index+"]");
+		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='" + message
+				+ "'])[" + index + "]");
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
 
@@ -169,37 +186,67 @@ public class Sendinvoicepage {
 		Eventhelper.click(driver, lblAcceptAndAgree);
 	}
 
-	public void clickOnInvoice(String accountingSection)
-	{
-		int index= getIndex(accountingSection);
-		By invoice= By.xpath("(//table[@role='presentation'])["+index+"]//tr[1]//td[1]");
+	public void clickOnInvoice(String accountingSection) {
+		int index = getIndex(accountingSection);
+		By invoice = By.xpath("(//table[@role='presentation'])[" + index + "]//tr[1]//td[1]");
 		Eventhelper.click(driver, invoice);
 	}
-	
-	public float flowedAmountOnCompletedInvoice()
-	{
+
+	public float flowedAmountOnCompletedInvoice() {
 		Eventhelper.threadWait(1000);
-		float amt= Float.parseFloat(Eventhelper.getTextofElement(driver, By.xpath("(//table[@role='presentation'])[3]//tr[1]//td[3]//span"))
-				.substring(2).replace(",", ""));
-		Log.info("amt value is :- "+amt);
+		float amt = Float.parseFloat(
+				Eventhelper.getTextofElement(driver, By.xpath("(//table[@role='presentation'])[3]//tr[1]//td[3]//span"))
+						.substring(2).replace(",", ""));
+		Log.info("amt value is :- " + amt);
 		return amt;
 	}
-	
-	public void clickOnCloseOfFlowDialogBox()
-	{
+
+	public void clickOnCloseOfFlowDialogBox() {
 		Eventhelper.click(driver, btnCloseFlowDialogBox);
 	}
-	
-	public void readInvoiceNumberForCancellInvoice()
-	{
-		cancelInvoiceNo=Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
-		Log.info("Cancel invoice number is"+cancelInvoiceNo);
-	}
-	
-	public boolean isCancelNotificationExistInNotificationList()
-	{
-		cancelNotification= "Invoice "+cancelInvoiceNo+" to qatsmokeautomation35 has been cancelled.";
-	    return commonPage.isNotificationPresentInList(cancelNotification);		
+
+	public void readInvoiceNumberForCancellInvoice() {
+		cancelInvoiceNo = Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
+		Log.info("Invoice number is" + cancelInvoiceNo);
 	}
 
+	public boolean isCancelNotificationExistInNotificationList() {
+		cancelNotification = "Invoice " + cancelInvoiceNo + " to qatsmokeautomation35 has been cancelled.";
+		return commonPage.isNotificationPresentInList(cancelNotification);
+	}
+
+	public void moveToShareLinkButtonInReceivableCardandHoverOnIt() {
+		Eventhelper.autoScrollWindow(driver);
+		Eventhelper.explicitwaitclickable(driver, btnShareLinkInReceivable);
+		Eventhelper.clickElementwithjs(driver, btnShareLinkInReceivable);
+		Eventhelper.useActionClassOperation(driver, btnShareLinkInReceivable, "Hover");
+	}
+
+	public void setCopiedLinkInBrowser() {
+		String actualCopiedText = Eventhelper.readDataFromClipboard();
+		Log.info("String from Clipboard is -->:" + actualCopiedText);
+		Log.info("The invoice no in generated url --> "
+				+ actualCopiedText.substring((actualCopiedText.lastIndexOf("/")) + 1));
+		Eventhelper.doRefresh(driver);
+		Eventhelper.getURL(driver, actualCopiedText.substring(23));
+	}
+
+	public void readInvoiceId() {
+		invoiceId = Eventhelper.getTextofElement(driver, lblInvoiceID);
+		Log.info("Invoice number is ->" + invoiceId);
+	}
+
+	public boolean isInvoiceNoPresentOnTheInvoiceCard() {
+		return isMessageOnCard(invoiceId, "Receivable");
+	}
+	
+	public boolean isInvoiceNoDisplayOnTheScreen()
+	{
+		return Eventhelper.getTextofElement(driver, lblInvoiceNoOnExternalInvoice).equalsIgnoreCase("Invoice #"+cancelInvoiceNo); 
+	}
+	
+	public boolean isPlaceHolderPresentInSearchBusiness()
+	{
+	      return Eventhelper.getValueOfAttribute(driver, txtSearchBar, "placeholder").equals("Find or add a business here");
+	}
 }

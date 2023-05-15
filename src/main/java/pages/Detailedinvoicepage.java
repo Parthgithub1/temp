@@ -17,6 +17,8 @@ public class Detailedinvoicepage {
 	private By btnCloseInvoice = By.xpath("(//button[contains(@class,'CloseButton_close-button')])[1]");
 	private By txtTaxAmountAdded = By.xpath("//div[contains(text(),'Tax')]//parent::div//following-sibling::div//div");
 	private By txtAddTaxRate = By.xpath("//input[@name='tax-rate']");
+	private By txtDescriptionArea= By.xpath("//textarea[@name='description']");
+	private By btnShareLinkInPayable= By.xpath("(//button[normalize-space()='Share Link'])[1]");
 	Faker faker = new Faker();
 	int amountOfItems;
 	int countOfRowAdded;
@@ -40,7 +42,7 @@ public class Detailedinvoicepage {
 	}
 
 	public void enterMultipleItemsInBill() {
-		int noOfRow = Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']")).size();
+		int noOfRow = Eventhelper.findElements(driver, txtDescriptionArea).size();
 		int quantity = 2;
 		int rate = 2;
 		for (int i = 1; i <= noOfRow; i++) {
@@ -56,7 +58,7 @@ public class Detailedinvoicepage {
 	}
 	
 	public void enterMultipleItemsInDetailedInvoice() {
-		int noOfRow = Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']")).size();
+		int noOfRow = Eventhelper.findElements(driver, txtDescriptionArea).size();
 		int quantity = 2;
 		int rate = 2;
 		for (int i = 1; i <= noOfRow; i++) {
@@ -83,8 +85,8 @@ public class Detailedinvoicepage {
 	}
 
 	public Boolean isIteamAmountMatchedWithRateAndQty() {
-		float expectedAmtValue = Float.parseFloat(Eventhelper.getValueOfAttribute(driver, txtItemQuantity, "value"))
-				* Float.parseFloat(Eventhelper.getValueOfAttribute(driver, txtItemRate, "value"));
+		float expectedAmtValue = Float.parseFloat(Eventhelper.getValueOfAttribute(driver, txtItemQuantity, Constants.VALUE))
+				* Float.parseFloat(Eventhelper.getValueOfAttribute(driver, txtItemRate, Constants.VALUE));
 
 		float actualAmtValue = Float.parseFloat(Eventhelper.getTextofElement(driver, amountTotal).replace("$", ""));
 		return expectedAmtValue == actualAmtValue;
@@ -104,7 +106,7 @@ public class Detailedinvoicepage {
 	}
 
 	public void deleteRowAdded() {
-		countOfRowAdded = Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']")).size();
+		countOfRowAdded = Eventhelper.findElements(driver, txtDescriptionArea).size();
 		Eventhelper.sendkeys(driver, By.xpath("//tr[3]//textarea[@name='description']"), faker.food().ingredient());
 		Eventhelper.click(driver, By.xpath("//tr[3]//button"));
 	}
@@ -112,8 +114,7 @@ public class Detailedinvoicepage {
 	public Boolean isRowDeleted() {
 		// Here 1 is a count of deleted row of item in detailed invoice.
 		Eventhelper.threadWait(2000);
-		return (countOfRowAdded-1) == Eventhelper.findElements(driver, By.xpath("//textarea[@name='description']"))
-				.size();
+		return (countOfRowAdded-1) == Eventhelper.findElements(driver, txtDescriptionArea).size();
 	}
 
 	public void setDateForInvoices(int paymentTermsPeriod) {
@@ -126,6 +127,11 @@ public class Detailedinvoicepage {
 
 	public Boolean paymentTermsDate(int dueDate) {
 		return Eventhelper.getDate(dueDate)
-				.equalsIgnoreCase(Eventhelper.getValueOfAttribute(driver, invoiceDueDate, "value"));
+				.equalsIgnoreCase(Eventhelper.getValueOfAttribute(driver, invoiceDueDate, Constants.VALUE));
+	}
+	
+	public void clickOnShareLinkButtonInPayable()
+	{
+		Eventhelper.click(driver,btnShareLinkInPayable);
 	}
 }

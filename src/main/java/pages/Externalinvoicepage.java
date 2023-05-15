@@ -2,7 +2,6 @@ package pages;
 
 import java.util.Properties;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import com.github.javafaker.Faker;
 import utility.*;
@@ -23,14 +22,13 @@ public class Externalinvoicepage {
 	private By txtlastname = By.xpath("//input[contains(@name ,'lastName')]");
 	private By txtemail = By.xpath("//input[@name='email']");
 	private By txtCode = By.xpath("//input[@name='code']");
-	private By btnCloseInvoiceInReceivable = By.xpath("(//button[contains(@class,'close-btn')])[2]");
+	private By btnCloseInvoiceInReceivable = By.xpath("//div[@class='InvoiceCard_transaction-card-header__wrapper__cpw4r']//button");
 	private By btnGetPaidOnAddContact = By.xpath("//form//button[text()='Get paid']");
 	private By lblCancelBanner = By.xpath("//p[@class='toast__message']");
 	private By txtRoutingNumber = By.xpath("//input[@name='routingNumber']");
 	private By txtAccountingNumber = By.xpath("//input[@name='accountNumber']");
 	private By lblBankLogo = By.xpath("//img[contains(@class,'TextInput_input-icon')]");
 	private By txtAccountingName = By.xpath("//input[@name='accountHoldersName']");
-	private By btnPayOrPaid;
 	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
 
 	private String txtCustomerName;
@@ -111,7 +109,7 @@ public class Externalinvoicepage {
 		Boolean flag = false;
 		Eventhelper.explicitwait(driver, lblBusinessNameOnExternalInvoice);
 		String businessNameOnExternalInvoice = (Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice))
-				.substring(0);
+				.substring(0,Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice).length());
 		Log.info("BusinessNameOnExternalInvoice is -->" + businessNameOnExternalInvoice);
 		if (businessNameOnDashboard.equals(businessNameOnExternalInvoice)) {
 			flag = true;
@@ -180,6 +178,7 @@ public class Externalinvoicepage {
 	}
 
 	public void enterBankDetailManually(String buttonName) {
+		By btnPayOrPaid;
 		Eventhelper.sendkeys(driver, txtRoutingNumber, "063109935");
 		Eventhelper.click(driver, txtAccountingNumber);
 		Eventhelper.explicitwait(driver, lblBankLogo);

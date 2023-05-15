@@ -98,4 +98,9 @@ public class Commonsteps {
 			assertTrue(btnName + " Button is not Enable", !buttonStatus);
 		}
 	}
+	
+	@When("User click on the business logo on the dashboard")
+	public void user_click_on_the_business_logo_on_the_dashboard() {
+	    commonPage.clickOnTheBusinessLogoOnTheDashboard();
+	}
 }

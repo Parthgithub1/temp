@@ -1,5 +1,9 @@
 package utility;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -323,8 +327,22 @@ public class Eventhelper {
 		}
 	}
 
-	public static void autoScrollWindow(WebDriver driver, WebElement element) {
+	public static void autoScrollWindow(WebDriver driver) {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].scrollIntoView();", element);
+		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		
+	}
+	
+	public static String readDataFromClipboard()
+	{
+		String clipboardData = null;
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+	    Clipboard clipboard = toolkit.getSystemClipboard();
+	    try {
+			clipboardData= (String) clipboard.getData(DataFlavor.stringFlavor);
+		} catch (UnsupportedFlavorException | IOException e) {
+			Log.info(e.toString());
+		}
+		return clipboardData;
 	}
 }

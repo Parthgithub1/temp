@@ -26,6 +26,7 @@ public class Payinvoicepage {
 		Log.info("Value of is data loaded before :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"data-loaded"));
+		//Eventhelper.threadWait(20000);
 		homepage.waituntillDataLoadedOnTheDashboard();
 		Log.info("Value of is data loaded after :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
@@ -102,19 +103,13 @@ public class Payinvoicepage {
 	}
 
 	public void enterInSearchBar(String searchPayables, String accountingSection) {
-		String xpath = null;
-		if (accountingSection.equals("Payable")) {
-			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
-		} else if (accountingSection.equals("Receivable")) {
-			xpath = "(//input[@aria-label='Search in the data grid'])[2]";
-		} else if (accountingSection.equals("Completed")) {
-			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
-		}
+		String xpath = searchBarExistIn(accountingSection);
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, searchPayables);
 	}
 	
-	public void cleanSearchBar(String accountingSection) {
+	public String searchBarExistIn(String accountingSection)
+	{
 		String xpath = null;
 		if (accountingSection.equals("Payable")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
@@ -123,6 +118,11 @@ public class Payinvoicepage {
 		} else if (accountingSection.equals("Completed")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
 		}
+		return xpath;
+	}
+	
+	public void cleanSearchBar(String accountingSection) {
+		String xpath = searchBarExistIn(accountingSection);	
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.useActionClassOperation(driver, txtSearchBaronAccountingSection, "DoubleClick");
 		Eventhelper.threadWait(1000);
