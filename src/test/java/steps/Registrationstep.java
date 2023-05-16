@@ -28,9 +28,9 @@ public class Registrationstep {
 		registrationpage.enterOTP();
 	}
 
-	@When("user enter additional information")
-	public void user_enter_additional_information() {
-		registrationpage.enterAdditionalInformation();
+	@When("user enter branding information")
+	public void user_enter_branding_information() {
+		registrationpage.enterBrandingInformation();
 	}
 
 	@When("User click on the textbox of email")
