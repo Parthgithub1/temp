@@ -142,6 +142,7 @@ public class Payinvoivesteps {
 
 	@Then("Payable balance is updated on the screen")
 	public void payable_balance_is_updated_on_the_screen() {
+		Eventhelper.threadWait(5000);
 		float expectedAmount = getexistingBalanceofPayableonAccountingPage - amountOfRejectedCard;
 		float actualAmount = payInvoice.getexistingBalanceofPayableonAccountingPage();
 		Log.info("Expected amount is " + expectedAmount);

@@ -19,9 +19,9 @@ public class DetailedInvoicesteps {
 		detailedInvoice.clickOnAddTaxButtonAndEnterTax(addTaxButton, taxRate);
 	}
 
-	@When("User enter Item Details for Invoice")
-	public void user_enter_item_details_for_invoice() {
-		detailedInvoice.enterMultipleItemsInInvoice();
+	@When("User enter Item Details for Bill")
+	public void user_enter_item_details_for_bill() {
+		detailedInvoice.enterMultipleItemsInBill();
 	}
 
 	@Then("User should see Total Amount and subtotal amount are matched")
@@ -73,5 +73,15 @@ public class DetailedInvoicesteps {
 	@Then("User should see the Due Date according to the Payment Term Selection of {int} days")
 	public void user_should_see_the_due_date_according_to_the_payment_term_selection_of_days(Integer dueDate) {
 		assertTrue(detailedInvoice.paymentTermsDate(dueDate));
+	}
+	
+	@When("User enter Item Details for detailed Invoice")
+	public void user_enter_item_details_for_detailed_invoice() {
+	    detailedInvoice.enterMultipleItemsInDetailedInvoice();
+	}
+	
+	@When("User click on the share link button in payable")
+	public void user_click_on_the_share_link_button_in_payable() {
+	    detailedInvoice.clickOnShareLinkButtonInPayable();
 	}
 }

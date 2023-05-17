@@ -23,7 +23,7 @@ Feature: Test Verifcation Functionality
     Then User should see beneficial owner in list
     When User click on "Submit" button
     When User process add bank screen
-    When User click on "Continue" button
+    When User click on "Done" button
     #Then User should see Verification Message
     Then User should see "verified & approved to transact." text on the screen
     
@@ -46,6 +46,6 @@ Feature: Test Verifcation Functionality
     And User enters 121212121 taxNumber of Business
     When User click on "Submit" button
     When User process add bank screen
-    When User click on "Continue" button
+    When User click on "Done" button
     #Then User should see Verification Message
     Then User should see "verified & approved to transact." text on the screen

@@ -149,7 +149,7 @@ public class Contactlistpage {
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"data-loaded", "true");
 		By lblCountOfContactOnDashboard = By
-				.xpath("//a[@href='/contacts' and contains(@class,'Link_link__2RtK3 CompanyInfo_client-link')]//span");
+				.xpath("//a[@href='/contacts' and contains(@class,'Link_link__')]//span");
 		String contactOnDashboard = Eventhelper.getTextofElement(driver, lblCountOfContactOnDashboard);
 		Log.info(contactOnDashboard);
 		countOfContactOnDashboard = Integer.parseInt(
@@ -182,7 +182,7 @@ public class Contactlistpage {
 		if (columnname.equalsIgnoreCase(Constants.BUSINESSNMAME)) {
 			afterxpath = "]//td[\" + 1+ \"]//div[contains(@class,'entity-short-card__info business')]";
 		} else if (columnname.equalsIgnoreCase(Constants.EMAIL)) {
-			afterxpath = "]//td[" + 2 + "]//div[contains(@class,'email_email__2FaK3')]";
+			afterxpath = "]//td[" + 2 + "]//div[contains(@class,'email_email')]";
 		} else if (columnname.equalsIgnoreCase(Constants.CONTACTNAME)) {
 			afterxpath = "]//td[\"+3+ \"]//p[contains(@class,'contactName_contact-name')]";
 		}
@@ -253,7 +253,7 @@ public class Contactlistpage {
 
 	public String readAndClickOnBusinessName() {
 		By businessNameOfFirstCell = By.xpath(
-				"//table[@class='TableBody_table_wrapper__3P9up']//tbody//tr[1]//td[1]//div[contains(@class,'entity-short-card__info business_business__message')]");
+				"//table[contains(@class,'TableBody_table_wrapper')]//tbody//tr[1]//td[1]//div[contains(@class,'entity-short-card__info business_business__message')]");
 		String businessName = Eventhelper.getTextofElement(driver, businessNameOfFirstCell);
 		Eventhelper.click(driver, businessNameOfFirstCell);
 		return businessName;
