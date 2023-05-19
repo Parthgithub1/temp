@@ -2,9 +2,6 @@ package pages;
 
 import java.util.*;
 import org.openqa.selenium.*;
-
-import com.github.dockerjava.api.model.Event;
-
 import utility.Constants;
 import utility.Eventhelper;
 import utility.Log;
@@ -27,14 +24,14 @@ public class Sendinvoicepage {
 	String cancelNotification;
 	String invoiceId;
 
-	private By lblbusinessNameOnGrid = By.xpath("(//table)[2]//tr//td[1]");
+	private By lblbusinessNameOnGrid = By.xpath("(//table[@role='presentation'])[2]//tr//td[1]");
 	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]");
 	private By btnCloseFlowDialogBox = By.xpath("//button[@aria-label='Close']//*[name()='svg']");
 	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
 	private By btnShareLinkInReceivable = By.xpath("(//button[normalize-space()='Share Link'])[2]");
 	private By lblInvoiceID = By.xpath(
 			"(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')])[2]//div[contains(@class,'entity-short-card__help-text')]");
-	private By lblInvoiceNoOnExternalInvoice =By.xpath("//div[@class='invoice-action__num']");
+	private By lblInvoiceNoOnExternalInvoice = By.xpath("//div[@class='invoice-action__num']");
 	private Homepage homepage;
 	private Commonpage commonPage;
 
@@ -56,8 +53,8 @@ public class Sendinvoicepage {
 		} else {
 			Eventhelper.sendkeys(driver, txtSearchBar, businessName);
 			Eventhelper.threadWait(1000);
-			By selectBusiness = By
-					.xpath("//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
+			By selectBusiness = By.xpath(
+					"//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
 			Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, businessName);
 			Eventhelper.click(driver, selectBusiness);
 
@@ -72,14 +69,14 @@ public class Sendinvoicepage {
 
 	public List<List<String>> seeInvoice(String businessName) {
 		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
-		int noofRows = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr")).size();
+		int noofRows = Eventhelper.findElements(driver, By.xpath("(//table[@role='presentation'])[2]//tr")).size();
 
 		List<String> rowData = null;
 		List<WebElement> listwe;
 		List<List<String>> allrowdata = new ArrayList<List<String>>();
 		for (int i = 1; i < noofRows; i++) {
 			rowData = new ArrayList<String>();
-			listwe = Eventhelper.findElements(driver, By.xpath("(//table)[2]//tr[" + i + "]/td"));
+			listwe = Eventhelper.findElements(driver, By.xpath("(//table[@role='presentation'])[2]//tr[" + i + "]/td"));
 			for (WebElement ele : listwe) {
 				rowData.add(ele.getText());
 			}
@@ -90,10 +87,10 @@ public class Sendinvoicepage {
 
 	public float receivableBalanceOnAccounting() {
 		Eventhelper.threadWait(5000);
-		Log.info("The original value is :-  "+Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "data-balance"));
-		return Float.parseFloat(
-				Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "data-balance")
-						.substring(0).replace(",", ""));
+		Log.info("The original value is :-  "
+				+ Eventhelper.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "data-balance"));
+		return Float.parseFloat(Eventhelper
+				.getValueOfAttribute(driver, lblreceivableBalanceonAccounting, "data-balance").replace(",", ""));
 	}
 
 	public int getIndex(String accountingSection) {
@@ -239,14 +236,14 @@ public class Sendinvoicepage {
 	public boolean isInvoiceNoPresentOnTheInvoiceCard() {
 		return isMessageOnCard(invoiceId, "Receivable");
 	}
-	
-	public boolean isInvoiceNoDisplayOnTheScreen()
-	{
-		return Eventhelper.getTextofElement(driver, lblInvoiceNoOnExternalInvoice).equalsIgnoreCase("Invoice #"+cancelInvoiceNo); 
+
+	public boolean isInvoiceNoDisplayOnTheScreen() {
+		return Eventhelper.getTextofElement(driver, lblInvoiceNoOnExternalInvoice)
+				.equalsIgnoreCase("Invoice #" + cancelInvoiceNo);
 	}
-	
-	public boolean isPlaceHolderPresentInSearchBusiness()
-	{
-	      return Eventhelper.getValueOfAttribute(driver, txtSearchBar, "placeholder").equals("Find or add a business here");
+
+	public boolean isPlaceHolderPresentInSearchBusiness() {
+		return Eventhelper.getValueOfAttribute(driver, txtSearchBar, "placeholder")
+				.equals("Find or add a business here");
 	}
 }

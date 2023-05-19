@@ -11,8 +11,7 @@ import utility.Log;
 public class Payinvoicepage {
 	private WebDriver driver;
 	private By btnCompleted = By.xpath("//button[normalize-space()='Completed']");
-	private By btnDate = By.xpath("(//p[contains(text(),'Due date')])[3]");
-	private By invoiceTableGrid = By.xpath("(//table)[3]//tr[1]//td");
+	private By invoiceTableGrid = By.xpath("(//table[@role='presentation'])[3]//tr[1]//td");
 	private By txtSearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 	private By notificationTableGridxPath = By.xpath("//div[contains(@class,'detail-notification-view')]/div//p");
 	private Homepage homepage;
@@ -26,7 +25,6 @@ public class Payinvoicepage {
 		Log.info("Value of is data loaded before :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"data-loaded"));
-		//Eventhelper.threadWait(20000);
 		homepage.waituntillDataLoadedOnTheDashboard();
 		Log.info("Value of is data loaded after :-" + Eventhelper.getValueOfAttribute(driver,
 				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
@@ -37,17 +35,16 @@ public class Payinvoicepage {
 
 	public float getexistingBalanceofPayableonAccountingPage() {
 		homepage.waitUntiAddFundsButtonEnabled();
-		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
-				By.xpath("//*[contains(@class,'PayableReceivableContent_payable-receivable__amount__')]"),
-				"payable-amount").substring(1).replace(",", ""));
+		return Float.parseFloat(
+				Eventhelper.getValueOfAttribute(driver, By.xpath("//div[@id='amount_payable']"), "data-balance")
+						.replace(",", ""));
 	}
 
 	public float invoiceAmountUserPaying() {
 		Eventhelper.threadWait(2000);
-		return Float.parseFloat(Eventhelper
-				.getTextofElement(driver,
-						By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card-header__amount')]/div[2])[1]"))
-				.substring(1).replace(",", ""));
+		return Float.parseFloat(
+				Eventhelper.getTextofElement(driver, By.xpath("//div[contains(@class,'InvoiceCard_bill-amount')]"))
+						.substring(1).replace(",", ""));
 	}
 
 	public void clickOnPayableContanier() {
@@ -63,7 +60,6 @@ public class Payinvoicepage {
 
 	public List<String> seeInvoice() {
 		Eventhelper.click(driver, btnCompleted);
-		Eventhelper.click(driver, btnDate);
 		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
 		List<String> actualData = new ArrayList<>();
 		for (WebElement columnElement : columnElements) {
@@ -107,9 +103,8 @@ public class Payinvoicepage {
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, searchPayables);
 	}
-	
-	public String searchBarExistIn(String accountingSection)
-	{
+
+	public String searchBarExistIn(String accountingSection) {
 		String xpath = null;
 		if (accountingSection.equals("Payable")) {
 			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
@@ -120,9 +115,9 @@ public class Payinvoicepage {
 		}
 		return xpath;
 	}
-	
+
 	public void cleanSearchBar(String accountingSection) {
-		String xpath = searchBarExistIn(accountingSection);	
+		String xpath = searchBarExistIn(accountingSection);
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.useActionClassOperation(driver, txtSearchBaronAccountingSection, "DoubleClick");
 		Eventhelper.threadWait(1000);

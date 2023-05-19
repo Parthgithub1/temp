@@ -1,6 +1,6 @@
 Feature: Test Send and Pay invoice Functionality
 
-  @Smoke @sendandpayinvoice @QAT @E1
+  @Smoke @sendandpayinvoice @QAT
   Scenario: Verify that user is able to send invoice to existing business into hopscotch application
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
@@ -33,10 +33,10 @@ Feature: Test Send and Pay invoice Functionality
     When User enter "qatsmokeautomation14" in Searchbar of "Payable"
     When User click on Invoice from Payable tab
     Then User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "Pay" button
-    Then User should see "Payable dashboard" text on the screen
-    When User click on "Confirm" button
+    Then User should see "Payment Method" text on the screen
+    When User click on "Confirm payment" button
     Then User should save Default amount of Payable on Accounting Page
     Then User should see new amount on the screen for Payables
     Then User should see update amount of Hopscotch Balance on Accounting Page
