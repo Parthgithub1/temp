@@ -224,4 +224,14 @@ public class Commonpage {
 	{
 		Eventhelper.click(driver, lblBusinessLogo);
 	}
+	
+	public void closePendoDialog() {
+		try {
+			if (Eventhelper.isElementDisplayed(driver, By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"))) {
+				Eventhelper.click(driver, By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"));
+			}
+		} catch (Exception e) {
+			Log.info(e.getMessage());
+		}
+	}
 }

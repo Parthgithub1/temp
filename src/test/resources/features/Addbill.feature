@@ -26,9 +26,9 @@ Feature: Test AddBill functionality
     When User enter search in Searchbar for business
     When User click on Invoice from Payable tab
     When User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "Pay" button
-    When User click on "Confirm" button
+    When User click on "Confirm payment" button
     #Then User should see "It is on its way to" text on the screen
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
@@ -47,7 +47,7 @@ Feature: Test AddBill functionality
     When User click on the confirm payment button in extternal payment
     Then User should see "Transaction complete" text on the screen
     Then User is close the appeared dialog
-    Then User should see "Download receipt" text on the screen
+    Then User should see "Download" text on the screen
     Then User should see "This is the add bill details." text on the screen
 
   @Regression @deletebill

@@ -91,7 +91,7 @@ public class Addbillpage {
 	
 	public void genererateBillURL()
 	{
-		By rowBillInvoiceTableGrid = By.xpath("(//table)[1]//tr[1]//td[1]//span[contains(@class,'id_payable')]");
+		By rowBillInvoiceTableGrid = By.xpath("(//table[@role='presentation'])[1]//tr[1]//td[1]//span[contains(@class,'id_payable')]");
 		String fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowBillInvoiceTableGrid, "invoice-id");
 		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowBillInvoiceTableGrid, "invoicee-biz-id");
 	    externalURlForBill = "receivable-payment?invoiceId=" + fetchInvoiceid + "&invoicedBizId=" + fetchinvoiceeBizId
