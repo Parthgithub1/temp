@@ -33,6 +33,7 @@ Feature: Test External Invoice
     #When User enter otp on screen
     #When User click on "View invoice" button
     #When User click on "Add" button
+    When user select "Bank transfer" as a payment method 
     When user select Bank type "plaid" for the external payment 
     Then User enter bank details
     When User click on Pay button in external payment

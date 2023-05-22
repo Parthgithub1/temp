@@ -9,20 +9,22 @@ import utility.*;
 public class Externalinvoicepage {
 
 	private WebDriver driver;
-	private By rowInvoiceTableGrid = By.xpath("(//table)[2]//tr[1]//td[1]//span[contains(@class,'id_receivable')]");
+	private By rowInvoiceTableGrid = By
+			.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]//span[contains(@class,'id_receivable')]");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 	private By btnCrossIcon = By.xpath("//button[@aria-label='Close']");
 	private By lblBusinessNameOnDashboard = By.xpath("//p[contains(@class,'InfoHeader_header')][1]");
 	private By lblBusinessNameOnExternalInvoice = By
-			.xpath("//div[contains(@class,'entity-short-card__info InvoicerDetails_business')]");
+			.xpath("//div[contains(@class,'entity-short-card__info entity-short-card-info-title InvoicerDetails')]");
 	private By txtbusinessname = By.xpath("//input[contains(@name ,'vendor')]");
 	private By txtfirstname = By.xpath("//input[@name='firstName']");
 	private By txtlastname = By.xpath("//input[contains(@name ,'lastName')]");
 	private By txtemail = By.xpath("//input[@name='email']");
 	private By txtCode = By.xpath("//input[@name='code']");
-	private By btnCloseInvoiceInReceivable = By.xpath("//div[@class='InvoiceCard_transaction-card-header__wrapper__cpw4r']//button");
+	private By btnCloseInvoiceInReceivable = By
+			.xpath("//div[@class='InvoiceCard_transaction-card-header__wrapper__cpw4r']//button");
 	private By btnGetPaidOnAddContact = By.xpath("//form//button[text()='Get paid']");
 	private By lblCancelBanner = By.xpath("//p[@class='toast__message']");
 	private By txtRoutingNumber = By.xpath("//input[@name='routingNumber']");
@@ -55,6 +57,7 @@ public class Externalinvoicepage {
 	}
 
 	public void searchBusinessInGrid() {
+		Eventhelper.threadWait(1000);
 		Log.info("Customer name is -->" + txtCustomerName);
 		Eventhelper.sendkeys(driver, txtSearchBarOnReceivable, txtCustomerName);
 		url = generateExternalurl();
@@ -109,7 +112,7 @@ public class Externalinvoicepage {
 		Boolean flag = false;
 		Eventhelper.explicitwait(driver, lblBusinessNameOnExternalInvoice);
 		String businessNameOnExternalInvoice = (Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice))
-				.substring(0,Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice).length());
+				.substring(0, Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice).length());
 		Log.info("BusinessNameOnExternalInvoice is -->" + businessNameOnExternalInvoice);
 		if (businessNameOnDashboard.equals(businessNameOnExternalInvoice)) {
 			flag = true;
@@ -164,8 +167,20 @@ public class Externalinvoicepage {
 		Eventhelper.sendkeys(driver, txtCode, "5555");
 	}
 
+	public void selectPaymentMethod(String paymentMethod) {
+		By btnPaymentMethod;
+		if (paymentMethod.equalsIgnoreCase("Bank transfer")) {
+			btnPaymentMethod = By.xpath("//span[normalize-space()='Bank transfer']");
+		} else {
+			btnPaymentMethod = By.xpath("//span[normalize-space()='Card payment']");
+		}
+		Eventhelper.clickElementwithjs(driver, btnPaymentMethod);
+		Log.info("Clicked on is done ---->" + btnPaymentMethod);
+	}
+
 	public void selectBank(String bankType) {
 		By btnBankType;
+		commonPage.closePendoDialog();
 		if (bankType.equalsIgnoreCase("plaid")) {
 			btnBankType = By.xpath("//label[@for='Plaid']");
 		} else {

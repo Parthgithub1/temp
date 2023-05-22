@@ -142,4 +142,9 @@ public class ExternalInvoicesteps {
 	    externalInvoicePage.enterBankDetailManually(buttonName);
 	}
 	
+	@When("user select {string} as a payment method")
+	public void user_select_as_a_payment_method(String paymentMethod) {
+	   externalInvoicePage.selectPaymentMethod(paymentMethod);
+	}
+	
 }
