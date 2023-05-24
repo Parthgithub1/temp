@@ -26,6 +26,7 @@ public class Homepage {
 	}
 
 	public void waituntillDataLoadedOnTheDashboard() {
+		Eventhelper.threadWait(5000);
 		Eventhelper.waitUntilAttribValueContains(driver, By.xpath("//div[@id='HopscotchBalance']"), "data-loaded",
 				"true");
 		Eventhelper.threadWait(5000);

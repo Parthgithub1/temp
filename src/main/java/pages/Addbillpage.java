@@ -85,6 +85,8 @@ public class Addbillpage {
 
 	public void enterInSearchBar() {
 		By txtSearchBaronAccountingSection = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+		Eventhelper.doRefresh(driver);
+		Eventhelper.explicitwait(driver, txtSearchBaronAccountingSection);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
 		genererateBillURL();
 	}
