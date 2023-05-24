@@ -77,8 +77,8 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see amount value for Item added
     When User click on "Confirm" button
     #Then User should see Tax value added in Invoice
-    When User click on "Send" button
-    Then User should see "Payable dashboard" text on the screen
+    When User click on "Add" button
+    Then User should see "Payable balance" text on the screen
     When User click on "View invoice" label
     Then User should see "Invoice details" text on the screen
     Then User should see the deatails added in Invoice
@@ -94,9 +94,10 @@ Feature: Test DetailedInvoice View Functionality
     When User enter search in Searchbar for business
     When User click on Invoice from Payable tab
     When User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "Pay" button
-    When User click on "Confirm" button
+    When User click on "Confirm payment" button
+    When User clean the Searchbar of "Payable"
     #Then User should see "It is on its way to" text on the screen
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
@@ -115,7 +116,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on the confirm payment button in extternal payment
     Then User should see "Transaction complete" text on the screen
     Then User is close the appeared dialog
-    Then User should see "Download receipt" text on the screen
+    Then User should see "Download Invoice" text on the screen
    
   @Regression @detailedInvoiceGetPaidWithDifferentDueDates @90DaysPaymentTerms
   Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 90 days Payment Terms
