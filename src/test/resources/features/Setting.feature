@@ -10,36 +10,24 @@ Feature: Test Settings Tab Functionality
     When User process add "Navy Federal Credit Union" bank screen
     Then User should see "Navy Federal Credit Union" text on the screen
     When User click on menu of the "Navy Federal Credit Union" bank
-    #Set as funding account
-    When User click on "Set as Funding account" link
-    Then User should see "Navy Federal Credit Union" as "Funding account"
+    #Set as backup account
+    When User click on "Set as backup" link
+    Then User should see "Navy Federal Credit Union" as "Backup"
     When User switch to dashboard
     When User click on "Add funds" button
     Then User should see "Navy Federal Credit Union" text on the screen
     Then User click on "Cancel" button
-    When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment methods" link
-    When User click on menu of the "Navy Federal Credit Union" bank
-    #Set as deposite account
-    When User click on "Set as Deposit account" link
-    Then User should see "Navy Federal Credit Union" as "Deposit account"
-    When User switch to dashboard
     When User click on "Withdraw" button
     Then User should see "Navy Federal Credit Union" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
-    When User click on menu of the "Stash" bank
-    When User click on "Set as Deposit account" link
-    Then User should see "Stash" as "Deposit account"
-    When User click on menu of the "Stash" bank
-    When User click on "Set as Funding account" link
-    Then User should see "Stash" as "Funding account"
+    When User click on menu of the "Navy Federal Credit Union" bank
     #delete bank account
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
     When User click on menu of the "Navy Federal Credit Union" bank
-    When User click on "Delete account" link
+    When User click on "Delete" link
     When User click on "Delete" button
     Then User should not see "Navy Federal Credit Union" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
