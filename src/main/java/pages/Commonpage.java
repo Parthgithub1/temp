@@ -37,6 +37,7 @@ public class Commonpage {
 	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
+	private By lblBusinessLogo= By.xpath("//img[@alt='avatar']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -186,7 +187,7 @@ public class Commonpage {
 		case "rejectInvoiceNotificationCheck":
 		case "invoiceSchedulingSend":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat16")
-					: property.getProperty("uat4");
+					: property.getProperty("uat3");
 			break;
 		case "FactorInvoiceSend":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("crs1")
@@ -217,5 +218,20 @@ public class Commonpage {
 
 	public void switchToDashboard() {
 		Eventhelper.click(driver, lnkDashBoard);
+	}
+	
+	public void clickOnTheBusinessLogoOnTheDashboard()
+	{
+		Eventhelper.click(driver, lblBusinessLogo);
+	}
+	
+	public void closePendoDialog() {
+		try {
+			if (Eventhelper.isElementDisplayed(driver, By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"))) {
+				Eventhelper.click(driver, By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"));
+			}
+		} catch (Exception e) {
+			Log.info(e.getMessage());
+		}
 	}
 }

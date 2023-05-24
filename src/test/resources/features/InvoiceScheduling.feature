@@ -11,17 +11,18 @@ Feature: Test User must be able to Schedule the Invoice for Payment Functionalit
     Then User should see "qatsmokeautomation23" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This is invoiceScheduling Voucher"
+    When User enter invoice details like amount is 2 and message is "This is invoiceScheduling Voucher"
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
+    Then Receivable balance is updated on the screen with "2.00"
     When User enter "qatsmokeautomation23" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation23 | +$1.00 |
+      | qatsmokeautomation23 | +$2.00 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation23 for $1.00" notification
+    Then User should see "You sent an invoice to qatsmokeautomation23. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "invoiceScheduling"
@@ -61,17 +62,18 @@ Feature: Test User must be able to Schedule the Invoice for Payment Functionalit
     Then User should see "qatsmokeautomation23" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 1 and message is "This is invoiceUnScheduling Voucher"
+    When User enter invoice details like amount is 2 and message is "This is invoiceUnScheduling Voucher"
     When User click on "Confirm" button
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
-    Then Receivable balance is updated on the screen with "1.00"
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
+    Then Receivable balance is updated on the screen with "2.00"
     When User enter "qatsmokeautomation23" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation23 | +$1.00 |
+      | qatsmokeautomation23 | +$2.00 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation23 for $1.00" notification
+    Then User should see "You sent an invoice to qatsmokeautomation23. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "invoiceScheduling"
@@ -118,9 +120,9 @@ Feature: Test User must be able to Schedule the Invoice for Payment Functionalit
     Then User should see new amount on the screen for Payables
     Then User should see update amount of Hopscotch Balance on Accounting Page
     Then User should see invoice details of invoice details on the screen
-      | qatsmokeautomation22 | -$1.00 |
+      | qatsmokeautomation22 | -$2.00 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You paid an invoice to qatsmokeautomation22 for $1.00" notification
+    Then User should see "You successfully paid qatsmokeautomation22's invoice." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

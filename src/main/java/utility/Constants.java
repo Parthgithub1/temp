@@ -19,5 +19,6 @@ public class Constants {
 	public static final String PAYABLE = "Payable";	
 	public static final String EMAIL = "Email";	
 	public static final String BUSINESSNMAME = "BusinessName";	
-	public static final String CONTACTNAME = "Contact name";	
+	public static final String CONTACTNAME = "Contact name";
+	public static final String VALUE = "value";
 }

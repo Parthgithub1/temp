@@ -14,7 +14,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Detailed" option for Invoice
     When User click on "Add Tax" button and enter Tax Rate 15.00
     When User click on "Add item" button
-    When User enter Item Details for Invoice
+    When User enter Item Details for detailed Invoice
     When User remove the added row for adding item Details
     Then User should verify that added row is deleted
     Then User should see Total Amount and subtotal amount are matched
@@ -23,13 +23,14 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see Tax value added in Invoice
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
+     When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "9.20"
     When User enter "qatsmokeautomation11" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
       | qatsmokeautomation11 | +$9.20 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation11 for $9.20" notification
+    Then User should see "You sent an invoice to qatsmokeautomation11. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "deatiledInvoicePay"
@@ -38,6 +39,7 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see "Hopscotch Balance" text on the screen
     Then User should save the amount of Hopscotch Balance from Accounting Page
     When User enter "qatsmokeautomation20" in Searchbar of "Payable"
+    #And User sort the invoice with due date on "Payable"
     When User click on Invoice from Payable tab
     Then User should see the amount to be Payable
     Then User should see "Payable dashboard" text on the screen
@@ -70,13 +72,13 @@ Feature: Test DetailedInvoice View Functionality
     #When User click on "Pay" button
     When User click on "Detailed" option for Invoice
     #When User click on "Add Tax" button and enter Tax Rate 15.00
-    When User enter Item Details for Invoice
+    When User enter Item Details for Bill
     #Then User should see Total Amount and subtotal amount are matched
     Then User should see amount value for Item added
     When User click on "Confirm" button
     #Then User should see Tax value added in Invoice
-    When User click on "Send" button
-    Then User should see "Payable dashboard" text on the screen
+    When User click on "Add" button
+    Then User should see "Payable balance" text on the screen
     When User click on "View invoice" label
     Then User should see "Invoice details" text on the screen
     Then User should see the deatails added in Invoice
@@ -92,9 +94,10 @@ Feature: Test DetailedInvoice View Functionality
     When User enter search in Searchbar for business
     When User click on Invoice from Payable tab
     When User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "Pay" button
-    When User click on "Confirm" button
+    When User click on "Confirm payment" button
+    When User clean the Searchbar of "Payable"
     #Then User should see "It is on its way to" text on the screen
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
@@ -113,7 +116,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on the confirm payment button in extternal payment
     Then User should see "Transaction complete" text on the screen
     Then User is close the appeared dialog
-    Then User should see "Download receipt" text on the screen
+    Then User should see "Download Invoice" text on the screen
    
   @Regression @detailedInvoiceGetPaidWithDifferentDueDates @90DaysPaymentTerms
   Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 90 days Payment Terms
@@ -130,7 +133,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Add Tax" button and enter Tax Rate 15.00
     When User select the Date to send Invoice after 90 days
     When User click on "Add item" button
-    When User enter Item Details for Invoice
+    When User enter Item Details for detailed Invoice
     When User remove the added row for adding item Details
     Then User should verify that added row is deleted
     Then User should see Total Amount and subtotal amount are matched
@@ -139,14 +142,15 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see the Due Date according to the Payment Term Selection of 90 days
     Then User should see Tax value added in Invoice
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "9.20"
     When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
-    Then User should see the invoice on the screen
+    Then User should see the invoice on the screen for "90" days payment term
       | qatsmokeautomation071 | +$9.20 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation071 for $9.20" notification
+    Then User should see "You sent an invoice to qatsmokeautomation071. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -165,7 +169,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Add Tax" button and enter Tax Rate 15.00
     When User select the Date to send Invoice after 60 days
     When User click on "Add item" button
-    When User enter Item Details for Invoice
+    When User enter Item Details for detailed Invoice
     When User remove the added row for adding item Details
     Then User should verify that added row is deleted
     Then User should see Total Amount and subtotal amount are matched
@@ -174,14 +178,15 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see the Due Date according to the Payment Term Selection of 60 days
     Then User should see Tax value added in Invoice
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "9.20"
     When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
-    Then User should see the invoice on the screen
+    Then User should see the invoice on the screen for "60" days payment term
       | qatsmokeautomation071 | +$9.20 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation071 for $9.20" notification
+    Then User should see "You sent an invoice to qatsmokeautomation071. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -200,7 +205,7 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Add Tax" button and enter Tax Rate 15.00
     When User select the Date to send Invoice after 30 days
     When User click on "Add item" button
-    When User enter Item Details for Invoice
+    When User enter Item Details for detailed Invoice
     When User remove the added row for adding item Details
     Then User should verify that added row is deleted
     Then User should see Total Amount and subtotal amount are matched
@@ -209,13 +214,14 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see the Due Date according to the Payment Term Selection of 30 days
     Then User should see Tax value added in Invoice
     When User click on "Send" button
-    Then User should see "Your invoice has been sent successfully" text on the screen
+    Then User should see "Invoice sent" text on the screen
+    When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "9.20"
     When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
-    Then User should see the invoice on the screen
+    Then User should see the invoice on the screen for "30" days payment term
       | qatsmokeautomation071 | +$9.20 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "You sent an invoice to qatsmokeautomation071 for $9.20" notification
+    Then User should see "You sent an invoice to qatsmokeautomation071. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

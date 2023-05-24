@@ -1,5 +1,9 @@
 package utility;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -211,7 +215,7 @@ public class Eventhelper {
 	}
 
 	public static void getURL(WebDriver driver, String url) {
-		url = Environmenthelper.setUrl(System.getProperty("env")) + url;
+		url = Environmenthelper.setUrl(System.getProperty(Constants.ENVIRONMENT)) + url;
 		Log.info("URL:" + url);
 		driver.get(url);
 	}
@@ -263,6 +267,30 @@ public class Eventhelper {
 		return (outputdate + " " + dayStr);
 	}
 
+	public static String getInvoiceDueDateInSpecifiedFormat(int noOfDays) {
+		String[] suffixes = // 0 1 2 3 4 5 6 7 8 9
+				{ "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
+						// 10 11 12 13 14 15 16 17 18 19
+						"th", "th", "th", "th", "th", "th", "th", "th", "th", "th",
+						// 20 21 22 23 24 25 26 27 28 29
+						"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
+						// 30 31
+						"th", "st" };
+
+		String[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
+				"October", "November", "December" };
+		Date date = new Date();
+		Calendar cd = Calendar.getInstance();
+		cd.setTime(date);
+		cd.add(Calendar.DATE, +noOfDays);
+		int day = cd.get(Calendar.DAY_OF_MONTH);
+		int month = cd.get(Calendar.MONTH);
+		String dayStr = day + suffixes[day];
+		String mon = months[month];
+		Log.info("The modified future date after adding month --> " + mon + " " + dayStr);
+		return mon + " " + dayStr;
+	}
+
 	public static float numberFormat(float x) {
 		String amt = String.valueOf(x);
 		if (amt.contains("-")) {
@@ -299,8 +327,22 @@ public class Eventhelper {
 		}
 	}
 
-	public static void autoScrollWindow(WebDriver driver, WebElement element) {
+	public static void autoScrollWindow(WebDriver driver) {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].scrollIntoView();", element);
+		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		
+	}
+	
+	public static String readDataFromClipboard()
+	{
+		String clipboardData = null;
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+	    Clipboard clipboard = toolkit.getSystemClipboard();
+	    try {
+			clipboardData= (String) clipboard.getData(DataFlavor.stringFlavor);
+		} catch (UnsupportedFlavorException | IOException e) {
+			Log.info(e.toString());
+		}
+		return clipboardData;
 	}
 }

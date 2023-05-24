@@ -21,7 +21,6 @@ public class Addbillpage {
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 	private By btnPayOnAddContact= By.xpath("(//form//button)[1]");
 
-	private By lblNotification;
 	Faker faker = new Faker();
 	String vender;
 	String tempEmail;
@@ -86,13 +85,15 @@ public class Addbillpage {
 
 	public void enterInSearchBar() {
 		By txtSearchBaronAccountingSection = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+		Eventhelper.doRefresh(driver);
+		Eventhelper.explicitwait(driver, txtSearchBaronAccountingSection);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
 		genererateBillURL();
 	}
 	
 	public void genererateBillURL()
 	{
-		By rowBillInvoiceTableGrid = By.xpath("(//table)[1]//tr[1]//td[1]//span[contains(@class,'id_payable')]");
+		By rowBillInvoiceTableGrid = By.xpath("(//table[@role='presentation'])[1]//tr[1]//td[1]//span[contains(@class,'id_payable')]");
 		String fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowBillInvoiceTableGrid, "invoice-id");
 		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowBillInvoiceTableGrid, "invoicee-biz-id");
 	    externalURlForBill = "receivable-payment?invoiceId=" + fetchInvoiceid + "&invoicedBizId=" + fetchinvoiceeBizId

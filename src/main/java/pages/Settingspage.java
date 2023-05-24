@@ -69,7 +69,7 @@ public class Settingspage {
 
 	public void clickOnMenuIconOfBank(String bankName) {
 		Eventhelper.click(driver, By.xpath("//b[text()='" + bankName
-				+ "']/ancestor::div[contains(@class,'AccountDetails_payment-method-info__wrapper')]/parent::div/following-sibling::div"));
+				+ "']/ancestor::div[contains(@class,'AccountDetails_payment-method-info__wrapper')]//following-sibling::div[contains(@class,'SettingsPaymentMethods_payment-method-menu')]"));
 	}
 
 	public void switchToDashboard() {

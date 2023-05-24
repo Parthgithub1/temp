@@ -63,5 +63,20 @@ Feature: Test Profile Functionality
     Then User should see "Sign in" text on the screen
 
     Examples: 
-      | BusinessName             | Handle                    | Industry     | Website                   | YearFound | AboutText                                     |
-      | "hopsmokeautomation3llc" | "@hopsmokeautomation3llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
+      | BusinessName               | Handle                      | Industry     | Website                   | YearFound | AboutText                                     |
+      | "hopsmokeautomation301llc" | "@hopsmokeautomation301llc" | "Accounting" | "https://dev.zurohq.com/" | "2021"    | "Text for About Section in Profile Text-Area" |
+
+  @Regression @Profile
+  Scenario Outline: Verify the user is landed on the profile page when it clicks on the business logo on the dashboard
+    When User login for "Profile"
+    Then User should navigate to dashboard "Profile"
+    When User click on the business logo on the dashboard
+    Then User should see <BusinessName> text on the screen
+    Then User should see "About" text on the screen
+    Then User should see "History" text on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+
+    Examples: 
+      | BusinessName           |
+      | "qatsmokeautomation06" |
