@@ -22,9 +22,9 @@ public class Registrationpage {
 	private By txtWebsite = By.xpath("//input[@name='website']");
 	private By txtCity = By.xpath("//input[@name='city']");
 	private By txtYearFounded = By.xpath("//input[@name='yearFounded']");
-	private By ddState = By.xpath("//div[@id='state']");
+	private By ddState = By.xpath("//div[@id='react-select-3-placeholder']");
 	private By ddSelecteState = By.xpath("//div[text()='AK']");
-	private By ddIndustry = By.xpath("//div[@id='industry']");
+	private By ddIndustry = By.xpath("//div[@id='react-select-2-placeholder']");
 	private By ddSelecteIndustry = By.xpath("//div[text()='Accounting']");
 	private By btnBrandingColor = By.xpath("//div[@class='update-brand-color-control']");
 	private By txtBrandingColor = By.xpath("//input[contains(@id,'rc-editable-input')]");

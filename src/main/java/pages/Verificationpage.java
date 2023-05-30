@@ -18,7 +18,7 @@ public class Verificationpage {
 	private By btnAddBeneficial = By.xpath("//span[text()='Add beneficial owner']");
 	private By txtAddBeneficialFirstName = By.xpath("//input[@name='ownerFirstName']");
 	private By txtAddBeneficialLastName = By.xpath("//input[@name='ownerLastName']");
-	private By txtAddBeneficialBirthDate = By.xpath("//label[@for='birthday']/following-sibling::div//input");
+	private By txtAddBeneficialBirthDate = By.xpath("//input[@name='birthday']");
 	private By txtAddBeneficialSSN = By.xpath("//input[@id='ownerSSN']");
 	private By rbtnAddBeneficialSameAsLegalAddress = By
 			.xpath("//label[normalize-space()='Click this if your business and home address are the same.']");
@@ -31,7 +31,7 @@ public class Verificationpage {
 	private By txtBankUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtBankPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
-	private By dropDownofBusinessType1 = By.xpath("//div[@id='businessType']");
+	private By dropDownofBusinessType1 = By.xpath("//div[contains(@class,'select__form-field__value-container css')]");
 	private By verificationText = By.xpath("//div[contains(@class,'VerificationStatus_title')]");
 
 	public Verificationpage(WebDriver driver) {
