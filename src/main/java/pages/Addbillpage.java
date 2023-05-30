@@ -12,7 +12,7 @@ public class Addbillpage {
 	private By txtAmount = By.xpath("//input[@name='amount']");
 	private By txtInvoiceNumber = By.xpath("//input[@name='invoiceNumber']");
 	private By txtDate = By.xpath("//input[@name='dueDate']");
-	private By txtMessage = By.xpath("//textarea[@name='message']");
+	private By txtMessage = By.xpath("//textarea[@name='memo']");
 	private By txtSearchBaronPayableTab = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
 	private By btnCloseOfPayableCard = By.xpath("(//button[contains(@class,'close-btn')])[1]");
 	private By txtFirstName = By.xpath(" //input[@name='firstName']");

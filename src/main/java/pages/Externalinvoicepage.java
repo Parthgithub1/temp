@@ -10,7 +10,7 @@ public class Externalinvoicepage {
 
 	private WebDriver driver;
 	private By rowInvoiceTableGrid = By
-			.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]//span[contains(@class,'id_receivable')]");
+			.xpath("(//table[@role='presentation'])[2]//tr[2]//td[2]//span[contains(@class,'id_receivable')]");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By txtSearchBarOnReceivable = By.xpath("(//input[@aria-label='Search in the data grid'])[2]");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");

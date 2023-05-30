@@ -12,7 +12,7 @@ public class Profilepage {
 	private By editAbout = By.xpath("//h4[contains(text(),'About')]/following-sibling::button");
 	private By txtWebsite = By.xpath("//input[@name='website']");
 	private By txtYearFoubnded = By.xpath("//input[@name='yearFounded']");
-	private By ddIndustry = By.xpath("//div[@id='industry']");
+	private By ddIndustry = By.xpath("//div[@class='select__form-field__input-container css-ackcql']");
 	private By txtBusinessName = By.xpath("//input[@name='dbaName']");
 	private By txtHandle = By.xpath("//input[@name='handle']");
 	private By chooseFileImage = By.id("filePicker");
