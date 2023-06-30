@@ -106,7 +106,7 @@ public class Commonpage {
 	}
 
 	public void addBankInPlaid(String bankName) {
-		By lstbankname = By.xpath("(//*[text()='" + bankName + "'])");
+		By lstbankname = By.xpath("//*[contains(@aria-label, '"+bankName+"')]");
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
 		Eventhelper.click(driver, btnContinueforPlaidProcess);

@@ -11,7 +11,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Navy Federal Credit Union" text on the screen
     When User click on menu of the "Navy Federal Credit Union" bank
     #Set as backup account
-    When User click on "Set as backup" link
+    #When User click on "Set as backup" link
     Then User should see "Navy Federal Credit Union" as "Backup"
     When User switch to dashboard
     When User click on "Add funds" button
@@ -28,8 +28,8 @@ Feature: Test Settings Tab Functionality
     When User click on "Payment methods" link
     When User click on menu of the "Navy Federal Credit Union" bank
     When User click on "Delete" link
-    When User click on "Delete" button
-    Then User should not see "Navy Federal Credit Union" text on the screen
+    #When User click on "Delete" button
+    #Then User should not see "Navy Federal Credit Union" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 

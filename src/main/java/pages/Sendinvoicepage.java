@@ -10,8 +10,8 @@ public class Sendinvoicepage {
 
 	private WebDriver driver;
 	private By txtSearchBar = By.xpath("//input[@name='search']");
-	private By txtAmount = By.xpath("//input[@name='customerAmount']");
-	private By txtdate = By.xpath("//input[@name='customerDueDate']");
+	private By txtAmount = By.xpath("//input[@name='amount']");
+	private By txtdate = By.xpath("//input[@name='dueDate']");
 	private By txtMessage = By.xpath("//textarea[contains(@class,'TextInput_field-input__')]");
 	private By lblReceivableBalance = By
 			.xpath("//span[contains(.,'Receivable')]/following-sibling::div/span[@id='amount_receivable']");
