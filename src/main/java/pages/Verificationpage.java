@@ -27,7 +27,7 @@ public class Verificationpage {
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
-	private By lstBankName = By.xpath("(//*[text()='Navy Federal Credit Union'])");
+	private By lstBankName = By.xpath("//button[contains(@aria-label, 'Navy Federal Credit Union')]");
 	private By txtBankUserName = By.xpath("//label[text()='Username']/following-sibling::input");
 	private By txtBankPassword = By.xpath("//label[text()='Password']/following-sibling::input");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
