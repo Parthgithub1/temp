@@ -60,9 +60,15 @@ public class Profilepage {
 		Eventhelper.sendkeys(driver, txtBusinessName, businessName);
 		Eventhelper.useActionClassOperation(driver, txtHandle, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtHandle, handle);
-		Eventhelper.useActionClassOperation(driver, ddIndustry, Constants.DOUBLECLICK);
-		By ddSelecteIndustry = By.xpath("//div[@class='select__form-field__input-container css-ackcql']");
-		Eventhelper.click(driver, ddSelecteIndustry);
+		By ddCurrentIndustry = By.xpath("//div[@class='select__form-field__single-value css-qc6sy-singleValue']");
+		if (Eventhelper.getTextofElement(driver, ddCurrentIndustry).equalsIgnoreCase("Accounting")) {
+			Log.info("Current industry is Accounting so no need to change the value of the industry in dropdown"
+					+ industry);
+		} else {
+			Eventhelper.useActionClassOperation(driver, ddIndustry, Constants.DOUBLECLICK);
+			By ddSelecteIndustry = By.xpath("//div[@class='select__form-field__input-container css-ackcql']");
+			Eventhelper.click(driver, ddSelecteIndustry);
+		}
 		Eventhelper.useActionClassOperation(driver, txtWebsite, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtWebsite, webSite);
 		Eventhelper.useActionClassOperation(driver, txtYearFoubnded, Constants.DOUBLECLICK);
