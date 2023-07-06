@@ -37,7 +37,7 @@ public class Externalinvoicepage {
 	private String tempEmailAddress;
 	private String url;
 	private String businessNameOnDashboard;
-	private String cancelInvoiceNo;
+	private String fetchInvoiceid;
 
 	Faker faker = new Faker();
 	private Verificationpage verificationPage;
@@ -72,12 +72,12 @@ public class Externalinvoicepage {
 	}
 
 	public String generateExternalurl() {
-		String fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoice-id");
+		fetchInvoiceid = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoice-id");
 		String fetchinvoiceeBizId = Eventhelper.getValueOfAttribute(driver, rowInvoiceTableGrid, "invoicee-biz-id");
 		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
 				+ "&emailId=" + tempEmailAddress;
 		Log.info("The generated external url :- " + externalURl);
-		cancelInvoiceNo = Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
+		String cancelInvoiceNo = Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
 		Log.info("Cancel invoice number is" + cancelInvoiceNo);
 		return externalURl;
 	}
@@ -91,7 +91,7 @@ public class Externalinvoicepage {
 					+ " has been marked as paid. Didn't mean to do this? You can make changes on the Accounting page.");
 		} else if (typeOfNotificationForExternalInvoice.equalsIgnoreCase("CancelledExternalInvoice")) {
 			return commonPage.isNotificationPresentInList(
-					"Invoice " + cancelInvoiceNo + " to " + txtCustomerName + " has been cancelled.");
+					"Invoice #" + fetchInvoiceid + " to " + txtCustomerName + " has been canceled.");
 		} else {
 			return commonPage.isNotificationPresentInList(
 					txtCustomerName + " paid your invoice. Your Hopscotch Balance has been updated.");

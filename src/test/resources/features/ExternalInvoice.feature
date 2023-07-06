@@ -85,7 +85,7 @@ Feature: Test External Invoice
     Then User should see the businessname of the external invoice sender
     When User enter security code to verify the user on the screen
     When User click on "Confirm" button
-    Then User is able to see "qatsmokeautomation11 cancelled this invoice." in banner
+    Then User is able to see "qatsmokeautomation11 canceled this invoice." in banner
     When User again login in environment
     When User login for "externalInvoice"
     Then User should navigate to dashboard "externalInvoice"
@@ -161,6 +161,7 @@ Feature: Test External Invoice
     When User enter security code to verify the user on the screen
     When User click on "Confirm" button
     Then User should see the businessname of the external invoice sender
+    When user select "Bank transfer" as a payment method 
     When user select Bank type "Connect bank manually" for the external payment 
     Then User enter manual bank details and click on "Save and Pay" button
     When User click on the confirm payment button in extternal payment
