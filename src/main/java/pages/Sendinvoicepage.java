@@ -24,8 +24,8 @@ public class Sendinvoicepage {
 	String cancelNotification;
 	String invoiceId;
 
-	private By lblbusinessNameOnGrid = By.xpath("(//table[@role='presentation'])[2]//tr//td[1]");
-	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[1]//td[1]");
+	private By lblbusinessNameOnGrid = By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[2]//td[2]");
+	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[2]//td[3]");
 	private By btnCloseFlowDialogBox = By.xpath("//button[@aria-label='Close']//*[name()='svg']");
 	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
 	private By btnShareLinkInReceivable = By.xpath("(//button[normalize-space()='Share Link'])[2]");
@@ -57,7 +57,6 @@ public class Sendinvoicepage {
 					"//div[contains(@class,'CompanyCard_company')]//span[contains(text(),'" + businessName + "')]");
 			Eventhelper.explicitwaitTextToBePresent(driver, ddValueOfBusinessSearched, businessName);
 			Eventhelper.click(driver, selectBusiness);
-
 		}
 	}
 
@@ -67,18 +66,18 @@ public class Sendinvoicepage {
 		Eventhelper.sendkeys(driver, txtMessage, message);
 	}
 
-	public List<List<String>> seeInvoice(String businessName) {
+	public ArrayList<ArrayList<String>> seeInvoice(String businessName) {
 		Eventhelper.explicitwaitTextToBePresent(driver, lblbusinessNameOnGrid, businessName);
-		int noofRows = Eventhelper.findElements(driver, By.xpath("(//table[@role='presentation'])[2]//tr")).size();
-
-		List<String> rowData = null;
+		int noofRows = Eventhelper.findElements(driver, By.xpath("(//div[@id='receivable']//table)[2]//tbody")).size();
+		ArrayList<String> rowData = null;
 		List<WebElement> listwe;
-		List<List<String>> allrowdata = new ArrayList<List<String>>();
-		for (int i = 1; i < noofRows; i++) {
+		ArrayList<ArrayList<String>> allrowdata = new ArrayList<ArrayList<String>>();
+		for (int i = 2; i <= noofRows + 1; i++) {
 			rowData = new ArrayList<String>();
-			listwe = Eventhelper.findElements(driver, By.xpath("(//table[@role='presentation'])[2]//tr[" + i + "]/td"));
+			listwe = Eventhelper.findElements(driver,
+					By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[" + i + "]"));
 			for (WebElement ele : listwe) {
-				rowData.add(ele.getText());
+				rowData.add(ele.getText().trim());
 			}
 			allrowdata.add(rowData);
 		}
@@ -127,9 +126,17 @@ public class Sendinvoicepage {
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
-		int index = getIndex(accountingSection);
-		By btnMenuOnReceivableCard = By
-				.xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])[" + index + "]");
+		/*
+		 * int index = getIndex(accountingSection); // By btnMenuOnReceivableCard = By
+		 * // .xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])["
+		 * + // index + "]");
+		 * 
+		 * Note:- As per the current UI implementation there is only one xpath is used
+		 * for the menu icon in the invoice card. But will observe the behaviour for the
+		 * payable and completed and then refactor this method
+		 */
+		By btnMenuOnReceivableCard = By.xpath("//div[@class='transaction-card-footer__actions-btn']");
+
 		Eventhelper.click(driver, btnMenuOnReceivableCard);
 		Log.info("clicked on menu");
 	}
@@ -146,7 +153,7 @@ public class Sendinvoicepage {
 	}
 
 	public void clickOnConfirmButtonforMarkasInvoice(String buttonname) {
-		By btnXpath = By.xpath("(//button[normalize-space()='" + buttonname + "'])[2]");
+		By btnXpath = By.xpath("//button[normalize-space()='" + buttonname + "']");
 		Eventhelper.explicitwait(driver, btnXpath);
 		Eventhelper.click(driver, btnXpath);
 		Eventhelper.waitUntilElementInvisible(driver, btnXpath);

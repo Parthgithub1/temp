@@ -49,15 +49,19 @@ public class Sendinvoicesteps {
 	public void user_should_see_the_invoice_on_the_screen(io.cucumber.datatable.DataTable dataTable) {
 		sendInvoicePage.sortWithDueDate("Receivable");
 		List<List<String>> expected = dataTable.asLists();
-		List<String> expectedList = new ArrayList<String>();
+		ArrayList<String> expectedList = new ArrayList<String>();
 		for (List<String> columns : expected) {
-			expectedList.add(columns.get(0));
-			expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
-			expectedList.add(columns.get(1));
+			expectedList
+					.add(columns.get(0) + "\n" + Eventhelper.getTodaysdateInSpecifiedFormat() + "\n" + columns.get(1));
+			/*
+			 * expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
+			 * expectedList.add(columns.get(1)); Note:- Keeping this line in coding as there
+			 * is a change in the logic
+			 */
 		}
-		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
+		ArrayList<ArrayList<String>> actualList = sendInvoicePage.seeInvoice(searchBusinessOnReceivable);
 		boolean isInvoicePresent = false;
-		for (List<String> list : actualList) {
+		for (ArrayList<String> list : actualList) {
 			isInvoicePresent = list.equals(expectedList);
 			if (isInvoicePresent) {
 				break;
@@ -65,9 +69,10 @@ public class Sendinvoicesteps {
 		}
 		assertTrue(isInvoicePresent);
 	}
-	
+
 	@Then("User should see the invoice on the screen for {string} days payment term")
-	public void user_should_see_the_invoice_on_the_screen_for_days_payment_term(String number_of_days, io.cucumber.datatable.DataTable dataTable) {
+	public void user_should_see_the_invoice_on_the_screen_for_days_payment_term(String number_of_days,
+			io.cucumber.datatable.DataTable dataTable) {
 		sendInvoicePage.sortWithDueDate("Receivable");
 		List<List<String>> expected = dataTable.asLists();
 		List<String> expectedList = new ArrayList<String>();
@@ -76,7 +81,7 @@ public class Sendinvoicesteps {
 			expectedList.add(Eventhelper.getInvoiceDueDateInSpecifiedFormat(Integer.parseInt(number_of_days)));
 			expectedList.add(columns.get(1));
 		}
-		List<List<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
+		List<ArrayList<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
 		boolean isInvoicePresent = false;
 		for (List<String> list : actualList) {
 			isInvoicePresent = list.equals(expectedList);
@@ -213,7 +218,8 @@ public class Sendinvoicesteps {
 
 	@Then("Hopscotch balance is updated on the screen")
 	public void hopscotch_balance_is_updated_on_the_screen() {
-		float expected =  Eventhelper.convertFloatTo2DecimalFloat(Payinvoivesteps.currentHopscotchBalance())+ flowedAmount;  
+		float expected = Eventhelper.convertFloatTo2DecimalFloat(Payinvoivesteps.currentHopscotchBalance())
+				+ flowedAmount;
 		float actual = Eventhelper.convertFloatTo2DecimalFloat(homepage.getCurrentHopscotchBalanceAmount());
 		assertEquals(expected, actual, 0);
 	}
@@ -234,50 +240,50 @@ public class Sendinvoicesteps {
 		float amountOfOpenedInvoiceInCompleted = sendInvoicePage.invoiceAmount("Completed");
 		assertEquals(amountOfInvoice, amountOfOpenedInvoiceInCompleted, 0);
 	}
-	
+
 	@Then("User click on close button to close the flow dialog")
 	public void user_click_on_close_button_to_close_the_flow_dialog() {
-	   sendInvoicePage.clickOnCloseOfFlowDialogBox();
+		sendInvoicePage.clickOnCloseOfFlowDialogBox();
 	}
-	
+
 	@When("User read the invoice no from the receivable")
 	public void user_read_the_invoice_no_from_the_receivable() {
-	   sendInvoicePage.readInvoiceNumberForCancellInvoice();
+		sendInvoicePage.readInvoiceNumberForCancellInvoice();
 	}
 
 	@Then("User should see the notification of cancelled invoice")
 	public void user_should_see_the_notification_of_cancelled_invoice() {
-	   assertTrue(sendInvoicePage.isCancelNotificationExistInNotificationList());
+		assertTrue(sendInvoicePage.isCancelNotificationExistInNotificationList());
 	}
-	
+
 	@When("User scroll down to reach to the share link button and hover on sharelink in receivable")
 	public void user_scroll_down_to_reach_to_the_share_link_button_and_hover_on_sharelink_in_receivable() {
-	  sendInvoicePage.moveToShareLinkButtonInReceivableCardandHoverOnIt();
+		sendInvoicePage.moveToShareLinkButtonInReceivableCardandHoverOnIt();
 	}
 
 	@When("User set copied link in browser as per dependent on platform")
 	public void user_set_copied_link_in_browser_as_per_dependent_on_platform() {
-	   sendInvoicePage.setCopiedLinkInBrowser();
+		sendInvoicePage.setCopiedLinkInBrowser();
 	}
-	
+
 	@When("User read the invoice id from the receivable")
 	public void user_read_the_invoice_id_from_the_receivable() {
-	   sendInvoicePage.readInvoiceId();
+		sendInvoicePage.readInvoiceId();
 	}
-	
+
 	@Then("User should see the invoice no on the invoice card in receivable")
 	public void user_should_see_the_invoice_no_on_the_invoice_card_in_receivable() {
-	    assertTrue(sendInvoicePage.isInvoiceNoPresentOnTheInvoiceCard());
+		assertTrue(sendInvoicePage.isInvoiceNoPresentOnTheInvoiceCard());
 	}
-	
+
 	@Then("User should verified the invoice no on the external invoice screen")
 	public void user_should_verified_the_invoice_no_on_the_external_invoice_screen() {
-	    assertTrue(sendInvoicePage.isInvoiceNoDisplayOnTheScreen());
+		assertTrue(sendInvoicePage.isInvoiceNoDisplayOnTheScreen());
 	}
 
 	@Then("User should see place holder text of the searchbar of the business")
 	public void user_should_see_place_holder_text_of_the_searchbar_of_the_business() {
-	    assertTrue(sendInvoicePage.isPlaceHolderPresentInSearchBusiness());
+		assertTrue(sendInvoicePage.isPlaceHolderPresentInSearchBusiness());
 	}
 
 }
