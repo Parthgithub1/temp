@@ -61,7 +61,7 @@ Feature: Test DetailedInvoice View Functionality
     Then User should see "Sign in" text on the screen
 
   @Smoke @detailedInvoicePay @QAT @UAT
-  Scenario: Verify that user is able to send invoice with Detailed View for Add Bill optioon
+  Scenario: Verify that user is able to send invoice with Detailed View for Add Bill option
     When User login for "deatiledInvoice"
     Then User should navigate to dashboard "deatiledInvoice"
     When User click on Pay or Get Paid link
