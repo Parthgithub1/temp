@@ -1,7 +1,7 @@
 Feature: Test AddBill functionality
 
   @Smoke @addbill @UAT @QAT
-  Scenario: Verify Add bill Successfully
+  Scenario: Verify that user is able to Add bill Successfully
     When User login for "addbill"
     Then User should navigate to dashboard "addbill"
     When User click on "Payable" Container
@@ -30,6 +30,7 @@ Feature: Test AddBill functionality
     When User click on "Pay" button
     When User click on "Confirm payment" button
     #Then User should see "It is on its way to" text on the screen
+    When User clean the Searchbar of "Payable"
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
     Then User click on "Home" button to navigate to dashboard
@@ -51,7 +52,7 @@ Feature: Test AddBill functionality
     Then User should see "This is the add bill details." text on the screen
 
   @Regression @deletebill
-  Scenario: Verify that user is able to delete the invoice in hopscotch
+  Scenario: Verify that user is able to delete the bill in hopscotch
     When User login for "addbill"
     Then User should navigate to dashboard "addbill"
     When User click on "Payable" Container
@@ -78,7 +79,7 @@ Feature: Test AddBill functionality
     When User enter search in Searchbar for business
     When User click on Invoice from Payable tab
     When User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on the menu icon of the card on "Payable"
     When User click on "Delete" link
     When User click on "Yes, Delete" button
@@ -91,7 +92,7 @@ Feature: Test AddBill functionality
     Then User should see "Sign in" text on the screen
     
     @Regression @addbilwithManualAddedBank
-  Scenario: Verify Add bill Successfully with manual bank details 
+  Scenario: Verify that user is able to Add bill Successfully with manual bank details 
     When User login for "addbill"
     Then User should navigate to dashboard "addbill"
     When User click on "Payable" Container
