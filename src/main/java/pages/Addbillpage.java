@@ -74,7 +74,7 @@ public class Addbillpage {
 
 	public boolean verifyAddBillNotificationOnDashboard() {
 		Eventhelper.threadWait(5000);
-		return commonPage.isNotificationPresentInList(vender + " sent you an invoice.");
+		return commonPage.isNotificationPresentInList("You’ve added a bill from " + vender);
 	}
 
 	public void clickonCloseIconfromPayableCard() {
