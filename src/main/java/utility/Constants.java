@@ -12,7 +12,7 @@ public class Constants {
 	public static final String ENTERWRONGCODEFORVALIDATIONOFTWOFACTORAUTHENTICATION = "2018";
 	public static final String CONTINUEBUTTON = "Continue";
 	public static final String ENVIRONMENT = "environment";
-	public static final String NUMBEROFATTEMPTSVALIDATIONMESSAGE = "more attempts before the account becomes locked";
+	public static final String NUMBEROFATTEMPTSVALIDATIONMESSAGE = "attempts left before your account is locked";
 	public static final String MAILINATORDOTCOM = "@mailinator.com";
 	public static final String DOUBLECLICK = "DoubleClick";
 	public static final String RECEIVABLE = "Receivable";

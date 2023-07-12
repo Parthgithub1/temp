@@ -58,7 +58,7 @@ public class Contactlistpage {
 		String lastName = faker.name().lastName();
 		Eventhelper.sendkeys(driver, txtFirstName, firstName);
 		Eventhelper.sendkeys(driver, txtLastName, lastName);
-		Eventhelper.sendkeys(driver, txtEmail, "qatsmokeautomation031@mailinator.com");
+		Eventhelper.sendkeys(driver, txtEmail, "qatsmokeautomation041@mailinator.com");
 	}
 
 	public void enterBusinessName(String bName) {
