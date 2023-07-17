@@ -111,15 +111,18 @@ public class Profilepage {
 	public void enterWebsite(String website) {
 		Eventhelper.useActionClassOperation(driver, txtWebsite, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtWebsite, website);
+		Eventhelper.sendKeyboardKeys(driver, txtWebsite, "tab");
 	}
 
 	public void enterYearFounded(String yearFounded) {
 		Eventhelper.useActionClassOperation(driver, txtYearFoubnded, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtYearFoubnded, yearFounded);
+		Eventhelper.sendKeyboardKeys(driver, txtYearFoubnded, "tab");
 	}
 
 	public void enterHandle(String handle) {
 		Eventhelper.useActionClassOperation(driver, txtHandle, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtHandle, handle);
+		Eventhelper.sendKeyboardKeys(driver, txtHandle, "tab");
 	}
 }

@@ -17,7 +17,7 @@ public class Detailedinvoicepage {
 	private By txtTaxAmountAdded = By.xpath("//div[contains(text(),'Tax')]//parent::div//following-sibling::div//div");
 	private By txtAddTaxRate = By.xpath("//input[@name='tax-rate']");
 	private By txtDescriptionArea = By.xpath("//textarea[contains(@name,'lineItems')]");
-	private By btnShareLinkInPayable = By.xpath("(//button[normalize-space()='Share Link'])[1]");
+	private By btnShareLinkInPayable = By.xpath("(//button[normalize-space()='Share Link'])");
 	private By txtInvoiceNumber = By.xpath("//input[@name='invoiceNumber']");
 	Faker faker = new Faker();
 	int amountOfItems;

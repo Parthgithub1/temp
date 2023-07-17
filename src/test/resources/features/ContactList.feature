@@ -48,7 +48,7 @@ Feature: Test Contact List Functionality
     When User search for the business in add contact
     And User enter the Contact deatils with already added email
     When User click on "Add" button
-    Then User should see "Email is already associated with qatsmokeautomation031" text on the screen
+    Then User should see "Email is already associated with qatsmokeautomation041" text on the screen
     #When User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

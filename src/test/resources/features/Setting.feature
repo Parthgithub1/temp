@@ -35,8 +35,8 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @changePassword @Setting @QAT @UAT
   Scenario: Verify Settings Tab Account Section Change Password Functionality
-    When User login for "Settings"
-    Then User should navigate to dashboard "Settings"
+    When User login for "SettingChangePassword"
+    Then User should navigate to dashboard "SettingChangePassword"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Change the Password
@@ -44,8 +44,8 @@ Feature: Test Settings Tab Functionality
     Then User should see "Your password has been updated" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login with "Settings" and Login again after change password
-    Then User should navigate to dashboard "Settings"
+    When User login with "SettingChangePassword" and Login again after change password
+    Then User should navigate to dashboard "SettingChangePassword"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "change password" button
     When User Reset Change the Password
@@ -56,18 +56,19 @@ Feature: Test Settings Tab Functionality
 
   @Smoke @twoFactorAuthentication @Setting @QAT @doNotRunOnUAT
   Scenario: Verify Settings Tab Account Section Two factor authentication Functionality
-    When User login for "Settings"
-    Then User should navigate to dashboard "Settings"
+    When User login for "2FA"
+    Then User should navigate to dashboard "2FA"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle
-    When User enter "8523647592" in Mobile Number field
+    When User enter "8523647592" in Mobile Number field 
+    Then User click on "send code" button
     When User enter Code on screen
     Then User click on "Submit" button
     Then User should see "Two-factor authentication enabled" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User login for "Settings"
-    Then User should navigate to dashboard "Settings"
+    When User login for "2FA"
+    Then User should navigate to dashboard "2FA"
     When User enter otp on screen
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Two factor authentication" toggle

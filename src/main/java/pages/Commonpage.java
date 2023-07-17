@@ -198,6 +198,8 @@ public class Commonpage {
 					: property.getProperty("uat4");
 			break;
 		case "Overdue":
+		case "2FA":
+		case "SettingChangePassword":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat071")
 					: property.getProperty("uat4");
 			break;
