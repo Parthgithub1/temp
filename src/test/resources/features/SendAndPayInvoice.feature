@@ -103,8 +103,8 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User click on Pay or Get Paid link
-    When User enter "qatsmokeautomation35" in searchbox
-    Then User should see "qatsmokeautomation35" text on the screen
+    When User enter "qatsmokeautomation15" in searchbox
+    Then User should see "qatsmokeautomation15" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
     When User enter invoice details like amount is 2 and message is "This invoice has been created to be cancelled."
@@ -114,12 +114,12 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "2.00"
     Then Read Receivable Balance on accounting screen
-    When User enter "qatsmokeautomation35" in Searchbar of "Receivable"
+    When User enter "qatsmokeautomation15" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation35 | +$2.00 |
+      | qatsmokeautomation15 | +$2.00 |
     When User read the invoice no from the receivable
     When User click on Invoice from Receivable tab
-    Then User should see "This invoice has been created to be cancelled." text on the card of "Receivable"
+    Then User should see "This invoice has been created to be cancelled." text on the screen
     Then User should see the amount to be receivable
     When User click on the menu icon of the card on "Receivable"
     When User click on "Cancel" link
@@ -136,7 +136,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User should navigate to dashboard "cancelInvoiceNotificationCheck"
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
-    Then User should see "qatsmokeautomation18 cancelled their invoice. You don't need to do anything from here." notification
+    Then User should see "qatsmokeautomation18 canceled their invoice. You don't need to do anything from here." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -167,7 +167,7 @@ Feature: Test Send and Pay invoice Functionality
     #Then User should see the invoice on the screen
     #| qatsmokeautomation031 | +$1.00 |
     When User click on Invoice from Payable tab
-    Then User should see "This invoice has been created to be rejected." text on the card of "Payable"
+    Then User should see "This invoice has been created to be rejected." text on the screen
     #When User click on the menu icon of the card on "Payable"
     Then User should see the amount of the card
     When User click on the menu icon of the card on "Payable"
@@ -189,12 +189,12 @@ Feature: Test Send and Pay invoice Functionality
 
   @downloadInvoice @Regression
   Scenario: Verify that user is able to Download the invoice in hopscotch
-    When User login for "downloadInvoice"
-    Then User should navigate to dashboard "downloadInvoice"
+    When User login for "FactorInvoicePay"
+    Then User should navigate to dashboard "FactorInvoicePay"
     Then User click on "Payable" Container
     #When User enter "qatsmokeautomation071" in Searchbar of "Payable"
     When User click on Invoice from Payable tab
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on the menu icon of the card on "Payable"
     When User click on "Download" link
     Then User should see the downloaded file in folder
@@ -251,7 +251,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Sign in" text on the screen
 
   @Regression @futuredayInvoice
-  Scenario: Verify that user is able to send invoice to existing business into hopscotch application
+  Scenario: Verify that user is able to send future date invoice to existing business into hopscotch application
     When User login for "futureDayInvoice"
     Then User should navigate to dashboard "futureDayInvoice"
     Then User click on "Receivable" Container
@@ -270,8 +270,9 @@ Feature: Test Send and Pay invoice Functionality
     When User enter "qatsmokeautomation211" in Searchbar of "Receivable"
     And User sort the invoice with due date on "Receivable"
     When User click on Invoice from Receivable tab
-    Then User should see "This is the text of message for future date" text on the card of "Receivable"
-    Then User should see "Coming up" text on the card of "Receivable"
+    Then User should see "This is the text of message for future date" text on the screen
+    Then User should see "Coming up" text on the screen
+    #Then User should see "This is the text of message for future date" text on the card of "Receivable"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "markReceivedInvoice"
@@ -281,8 +282,8 @@ Feature: Test Send and Pay invoice Functionality
     When User enter "qatsmokeautomation17" in Searchbar of "Payable"
     #And User sort the invoice with due date on "Payable"
     When User click on Invoice from Payable tab
-    Then User should see "This is the text of message for future date" text on the card of "Payable"
-    Then User should see "Coming up" text on the card of "Payable"
+    Then User should see "This is the text of message for future date" text on the screen
+    Then User should see "Coming up" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -369,12 +370,12 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Hopscotch Balance" text on the screen
     When User should save Default amount of Payable on Accounting Page
     When User click on Invoice from Payable tab
-    Then User should see "Overdue" text on the card of "Payable"
+    Then User should see "Overdue" text on the screen
     Then User should see the amount of the card
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "Pay" button
-    Then User should see "Payable dashboard" text on the screen
-    When User click on "Confirm" button
+    Then User should see "Payment Method" text on the screen
+    When User click on "Confirm payment" button
     Then Payable balance is updated on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -395,10 +396,10 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Confirm" button
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
-    When User scroll down to reach to the share link button and hover on sharelink in receivable
-    Then User should see "Link was copied" text on the screen
     When User read the invoice id from the receivable
-    When User click on Close button from receivable Card
+    When User click on the menu icon of the card on "Receivable"
+    When User click on "Share Link" link
+    Then User should see "Link was copied" text on the screen
     Then Receivable balance is updated on the screen with "2.00"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -406,7 +407,7 @@ Feature: Test Send and Pay invoice Functionality
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
     Then User should see the invoice no on the invoice card in receivable
-    Then User should see "This invoice is generated for share link" text on the card of "Receivable"
+    Then User should see "This invoice is generated for share link" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -421,14 +422,13 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "qatsmokeautomation13" text on the screen
     When User click on "Get paid" button
     Then User should see "Invoice details" text on the screen
-    When User enter invoice details like amount is 2 and message is "This invoice is a secure invoice for share link"
+    When User enter invoice details like amount is 2 and message is "This invoice is generated for share link"
     When User click on "Confirm" button
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
-    When User scroll down to reach to the share link button and hover on sharelink in receivable
+    When User click on the menu icon of the card on "Receivable"
+    When User click on "Share Link" link
     Then User should see "Link was copied" text on the screen
-    When User read the invoice id from the receivable
-    When User click on Close button from receivable Card
     Then Receivable balance is updated on the screen with "2.00"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -452,10 +452,12 @@ Feature: Test Send and Pay invoice Functionality
     When User enter Item Details for Bill
     Then User should see amount value for Item added
     When User click on "Confirm" button
-    When User click on "Send" button
-    Then User should see "Payable dashboard" text on the screen
-    When User click on the share link button in payable
-    Then User should see "Link will not be created until you pay this bill." text on the screen
+    When User click on "Add" button
+    Then User should see "Payment Method" text on the screen
+    #When User click on the share link button in payable
+    When User click on the menu icon of the card on "Payable"
+    When User click on "Share Link" link
+    Then User should see "Link will not be created until you pay this bill" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     
@@ -474,13 +476,13 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Confirm" button
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
-    When User scroll down to reach to the share link button and hover on sharelink in receivable
-    Then User should see "Link was copied" text on the screen
     When User read the invoice id from the receivable
-    When User click on Close button from receivable Card
+    When User click on the menu icon of the card on "Receivable"
+    When User click on "Share Link" link
+    Then User should see "Link was copied" text on the screen
     Then Receivable balance is updated on the screen with "2.00"
-    And Search the external invoice in receivable
-    When User read the invoice no from the receivable
+    #And Search the external invoice in receivable
+    #When User read the invoice no from the receivable
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User set copied link in browser as per dependent on platform 

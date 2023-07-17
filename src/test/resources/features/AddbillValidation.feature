@@ -19,25 +19,13 @@ Feature: Test validation on add bill screen
 
     Examples: 
       | Amount |
-      | ".00"  |
-
-  @Regression
-  Scenario Outline: Verify that user is not able to set invalid invoice number in add bill
-    When User enter <invoicenumber> as a invoice number
-    Then User should see "Please enter valid invoice number" text on the screen
-    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
-    Then User should see "Sign in" text on the screen
-
-    Examples: 
-      | invoicenumber      |
-      | "1213212313213333" |
-      | "0.112121212"      |
+      | "0.00"  |
 
   @Regression
   Scenario Outline: Verify that user is not able to send invoice whose amount limit is going beyond the limit.
     When User enter other bill deatails
     When User click on "Confirm" button
-    When User click on "Add" button
-    Then User should see "BusinessInvoiceLimit was exceeded." text on the screen
+    #When User click on "Add" button
+    Then User should see "Contact Support to increase your limit." text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

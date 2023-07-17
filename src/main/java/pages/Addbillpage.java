@@ -108,6 +108,7 @@ public class Addbillpage {
 
 	public void enterAmount(String amount) {
 		Eventhelper.sendkeys(driver, txtAmount, amount);
+		Eventhelper.sendKeyboardKeys(driver, txtAmount, "tab");
 	}
 
 	public void enterInvoiceNumber(String invoiceNumber) {
