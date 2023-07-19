@@ -116,9 +116,10 @@ Feature: Test AddBill functionality
     When User enter search in Searchbar for business
     When User click on Invoice from Payable tab
     When User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "Pay" button
-    When User click on "Confirm" button
+    When User click on "Confirm payment" button
+    When User clean the Searchbar of "Payable"
     When User should save Default amount of Payable on Accounting Page
     Then User should see updated payable amount on the screen
     Then User click on "Home" button to navigate to dashboard
@@ -134,5 +135,5 @@ Feature: Test AddBill functionality
     Then User enter manual bank details and click on "Paid" button
     When User click on the confirm payment button in extternal payment
     Then User should see "Transaction complete" text on the screen
-    Then User should see "Download receipt" text on the screen
+    Then User should see "Download" text on the screen
     Then User should see "This is the add bill details." text on the screen
