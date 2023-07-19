@@ -280,7 +280,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User click on "Payable" Container
     Then User should save Default amount of Payable on Accounting Page
     When User enter "qatsmokeautomation17" in Searchbar of "Payable"
-    #And User sort the invoice with due date on "Payable"
+    And User sort the invoice with due date on "Payable"
     When User click on Invoice from Payable tab
     Then User should see "This is the text of message for future date" text on the screen
     Then User should see "Coming up" text on the screen

@@ -122,6 +122,7 @@ public class Sendinvoicepage {
 
 	public void enterAmountOfInvoice(String amount) {
 		Eventhelper.sendkeys(driver, txtAmount, amount);
+		Eventhelper.sendKeyboardKeys(driver,txtAmount , "tab");
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
