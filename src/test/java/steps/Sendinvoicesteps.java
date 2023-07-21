@@ -75,15 +75,17 @@ public class Sendinvoicesteps {
 			io.cucumber.datatable.DataTable dataTable) {
 		sendInvoicePage.sortWithDueDate("Receivable");
 		List<List<String>> expected = dataTable.asLists();
-		List<String> expectedList = new ArrayList<String>();
+		ArrayList<String> expectedList = new ArrayList<String>();
 		for (List<String> columns : expected) {
-			expectedList.add(columns.get(0));
+			expectedList.add(columns.get(0) + "\n" + Eventhelper.getInvoiceDueDateInSpecifiedFormat(Integer.parseInt(number_of_days)) + "\n" + columns.get(1));
+			/*
 			expectedList.add(Eventhelper.getInvoiceDueDateInSpecifiedFormat(Integer.parseInt(number_of_days)));
 			expectedList.add(columns.get(1));
+			*/
 		}
-		List<ArrayList<String>> actualList = sendInvoicePage.seeInvoice(expectedList.get(0));
+		ArrayList<ArrayList<String>> actualList = sendInvoicePage.seeInvoice(searchBusinessOnReceivable);
 		boolean isInvoicePresent = false;
-		for (List<String> list : actualList) {
+		for (ArrayList<String> list : actualList) {
 			isInvoicePresent = list.equals(expectedList);
 			if (isInvoicePresent) {
 				break;
