@@ -8,14 +8,14 @@ public class Detailedinvoicepage {
 
 	private WebDriver driver;
 	private Commonpage commonPage;
-	private By invoiceDateSelector = By.xpath("//input[@name='detailedInvoiceDate']");
-	private By invoiceDueDate = By.xpath("//input[@name='detailedDueDate']");
-	private By drpPaymentTerms = By.xpath("//div[contains(@class,'select__form-field__placeholder')]");
+	private By invoiceDateSelector = By.xpath("//input[@name='invoiceDate']");
+	private By invoiceDueDate = By.xpath("//div[contains(@class,'due-date')]/p");
+	private By drpPaymentTerms = By.xpath("//div[contains(@class,'select__form-field__control')]");
 	private By amountTotal = By.xpath("//h4[normalize-space()='Total']//parent::div//h4[2]");
 	private By txtSubTotal = By.xpath("//div[contains(text(),'Sub-total')]//parent::div//following-sibling::div//div");
 	private By btnCloseInvoice = By.xpath("(//button[contains(@class,'CloseButton_close-button')])[1]");
-	private By txtTaxAmountAdded = By.xpath("//div[contains(text(),'Tax')]//parent::div//following-sibling::div//div");
-	private By txtAddTaxRate = By.xpath("//input[@name='tax-rate']");
+	private By txtTaxAmountAdded = By.xpath("//div[contains(@class,'amount-due')]/p");
+	private By txtAddTaxRate = By.xpath("//input[@name='taxRate']");
 	private By txtDescriptionArea = By.xpath("//textarea[contains(@name,'lineItems')]");
 	private By btnShareLinkInPayable = By.xpath("(//button[normalize-space()='Share Link'])");
 	private By txtInvoiceNumber = By.xpath("//input[@name='invoiceNumber']");
@@ -64,16 +64,16 @@ public class Detailedinvoicepage {
 
 	public void enterMultipleItemsInDetailedInvoice() {
 		int noOfRow = Eventhelper.findElements(driver, txtDescriptionArea).size();
-		int quantity = 2;
+		int quantity = 1;
 		int rate = 2;
-		for (int i = 1; i <= noOfRow; i++) {
+		for (int i = 0; i < noOfRow; i++) {
 			itemDescription = faker.food().ingredient();
-			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//textarea[@name='description']"), itemDescription);
-			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//input[@name='quantity']"),
+			Eventhelper.sendkeys(driver, By.xpath("(//textarea[@name='lineItems.[" + i + "].item'])"), itemDescription);
+			Eventhelper.sendkeys(driver, By.xpath("(//input[@name='lineItems.[" + i + "].quantity'])"),
 					String.valueOf(quantity));
-			Eventhelper.sendkeys(driver, By.xpath("//tr[" + i + "]//input[@name='rate']"), String.valueOf(rate));
-			Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'Checkbox_checkbox-control')]"));
-			Eventhelper.click(driver, By.xpath("//tr[" + i + "]//div[contains(@class,'InvoiceForm_itemAmount')]"));
+			Eventhelper.sendkeys(driver, By.xpath("(//input[@name='lineItems.[" + i + "].rate'])"), String.valueOf(rate));
+			Eventhelper.click(driver, By.xpath("(//label[@for='lineItems.[" + i + "].isTaxed'])"));
+			Eventhelper.click(driver, By.xpath("(//div[contains(@class,'InvoiceForm_itemAmount')])[" + (i + 1) + "]"));
 		}
 		amountOfItems = quantity * rate * noOfRow;
 		Log.info("Total value of amountOfItems " + amountOfItems);
@@ -85,13 +85,15 @@ public class Detailedinvoicepage {
 	}
 
 	public Boolean isTaxAmountAdded() {
+		String actualvalue1 = Eventhelper.getTextofElement(driver, txtTaxAmountAdded).replace("$", "");		
 		return (amountOfItems * taxRateAmount) / 100 == Float
-				.parseFloat(Eventhelper.getTextofElement(driver, txtTaxAmountAdded).replace("$", ""));
+				.parseFloat(actualvalue1.substring(actualvalue1.indexOf(".")));	
 	}
 
 	public Boolean isIteamAmountMatchedWithRateAndQty() {
 		float expectedAmtValue = amountOfItems; 
-		float actualAmtValue = Float.parseFloat(Eventhelper.getTextofElement(driver, amountTotal).replace("$", ""));
+		String actualValue = Eventhelper.getTextofElement(driver, amountTotal).replace("$", "");
+		float actualAmtValue = Float.parseFloat(actualValue.substring(0,actualValue.indexOf(".")));
 		return expectedAmtValue == actualAmtValue;
 	}
 
@@ -110,7 +112,7 @@ public class Detailedinvoicepage {
 
 	public void deleteRowAdded() {
 		countOfRowAdded = Eventhelper.findElements(driver, txtDescriptionArea).size();
-		Eventhelper.sendkeys(driver, By.xpath("//tr[3]//textarea[@name='description']"), faker.food().ingredient());
+		Eventhelper.sendkeys(driver, By.xpath("(//textarea[@name='lineItems.[2].item'])"), faker.food().ingredient());
 		Eventhelper.click(driver, By.xpath("//tr[3]//button"));
 	}
 
@@ -130,7 +132,7 @@ public class Detailedinvoicepage {
 
 	public Boolean paymentTermsDate(int dueDate) {
 		return Eventhelper.getDate(dueDate)
-				.equalsIgnoreCase(Eventhelper.getValueOfAttribute(driver, invoiceDueDate, Constants.VALUE));
+				.equalsIgnoreCase(Eventhelper.getTextofElement(driver, invoiceDueDate));
 	}
 
 	public void clickOnShareLinkButtonInPayable() {

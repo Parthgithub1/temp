@@ -24,10 +24,10 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
      When User click on Close button from receivable Card
-    Then Receivable balance is updated on the screen with "9.20"
+    Then Receivable balance is updated on the screen with "4.60"
     When User enter "qatsmokeautomation11" in Searchbar of "Receivable"
     Then User should see the invoice on the screen
-      | qatsmokeautomation11 | +$9.20 |
+      | qatsmokeautomation11 | +$4.60 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to qatsmokeautomation11. We'll let you know once it's been paid." notification
@@ -42,7 +42,7 @@ Feature: Test DetailedInvoice View Functionality
     #And User sort the invoice with due date on "Payable"
     When User click on Invoice from Payable tab
     Then User should see the amount to be Payable
-    Then User should see "Payable dashboard" text on the screen
+    Then User should see "Payment Method" text on the screen
     When User click on "View invoice" label
     Then User should see "Invoice details" text on the screen
     Then User should see the deatails added in Invoice
@@ -144,10 +144,10 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
     When User click on Close button from receivable Card
-    Then Receivable balance is updated on the screen with "9.20"
+    Then Receivable balance is updated on the screen with "4.60"
     When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
     Then User should see the invoice on the screen for "90" days payment term
-      | qatsmokeautomation071 | +$9.20 |
+      | qatsmokeautomation071 | +$4.60 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to qatsmokeautomation071. We'll let you know once it's been paid." notification
@@ -180,17 +180,17 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
     When User click on Close button from receivable Card
-    Then Receivable balance is updated on the screen with "9.20"
+    Then Receivable balance is updated on the screen with "4.60"
     When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
     Then User should see the invoice on the screen for "60" days payment term
-      | qatsmokeautomation071 | +$9.20 |
+      | qatsmokeautomation071 | +$4.60 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to qatsmokeautomation071. We'll let you know once it's been paid." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
-  @Regression @detailedInvoiceGetPaidWithDifferentDueDates @30DaysPaymentTerms
+  @Regression @detailedInvoiceGetPaidWithDifferentDueDates @30DaysPaymentTerms @DI3
   Scenario: Verify that user is able to send invoice with Detailed View for Get Paid option for 30 days Payment Terms
     When User login for "deatiledInvoice"
     Then User should navigate to dashboard "deatiledInvoice"
@@ -216,10 +216,10 @@ Feature: Test DetailedInvoice View Functionality
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
     When User click on Close button from receivable Card
-    Then Receivable balance is updated on the screen with "9.20"
+    Then Receivable balance is updated on the screen with "4.60"
     When User enter "qatsmokeautomation071" in Searchbar of "Receivable"
     Then User should see the invoice on the screen for "30" days payment term
-      | qatsmokeautomation071 | +$9.20 |
+      | qatsmokeautomation071 | +$4.60 |
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to qatsmokeautomation071. We'll let you know once it's been paid." notification
