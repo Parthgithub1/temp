@@ -117,6 +117,9 @@ Feature: Test External Invoice
     When User click on the menu icon of the card on "Receivable"
     When User click on "Mark received" link
     When User click on "Confirm" button to mark Invoice as received
+    Then User click on "Home" button to navigate to dashboard
+    Then User should see "Hopscotch Balance" text on the screen
+    Then User should save the amount of Hopscotch Balance from Accounting Page
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User set external invoice url in browser

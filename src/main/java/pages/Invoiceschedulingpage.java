@@ -8,7 +8,7 @@ public class Invoiceschedulingpage {
 	private WebDriver driver;
 
 	private By txtDatePicker = By.xpath("//input[@name='payDate']");
-	private By logoOfSchedulerForInvoice = By.xpath("//span[contains(@class,'entity-logo__icon')]//div");
+	private By logoOfSchedulerForInvoice = By.xpath("(//span[contains(@class,'entity-logo__icon')]//div)[1]");
 	private By verificationOfUnScheduledLink = By.partialLinkText("Unschedule");
 
 	public Invoiceschedulingpage(WebDriver driver) {
@@ -18,11 +18,11 @@ public class Invoiceschedulingpage {
 	public void selectSchedulePaymentDate() {
 		Eventhelper.click(driver, txtDatePicker);
 		Eventhelper.useActionClassOperation(driver, txtDatePicker, Constants.DOUBLECLICK);
-		Eventhelper.sendkeys(driver, txtDatePicker, Eventhelper.getDate(31));
+		Eventhelper.sendkeys(driver, txtDatePicker, Eventhelper.getDate(2));
 	}
 
 	public Boolean isInvoiceSchedule() {
-		Eventhelper.waitUntilElementInvisible(driver, logoOfSchedulerForInvoice);
+		//Eventhelper.waitUntilElementInvisible(driver, logoOfSchedulerForInvoice);
 		return Eventhelper.isElementDisplayed(driver, logoOfSchedulerForInvoice);
 	}
 
