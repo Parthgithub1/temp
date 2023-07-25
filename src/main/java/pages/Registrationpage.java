@@ -131,5 +131,7 @@ public class Registrationpage {
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		enterBrandingInformation();
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		commonPage.clickOnButton("Continue with free plan");
+		commonPage.clickOnButton("Get Pro later");
 	}
 }

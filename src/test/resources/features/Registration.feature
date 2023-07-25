@@ -19,6 +19,8 @@ Feature: Test Registration Functionality
     Then User should see "#4D2165" text on the screen
     Then User should see "#0DE6DF" text on the screen
     When User click on "Continue" button
+    When User click on "Continue with free plan" button
+    When User click on "Get Pro later" button
     Then User should see "Welcome to Hopscotch" text on the screen
 
   @Regression
