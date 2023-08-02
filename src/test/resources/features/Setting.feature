@@ -42,6 +42,7 @@ Feature: Test Settings Tab Functionality
     When User Change the Password
     Then User click on "Save" button
     Then User should see "Your password has been updated" text on the screen
+    Then User click on "Home" button to navigate to dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login with "SettingChangePassword" and Login again after change password
