@@ -66,6 +66,7 @@ Feature: Test Settings Tab Functionality
     When User enter Code on screen
     Then User click on "Submit" button
     Then User should see "Two-factor authentication enabled" text on the screen
+    Then User click on "Home" button to navigate to dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "2FA"
