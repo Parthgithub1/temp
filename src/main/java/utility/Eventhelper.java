@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Eventhelper {
 	}
 
 	public static boolean waitUntilElementInvisible(WebDriver driver, By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
@@ -102,7 +103,7 @@ public class Eventhelper {
 	}
 
 	public static WebElement explicitwait(WebDriver driver, By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		WebElement element = null;
 		try {
 			element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -114,7 +115,7 @@ public class Eventhelper {
 	}
 
 	public static WebElement waitUntilElementVisible(WebDriver driver, WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
 			element = wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
@@ -142,22 +143,22 @@ public class Eventhelper {
 	}
 
 	public static WebElement explicitwaitclickable(WebDriver driver, By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
 	public static Boolean explicitwaitTextToBePresent(WebDriver driver, By locator, String value) {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, value));
 	}
 
 	public static Boolean waitUntilAttribValueContains(WebDriver driver, By locator, String attrib, String value) {
-		WebDriverWait wait = new WebDriverWait(driver, 120);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
 		return wait.until(ExpectedConditions.attributeContains(locator, attrib, value));
 	}
 
 	public static Boolean waitUntilAttribValueNotContains(WebDriver driver, By locator, String attrib, String value) {
-		WebDriverWait wait = new WebDriverWait(driver, 120);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
 		return wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(locator, attrib, value)));
 	}
 

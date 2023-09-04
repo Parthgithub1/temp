@@ -34,7 +34,8 @@ public class Driverhelper {
 			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
 			options.setExperimentalOption("prefs", chromePrefs);
 			if (headless) {
-				options.setHeadless(true);
+				options.addArguments("--remote-allow-origins=*");
+				options.addArguments("--headless=new");				
 				options.addArguments("window-size=1920,1080");
 			}
 			WebDriverManager.chromedriver().setup();
@@ -43,7 +44,7 @@ public class Driverhelper {
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
 			if (headless) {
-				foptions.setHeadless(true);
+				foptions.addArguments("--headless");
 			}
 			WebDriverManager.firefoxdriver().setup();
 			tlDriver.set(new FirefoxDriver(foptions));
