@@ -36,7 +36,7 @@ public class Driverhelper {
 			if (headless) {
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--headless=new");				
-				options.addArguments("window-size=1920,1080");
+				options.addArguments("--window-size=1920,1080");
 			}
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));

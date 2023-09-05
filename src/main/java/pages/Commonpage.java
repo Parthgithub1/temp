@@ -33,11 +33,13 @@ public class Commonpage {
 	private By closeIcon = By.xpath("//button[@aria-label='Close']");
 	private By frmIframe = By.xpath("//iframe[contains(@id,'plaid-link')]");
 	private By btnContinueforPlaidProcess = By.xpath("(//button[normalize-space()='Continue'][@role='button'] )[1]");
-	private By txtbUserName = By.xpath("//label[text()='Username']/following-sibling::input");
-	private By txtbPassword = By.xpath("//label[text()='Password']/following-sibling::input");
+	private By txtbUserName = By
+			.xpath("//label[text()='Username']/ancestor::div//input[@type=\"text\" and @autocomplete=\"off\"]");
+	private By txtbPassword = By
+			.xpath("//label[text()='Username']/ancestor::div//input[@type=\"password\" and @autocomplete=\"off\"]");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
-	private By lblBusinessLogo= By.xpath("//img[@alt='avatar']");
+	private By lblBusinessLogo = By.xpath("//img[@alt='avatar']");
 
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
@@ -76,7 +78,8 @@ public class Commonpage {
 
 	public void enterEmailAddress(String value) {
 		if (value.contains("random")) {
-			value=(faker.name().firstName() + faker.name().lastName() + Constants.MAILINATORDOTCOM).toString().toLowerCase();
+			value = (faker.name().firstName() + faker.name().lastName() + Constants.MAILINATORDOTCOM).toString()
+					.toLowerCase();
 			Log.info("Email id is -->" + value);
 		}
 		Eventhelper.sendkeys(driver, txtEmailAddress, value);
@@ -106,7 +109,7 @@ public class Commonpage {
 	}
 
 	public void addBankInPlaid(String bankName) {
-		By lstbankname = By.xpath("//*[contains(@aria-label, '"+bankName+"')]");
+		By lstbankname = By.xpath("//*[contains(@aria-label, '" + bankName + "')]");
 		Eventhelper.switchToFrame(driver, frmIframe);
 		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
 		Eventhelper.click(driver, btnContinueforPlaidProcess);
@@ -221,16 +224,17 @@ public class Commonpage {
 	public void switchToDashboard() {
 		Eventhelper.click(driver, lnkDashBoard);
 	}
-	
-	public void clickOnTheBusinessLogoOnTheDashboard()
-	{
+
+	public void clickOnTheBusinessLogoOnTheDashboard() {
 		Eventhelper.click(driver, lblBusinessLogo);
 	}
-	
+
 	public void closePendoDialog() {
 		try {
-			if (Eventhelper.isElementDisplayed(driver, By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"))) {
-				Eventhelper.click(driver, By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"));
+			if (Eventhelper.isElementDisplayed(driver,
+					By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"))) {
+				Eventhelper.click(driver,
+						By.xpath("//button[@aria-label='Close' or contains(@id,'pendo-close-guide')]"));
 			}
 		} catch (Exception e) {
 			Log.info(e.getMessage());
