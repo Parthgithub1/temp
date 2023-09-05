@@ -35,8 +35,9 @@ public class Driverhelper {
 			options.setExperimentalOption("prefs", chromePrefs);
 			if (headless) {
 				options.addArguments("--remote-allow-origins=*");
-				options.addArguments("--headless=new");				
+				options.addArguments("--headless=new");
 				options.addArguments("--window-size=1920,1080");
+
 			}
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
@@ -58,7 +59,16 @@ public class Driverhelper {
 		}
 
 		getDriver().manage().deleteAllCookies();
-		getDriver().manage().window().maximize();
+		if (headless) {
+			Log.info("\n value of headless" + headless);
+			Log.info("\n Selected screen size is ----> " + getDriver().manage().window().getSize() + "   <------ \n");
+
+		} else {
+			getDriver().manage().window().maximize();
+			Log.info("\n value of headless" + headless);
+			Log.info("\n Selected screen size is ----> " + getDriver().manage().window().getSize() + "   <------ \n");
+		}
+
 		return getDriver();
 
 	}
