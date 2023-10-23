@@ -10,9 +10,26 @@ import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -331,19 +348,64 @@ public class Eventhelper {
 	public static void autoScrollWindow(WebDriver driver) {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		
 	}
-	
-	public static String readDataFromClipboard()
-	{
+
+	public static String readDataFromClipboard() {
 		String clipboardData = null;
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-	    Clipboard clipboard = toolkit.getSystemClipboard();
-	    try {
-			clipboardData= (String) clipboard.getData(DataFlavor.stringFlavor);
+		Clipboard clipboard = toolkit.getSystemClipboard();
+		try {
+			clipboardData = (String) clipboard.getData(DataFlavor.stringFlavor);
 		} catch (UnsupportedFlavorException | IOException e) {
 			Log.info(e.toString());
 		}
 		return clipboardData;
+	}
+
+	public static void sendEmail() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMM/yyyy HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("thoughtful.simform@gmail.com", "tgfyuwfjhualrzou");
+			}
+		});
+
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("thoughtful.simform@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse("thoughtful.simform@gmail.com,auto.qa@gohopscotch.com"));
+			message.setSubject("Automation Script Execution Status Report");
+
+			BodyPart messageBodyPart1 = new MimeBodyPart();
+
+			messageBodyPart1.setText("Dear Hopscotcher, \n \nThe script was just executed on server before ("
+					+ dtf.format(now)
+					+ "). \n \nThe execution report is attached to the email you can download it and view it. \n \nThank you for your attention to this status report. Please feel free to reach out if you have any questions or require further information regarding the automation script execution. Your feedback and insights are valuable to us as we continue to enhance our automation processes. \n \nThank you, \nTeam QA Automation");
+
+			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+
+			String filename = System.getProperty("user.dir") + "/Extentreport/index.html";
+			DataSource source = new FileDataSource(filename);
+			messageBodyPart2.setDataHandler(new DataHandler(source));
+			messageBodyPart2.setFileName("Execution report.html");
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messageBodyPart2);
+			multipart.addBodyPart(messageBodyPart1);
+			message.setContent(multipart);
+			Transport.send(message);
+			Log.info("====== Email sent=====");
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
