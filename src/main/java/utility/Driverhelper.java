@@ -37,7 +37,7 @@ public class Driverhelper {
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--headless=new");
 				options.addArguments("--window-size=1920,1080");
-
+				options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
 			}
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
