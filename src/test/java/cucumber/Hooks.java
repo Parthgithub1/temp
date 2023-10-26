@@ -57,7 +57,7 @@ public class Hooks {
 		parenttest = extent.createTest(longFeatureName[0]);
 		childtest = parenttest.createNode(scenario.getName());
 		Log.startTestCase(scenario.getName());
-		driver = driverhelper.setDriver("chrome", Boolean.parseBoolean("false"));
+		driver = driverhelper.setDriver(System.getProperty(BROWSER), Boolean.parseBoolean(System.getProperty(HEADLESS)));
 		Driverhelper.getDriver().get(Environmenthelper.setUrl(System.getProperty(ENVIRONMENT)));
 	}
 
