@@ -87,10 +87,16 @@ public class Addbillpage {
 	}
 
 	public void enterInSearchBar() {
-		By txtSearchBaronAccountingSection = By.xpath("(//input[@placeholder=\"Search\"])[1]");
+		By txtSearchBaronAccountingSection = By.xpath("//input[@id='payableTabSearch']");
 		Eventhelper.doRefresh(driver);
+		Eventhelper.threadWait(5000);
 		Eventhelper.explicitwait(driver, txtSearchBaronAccountingSection);
-		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
+		System.err.println("Vendor name is"+vender);
+		Eventhelper.click(driver, txtSearchBaronAccountingSection);
+		//Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
+		Eventhelper.sendkeywithJS(driver, txtSearchBaronAccountingSection, vender);
+		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
+		Eventhelper.threadWait(5000);
 		genererateBillURL();
 	}
 	
