@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import com.github.javafaker.Faker;
 import utility.*;
 
@@ -20,12 +22,12 @@ public class Addbillpage {
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 	private By btnPayOnAddContact= By.xpath("(//form//button)[1]");
-
+       
 	Faker faker = new Faker();
 	String vender;
 	String tempEmail;
 	String externalURlForBill;
-	
+		
 	public Addbillpage(WebDriver driver) {
 		this.driver = driver;
 		commonPage = new Commonpage(driver);
@@ -57,6 +59,7 @@ public class Addbillpage {
 	}
 
 	public void searchBusinessInSearchBar() {
+		Eventhelper.explicitwait(driver, txtSearchBar);
 		Eventhelper.click(driver, txtSearchBar);
 		vender = faker.company().name();
 		Eventhelper.sendkeys(driver, txtSearchBar, vender);
@@ -84,7 +87,7 @@ public class Addbillpage {
 	}
 
 	public void enterInSearchBar() {
-		By txtSearchBaronAccountingSection = By.xpath("(//input[@aria-label='Search in the data grid'])[1]");
+		By txtSearchBaronAccountingSection = By.xpath("(//input[@placeholder=\"Search\"])[1]");
 		Eventhelper.doRefresh(driver);
 		Eventhelper.explicitwait(driver, txtSearchBaronAccountingSection);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
@@ -100,7 +103,7 @@ public class Addbillpage {
 				+ "&emailId=" + tempEmail;
 		Log.info("The generated external url for the bill is  :- " + externalURlForBill);
 	}
-	
+			
 	public void setURL()
 	{
 		Eventhelper.getURL(driver, externalURlForBill);
@@ -118,7 +121,7 @@ public class Addbillpage {
 	public boolean isDeleteInvoiceNotificationSent() {
 		String deleteInvoiceNotificationText= "You rejected "+vender+"'s invoice.";	
 		return commonPage.isNotificationPresentInList(deleteInvoiceNotificationText);
-	}
+	}	
 	
 	public void clickOnPayButtonOnAddContact()
 	{

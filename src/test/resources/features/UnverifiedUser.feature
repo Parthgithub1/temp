@@ -4,7 +4,7 @@ Feature: Test Unverified user Functionality
   Scenario: Verify unverified user is not able to perform several things
     When User login for "Unverified"
     Then User should navigate to dashboard "Unverified"
-    When User click on "do this later" link
+    #When User click on "do this later" link
     When User click on Pay or Get Paid link
     When User enter "qatsmokeautomation16" in searchbox
     Then User should see "qatsmokeautomation16" text on the screen

@@ -27,7 +27,7 @@ public class Verificationpage {
 	private By btnAddBankDetails = By.xpath("//span[normalize-space()='Add and connect instantly']");
 	private By frmIframe = By.xpath("//iframe[@title='Plaid Link']");
 	private By btnAddBankContinue = By.xpath("//*[@id=\"aut-button\"]");
-	private By lstBankName = By.xpath("//button[contains(@aria-label, 'Navy Federal Credit Union')]");
+	private By lstBankName = By.xpath("//button[contains(@aria-label, 'Huntington Bank')]");
 	private By txtBankUserName = By.xpath("//label[text()='Username']/ancestor::div//input[@type=\"text\" and @autocomplete=\"off\"]");
 	private By txtBankPassword = By.xpath("//label[text()='Username']/ancestor::div//input[@type=\"password\" and @autocomplete=\"off\"]");
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
@@ -142,6 +142,7 @@ public class Verificationpage {
 	}
 
 	public void enterDateOfBirthdateofSoleProprietorship() {
+		Eventhelper.threadWait(2000);
 		Eventhelper.sendkeys(driver, txtAddBeneficialBirthDate, "01012001");
 	}
 }
