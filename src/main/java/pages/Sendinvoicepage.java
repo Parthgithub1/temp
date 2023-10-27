@@ -24,7 +24,7 @@ public class Sendinvoicepage {
 	String cancelNotification;
 	String invoiceId;
 
-	private By lblbusinessNameOnGrid = By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[2]//td[2]");
+	private By lblbusinessNameOnGrid = By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[1]//td[1]");
 	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[2]//td[3]");
 	private By btnCloseFlowDialogBox = By.xpath("//button[@aria-label='Close']//*[name()='svg']");
 	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
@@ -47,6 +47,7 @@ public class Sendinvoicepage {
 	}
 
 	public void searchBusiness(String businessName) {
+		Eventhelper.threadWait(1000);
 		if (businessName.equals("Search the business")) {
 			Eventhelper.sendkeys(driver, txtSearchBar, businessName);
 		} else {
@@ -70,11 +71,13 @@ public class Sendinvoicepage {
 		int noofRows = Eventhelper.findElements(driver, By.xpath("(//div[@id='receivable']//table)[2]//tbody")).size();
 		ArrayList<String> rowData = null;
 		List<WebElement> listwe;
+		Log.info("No of rows are ---> "+noofRows);
 		ArrayList<ArrayList<String>> allrowdata = new ArrayList<ArrayList<String>>();
-		for (int i = 2; i <= noofRows + 1; i++) {
+		for (int i = 1; i <= noofRows; i++) {
 			rowData = new ArrayList<String>();
 			listwe = Eventhelper.findElements(driver,
 					By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[" + i + "]"));
+			Log.info("listwe values are ----->"+listwe);
 			for (WebElement ele : listwe) {
 				rowData.add(ele.getText().trim());
 			}

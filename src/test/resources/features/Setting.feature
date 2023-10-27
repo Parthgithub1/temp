@@ -7,28 +7,28 @@ Feature: Test Settings Tab Functionality
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
     Then User click on "Add account" button
-    When User process add "Navy Federal Credit Union" bank screen
-    Then User should see "Navy Federal Credit Union" text on the screen
-    When User click on menu of the "Navy Federal Credit Union" bank
+    When User process add "Huntington Bank" bank screen
+    Then User should see "Huntington Bank" text on the screen
+    When User click on menu of the "Huntington Bank" bank
     #Set as backup account
-    #When User click on "Set as backup" link
-    Then User should see "Navy Federal Credit Union" as "Backup"
+    When User click on "Set as backup" link
+    Then User should see "Huntington Bank" as "Backup"
     When User switch to dashboard
     When User click on "Add funds" button
-    Then User should see "Navy Federal Credit Union" text on the screen
+    Then User should see "Huntington Bank" text on the screen
     Then User click on "Cancel" button
     When User click on "Withdraw" button
-    Then User should see "Navy Federal Credit Union" text on the screen
+    Then User should see "Huntington Bank" text on the screen
     Then User click on "Cancel" button
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
-    When User click on menu of the "Navy Federal Credit Union" bank
+    When User click on menu of the "Huntington Bank" bank
     #delete bank account
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
     When User click on "Payment methods" link
-    When User click on menu of the "Navy Federal Credit Union" bank
+    When User click on menu of the "Huntington Bank" bank
     When User click on "Delete" link
-    #When User click on "Delete" button
+    When User click on "Delete" button
     #Then User should not see "Navy Federal Credit Union" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
@@ -52,6 +52,9 @@ Feature: Test Settings Tab Functionality
     When User Reset Change the Password
     Then User click on "Save" button
     Then User should see "Your password has been updated" text on the screen
+    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Receivable" Container
+    Then User should save the amount of Hopscotch Balance from Accounting Page
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -78,6 +81,9 @@ Feature: Test Settings Tab Functionality
     When User enter Code on screen
     Then User click on "Submit" button
     Then User should see "Two-factor authentication disabled" text on the screen
+    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Receivable" Container
+    Then User click on "Home" button to navigate to dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 

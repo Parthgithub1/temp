@@ -115,6 +115,25 @@ public class Registrationpage {
 		Eventhelper.click(driver, txtEmailAddress);
 	}
 
+	public void createUser(String email, String firstName, String businessName) {
+		commonPage.clickOnLink("Sign up");
+		commonPage.enterEmailAddress(email);
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		enterOTP();
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		enterFirstName(firstName);
+		enterLastName("SolePropPass");
+		enterBusinessName(businessName);
+		commonPage.enterPassword(property.getProperty("password"));
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		enterCompanyDetails();
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		enterBrandingInformation();
+		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
+		commonPage.clickOnButton("Continue with free plan");
+		commonPage.clickOnButton("Get Pro later");
+	}
+	
 	public void doRegister(String randomemail, String businessType) {
 		String lastName = businessType.equalsIgnoreCase("Sole Proprietorship") ? "SolePropPass" : "BizPass";
 		commonPage.clickOnLink("Sign up");

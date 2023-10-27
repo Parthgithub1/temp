@@ -36,7 +36,7 @@ Feature: Test External Invoice
     When user select "Bank transfer" as a payment method 
     When user select Bank type "plaid" for the external payment 
     Then User enter bank details
-    When User click on Pay button in external payment
+    When User click on Pay button in external invoice payment
     #When User click on "Pay" button
     #When User click on "Confirm payment" button
     When User click on the confirm payment button in extternal payment

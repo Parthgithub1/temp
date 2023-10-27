@@ -40,7 +40,12 @@ public class Commonpage {
 	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
 	private By lblBusinessLogo = By.xpath("//img[@alt='avatar']");
-
+    private By lblAnnualPlanOption = By.xpath("//label[@for='annual']");
+	private By frmBillingCard=By.xpath("//iframe[@title='Billing information']");
+	private By txtCardNumber= By.xpath("//input[@placeholder='13-19 digits']");
+	private By txtCardexpiryDate= By.xpath("//input[@placeholder='MM / YY']");	
+	private By txtCardCVV= By.xpath("//input[@placeholder='CVV']");
+	
 	public Commonpage(WebDriver driver) {
 		this.driver = driver;
 		homePage = new Homepage(driver);
@@ -240,4 +245,20 @@ public class Commonpage {
 			Log.info(e.getMessage());
 		}
 	}
+	
+	public void selectAnnualPlanOption()
+	{
+		Eventhelper.click(driver, lblAnnualPlanOption);
+	}
+	
+	public void enterBillingCardDetails()
+	{
+		Eventhelper.switchToFrame(driver, frmBillingCard);
+		Eventhelper.isElementDisplayed(driver, txtCardNumber);
+		Eventhelper.sendkeys(driver, txtCardNumber, "4111111111111111");
+		Eventhelper.sendkeys(driver, txtCardexpiryDate, "12/30");
+		Eventhelper.sendkeys(driver, txtCardCVV, "123");
+		Eventhelper.switchToParentFrame(driver);
+	}
+	
 }

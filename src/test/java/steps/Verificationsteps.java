@@ -9,7 +9,8 @@ import utility.*;
 public class Verificationsteps {
 
 	Verificationpage verificationpage = new Verificationpage(Driverhelper.getDriver());
-
+    Commonpage commonpage = new Commonpage(Driverhelper.getDriver());
+	
 	@When("User enter {string} in Legal business name field")
 	public void user_enter_in_legal_business_name_field(String legalbusinessname) {
 		verificationpage.enterLegalBusinessName(legalbusinessname);
@@ -76,4 +77,12 @@ public class Verificationsteps {
 		verificationpage.enterDateOfBirthdateofSoleProprietorship();
 	}
 
+	@When("User click on the Annual plan selection option")
+	public void user_click_on_the_annual_plan_selection_option() {
+	    commonpage.selectAnnualPlanOption();
+	}
+	@When("User enter the card informatin details for the subscription")
+	public void user_enter_the_card_informatin_details_for_the_subscription() {
+	   commonpage.enterBillingCardDetails();
+	}
 }

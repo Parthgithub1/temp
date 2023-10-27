@@ -46,7 +46,7 @@ public class ExternalInvoicesteps {
 	public void user_should_see_the_mark_received_notiifcation_of_exxternal_invoice_on_the_screen() {
 		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("MarkReceivedExternalInvoice"));
 	}
-	
+
 	@Then("User should see the notification of cancelled external invoice in the notification")
 	public void user_should_see_the_notification_of_cancelled_external_invoice_in_the_notification() {
 		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("CancelledExternalInvoice"));
@@ -114,7 +114,7 @@ public class ExternalInvoicesteps {
 
 	@When("User click on the confirm payment button in extternal payment")
 	public void user_click_on_the_confirm_payment_button_in_extternal_payment() {
-		externalInvoicePage.clickOnButton("Confirm payment");
+		externalInvoicePage.clickOnButton("Confirm");
 	}
 
 	@When("User again login in environment")
@@ -139,12 +139,16 @@ public class ExternalInvoicesteps {
 
 	@Then("User enter manual bank details and click on {string} button")
 	public void user_enter_manual_bank_details_and_click_on_button(String buttonName) {
-	    externalInvoicePage.enterBankDetailManually(buttonName);
+		externalInvoicePage.enterBankDetailManually(buttonName);
 	}
-	
+
 	@When("user select {string} as a payment method")
 	public void user_select_as_a_payment_method(String paymentMethod) {
-	   externalInvoicePage.selectPaymentMethod(paymentMethod);
+		externalInvoicePage.selectPaymentMethod(paymentMethod);
 	}
-	
+
+	@When("User click on Pay button in external invoice payment")
+	public void user_click_on_pay_button_in_external_invoice_payment() {
+		externalInvoicePage.clickOnpay();
+	}
 }

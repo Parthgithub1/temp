@@ -54,7 +54,7 @@ public class Hooks {
 	public void setup(Scenario scenario) throws Exception {
 		String[] test = scenario.getUri().toString().split("/");
 		String[] longFeatureName = test[test.length - 1].split("\\.");
-		parenttest = extent.createTest(longFeatureName[0]);
+		parenttest = extent.createTest(longFeatureName[0]).assignCategory("Smoke");
 		childtest = parenttest.createNode(scenario.getName());
 		Log.startTestCase(scenario.getName());
 		driver = driverhelper.setDriver(System.getProperty(BROWSER), Boolean.parseBoolean(System.getProperty(HEADLESS)));
