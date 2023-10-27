@@ -44,7 +44,7 @@ Feature: Test AddBill functionality
     When User click on "Confirm" button
     When user select Bank type "plaid" for the external payment
     Then User enter bank details
-    When User click on Pay button in external payment
+    #When User click on Pay button in external payment
     When User click on the confirm payment button in extternal payment
     Then User should see "Transaction complete" text on the screen
     Then User is close the appeared dialog
@@ -136,4 +136,4 @@ Feature: Test AddBill functionality
     When User click on the confirm payment button in extternal payment
     Then User should see "Transaction complete" text on the screen
     Then User should see "Download" text on the screen
-    Then User should see "This is the add bill details." text on the screen
+    Then User should see "This is the add bill details." text on the screen    

@@ -47,4 +47,10 @@ public class Registrationstep {
 	public void user_enter_company_details() {
 		registrationpage.enterCompanyDetails();
 	}
+	
+	@When("user register user with email as {string} and {string} as firstname and {string} as businessname")
+	public void user_register_user_with_email_as_and_as_firstname_and_as_businessname(String email, String firstName, String businessName) {
+	    registrationpage.createUser(email, firstName, businessName);
+	}
+
 }

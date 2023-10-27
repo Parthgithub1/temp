@@ -375,15 +375,15 @@ public class Eventhelper {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("thoughtful.simform@gmail.com", "tgfyuwfjhualrzou");
+				return new PasswordAuthentication("automation@gohopscotch.com", "vhnrjwfoqwccpenu");
 			}
 		});
 
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("thoughtful.simform@gmail.com"));
+			message.setFrom(new InternetAddress("automation@gohopscotch.com"));
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("thoughtful.simform@gmail.com,auto.qa@gohopscotch.com"));
+					InternetAddress.parse("auto.qa@gohopscotch.com"));
 			message.setSubject("Automation Script Execution Status Report");
 
 			BodyPart messageBodyPart1 = new MimeBodyPart();

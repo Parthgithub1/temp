@@ -7,14 +7,14 @@ Feature: Test Fund Management Functionality
     When User should save current hopscotch balance
     When User click on "Add funds" button
     Then User should see "Add funds" model open
-    When User enter 2.15 in amount field to "Add" funds
+    When User enter 2.00 in amount field to "Add" funds
     Then User should see "Add funds" model open
     When User click on "Transfer" button
     When User click on "Confirm" button
     #Then User should see "Done" text on the screen
     #When User click on Close Icon
     Then User should see "Hopscotch Balance" text on the screen
-    Then User should see "2.15" amount on the screen
+    Then User should see "2.00" amount on the screen
     When User should save current hopscotch balance
     When User click on "Withdraw" button
     Then User should see "Withdraw funds" model open

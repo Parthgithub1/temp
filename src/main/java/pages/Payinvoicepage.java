@@ -102,16 +102,17 @@ public class Payinvoicepage {
 		String xpath = searchBarExistIn(accountingSection);
 		By txtSearchBaronAccountingSection = By.xpath(xpath);
 		Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, searchPayables);
+		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
 	}
 
 	public String searchBarExistIn(String accountingSection) {
 		String xpath = null;
 		if (accountingSection.equals("Payable")) {
-			xpath = "(//input[@aria-label='Search in the data grid'])[1]";
+			xpath = "(//input[@placeholder=\"Search\"])[1]";
 		} else if (accountingSection.equals("Receivable")) {
-			xpath = "(//input[@aria-label='Search in the data grid'])[2]";
+			xpath = "(//input[@placeholder=\"Search\"])[2]";
 		} else if (accountingSection.equals("Completed")) {
-			xpath = "(//input[@aria-label='Search in the data grid'])[3]";
+			xpath = "(//input[@placeholder=\"Search\"])[3]";
 		}
 		return xpath;
 	}
