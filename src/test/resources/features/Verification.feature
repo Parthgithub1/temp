@@ -3,7 +3,7 @@ Feature: Test Verifcation Functionality
   @Smoke @Verification @doNotRunOnUAT @QAT @Company
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email for "Company"
-    When User click on "do this later" link
+    #When User click on "do this later" link
     #Then User should see "here" link
     When User click on "Verify" link
     Then User should see "Let’s get you verified" text on the screen
