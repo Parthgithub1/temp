@@ -209,7 +209,7 @@ public class Commonpage {
 		case "2FA":
 		case "SettingChangePassword":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat071")
-					: property.getProperty("uat4");
+					: property.getProperty("uat3");
 			break;
 		case "invoiceScheduling":
 			credential = environment.equals(Environment.QAT.getenv()) ? property.getProperty("qat23")
