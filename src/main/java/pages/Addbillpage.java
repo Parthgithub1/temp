@@ -88,8 +88,8 @@ public class Addbillpage {
 
 	public void enterInSearchBar() {
 		By txtSearchBaronAccountingSection = By.xpath("//input[@id='payableTabSearch']");
-		Eventhelper.doRefresh(driver);
-		Eventhelper.threadWait(5000);
+		//Eventhelper.doRefresh(driver);
+		Eventhelper.threadWait(7000);
 		Eventhelper.explicitwait(driver, txtSearchBaronAccountingSection);
 		System.err.println("Vendor name is"+vender);
 		Eventhelper.click(driver, txtSearchBaronAccountingSection);
