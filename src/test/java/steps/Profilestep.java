@@ -2,6 +2,8 @@ package steps;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
+
 import io.cucumber.java.en.*;
 import pages.*;
 import utility.*;
@@ -74,7 +76,7 @@ public class Profilestep {
 			String industry, String website, String yearfound) {
 		assertTrue(profilePage.verificationofUpdatedProfile(businessName, handle, industry, website, yearfound));
 	}
-	
+
 	@When("User enter {string} in website field")
 	public void user_enter_in_website_field(String webSite) {
 		profilePage.enterWebsite(webSite);
@@ -84,9 +86,39 @@ public class Profilestep {
 	public void user_enter_in_year_founded_field(String yearFounded) {
 		profilePage.enterYearFounded(yearFounded);
 	}
-	
+
 	@When("User enter {string} in handle field")
 	public void user_enter_in_handle_field(String handle) {
-	    profilePage.enterHandle(handle);
+		profilePage.enterHandle(handle);
+	}
+
+	@When("User enter contact details for contact on the profile of another user")
+	public void user_enter_contact_details_for_contact_on_the_profile_of_another_user() {
+		profilePage.enterContactDetailsOnAnotherUsersProfile();
+	}
+
+	@Then("User is able to see that contact on the page")
+	public void user_is_able_to_see_that_contact_on_the_page() {
+		Assert.assertTrue(profilePage.checkEmailOfAddedContactOnAnotherUsersProfilePage());
+	}
+
+	@When("User select the {string} option from the dropdown menu")
+	public void user_select_the_option_from_the_dropdown_menu(String menuOption) {
+		profilePage.clickOnMenuOfAddedContact(menuOption);
+	}
+
+	@When("User edit the contact details of already added contact")
+	public void user_edit_the_contact_details_of_already_added_contact() {
+	 profilePage.editTheAlreadyAddedContact();
+	}
+	
+	@Then("User is able to see that updated contact on the page")
+	public void user_is_able_to_see_that_updated_contact_on_the_page() {
+	    Assert.assertTrue(profilePage.checkUpdateDetailsOfAddedContactOnAnotherUsersProfilePage());
+	}
+	
+	@Then("User is not able to see that removed contact on the screen")
+	public void user_is_not_able_to_see_that_removed_contact_on_the_screen() {
+	    Assert.assertFalse(profilePage.isContactDeleted());
 	}
 }

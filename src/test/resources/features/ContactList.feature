@@ -5,11 +5,11 @@ Feature: Test Contact List Functionality
     When User login for "contact"
     Then User should navigate to dashboard "contact"
     And User click on "Contacts" button to navigate to dashboard
-    Then User should see "Contacts" text on the screen
+    Then User should see "Trash" text on the screen
     When User click on "Add contact" button
     And User enter the Contact deatils
     When User click on "Add" button
-    Then User should see "Contacts" text on the screen
+    Then User should see "Trash" text on the screen
     Then User wait till pop up gets closed
     # Search & Profile
     When User enter search for Name in Searchbar

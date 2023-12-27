@@ -3,6 +3,7 @@ Feature: Test Verifcation Functionality
   @Smoke @Verification @doNotRunOnUAT @QAT @Company
   Scenario: verify that user is able to start the verification process into hopscotch application
     When User register with "random" email for "Company"
+    When User close the userflow dialog on the screen
     #When User click on "do this later" link
     #Then User should see "here" link
     When User click on "Verify" link
@@ -25,11 +26,14 @@ Feature: Test Verifcation Functionality
     When User process add bank screen
     When User click on "Done" button
     #Then User should see Verification Message
+    When User close the userflow dialog on the screen
     Then User should see "verified & approved to transact." text on the screen
+    
 
   @Smoke @Verification @doNotRunOnUAT @QAT @Sole
   Scenario: verify that user is able to start the verification process into hopscotch application for Sole Proprietorship
     When User register with "random" email for "Sole Proprietorship"
+    When User close the userflow dialog on the screen
     When User click on "Verify" link
     #Then User should see "here" link
     #When User click on "here" link
@@ -47,6 +51,7 @@ Feature: Test Verifcation Functionality
     When User process add bank screen
     When User click on "Done" button
     #Then User should see Verification Message
+    When User close the userflow dialog on the screen
     Then User should see "verified & approved to transact." text on the screen
 
   @CreateUser

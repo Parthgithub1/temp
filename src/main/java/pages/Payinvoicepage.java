@@ -54,7 +54,7 @@ public class Payinvoicepage {
 
 	public void clickOnInvoice() {
 		Eventhelper.threadWait(2000);
-		By invoicexpath = By.xpath("//*[contains(@class,'TransactionList_bizName__')]");
+		By invoicexpath = By.xpath("//*[contains(@class,'bizName')][1]");
 		Eventhelper.click(driver, invoicexpath);
 	}
 
@@ -123,5 +123,22 @@ public class Payinvoicepage {
 		Eventhelper.useActionClassOperation(driver, txtSearchBaronAccountingSection, "DoubleClick");
 		Eventhelper.threadWait(1000);
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
+	}
+	
+	public Float capturePayableOnDashboard(String accountingSection )
+	{
+		By lblAccountingSectionl;
+		String valueAttribute;
+		
+		if (accountingSection.equalsIgnoreCase("Payable")) {
+			lblAccountingSectionl= By.xpath("//div[@id='amount_payable']");
+			valueAttribute="payable-amount";
+		} else {
+			lblAccountingSectionl= By.xpath("//div[@id='amount_receivable']");
+			valueAttribute ="receivable-amount";
+		}
+		
+		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, lblAccountingSectionl,valueAttribute).substring(1).replace(",", ""));
+		
 	}
 }

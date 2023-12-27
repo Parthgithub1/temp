@@ -30,7 +30,7 @@ public class Verificationpage {
 	private By lstBankName = By.xpath("//button[contains(@aria-label, 'Huntington Bank')]");
 	private By txtBankUserName = By.xpath("//label[text()='Username']/ancestor::div//input[@type=\"text\" and @autocomplete=\"off\"]");
 	private By txtBankPassword = By.xpath("//label[text()='Username']/ancestor::div//input[@type=\"password\" and @autocomplete=\"off\"]");
-	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
+	private By rbtnAddBankPleidChecking = By.xpath("//div[contains(text(),'Checking')]");
 	private By dropDownofBusinessType1 = By.xpath("//div[contains(@class,'select__form-field__value-container css')]");
 	private By verificationText = By.xpath("//div[contains(@class,'VerificationStatus_title')]");
 

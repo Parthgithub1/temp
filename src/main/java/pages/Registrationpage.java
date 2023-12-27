@@ -63,14 +63,14 @@ public class Registrationpage {
 	}
 
 	public void enterCompanyDetails() {
-		commonPage.closePendoDialog();
+		//commonPage.closePendoDialog();
 		Eventhelper.sendkeys(driver, txtWebsite, "https://www.google.com/");
 		Eventhelper.sendkeys(driver, txtYearFounded, "2022");
-		commonPage.closePendoDialog();
+		//commonPage.closePendoDialog();
 		Eventhelper.click(driver, ddIndustry);
 		Eventhelper.click(driver, ddSelecteIndustry);
 		Eventhelper.sendkeys(driver, txtCity, "lakesville");
-		commonPage.closePendoDialog();
+		//commonPage.closePendoDialog();
 		Eventhelper.click(driver, ddState);
 		Eventhelper.click(driver, ddSelecteState);
 		Eventhelper.sendkeys(driver, txtAboutYourCompany, "This textarea contains value about company");

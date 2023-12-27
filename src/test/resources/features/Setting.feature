@@ -42,7 +42,7 @@ Feature: Test Settings Tab Functionality
     When User Change the Password
     Then User click on "Save" button
     Then User should see "Your password has been updated" text on the screen
-    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Dashboard" button to navigate to dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login with "SettingChangePassword" and Login again after change password
@@ -52,7 +52,7 @@ Feature: Test Settings Tab Functionality
     When User Reset Change the Password
     Then User click on "Save" button
     Then User should see "Your password has been updated" text on the screen
-    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Dashboard" button to navigate to dashboard
     Then User click on "Receivable" Container
     Then User should save the amount of Hopscotch Balance from Accounting Page
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
@@ -69,7 +69,7 @@ Feature: Test Settings Tab Functionality
     When User enter Code on screen
     Then User click on "Submit" button
     Then User should see "Two-factor authentication enabled" text on the screen
-    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Dashboard" button to navigate to dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "2FA"
@@ -81,9 +81,9 @@ Feature: Test Settings Tab Functionality
     When User enter Code on screen
     Then User click on "Submit" button
     Then User should see "Two-factor authentication disabled" text on the screen
-    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Dashboard" button to navigate to dashboard
     Then User click on "Receivable" Container
-    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Dashboard" button to navigate to dashboard
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 
@@ -184,4 +184,20 @@ Feature: Test Settings Tab Functionality
     When User add existing bank account on Payment Method
     Then User should see "This account has already been linked" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
-    Then User should see "Sign in" text on the screen
+    Then User should see "Sign in" text on the screen 
+
+  #Settings > Add Oauth babk on setting page 
+  @Regression @Setting @AddBOAOnPaymentPage
+  Scenario: Verify ettings Tab Account Section User can add Oauth Bank
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
+    When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
+    When User click on "Payment methods" link
+    Then User click on "Add account" button
+    When User add Bank of America for the pay purpose
+    Then User should see "Your payment method was added" text on the screen
+    When User click on menu of the "Bank of America" bank
+    When User click on "Delete" link
+    When User click on "Delete" button
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen 
