@@ -140,3 +140,15 @@ Feature: Test Registration Functionality
       | "@1111"                                     | "Strengthen your password with uppercase, lowercase, and special characters" |
       | "Test@122121212122121212212221212121212121" | "Maximum of 30 characters"                                                   |
       | "Test@12"                                   | "Minimum of 8 characters"                                                    |
+      
+  @Regression @PrivacyPolicy
+  Scenario: verify that privacy policy tab is clickable and validate that with the content of the page
+    When User click on "Privacy Policy" link
+    Then User is moved to the next tab
+    Then User should see "Purpose and Objectives" text on the screen
+    
+  @Regression @TermsofUse
+  Scenario: verify that terms of use tab is clickable and validate that with the content of the page
+    When User click on "Terms of Use" link
+    Then User is moved to the next tab
+    Then User should see "Hopscotch is a business community and payments platform" text on the screen   

@@ -59,8 +59,8 @@ public class Externalinvoicepage {
 	public void searchBusinessInGrid() {
 		Eventhelper.threadWait(1000);
 		Log.info("Customer name is -->" + txtCustomerName);
-		Eventhelper.useActionClassOperation(driver, txtSearchBarOnReceivable,Constants.DOUBLECLICK);
-		//Eventhelper.sendkeys(driver, txtSearchBarOnReceivable, txtCustomerName);
+		Eventhelper.useActionClassOperation(driver, txtSearchBarOnReceivable, Constants.DOUBLECLICK);
+		// Eventhelper.sendkeys(driver, txtSearchBarOnReceivable, txtCustomerName);
 		Eventhelper.sendkeywithJS(driver, txtSearchBarOnReceivable, txtCustomerName);
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBarOnReceivable, "backspace");
 		url = generateExternalurl();
@@ -81,7 +81,8 @@ public class Externalinvoicepage {
 		String externalURl = "external-payment?invoiceId=" + fetchInvoiceid + "&invoiceeBizId=" + fetchinvoiceeBizId
 				+ "&emailId=" + tempEmailAddress;
 		Log.info("The generated external url :- " + externalURl);
-		String cancelInvoiceNo = Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice, "invoice-number");
+		String cancelInvoiceNo = Eventhelper.getValueOfAttribute(driver, lblInvoiceNoForCancelInvoice,
+				"invoice-number");
 		Log.info("Cancel invoice number is" + cancelInvoiceNo);
 		return externalURl;
 	}
@@ -196,6 +197,10 @@ public class Externalinvoicepage {
 		Log.info("Clicked on is done ---->" + btnBankType);
 	}
 
+	public void addBOAOauthBank() {
+		commonPage.addBOA();
+	}
+
 	public void enterBankDetailManually(String buttonName) {
 		By btnPayOrPaid;
 		Eventhelper.sendkeys(driver, txtRoutingNumber, "063109935");
@@ -225,7 +230,7 @@ public class Externalinvoicepage {
 		By btnName = By.xpath("//span[@class='label-confirm-pay']");
 		Eventhelper.click(driver, btnName);
 	}
-	
+
 	public void setEnvironmentURL() {
 		Eventhelper.getURL(driver, "login");
 	}

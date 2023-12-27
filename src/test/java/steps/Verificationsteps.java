@@ -85,4 +85,9 @@ public class Verificationsteps {
 	public void user_enter_the_card_informatin_details_for_the_subscription() {
 	   commonpage.enterBillingCardDetails();
 	}
+	
+	@When("User add Bank of America for the pay purpose")
+	public void user_add_bank_of_america_for_the_pay_purpose() {
+	   commonpage.addBOA();
+	}
 }

@@ -80,3 +80,25 @@ Feature: Test Profile Functionality
     Examples: 
       | BusinessName           |
       | "qatsmokeautomation06" |
+      
+  @Regression @CrudOperationOfContactOnProfile
+  Scenario: Verify that user is able to add/edit/delete contact on another users profile page 
+    When User login for "InvoiceSend"
+    Then User should navigate to dashboard "InvoiceSend"
+    When User click on Pay or Get Paid link
+    When User enter "qatsmokeautomation15" in searchbox
+    Then User should see "qatsmokeautomation15" text on the screen
+    When User click on "Add contact" button
+    Then User should see "Add a new contact" text on the screen
+    When User enter contact details for contact on the profile of another user
+    When User click on "Save" button
+    Then User is able to see that contact on the page 
+    When User select the "Edit" option from the dropdown menu 
+    Then User should see "Edit a contact" text on the screen
+    When User edit the contact details of already added contact
+    When User click on "Save" button
+    Then User is able to see that updated contact on the page
+    When User select the "Remove" option from the dropdown menu 
+    Then User is not able to see that removed contact on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen

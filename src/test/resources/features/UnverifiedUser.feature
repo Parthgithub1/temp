@@ -15,7 +15,7 @@ Feature: Test Unverified user Functionality
     When User click on Profile Drop Down
     Then User click on "View Profile" option from Profile Drop-Down
     Then User should see "qatsmokeautomation04" text on the screen
-    Then User click on "Home" button to navigate to dashboard
+    Then User click on "Dashboard" button to navigate to dashboard
     Then User should see "Welcome to Hopscotch" text on the screen
     When User hover on "Add funds"
     Then User should see "Verify your account first" text on the screen

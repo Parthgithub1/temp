@@ -37,7 +37,7 @@ public class Commonpage {
 			.xpath("//label[text()='Username']/ancestor::div//input[@type=\"text\" and @autocomplete=\"off\"]");
 	private By txtbPassword = By
 			.xpath("//label[text()='Username']/ancestor::div//input[@type=\"password\" and @autocomplete=\"off\"]");
-	private By rbtnAddBankPleidChecking = By.xpath("//input[@type='radio']");
+	private By rbtnAddBankPleidChecking = By.xpath("//div[contains(text(),'Checking')]");
 	private By lnkDashBoard = By.xpath("//a[contains(@class,'Logo_logo')]");
 	private By lblBusinessLogo = By.xpath("//img[@alt='avatar']");
     private By lblAnnualPlanOption = By.xpath("//label[@for='annual']");
@@ -128,7 +128,36 @@ public class Commonpage {
 		Eventhelper.click(driver, btnContinueforPlaidProcess);
 		Eventhelper.switchToParentFrame(driver);
 	}
-
+	
+	public void addBOA()
+	{
+		By lstbankname = By.xpath("//*[contains(@aria-label, 'Bank of America')]");
+		Eventhelper.switchToFrame(driver, frmIframe);
+		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
+		Eventhelper.click(driver, btnContinueforPlaidProcess);
+	    Eventhelper.click(driver, lstbankname);
+	    Eventhelper.click(driver, By.xpath("//button[@id='aut-button']"));
+	    String winHandleBefore = driver.getWindowHandle();
+	    for(String winHandle : driver.getWindowHandles()){
+	        driver.switchTo().window(winHandle);
+	    }
+	    Eventhelper.isElementDisplayed(driver, By.xpath("//body[contains(@class ,'oauth-login')]"));
+	    Eventhelper.click(driver, By.xpath("//button[@id='submit-credentials']"));
+	    Eventhelper.click(driver, By.xpath("//button[@id='submit-device']"));
+	    Eventhelper.click(driver, By.xpath("//button[@id='submit-code']"));
+	    Eventhelper.click(driver, By.xpath("//div[normalize-space()='Plaid Checking']"));
+	    Eventhelper.click(driver, By.xpath("//button[@id='submit-accounts']"));
+	    Eventhelper.click(driver, By.xpath("//input[@id='terms']"));
+	    Eventhelper.click(driver, By.xpath("//button[@id='submit-confirmation'] "));
+	    driver.switchTo().window(winHandleBefore);
+	    Eventhelper.switchToFrame(driver, frmIframe);
+	    Eventhelper.click(driver, rbtnAddBankPleidChecking);
+		Eventhelper.isElementDisplayed(driver, btnContinueforPlaidProcess);
+		clickOnButton(Constants.CONTINUEBUTTON);
+		clickOnButton(Constants.CONTINUEBUTTON);
+		Eventhelper.switchToParentFrame(driver);
+	}
+	
 	public void hoverOnButton(String buttonname) {
 		By btnXpath = By.xpath("((//*[normalize-space()='" + buttonname + "']))[1]");
 		Eventhelper.useActionClassOperation(driver, btnXpath, "Hover");
@@ -259,6 +288,27 @@ public class Commonpage {
 		Eventhelper.sendkeys(driver, txtCardexpiryDate, "12/30");
 		Eventhelper.sendkeys(driver, txtCardCVV, "123");
 		Eventhelper.switchToParentFrame(driver);
+	}
+	
+	public void switchToNextTab()
+	{
+		driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
+	}
+	
+	public void closeUserFlowDialog()
+	{
+		By userFlowFrame = By.xpath("//iframe[contains(@class,'userflowjs-bubble__frame')]");
+		By closeDialogButton= By.xpath("//button[@aria-label='Close guide']");
+		
+		try {
+			if (Eventhelper.isElementDisplayed(driver,userFlowFrame)) {
+				Eventhelper.switchToFrame(driver,userFlowFrame);
+				Eventhelper.click(driver,closeDialogButton);
+				Eventhelper.switchToParentFrame(driver);
+			}
+		} catch (Exception e) {
+			Log.info(e.getMessage());
+		}
 	}
 	
 }

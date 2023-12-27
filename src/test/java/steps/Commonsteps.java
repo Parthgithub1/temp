@@ -35,6 +35,7 @@ public class Commonsteps {
 
 	@Then("User should see {string} text on the screen")
 	public void user_should_see_text_on_the_screen(String expectedText) {
+		Eventhelper.threadWait(5000);
 		assertTrue("Expected text not display :" + expectedText, commonPage.isTextDisplayed(expectedText));
 	}
 
@@ -88,7 +89,7 @@ public class Commonsteps {
 	public void user_hover_on(String buttonName) {
 		commonPage.hoverOnButton(buttonName);
 	}
-	
+
 	@Then("The {string} button should be {string}")
 	public void the_button_should_be(String btnName, String isStatus) {
 		boolean buttonStatus = addFunds.isButtonEnabled(btnName);
@@ -98,9 +99,20 @@ public class Commonsteps {
 			assertTrue(btnName + " Button is not Enable", !buttonStatus);
 		}
 	}
-	
+
 	@When("User click on the business logo on the dashboard")
 	public void user_click_on_the_business_logo_on_the_dashboard() {
-	    commonPage.clickOnTheBusinessLogoOnTheDashboard();
+		commonPage.clickOnTheBusinessLogoOnTheDashboard();
 	}
+
+	@Then("User is moved to the next tab")
+	public void user_is_moved_to_the_next_tab() {
+		commonPage.switchToNextTab();
+	}
+	
+	@When("User close the userflow dialog on the screen")
+	public void user_close_the_userflow_dialog_on_the_screen() {
+	   commonPage.closeUserFlowDialog();
+	}
+	
 }

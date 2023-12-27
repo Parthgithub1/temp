@@ -3,6 +3,7 @@ package steps;
 import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.*;
+import pages.Commonpage;
 import pages.Externalinvoicepage;
 import utility.Driverhelper;
 import utility.Eventhelper;
@@ -151,4 +152,10 @@ public class ExternalInvoicesteps {
 	public void user_click_on_pay_button_in_external_invoice_payment() {
 		externalInvoicePage.clickOnpay();
 	}
+	
+	@Then("User enter Bank of America details")
+	public void user_enter_bank_of_america_details() {
+	  externalInvoicePage.addBOAOauthBank();
+	}
+
 }

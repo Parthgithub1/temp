@@ -229,7 +229,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see "You sent an invoice to qatsmokeautomation11. We'll let you know once it's been paid." notification
-    When User click on "Home" link
+    When User click on "Dashboard" link
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     When User enter "qatsmokeautomation11" in Searchbar of "Receivable"

@@ -21,7 +21,7 @@ public class Payinvoivesteps {
 	Payinvoicedata payData = new Payinvoicedata();
 	Commonpage commonPage = new Commonpage(Driverhelper.getDriver());
 	Homepage homepage = new Homepage(Driverhelper.getDriver());
-	float amountOfRejectedCard, getexistingBalanceofPayableonAccountingPage;
+	float amountOfRejectedCard, getexistingBalanceofPayableonAccountingPage, getexistingBalanceofPayableonDashboard;
 	static float hopscotchBalance;
 
 	@When("User click on {string} Container")
@@ -166,5 +166,18 @@ public class Payinvoivesteps {
 	@Then("User should see that Payable Balance is not Updated after scheduling invoice")
 	public void user_should_see_that_payable_balance_is_not_updated_after_scheduling_invoice() {
 		assertEquals(getexistingBalanceofPayableonAccountingPage, payData.getBalanceofPayableonAccountingPage(), 0);
+	}
+	
+	@When("user should save the {string} balance on the dashboard")
+	public void user_should_save_the_balance_on_the_dashboard(String accountingSection) {
+		getexistingBalanceofPayableonDashboard= payInvoice.capturePayableOnDashboard(accountingSection);
+	}
+	@Then("User should validate the both {string} amount")
+	public void user_should_validate_the_both_amount(String accountingSection) {
+	    if (accountingSection.equalsIgnoreCase("Payable")) {
+			assertEquals(getexistingBalanceofPayableonAccountingPage, getexistingBalanceofPayableonDashboard, 0);
+		} else {
+			assertEquals(sendInvoice.receivableBalanceOnAccounting(), getexistingBalanceofPayableonDashboard, 0);
+		}
 	}
 }

@@ -1,6 +1,9 @@
 package pages;
 
 import org.openqa.selenium.*;
+
+import com.github.javafaker.Faker;
+
 import utility.*;
 
 public class Profilepage {
@@ -9,13 +12,22 @@ public class Profilepage {
 	private By txtAreaforAboutinProfile = By.xpath("(//textarea[@name='description'])[1]");
 	private By editIcon = By.xpath("//button[contains(@class,'EditButton')]");
 	private By editfromBanner = By.xpath("//button[contains(@class,'ProfileTopSection_edit-banner')]");
-	private By editAbout = By.xpath("//h4[contains(text(),'About')]/following-sibling::button");
+	private By editAbout = By.xpath("//h4[contains(text(),'About')]/following-sibling::div/button");
 	private By txtWebsite = By.xpath("//input[@name='website']");
 	private By txtYearFoubnded = By.xpath("//input[@name='yearFounded']");
 	private By ddIndustry = By.xpath("//div[@id='industry']");
 	private By txtBusinessName = By.xpath("//input[@name='dbaName']");
 	private By txtHandle = By.xpath("//input[@name='handle']");
 	private By chooseFileImage = By.id("filePicker");
+	private By txtFirstname = By.xpath("//input[@name='firstName']");
+	private By txtLastname = By.xpath("//input[@name='lastName']");
+	private By txtEmailID = By.xpath("//input[@name='emailId']");
+	private By txtRole = By.xpath("//input[@name='role']");
+    private String fname;
+    private String lname;
+    private String email;
+	
+    Faker faker = new Faker();
 
 	public Profilepage(WebDriver driver) {
 		this.driver = driver;
@@ -124,5 +136,55 @@ public class Profilepage {
 		Eventhelper.useActionClassOperation(driver, txtHandle, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtHandle, handle);
 		Eventhelper.sendKeyboardKeys(driver, txtHandle, "tab");
+	}
+
+	public void enterContactDetailsOnAnotherUsersProfile() {
+		fname = faker.name().firstName();
+		lname = faker.name().lastName();
+		Eventhelper.sendkeys(driver, txtFirstname, fname);
+		Eventhelper.sendkeys(driver, txtLastname, lname);
+		email= fname + lname + Constants.MAILINATORDOTCOM;
+		Eventhelper.sendkeys(driver, txtEmailID, email);
+		Eventhelper.sendkeys(driver, txtRole, faker.company().profession());
+
+	}
+ 
+	public Boolean checkEmailOfAddedContactOnAnotherUsersProfilePage() {
+		By lblEmailID= By.xpath("//table[contains(@class,'profile-contacts')]//tr//td[2]//span");
+		Eventhelper.explicitwait(driver, lblEmailID);
+		return (fname + lname + "@mailinator.com").equalsIgnoreCase(Eventhelper.getTextofElement(driver,lblEmailID)) ;
+	}
+	
+	public void clickOnMenuOfAddedContact(String menuOption)
+	{
+	 By lblMenu= By.xpath("//span[normalize-space()='"+ email.toString().toLowerCase()+"']/ancestor::td/following-sibling::td[2]");
+	 By lblMenuOption=By.xpath("//div[normalize-space()='"+menuOption+"']");	
+		Eventhelper.explicitwaitclickable(driver, lblMenu);
+		Eventhelper.autoScrollWindow(driver);
+	    Eventhelper.click(driver, lblMenu);
+		Eventhelper.click(driver, lblMenuOption);
+	}
+	
+	public void editTheAlreadyAddedContact()
+	{
+		fname = faker.name().firstName();
+		lname = faker.name().lastName();
+		Eventhelper.useActionClassOperation(driver, txtFirstname, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtFirstname, fname);
+		Eventhelper.useActionClassOperation(driver, txtLastname, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtLastname, lname);
+		Eventhelper.useActionClassOperation(driver, txtRole, Constants.DOUBLECLICK);
+		Eventhelper.sendkeys(driver, txtRole, faker.company().profession());
+	}
+	
+	public Boolean checkUpdateDetailsOfAddedContactOnAnotherUsersProfilePage() {
+		By lblName= By.xpath("(//td)[1]//span");
+		Eventhelper.explicitwaitTextToBePresent(driver, lblName,(fname +" "+ lname));
+		return (fname +" "+ lname).equalsIgnoreCase(Eventhelper.getTextofElement(driver,lblName)) ;
+	}
+	
+	public Boolean isContactDeleted()
+	{		
+		return Eventhelper.isElementDisplayed(driver, txtEmailID);
 	}
 }
