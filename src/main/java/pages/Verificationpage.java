@@ -81,6 +81,7 @@ public class Verificationpage {
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 		Eventhelper.switchToParentFrame(driver);
+		Eventhelper.threadWait(5000);
 	}
 
 	public void addBankExternalInvoice() {
