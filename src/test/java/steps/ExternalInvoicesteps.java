@@ -35,22 +35,22 @@ public class ExternalInvoicesteps {
 
 	@Then("User should see sent external invoice notiifcation on the screen")
 	public void user_should_see_sent_external_innvoice_notiifcation_on_the_screen() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("SentExternalInvoice"));
+		assertTrue(externalInvoicePage.isExternalInvoiceNotificationPresentOnDashboard("SentExternalInvoice"));
 	}
 
 	@Then("User should see the pay of external invoice notiifcation on the screen")
 	public void user_should_see_the_pay_of_external_invoice_on_the_screen() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("Payment"));
+		assertTrue(externalInvoicePage.isExternalInvoiceNotificationPresentOnDashboard("Payment"));
 	}
 
 	@Then("User should see the mark received notiifcation of exxternal invoice on the screen")
 	public void user_should_see_the_mark_received_notiifcation_of_exxternal_invoice_on_the_screen() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("MarkReceivedExternalInvoice"));
+		assertTrue(externalInvoicePage.isExternalInvoiceNotificationPresentOnDashboard("MarkReceivedExternalInvoice"));
 	}
 
 	@Then("User should see the notification of cancelled external invoice in the notification")
 	public void user_should_see_the_notification_of_cancelled_external_invoice_in_the_notification() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceNotificationOnDashboard("CancelledExternalInvoice"));
+		assertTrue(externalInvoicePage.isExternalInvoiceNotificationPresentOnDashboard("CancelledExternalInvoice"));
 	}
 
 	@Then("User is close the appeared dialog")
@@ -60,7 +60,7 @@ public class ExternalInvoicesteps {
 
 	@Then("User should see the businessname of the external invoice sender")
 	public void user_should_see_the_businessname_of_the_external_invoice_sender() {
-		assertTrue(externalInvoicePage.verifyExternalInvoiceSender());
+		assertTrue(externalInvoicePage.isExternalInvoiceSenderVerified());
 	}
 
 	@Then("Read businessname from the dashboard")

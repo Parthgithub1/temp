@@ -105,7 +105,7 @@ public class Detailedinvoicepage {
 		Eventhelper.click(driver, btnCloseInvoice);
 	}
 
-	public Boolean verificationOfDeatilsAddedInInvoice() {
+	public Boolean isDeatilsAddedInInvoice() {
 		By iteamName = By.xpath("(//p[contains(text(),'" + itemDescription + "')])[1]");
 		return itemDescription.equals(Eventhelper.getTextofElement(driver, iteamName));
 	}
@@ -130,7 +130,7 @@ public class Detailedinvoicepage {
 		Eventhelper.click(driver, paymentTerms);
 	}
 
-	public Boolean paymentTermsDate(int dueDate) {
+	public Boolean isPaymentTermsDateSet(int dueDate) {
 		return Eventhelper.getDate(dueDate)
 				.equalsIgnoreCase(Eventhelper.getTextofElement(driver, invoiceDueDate));
 	}

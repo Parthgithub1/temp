@@ -60,7 +60,6 @@ public class Externalinvoicepage {
 		Eventhelper.threadWait(1000);
 		Log.info("Customer name is -->" + txtCustomerName);
 		Eventhelper.useActionClassOperation(driver, txtSearchBarOnReceivable, Constants.DOUBLECLICK);
-		// Eventhelper.sendkeys(driver, txtSearchBarOnReceivable, txtCustomerName);
 		Eventhelper.sendkeywithJS(driver, txtSearchBarOnReceivable, txtCustomerName);
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBarOnReceivable, "backspace");
 		url = generateExternalurl();
@@ -87,7 +86,7 @@ public class Externalinvoicepage {
 		return externalURl;
 	}
 
-	public boolean verifyExternalInvoiceNotificationOnDashboard(String typeOfNotificationForExternalInvoice) {
+	public boolean isExternalInvoiceNotificationPresentOnDashboard(String typeOfNotificationForExternalInvoice) {
 		if (typeOfNotificationForExternalInvoice.equalsIgnoreCase("SentExternalInvoice")) {
 			return commonPage.isNotificationPresentInList(
 					"You sent an invoice to " + txtCustomerName + ". We'll let you know once it's been paid.");
@@ -113,7 +112,7 @@ public class Externalinvoicepage {
 		Log.info("BusinessNameOnDashboard is -->" + businessNameOnDashboard);
 	}
 
-	public Boolean verifyExternalInvoiceSender() {
+	public Boolean isExternalInvoiceSenderVerified() {
 		Boolean flag = false;
 		Eventhelper.explicitwait(driver, lblBusinessNameOnExternalInvoice);
 		String businessNameOnExternalInvoice = (Eventhelper.getTextofElement(driver, lblBusinessNameOnExternalInvoice))

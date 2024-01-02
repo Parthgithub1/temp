@@ -133,7 +133,7 @@ public class Verificationpage {
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
 	}
 
-	public boolean verificationConfirmation() {
+	public boolean isVerificationConfirmed() {
 		boolean flag = false;
 		if (Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is complete")
 				|| Eventhelper.getTextofElement(driver, verificationText).equalsIgnoreCase("Verification is pending")) {
