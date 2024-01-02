@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.github.javafaker.Faker;
 import utility.*;
@@ -71,11 +70,11 @@ public class Addbillpage {
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronPayableTab, "backspace");
 	}
 
-	public boolean verifyNotificationOfPayOfAddedBill() {
+	public boolean isNotificationOfPayOfAddedBillDisplayed() {
 		return commonPage.isNotificationPresentInList("Your payment to " + vender + " is on its way!");
 	}
 
-	public boolean verifyAddBillNotificationOnDashboard() {
+	public boolean isAddBillNotificationFoundOnDashboard() {
 		Eventhelper.threadWait(5000);
 		return commonPage.isNotificationPresentInList("You’ve added a bill from " + vender);
 	}
@@ -88,12 +87,10 @@ public class Addbillpage {
 
 	public void enterInSearchBar() {
 		By txtSearchBaronAccountingSection = By.xpath("//input[@id='payableTabSearch']");
-		//Eventhelper.doRefresh(driver);
 		Eventhelper.threadWait(7000);
 		Eventhelper.explicitwait(driver, txtSearchBaronAccountingSection);
-		System.err.println("Vendor name is"+vender);
+		Log.info("Vendor name is"+vender);
 		Eventhelper.click(driver, txtSearchBaronAccountingSection);
-		//Eventhelper.sendkeys(driver, txtSearchBaronAccountingSection, vender);
 		Eventhelper.sendkeywithJS(driver, txtSearchBaronAccountingSection, vender);
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
 		Eventhelper.threadWait(5000);

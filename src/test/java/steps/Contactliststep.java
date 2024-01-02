@@ -34,7 +34,7 @@ public class Contactliststep {
 
 	@Then("User should see the Contact Add Profile")
 	public void user_should_see_the_contact_add_profile() {
-		assertTrue(contactList.contactAddedVerification());
+		assertTrue(contactList.isAddedContactVerified());
 	}
 
 	@When("User click on Back button from screen")
@@ -59,7 +59,7 @@ public class Contactliststep {
 
 	@Then("User should see Contact in List")
 	public void user_should_see_notification() throws InterruptedException {
-		assertTrue(contactList.seeContacts(),"Contact Not found in the constact list");
+		assertTrue(contactList.isContactsPresent(),"Contact Not found in the constact list");
 	}
 
 	@When("User enter {string} in Business name field")

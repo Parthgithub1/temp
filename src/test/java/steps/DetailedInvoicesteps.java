@@ -46,7 +46,7 @@ public class DetailedInvoicesteps {
 
 	@Then("User should see the deatails added in Invoice")
 	public void user_should_see_the_deatails_added_in_invoice() {
-		assertTrue(detailedInvoice.verificationOfDeatilsAddedInInvoice());
+		assertTrue(detailedInvoice.isDeatilsAddedInInvoice());
 	}
 
 	@Then("User should see Tax value added in Invoice")
@@ -72,7 +72,7 @@ public class DetailedInvoicesteps {
 
 	@Then("User should see the Due Date according to the Payment Term Selection of {int} days")
 	public void user_should_see_the_due_date_according_to_the_payment_term_selection_of_days(Integer dueDate) {
-		assertTrue(detailedInvoice.paymentTermsDate(dueDate));
+		assertTrue(detailedInvoice.isPaymentTermsDateSet(dueDate));
 	}
 	
 	@When("User enter Item Details for detailed Invoice")

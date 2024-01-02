@@ -112,7 +112,7 @@ public class Contactlistpage {
 		return rowxpath;
 	}
 
-	public Boolean contactAddedVerification() {
+	public Boolean isAddedContactVerified() {
 		return Eventhelper.getTextofElement(driver, newContactAddedName).equalsIgnoreCase(bName);
 	}
 
@@ -133,7 +133,7 @@ public class Contactlistpage {
 		Eventhelper.click(driver, By.xpath("//div[text()='" + string + "']"));
 	}
 
-	public boolean seeContacts() {
+	public boolean isContactsPresent() {
 		String xpath = waitTillContactPresent();
 		if (xpath == null) {
 			xpath = "";
