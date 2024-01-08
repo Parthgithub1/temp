@@ -22,7 +22,6 @@ public class Invoiceschedulingpage {
 	}
 
 	public Boolean isInvoiceSchedule() {
-		//Eventhelper.waitUntilElementInvisible(driver, logoOfSchedulerForInvoice);
 		return Eventhelper.isElementDisplayed(driver, logoOfSchedulerForInvoice);
 	}
 

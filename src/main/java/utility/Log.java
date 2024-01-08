@@ -3,7 +3,7 @@ package utility;
 import org.apache.log4j.Logger;
 
 public class Log {
-	private static Logger log = Logger.getLogger(Log.class.getName());//
+	private static Logger logging = Logger.getLogger(Log.class.getName());//
 
 	// This is to print log for the beginning of the test case, as we usually run so
 	// many test cases as a test suite
@@ -11,11 +11,11 @@ public class Log {
 
 	public static void startTestCase(String testcasename) {
 
-		log.info(lineseparator);
+		logging.info(lineseparator);
 
-		log.info("$$$$$$$$$$$$$$$$$$$$$  Start of   " + testcasename + "     $$$$$$$$$$$$$$$$$$$$$$$$$");
+		logging.info("$$$$$$$$$$$$$$$$$$$$$  Start of   " + testcasename + "     $$$$$$$$$$$$$$$$$$$$$$$$$");
 
-		log.info(lineseparator);
+		logging.info(lineseparator);
 
 	}
 
@@ -23,11 +23,11 @@ public class Log {
 
 	public static void endTestCase(String testcasename) {
 
-		log.info(lineseparator);
+		logging.info(lineseparator);
 
-		log.info("XXXXXXXXXXXXXXXXXXXXXXX    End of      " + testcasename + "             XXXXXXXXXXXXXXXXXXXXXX");
+		logging.info("XXXXXXXXXXXXXXXXXXXXXXX    End of      " + testcasename + "             XXXXXXXXXXXXXXXXXXXXXX");
 
-		log.info(lineseparator);
+		logging.info(lineseparator);
 
 	}
 
@@ -35,31 +35,31 @@ public class Log {
 
 	public static void info(Object message) {
 
-		log.info(message);
+		logging.info(message);
 
 	}
 
 	public static void warn(Object message) {
 
-		log.warn(message);
+		logging.warn(message);
 
 	}
 
 	public static void error(String message) {
 
-		log.error(message);
+		logging.error(message);
 
 	}
 
 	public static void fatal(String message) {
 
-		log.fatal(message);
+		logging.fatal(message);
 
 	}
 
 	public static void debug(String message) {
 
-		log.debug(message);
+		logging.debug(message);
 
 	}
 
