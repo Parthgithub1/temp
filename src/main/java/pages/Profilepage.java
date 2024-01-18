@@ -92,7 +92,7 @@ public class Profilepage {
 		Eventhelper.click(driver, btnViewAll);
 	}
 
-	public boolean verificationofUpdatedProfile(String businessName, String handle, String industry, String webSite,
+	public boolean isVerificationOfUpdatedProfileMatched(String businessName, String handle, String industry, String webSite,
 			String yearFound) {
 		boolean flag = false;
 		By businessNameVerification = By.xpath("//span[ contains(@class,'InfoHeader_header__title') ]");
@@ -149,7 +149,7 @@ public class Profilepage {
 
 	}
  
-	public Boolean checkEmailOfAddedContactOnAnotherUsersProfilePage() {
+	public Boolean isEmailOfAddedContactOnAnotherUsersProfilePageFound() {
 		By lblEmailID= By.xpath("//table[contains(@class,'profile-contacts')]//tr//td[2]//span");
 		Eventhelper.explicitwait(driver, lblEmailID);
 		return (fname + lname + "@mailinator.com").equalsIgnoreCase(Eventhelper.getTextofElement(driver,lblEmailID)) ;
@@ -157,7 +157,7 @@ public class Profilepage {
 	
 	public void clickOnMenuOfAddedContact(String menuOption)
 	{
-	 By lblMenu= By.xpath("//span[normalize-space()='"+ email.toString().toLowerCase()+"']/ancestor::td/following-sibling::td[2]");
+	 By lblMenu= By.xpath("//span[normalize-space()='"+ email.toLowerCase()+"']/ancestor::td/following-sibling::td[2]");
 	 By lblMenuOption=By.xpath("//div[normalize-space()='"+menuOption+"']");	
 		Eventhelper.explicitwaitclickable(driver, lblMenu);
 		Eventhelper.autoScrollWindow(driver);
@@ -177,7 +177,7 @@ public class Profilepage {
 		Eventhelper.sendkeys(driver, txtRole, faker.company().profession());
 	}
 	
-	public Boolean checkUpdateDetailsOfAddedContactOnAnotherUsersProfilePage() {
+	public Boolean isUpdatedDetailsOfAddedContactOnAnotherUsersProfilePageDone() {
 		By lblName= By.xpath("(//td)[1]//span");
 		Eventhelper.explicitwaitTextToBePresent(driver, lblName,(fname +" "+ lname));
 		return (fname +" "+ lname).equalsIgnoreCase(Eventhelper.getTextofElement(driver,lblName)) ;

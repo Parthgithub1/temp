@@ -83,3 +83,31 @@ Feature: Test Fund Management Functionality
     Then User should see "2.15" amount on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
+
+  @Regression @checkPage
+  Scenario: Verify User is able to open the all pages of the web app
+    When User login for "Funds"
+    Then User should navigate to dashboard "Funds"
+    When User click on Notification option from Header
+    Then User should see "Notifications" text on the screen
+    And User click on "Accounting" button to navigate to dashboard
+    Then User should see "Payable balance" text on the screen
+    And User click on "Contacts" button to navigate to dashboard
+    Then User should see "Trash" text on the screen
+    When User click on Profile Drop Down  and click on "View Profile" option from Profile Drop-Down
+    Then User should see "About" text on the screen
+    When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
+    Then User should see "Settings" text on the screen
+    And User click on "Branding" button to navigate to dashboard
+    Then User should see "Customize your branding" text on the screen 
+    And User click on "Payment methods" button to navigate to dashboard
+    Then User should see "Your Hopscotch balance is your primary payment method." text on the screen
+    And User click on "Products/Services" button to navigate to dashboard
+    Then User should see "Add new Product/Service" text on the screen 
+    And User click on "Subscriptions" button to navigate to dashboard
+    Then User should see "Change plan" text on the screen 
+    And User click on "Integrations" button to navigate to dashboard
+    Then User should see "QuickBooks Online" text on the screen 
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+    

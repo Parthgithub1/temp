@@ -74,7 +74,7 @@ public class Profilestep {
 	@Then("User should see updated Profile Details on the Screen like {string} , {string} , {string}, {string}, {string}")
 	public void user_should_see_updated_profile_details_on_the_screen_like(String businessName, String handle,
 			String industry, String website, String yearfound) {
-		assertTrue(profilePage.verificationofUpdatedProfile(businessName, handle, industry, website, yearfound));
+		assertTrue(profilePage.isVerificationOfUpdatedProfileMatched(businessName, handle, industry, website, yearfound));
 	}
 
 	@When("User enter {string} in website field")
@@ -99,7 +99,7 @@ public class Profilestep {
 
 	@Then("User is able to see that contact on the page")
 	public void user_is_able_to_see_that_contact_on_the_page() {
-		Assert.assertTrue(profilePage.checkEmailOfAddedContactOnAnotherUsersProfilePage());
+		Assert.assertTrue(profilePage.isEmailOfAddedContactOnAnotherUsersProfilePageFound());
 	}
 
 	@When("User select the {string} option from the dropdown menu")
@@ -114,7 +114,7 @@ public class Profilestep {
 	
 	@Then("User is able to see that updated contact on the page")
 	public void user_is_able_to_see_that_updated_contact_on_the_page() {
-	    Assert.assertTrue(profilePage.checkUpdateDetailsOfAddedContactOnAnotherUsersProfilePage());
+	    Assert.assertTrue(profilePage.isUpdatedDetailsOfAddedContactOnAnotherUsersProfilePageDone());
 	}
 	
 	@Then("User is not able to see that removed contact on the screen")

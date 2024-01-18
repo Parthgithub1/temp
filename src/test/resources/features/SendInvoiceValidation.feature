@@ -43,3 +43,13 @@ Feature: Test validation on send invoice
     Then User click on "Receivable" Container
     Then Read Receivable Balance on accounting screen
     Then User should validate the both "Receivable" amount
+    
+  @Regression 
+  Scenario: Verify that view profile is clickable on vendor page and validate the business name on the profile page  
+    When User login for "InvoiceSend"
+    Then User should navigate to dashboard "InvoiceSend"
+    When User click on Pay or Get Paid link
+    When User get the first name of the business and click on the first business 
+    Then User should see the same name of the business on the screen
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen

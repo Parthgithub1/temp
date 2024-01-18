@@ -26,7 +26,7 @@ public class Sendinvoicesteps {
 	Payinvoicedata payData = new Payinvoicedata();
 	Float receivableBalanceOnDashboard, receivableBalanceOnAccountingPage, receivableBalanceOnDashboardAfterLogin,
 			totalExpectedAmount, amountOfInvoice, amountOfRejectedCard, flowedAmount;
-	String searchBusinessOnReceivable;
+	String searchBusinessOnReceivable, firstBusinessNameOnTheVendorPage;
 
 	@Then("Read Receivable Balance on accounting screen")
 	public void read_receivable_balance_on_accounting_screen() {
@@ -286,6 +286,16 @@ public class Sendinvoicesteps {
 	@Then("User should see place holder text of the searchbar of the business")
 	public void user_should_see_place_holder_text_of_the_searchbar_of_the_business() {
 		assertTrue(sendInvoicePage.isPlaceHolderPresentInSearchBusiness());
+	}
+	
+	@When("User get the first name of the business and click on the first business")
+	public void user_get_the_first_name_of_the_business_and_click_on_the_first_business() {
+	    firstBusinessNameOnTheVendorPage=sendInvoicePage.readTheFirstBusinessNameOnVendorPage();
+	}
+	
+	@Then("User should see the same name of the business on the screen")
+	public void user_should_see_the_same_name_of_the_business_on_the_screen() {
+	   assertEquals(firstBusinessNameOnTheVendorPage, sendInvoicePage.readTheBusinessNameFromTheProfile());
 	}
 
 }

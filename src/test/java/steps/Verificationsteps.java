@@ -1,5 +1,7 @@
 package steps;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.*;
 
 import io.cucumber.java.en.*;
@@ -69,7 +71,8 @@ public class Verificationsteps {
 
 	@Then("User should see Verification Message")
 	public void user_should_see_verification_message() {
-		Assertions.assertTrue(verificationpage.verificationConfirmation());
+		//Assertions.assertTrue(verificationpage.isVerificationConfirmed());
+		assertTrue(verificationpage.isVerificationConfirmed());
 	}
 
 	@When("User enter date of birth of user in Sole Proprietorship verification")

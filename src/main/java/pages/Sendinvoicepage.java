@@ -103,7 +103,6 @@ public class Sendinvoicepage {
 
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
-		//int index = getIndex(accountingSection);
 		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
 				.xpath("//div[contains(@class,'InvoiceCard_bill-amount')]"))
 				.substring(1).replace(",", ""));
@@ -130,10 +129,6 @@ public class Sendinvoicepage {
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
 		/*
-		 * int index = getIndex(accountingSection); // By btnMenuOnReceivableCard = By
-		 * // .xpath("(//div[contains(@class,'transaction-card-footer__actions-btn')])["
-		 * + // index + "]");
-		 * 
 		 * Note:- As per the current UI implementation there is only one xpath is used
 		 * for the menu icon in the invoice card. But will observe the behaviour for the
 		 * payable and completed and then refactor this method
@@ -148,10 +143,6 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
-		/*int index = getIndex(accountingSection);
-		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='" + message
-				+ "'])[" + index + "]");
-		*/
 		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='" + message
 				+ "'])");
 		Log.info("Message "+message +"on accounting section"+accountingSection);
@@ -258,5 +249,20 @@ public class Sendinvoicepage {
 	public boolean isPlaceHolderPresentInSearchBusiness() {
 		return Eventhelper.getValueOfAttribute(driver, txtSearchBar, "placeholder")
 				.equals("Find or add a business here");
+	}
+	
+	public String readTheFirstBusinessNameOnVendorPage()
+	{		
+	   By lblFirstBusinessName = By.xpath("((//div[@role='button'])[3]//ancestor::span)[1]");
+	   String businessName;
+	   businessName=Eventhelper.getTextofElement(driver, lblFirstBusinessName);
+	   Eventhelper.click(driver, lblFirstBusinessName);
+	   return businessName;
+	}
+	
+	public String readTheBusinessNameFromTheProfile()
+	{
+		By lblBusinessNameOnTheProfilePage= By.xpath("//span[contains(@class, 'InfoHeader_header__title')]");
+		return Eventhelper.getTextofElement(driver, lblBusinessNameOnTheProfilePage);
 	}
 }
