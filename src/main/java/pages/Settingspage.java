@@ -64,10 +64,12 @@ public class Settingspage {
 	}
 
 	public void clickOnTwoFactorAuthenticationToggle(String twoFactorAuthenticationToggle) {
+		Eventhelper.autoScrollWindow(driver);
 		Eventhelper.click(driver, By.xpath("//*[contains(text(),'" + twoFactorAuthenticationToggle + "')]"));
 	}
 
 	public void clickOnMenuIconOfBank(String bankName) {
+		Eventhelper.threadWait(1500);
 		Eventhelper.click(driver, By.xpath("//b[text()='" + bankName
 				+ "']/ancestor::div[contains(@class,'AccountDetails_payment-method-info__wrapper')]//following-sibling::div[contains(@class,'SettingsPaymentMethods_payment-method-menu')]"));
 		Eventhelper.threadWait(5000);
