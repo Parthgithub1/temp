@@ -63,6 +63,7 @@ public class Registrationpage {
 	}
 
 	public void enterCompanyDetails() {
+		// This method is used in the registration flow and if it not required then it will be remove 
 		Eventhelper.sendkeys(driver, txtWebsite, "https://www.google.com/");
 		Eventhelper.sendkeys(driver, txtYearFounded, "2022");
 		Eventhelper.click(driver, ddIndustry);
@@ -74,6 +75,7 @@ public class Registrationpage {
 	}
 
 	public void enterBrandingInformation() {
+		// This method is used in the registration flow and if it not required then it will be remove 
 		// Set branding Icon
 		Eventhelper.click(driver, btnIconImage);
 		WebElement chooseFile = Eventhelper.findElement(driver, chooseFileImage);
@@ -102,6 +104,25 @@ public class Registrationpage {
 		commonPage.clickOnButton("Save");
 	}
 
+	public void enterQuestionsDetails() {
+		By ddIndustry = By.xpath("//div[@id='industry']");
+		By selectIndustry = By.xpath("//div[contains(text(),\"Accounting\")]");
+		By ddEmployee = By.xpath("//div[@id='numberOfEmployees']");
+		By selectEmployee = By.xpath("//div[contains(text(),\"1-2\")]");
+		By ddHowdDidYouHeard = By.xpath("//div[@id='howDidYouHear']");
+		By selectHowdDidYouHear = By.xpath("//div[contains(text(),\"Blog post\")]");
+		By txtAreaExistingAccountingMethod = By.xpath("//textarea[@name='currentInvoiceBillPayWorkflow']");
+
+		Eventhelper.click(driver, ddIndustry);
+		Eventhelper.click(driver, selectIndustry);
+		Eventhelper.click(driver, ddEmployee);
+		Eventhelper.click(driver, selectEmployee);
+		Eventhelper.click(driver, ddHowdDidYouHeard);
+		Eventhelper.click(driver, selectHowdDidYouHear);
+		Eventhelper.sendkeys(driver, txtAreaExistingAccountingMethod, "All the accounting is done in a manual way");
+
+	}
+
 	public Boolean isTextDisplayed(String text) {
 		Eventhelper.threadWait(2000);
 		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
@@ -123,14 +144,10 @@ public class Registrationpage {
 		enterBusinessName(businessName);
 		commonPage.enterPassword(property.getProperty("password"));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		enterCompanyDetails();
+		enterQuestionsDetails();
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		enterBrandingInformation();
-		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		commonPage.clickOnButton("Continue with free plan");
-		commonPage.clickOnButton("Get Pro later");
 	}
-	
+
 	public void doRegister(String randomemail, String businessType) {
 		String lastName = businessType.equalsIgnoreCase("Sole Proprietorship") ? "SolePropPass" : "BizPass";
 		commonPage.clickOnLink("Sign up");
@@ -143,11 +160,7 @@ public class Registrationpage {
 		enterBusinessName("TestTP " + Eventhelper.generateRandomNumberWith1Prefix(4, 9999));
 		commonPage.enterPassword(property.getProperty("password"));
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		enterCompanyDetails();
+		enterQuestionsDetails();
 		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		enterBrandingInformation();
-		commonPage.clickOnButton(Constants.CONTINUEBUTTON);
-		commonPage.clickOnButton("Continue with free plan");
-		commonPage.clickOnButton("Get Pro later");
 	}
 }

@@ -24,9 +24,9 @@ Feature: Test Settings Tab Functionality
     When User click on "Payment methods" link
     When User click on menu of the "Huntington Bank" bank
     #delete bank account
-    When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "Payment methods" link
-    When User click on menu of the "Huntington Bank" bank
+    #When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
+    #When User click on "Payment methods" link
+    #When User click on menu of the "Huntington Bank" bank
     When User click on "Delete" link
     When User click on "Delete" button
     #Then User should not see "Navy Federal Credit Union" text on the screen

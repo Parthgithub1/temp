@@ -43,7 +43,7 @@ public class Addbillsteps {
 
 	@Then("User should see notification of payment of add bill on the dashboard")
 	public void user_should_see_notification_of_payment_of_add_bill_on_the_dashboard() {
-		assertTrue(addBillPage.isDeleteInvoiceNotificationSent());
+		assertTrue(addBillPage.isNotificationOfPayOfAddedBillDisplayed());
 	}
 
 	@Then("User should see notification of add bill on the dashboard")
