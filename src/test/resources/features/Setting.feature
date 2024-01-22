@@ -188,7 +188,7 @@ Feature: Test Settings Tab Functionality
 
   #Settings > Add Oauth babk on setting page 
   @Regression @Setting @AddBOAOnPaymentPage
-  Scenario: Verify ettings Tab Account Section User can add Oauth Bank
+  Scenario: Verify Settings Tab Account Section User can add Oauth Bank
     When User login for "Settings"
     Then User should navigate to dashboard "Settings"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
@@ -199,5 +199,20 @@ Feature: Test Settings Tab Functionality
     When User click on menu of the "Bank of America" bank
     When User click on "Delete" link
     When User click on "Delete" button
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen 
+    
+  #Settings > update the branding information on the page 
+  @Regression @Setting @Branding
+  Scenario: Verify Settings Tab Branding Section User can update the branding information
+    When User login for "Settings"
+    Then User should navigate to dashboard "Settings"
+    When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
+    When User click on "Branding" link
+    When User update the branding details on the setting page
+    Then User should see the remove image option for "Icon" in the appeared dialog box 
+    Then User should see the remove image option for "Logo" in the appeared dialog box 
+    Then User should see "#4D2165" text on the screen
+    Then User should see "#0DE6DF" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen 

@@ -28,11 +28,6 @@ public class Registrationstep {
 		registrationpage.enterOTP();
 	}
 
-	@When("user enter branding information")
-	public void user_enter_branding_information() {
-		registrationpage.enterBrandingInformation();
-	}
-
 	@When("User click on the textbox of email")
 	public void user_click_on_the_textbox_of_email() {
 		registrationpage.clickOnTextbox();
@@ -43,9 +38,9 @@ public class Registrationstep {
 		registrationpage.doRegister(email, businessType);
 	}
 
-	@When("User enter company details")
-	public void user_enter_company_details() {
-		registrationpage.enterCompanyDetails();
+	@When("User enter question details")
+	public void user_enter_question_details() {
+		registrationpage.enterQuestionsDetails();
 	}
 	
 	@When("user register user with email as {string} and {string} as firstname and {string} as businessname")

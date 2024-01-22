@@ -15,6 +15,13 @@ public class Settingspage {
 	private By txtMobileNumber = By.xpath("//input[@name='phone']");
 	private By enterCodeforTwoFactorAuthentication = By.xpath("//input[@name='code']");
 	private By bankNameCurrentlyAdded = By.xpath("//b[contains(@class,'AccountDetails_bank-name')]");
+	private By btnBrandingColor = By.xpath("//div[@class='update-brand-color-control']");
+	private By txtBrandingColor = By.xpath("//input[contains(@id,'rc-editable-input')]");
+	private By btnButtonColor = By.xpath("//div[@class='update-button-color-control']");
+	private By txtButtonColor = By.xpath("//input[contains(@id,'rc-editable-input')]");
+	private By btnIconImage = By.xpath("//div[@class='upload-icon-control']");
+	private By chooseFileImage = By.id("filePicker");
+	private By btnBrandLogo = By.xpath("//div[@class='upload-logo-control']");
 	String getPropertyOfPassword = property.getProperty("password");
 	String getPropertyOfChangePassword = property.getProperty("changePassword");
 
@@ -107,5 +114,56 @@ public class Settingspage {
 	public void enterWrongCodeForTwoFactorAuthentication() {
 		Eventhelper.sendkeys(driver, enterCodeforTwoFactorAuthentication,
 				Constants.ENTERWRONGCODEFORVALIDATIONOFTWOFACTORAUTHENTICATION);
+	}
+
+	public void enterBrandingInformation() {
+		// Set branding Icon
+		try {
+			commonPage.clickOnButton("Remove image");	
+		} catch (Exception e) {
+			Log.error(e.toString());
+		}
+		Eventhelper.click(driver, btnIconImage);
+		WebElement chooseFile = Eventhelper.findElement(driver, chooseFileImage);
+		chooseFile.sendKeys(Constants.IMAGEFOLDER);
+		commonPage.clickOnButton("Save");
+		// Set branding logo
+		try {
+			commonPage.clickOnButton("Remove image");	
+		} catch (Exception e) {
+			Log.error(e.toString());
+		}
+		Eventhelper.click(driver, btnBrandLogo);
+		WebElement chooseBrnadIcon = Eventhelper.findElement(driver, chooseFileImage);
+		chooseBrnadIcon.sendKeys(Constants.IMAGEFOLDER);
+		commonPage.clickOnButton("Save");
+		// Set branding color
+		Eventhelper.click(driver, btnBrandingColor);
+		Eventhelper.explicitwait(driver, txtBrandingColor);
+		for (int i = 1; i <= 7; i++) {
+			Eventhelper.sendKeyboardKeys(driver, txtBrandingColor, "backspace");
+		}
+		Eventhelper.sendkeys(driver, txtBrandingColor, "#4D2165");
+		commonPage.clickOnButton("Save");
+		// Set button Color
+		Eventhelper.click(driver, btnButtonColor);
+		Eventhelper.explicitwait(driver, txtButtonColor);
+		for (int i = 1; i <= 7; i++) {
+			Eventhelper.sendKeyboardKeys(driver, txtButtonColor, "backspace");
+		}
+		Eventhelper.sendkeys(driver, txtButtonColor, "#0DE6DF");
+		commonPage.clickOnButton("Save");
+	}
+
+	public void checkRemoveOptionInBrandingOption(String imageOption) {
+		if (imageOption.equalsIgnoreCase("Icon")) {
+			Eventhelper.click(driver, btnIconImage);
+			commonPage.isTextDisplayed("Remove image");
+			commonPage.clickOnButton("Save");
+		} else {
+			Eventhelper.click(driver, btnBrandLogo);
+			commonPage.isTextDisplayed("Remove image");
+			commonPage.clickOnButton("Save");
+		}
 	}
 }
