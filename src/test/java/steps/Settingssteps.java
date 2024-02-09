@@ -101,4 +101,14 @@ public class Settingssteps {
 	public void user_add_existing_bank_account_on_payment_method() {
 		commonPage.addBankInPlaid(settingsPage.getNameOfCurrentBankAdded());
 	}
+	
+	@When("User update the branding details on the setting page")
+	public void user_update_the_branding_details_on_the_setting_page() {
+	    settingsPage.enterBrandingInformation();
+	}
+	
+	@Then("User should see the remove image option for {string} in the appeared dialog box")
+	public void user_should_see_the_remove_image_option_for_in_the_appeared_dialog_box(String imageOption) {
+	    settingsPage.checkRemoveOptionInBrandingOption(imageOption);
+	}
 }

@@ -13,14 +13,8 @@ Feature: Test Registration Functionality
     When User enter "The John Dear" in businessname field
     When User enter "Test@123" in password field
     When User click on "Continue" button
-    When User enter company details
+    When User enter question details
     When User click on "Continue" button
-    When user enter branding information
-    Then User should see "#4D2165" text on the screen
-    Then User should see "#0DE6DF" text on the screen
-    When User click on "Continue" button
-    When User click on "Continue with free plan" button
-    When User click on "Get Pro later" button
     Then User should see "Welcome to Hopscotch" text on the screen
 
   @Regression

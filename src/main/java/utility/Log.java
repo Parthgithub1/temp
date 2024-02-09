@@ -1,9 +1,9 @@
 package utility;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class Log {
-	private static Logger logging = Logger.getLogger(Log.class.getName());//
+	private static Logger logging = LogManager.getLogger();
 
 	// This is to print log for the beginning of the test case, as we usually run so
 	// many test cases as a test suite
