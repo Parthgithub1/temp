@@ -35,9 +35,8 @@ public class Payinvoicepage {
 
 	public float getexistingBalanceofPayableonAccountingPage() {
 		homepage.waitUntiAddFundsButtonEnabled();
-		return Float.parseFloat(
-				Eventhelper.getValueOfAttribute(driver, By.xpath("//div[@id='amount_payable']"), "data-balance")
-						.replace(",", ""));
+		return Float.parseFloat(Eventhelper
+				.getValueOfAttribute(driver, By.xpath("//div[@id='amount_payable']"), "data-balance").replace(",", ""));
 	}
 
 	public float invoiceAmountUserPaying() {
@@ -63,7 +62,7 @@ public class Payinvoicepage {
 		List<WebElement> columnElements = Eventhelper.findElements(driver, invoiceTableGrid);
 		List<String> actualData = new ArrayList<>();
 		for (WebElement columnElement : columnElements) {
-			actualData.add(columnElement.getText());
+			actualData.add(columnElement.getText().trim());
 		}
 		return actualData;
 	}
@@ -124,21 +123,21 @@ public class Payinvoicepage {
 		Eventhelper.threadWait(1000);
 		Eventhelper.sendKeyboardKeys(driver, txtSearchBaronAccountingSection, "backspace");
 	}
-	
-	public Float capturePayableOnDashboard(String accountingSection )
-	{
+
+	public Float capturePayableOnDashboard(String accountingSection) {
 		By lblAccountingSectionl;
 		String valueAttribute;
-		
+
 		if (accountingSection.equalsIgnoreCase("Payable")) {
-			lblAccountingSectionl= By.xpath("//div[@id='amount_payable']");
-			valueAttribute="payable-amount";
+			lblAccountingSectionl = By.xpath("//div[@id='amount_payable']");
+			valueAttribute = "payable-amount";
 		} else {
-			lblAccountingSectionl= By.xpath("//div[@id='amount_receivable']");
-			valueAttribute ="receivable-amount";
+			lblAccountingSectionl = By.xpath("//div[@id='amount_receivable']");
+			valueAttribute = "receivable-amount";
 		}
-		
-		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, lblAccountingSectionl,valueAttribute).substring(1).replace(",", ""));
-		
+
+		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver, lblAccountingSectionl, valueAttribute)
+				.substring(1).replace(",", ""));
+
 	}
 }

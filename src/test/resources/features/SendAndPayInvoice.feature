@@ -129,7 +129,7 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Notification option from Header
     Then User should see "Notifications" text on the screen
     Then User should see the notification of cancelled invoice
-   #Then User should see "qatsmokeautomation15 has been cancelled." notification
+    #Then User should see "qatsmokeautomation15 has been cancelled." notification
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
     When User login for "cancelInvoiceNotificationCheck"
@@ -379,7 +379,7 @@ Feature: Test Send and Pay invoice Functionality
     Then Payable balance is updated on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    
+
   #Note:- Share link feature is not work in Safari as per below code.
   @Regression @shareLinkForHtoH
   Scenario: Verify that user is able to verify share link feature for Hopscotch user.
@@ -398,12 +398,12 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Invoice sent" text on the screen
     When User read the invoice id from the receivable
     When User click on the menu icon of the card on "Receivable"
-    When User click on "Share Link" link
-    Then User should see "Link was copied" text on the screen
+    When User click on "Share link" link
+    Then User should see "Link copied" text on the screen
     Then Receivable balance is updated on the screen with "2.00"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User set copied link in browser as per dependent on platform 
+    When User set copied link in browser as per dependent on platform
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
     Then User should see the invoice no on the invoice card in receivable
@@ -412,7 +412,7 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Sign in" text on the screen
 
   @Regression @sharelinkshouldnotworkforotheruser
-  Scenario: Verify that user is not able see that third party user is not able to see the invoice 
+  Scenario: Verify that user is not able see that third party user is not able to see the invoice
     When User login for "InvoiceSend"
     Then User should navigate to dashboard "InvoiceSend"
     Then User click on "Receivable" Container
@@ -427,22 +427,21 @@ Feature: Test Send and Pay invoice Functionality
     When User click on "Send" button
     Then User should see "Invoice sent" text on the screen
     When User click on the menu icon of the card on "Receivable"
-    When User click on "Share Link" link
-    Then User should see "Link was copied" text on the screen
+    When User click on "Share link" link
+    Then User should see "Link copied" text on the screen
     Then Receivable balance is updated on the screen with "2.00"
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User set copied link in browser as per dependent on platform 
+    When User set copied link in browser as per dependent on platform
     When User login for "Login"
     Then User should navigate to dashboard "Login"
     Then User should see "Invoice is not found." text on the screen
-    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down 
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-
 
   @Regression @shareLinkForHtoEForAddBill
   Scenario: Verify that user is not able to share link feature for Bill.
-   When User login for "deatiledInvoice"
+    When User login for "deatiledInvoice"
     Then User should navigate to dashboard "deatiledInvoice"
     When User click on Pay or Get Paid link
     When User enter search for business in Searchbar
@@ -456,11 +455,15 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Payment Method" text on the screen
     #When User click on the share link button in payable
     When User click on the menu icon of the card on "Payable"
-    When User click on "Share Link" link
-    Then User should see "Link will not be created until you pay this bill" text on the screen
+    When User click on "Share link" link
+    Then User should see "Link will be created once you have paid this bill." text on the screen
+    When User click on "Pay" button
+    When User click on "Confirm payment" button
+    When User click on "Copy link" button
+    Then User should see "Link was copied" text on the screen
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    
+
   @Regression @shareLinkForHtoEForExternalInvoice
   Scenario: Verify that user is able to share link feature for External Invoice.
     When User login for "deatiledInvoice"
@@ -478,19 +481,45 @@ Feature: Test Send and Pay invoice Functionality
     Then User should see "Invoice sent" text on the screen
     When User read the invoice id from the receivable
     When User click on the menu icon of the card on "Receivable"
-    When User click on "Share Link" link
-    Then User should see "Link was copied" text on the screen
+    When User click on "Share link" link
+    Then User should see "Link copied" text on the screen
     Then Receivable balance is updated on the screen with "2.00"
     #And Search the external invoice in receivable
     #When User read the invoice no from the receivable
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
-    When User set copied link in browser as per dependent on platform 
+    When User set copied link in browser as per dependent on platform
     When User enter security code to verify the user on the screen
     When User click on "Confirm" button
     Then User should verified the invoice no on the external invoice screen
     Then User should see "This invoice is generated for share link" text on the screen
-    
+
+  @Regression @shareLinkForExternalUserConversation
+  Scenario: Verify that user is able to verify share link feature for the external user which is converted into Hopscotch user.
+    When User login for "InvoiceSend"
+    Then User should navigate to dashboard "InvoiceSend"
+    Then User click on "Receivable" Container
+    Then Read Receivable Balance on accounting screen
+    When User click on Pay or Get Paid link
+    # "TestCRS17thNove2i2e" is a external user that is converted into hopscotch
+    When User enter "TestCRS17thNove2i2e" in searchbox
+    Then User should see "TestCRS17thNove2i2e" text on the screen
+    When User click on "Get paid" button
+    Then User should see "Invoice details" text on the screen
+    When User enter invoice details like amount is 2 and message is "This invoice is generated for share link"
+    When User click on "Confirm" button
+    When User click on "Send" button
+    Then User should see "Invoice sent" text on the screen
+    When User read the invoice id from the receivable
+    When User click on the menu icon of the card on "Receivable"
+    When User click on "Share link" link
+    Then User should see "Link copied" text on the screen
+    Then Receivable balance is updated on the screen with "2.00"
+    When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
+    Then User should see "Sign in" text on the screen
+    When User set copied link in browser as per dependent on platform
+    Then User should see "Sign in" text on the screen
+
   @Regression @clearSearch
   Scenario: Verify that user is able to clear the business name on pay or get paid.
     When User login for "InvoiceSend"
@@ -498,6 +527,6 @@ Feature: Test Send and Pay invoice Functionality
     When User click on Pay or Get Paid link
     When User enter "Search the business" in searchbox
     When User click on "Clear" button
-    Then User should see place holder text of the searchbar of the business 
+    Then User should see place holder text of the searchbar of the business
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen

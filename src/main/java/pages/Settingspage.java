@@ -72,6 +72,7 @@ public class Settingspage {
 
 	public void clickOnTwoFactorAuthenticationToggle(String twoFactorAuthenticationToggle) {
 		Eventhelper.autoScrollWindow(driver);
+		Eventhelper.threadWait(3000);
 		Eventhelper.click(driver, By.xpath("//*[contains(text(),'" + twoFactorAuthenticationToggle + "')]"));
 	}
 

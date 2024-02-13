@@ -20,7 +20,7 @@ public class Addbillpage {
 	private By txtLastName = By.xpath("//input[@name='lastName']");
 	private By txtSearchBar = By.xpath("//input[@name='search']");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
-	private By btnPayOnAddContact= By.xpath("(//form//button)[1]");
+	private By btnPayOnAddContact= By.xpath("//div[@class='dialogue-action']//button[text()='Pay']");
        
 	Faker faker = new Faker();
 	String vender;

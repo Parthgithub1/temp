@@ -28,7 +28,8 @@ public class Sendinvoicepage {
 	private By btnSearchedcardonreceivable = By.xpath("(//table[@role='presentation'])[2]//tr[2]//td[3]");
 	private By btnCloseFlowDialogBox = By.xpath("//button[@aria-label='Close']//*[name()='svg']");
 	private By lblInvoiceNoForCancelInvoice = By.xpath("(//span[contains(@class,'id_receivable')])[1]");
-	private By btnShareLinkInReceivable = By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[2]//td[2]//span//div[contains(@class,'quick-action-icons')]//div[1]");
+	private By btnShareLinkInReceivable = By.xpath(
+			"(//div[@id='receivable']//table)[2]//tbody//tr[2]//td[2]//span//div[contains(@class,'quick-action-icons')]//div[1]");
 	private By lblInvoiceID = By.xpath("//span[contains(@class,'InvoiceCard_entity-short-card-help-text')]");
 	private By lblInvoiceNoOnExternalInvoice = By.xpath("//div[@class='invoice-action__num']");
 	private Homepage homepage;
@@ -71,13 +72,13 @@ public class Sendinvoicepage {
 		int noofRows = Eventhelper.findElements(driver, By.xpath("(//div[@id='receivable']//table)[2]//tbody")).size();
 		ArrayList<String> rowData = null;
 		List<WebElement> listwe;
-		Log.info("No of rows are ---> "+noofRows);
+		Log.info("No of rows are ---> " + noofRows);
 		ArrayList<ArrayList<String>> allrowdata = new ArrayList<ArrayList<String>>();
 		for (int i = 1; i <= noofRows; i++) {
 			rowData = new ArrayList<String>();
 			listwe = Eventhelper.findElements(driver,
 					By.xpath("(//div[@id='receivable']//table)[2]//tbody//tr[" + i + "]"));
-			Log.info("listwe values are ----->"+listwe);
+			Log.info("listwe values are ----->" + listwe);
 			for (WebElement ele : listwe) {
 				rowData.add(ele.getText().trim());
 			}
@@ -103,10 +104,10 @@ public class Sendinvoicepage {
 
 	public float invoiceAmount(String accountingSection) {
 		Eventhelper.threadWait(2000);
-		float amount = Float.parseFloat(Eventhelper.getTextofElement(driver, By
-				.xpath("//div[contains(@class,'InvoiceCard_bill-amount')]"))
-				.substring(1).replace(",", ""));
-		Log.info("Balance on the opened card in receivable is :- " + amount +"In the section"+ accountingSection);
+		float amount = Float.parseFloat(
+				Eventhelper.getTextofElement(driver, By.xpath("//div[contains(@class,'InvoiceCard_bill-amount')]"))
+						.substring(1).replace(",", ""));
+		Log.info("Balance on the opened card in receivable is :- " + amount + "In the section" + accountingSection);
 		return amount;
 	}
 
@@ -124,7 +125,7 @@ public class Sendinvoicepage {
 
 	public void enterAmountOfInvoice(String amount) {
 		Eventhelper.sendkeys(driver, txtAmount, amount);
-		Eventhelper.sendKeyboardKeys(driver,txtAmount , "tab");
+		Eventhelper.sendKeyboardKeys(driver, txtAmount, "tab");
 	}
 
 	public void clickOnMenuButtonOfCard(String accountingSection) {
@@ -135,7 +136,7 @@ public class Sendinvoicepage {
 		 */
 		By btnMenuOnReceivableCard = By.xpath("//div[@class='transaction-card-footer__actions-btn']");
 		Eventhelper.click(driver, btnMenuOnReceivableCard);
-		Log.info("clicked on menu"+accountingSection);
+		Log.info("clicked on menu" + accountingSection);
 	}
 
 	public void clickOnSearchedCardReceivavle() {
@@ -143,9 +144,9 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isMessageOnCard(String message, String accountingSection) {
-		By xpath = By.xpath("(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='" + message
-				+ "'])");
-		Log.info("Message "+message +"on accounting section"+accountingSection);
+		By xpath = By.xpath(
+				"(//div[contains(@class,'InvoiceCard_transaction-card__wrapper')]//*[text()='" + message + "'])");
+		Log.info("Message " + message + "on accounting section" + accountingSection);
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}
 
@@ -238,7 +239,7 @@ public class Sendinvoicepage {
 	}
 
 	public boolean isInvoiceNoPresentOnTheInvoiceCard() {
-		return Eventhelper.getTextofElement(driver, lblInvoiceID).equalsIgnoreCase(("Invoice #"+invoiceId));
+		return Eventhelper.getTextofElement(driver, lblInvoiceID).equalsIgnoreCase(("Invoice #" + invoiceId));
 	}
 
 	public boolean isInvoiceNoDisplayOnTheScreen() {
@@ -250,19 +251,17 @@ public class Sendinvoicepage {
 		return Eventhelper.getValueOfAttribute(driver, txtSearchBar, "placeholder")
 				.equals("Find or add a business here");
 	}
-	
-	public String readTheFirstBusinessNameOnVendorPage()
-	{		
-	   By lblFirstBusinessName = By.xpath("((//div[@role='button'])[3]//ancestor::span)[1]");
-	   String businessName;
-	   businessName=Eventhelper.getTextofElement(driver, lblFirstBusinessName);
-	   Eventhelper.click(driver, lblFirstBusinessName);
-	   return businessName;
+
+	public String readTheFirstBusinessNameOnVendorPage() {
+		By lblFirstBusinessName = By.xpath("((//div[@role='button'])[3]//ancestor::span)[1]");
+		String businessName;
+		businessName = Eventhelper.getTextofElement(driver, lblFirstBusinessName);
+		Eventhelper.click(driver, lblFirstBusinessName);
+		return businessName;
 	}
-	
-	public String readTheBusinessNameFromTheProfile()
-	{
-		By lblBusinessNameOnTheProfilePage= By.xpath("//span[contains(@class, 'InfoHeader_header__title')]");
+
+	public String readTheBusinessNameFromTheProfile() {
+		By lblBusinessNameOnTheProfilePage = By.xpath("//span[contains(@class, 'InfoHeader_header__title')]");
 		return Eventhelper.getTextofElement(driver, lblBusinessNameOnTheProfilePage);
 	}
 }

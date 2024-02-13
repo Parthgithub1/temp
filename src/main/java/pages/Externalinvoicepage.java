@@ -25,7 +25,7 @@ public class Externalinvoicepage {
 	private By txtCode = By.xpath("//input[@name='code']");
 	private By btnCloseInvoiceInReceivable = By
 			.xpath("//div[@class='InvoiceCard_transaction-card-header__wrapper__cpw4r']//button");
-	private By btnGetPaidOnAddContact = By.xpath("//form//button[text()='Get paid']");
+	private By btnGetPaidOnAddContact = By.xpath("//div[@class='dialogue-action']//button[text()='Get paid']");
 	private By lblCancelBanner = By.xpath("//p[@class='toast__message']");
 	private By txtRoutingNumber = By.xpath("//input[@name='routingNumber']");
 	private By txtAccountingNumber = By.xpath("//input[@name='accountNumber']");
@@ -132,6 +132,8 @@ public class Externalinvoicepage {
 		Eventhelper.sendkeys(driver, txtlastname, faker.name().lastName());
 		tempEmailAddress = txtCustomerName + Constants.MAILINATORDOTCOM;
 		Eventhelper.sendkeys(driver, txtemail, tempEmailAddress);
+		Eventhelper.threadWait(2000);
+		Eventhelper.sendKeyboardKeys(driver, txtemail, "tab");
 	}
 
 	public void enterBusinessName(String businessName) {

@@ -38,7 +38,7 @@ public class AddFundspage {
 	}
 
 	public String modalHeader(String text) {
-		By xpath = By.xpath("//span[contains(@class,'ModalTitleWithStep_title') and contains(text(),'" + text + "')]");
+		By xpath = By.xpath("//h4[contains(@class,'my-0')  and contains(text(),'" + text + "')]");
 		return Eventhelper.getTextofElement(driver, xpath);
 	}
 
