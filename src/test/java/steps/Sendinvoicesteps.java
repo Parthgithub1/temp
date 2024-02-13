@@ -58,7 +58,7 @@ public class Sendinvoicesteps {
 			 * expectedList.add(columns.get(1)); Note:- Keeping this line in coding as there
 			 * is a change in the logic
 			 */
-		}
+		}					
 		ArrayList<ArrayList<String>> actualList = sendInvoicePage.seeInvoice(searchBusinessOnReceivable);
 		boolean isInvoicePresent = false;
 		for (ArrayList<String> list : actualList) {

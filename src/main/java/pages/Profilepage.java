@@ -61,7 +61,7 @@ public class Profilepage {
 	}
 
 	public boolean isTextDisplayedofEditProfile(String text) {
-		By xpath = By.xpath("//form//*[contains(text(),'" + text + "')]");
+		By xpath = By.xpath("//*[contains(text(),'" + text + "')]");
 		Eventhelper.explicitwait(driver, xpath);
 		return Eventhelper.isElementDisplayed(driver, xpath);
 	}

@@ -83,10 +83,10 @@ public class Payinvoivesteps {
 		List<String> expectedList = new ArrayList<String>();
 		List<String> actualList = payInvoice.seeInvoice();
 		List<List<String>> expected = dataTable.asLists();
-		for (List<String> columns : expected) {
+		for (List<String> columns : expected) {			
 			expectedList.add(columns.get(0));
 			expectedList.add(Eventhelper.getTodaysdateInSpecifiedFormat());
-			expectedList.add(columns.get(1));
+			expectedList.add(columns.get(1));				
 		}
 		assertEquals(expectedList, actualList);
 	}

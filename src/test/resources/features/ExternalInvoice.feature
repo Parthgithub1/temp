@@ -12,7 +12,6 @@ Feature: Test External Invoice
     When User enter contact details
     #When User click on "Get paid" button
     When user click on Get paid button
-    #When User click on "Get paid" button
     When User enter invoice details like amount is 2 and message is "This is the text of message"
     When User click on "Confirm" button
     When User click on "Send" button
