@@ -10,8 +10,7 @@ Feature: Test AddBill functionality
     When User click on Pay or Get Paid link
     When User enter search for business in Searchbar
     When User enter the contact deatils for AddBill
-    #When User click on Pay button
-    When User click on "Pay" button
+    When User click on Pay button
     When User enter add bill details
     When User click on "Confirm" button
     When User click on "Add" button
