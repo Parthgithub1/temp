@@ -48,7 +48,7 @@ Feature: Test Settings Tab Functionality
     When User login with "SettingChangePassword" and Login again after change password
     Then User should navigate to dashboard "SettingChangePassword"
     When User click on Profile Drop Down  and click on "Settings" option from Profile Drop-Down
-    When User click on "change password" button
+    When User click on "Change password" button
     When User Reset Change the Password
     Then User click on "Save" button
     Then User should see "Your password has been updated" text on the screen
