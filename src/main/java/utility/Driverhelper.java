@@ -19,7 +19,7 @@ public class Driverhelper {
 	public WebDriver setDriver(String browser, Boolean headless) {
 
 		if (browser == null) {
-			browser = "chrome";
+			browser = "firefox";
 		}
 		if (headless == null) {
 			headless = false;
