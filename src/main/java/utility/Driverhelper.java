@@ -41,9 +41,12 @@ public class Driverhelper {
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
 				options.addArguments("--no-sandbox");
-				      }
+				options.setBrowserVersion("122");
+
+			}
 			//WebDriverManager.chromedriver().clearDriverCache().setup();
 			//WebDriverManager.chromedriver().clearResolutionCache().setup();
+
 			WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
 			break;
