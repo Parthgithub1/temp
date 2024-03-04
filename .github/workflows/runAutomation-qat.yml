@@ -44,6 +44,9 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
           
+      - name: Maven Update
+        run: mvn clean install -U
+  
       - name: Run Testsuite environment QAT
         run: mvn test -Dheadless="true" -Denvironment="qat" -Dcucumber.filter.tags="@QAT and @Smoke"
         env:
