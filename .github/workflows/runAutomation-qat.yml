@@ -38,6 +38,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
+          chrome-version: '110'
           distribution: 'adopt'
           server-id: codeartifact
           server-username: MAVEN_USERNAME
