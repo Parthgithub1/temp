@@ -41,6 +41,7 @@ public class Driverhelper {
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
 				options.addArguments("--no-sandbox");
+				options.add_argument('--remote-debugging-pipe');
 
 			}
 			WebDriverManager.chromedriver().clearDriverCache().setup();
