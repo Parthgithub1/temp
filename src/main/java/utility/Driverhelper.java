@@ -2,9 +2,11 @@ package utility;
 
 import java.util.*;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
@@ -52,9 +54,9 @@ public class Driverhelper {
 
 			//WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
-				Capabilities caps = (driver).getCapabilities();
+				Capabilities caps = ((ChromiumDriver) driver).getCapabilities();
 				String browserName = caps.getBrowserName();
-                                String browserVersion = caps.getVersion();
+                                String browserVersion = caps.getBrowserVersion();
 				Log.info("\n value of browserName" + browserName);
 				Log.info("\n value of browserVersion" + browserVersion);
 				
