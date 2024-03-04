@@ -37,13 +37,15 @@ jobs:
       - name: Configure Java
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
-          chrome-version: '122'
+          java-version: '11'
           distribution: 'adopt'
           server-id: codeartifact
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
           
+      - name: Maven Update
+        run: mvn clean install -U
+  
       - name: Run Testsuite environment QAT
         run: mvn test -Dheadless="true" -Denvironment="qat" -Dcucumber.filter.tags="@QAT and @Smoke"
         env:
