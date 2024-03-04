@@ -52,7 +52,7 @@ public class Driverhelper {
 
 			//WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
-				Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+				Capabilities caps = (driver).getCapabilities();
 				String browserName = caps.getBrowserName();
                                 String browserVersion = caps.getVersion();
 				Log.info("\n value of browserName" + browserName);
