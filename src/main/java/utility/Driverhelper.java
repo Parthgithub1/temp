@@ -46,11 +46,17 @@ public class Driverhelper {
 				
 
 			}
+				
 			//WebDriverManager.chromedriver().clearDriverCache().setup();
 			//WebDriverManager.chromedriver().clearResolutionCache().setup();
 
 			//WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
+				String browserName = caps.getBrowserName();
+                                String browserVersion = caps.getVersion();
+				Log.info("\n value of browserName" + browserName);
+				Log.info("\n value of browserVersion" + browserVersion);
+				
 			break;
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
