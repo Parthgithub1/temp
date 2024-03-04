@@ -38,7 +38,7 @@ public class Driverhelper {
 			if (headless) {
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--headless=new");
-				options.addArguments("--window-size=1920,1080");
+				//options.addArguments("--window-size=1920,1080");
 				options.addArguments("--disable-dev-shm-usage");
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
