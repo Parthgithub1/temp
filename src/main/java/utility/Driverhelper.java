@@ -40,6 +40,8 @@ public class Driverhelper {
 				options.addArguments("--disable-dev-shm-usage");
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
+				options.addArguments("--no-sandbox");
+
 			}
 			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().clearResolutionCache().setup();
