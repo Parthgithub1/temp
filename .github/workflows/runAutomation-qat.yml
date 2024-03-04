@@ -47,7 +47,7 @@ jobs:
         run: mvn clean install -U
   
       - name: Run Testsuite environment QAT
-        run: mvn test -Dheadless="true" -Denvironment="qat" -Dcucumber.filter.tags="@QAT and @Smoke"
+        run: mvn test -Dheadless="false" -Denvironment="qat" -Dcucumber.filter.tags="@QAT and @Smoke"
         env:
           MAVEN_USERNAME: aws
           MAVEN_TOKEN: ${{ steps.token.outputs.token }}
