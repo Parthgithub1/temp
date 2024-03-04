@@ -36,13 +36,13 @@ public class Driverhelper {
 			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
 			options.setExperimentalOption("prefs", chromePrefs);
 			if (headless) {
+				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--headless=new");
-				//options.addArguments("--window-size=1920,1080");
+				options.addArguments("--window-size=1920,1080");
 				options.addArguments("--disable-dev-shm-usage");
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
-				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-debugging-port=9222");
 				//options.setBrowserVersion("118");
 				
