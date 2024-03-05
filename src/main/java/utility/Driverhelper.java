@@ -45,7 +45,8 @@ public class Driverhelper {
 				options.addArguments("--ignore-certificate-error");
 				options.addArguments("--remote-debugging-port=9222");
 				//options.setBrowserVersion("118");
-				
+				options.AddArgument("incognito");
+				options.AddArguments("test-type");
 
 			}
 				
