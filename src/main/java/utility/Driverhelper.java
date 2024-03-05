@@ -55,11 +55,11 @@ public class Driverhelper {
 			//WebDriverManager.chromedriver().setup();
 			driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", options);
 				tlDriver.set(new ChromeDriver(options));
-				Capabilities caps = ((ChromiumDriver) driver).getCapabilities();
-				String browserName = caps.getBrowserName();
-                                String browserVersion = caps.getBrowserVersion();
-				Log.info("\n value of browserName" + browserName);
-				Log.info("\n value of browserVersion" + browserVersion);
+				//Capabilities caps = ((ChromiumDriver) driver).getCapabilities();
+				//String browserName = caps.getBrowserName();
+                                //String browserVersion = caps.getBrowserVersion();
+				//Log.info("\n value of browserName" + browserName);
+				//Log.info("\n value of browserVersion" + browserVersion);
 				
 			break;
 		case "firefox":
