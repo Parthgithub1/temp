@@ -53,7 +53,7 @@ public class Driverhelper {
 			//WebDriverManager.chromedriver().clearResolutionCache().setup();
 
 			//WebDriverManager.chromedriver().setup();
-			driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options);
+			driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", options);
 				tlDriver.set(new ChromeDriver(options));
 				Capabilities caps = ((ChromiumDriver) driver).getCapabilities();
 				String browserName = caps.getBrowserName();
