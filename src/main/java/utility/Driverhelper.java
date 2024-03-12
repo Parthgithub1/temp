@@ -30,7 +30,6 @@ public class Driverhelper {
 		switch (browser) {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
-/*
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
 			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
@@ -46,8 +45,8 @@ public class Driverhelper {
 				     }
 			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().clearResolutionCache().setup();
-			WebDriverManager.chromedriver().setup();
-*/				
+			WebDriverManager.chromedriver().setup(options);
+				
 			tlDriver.set(new ChromeDriver());				
 			break;
 		case "firefox":
