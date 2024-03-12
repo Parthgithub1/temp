@@ -44,9 +44,9 @@ public class Driverhelper {
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
 				     }
-			WebDriverManager.chromedriver().clearDriverCache().setup();
-			WebDriverManager.chromedriver().clearResolutionCache().setup();
-			WebDriverManager.chromedriver().setup();
+			//WebDriverManager.chromedriver().clearDriverCache().setup();
+			//WebDriverManager.chromedriver().clearResolutionCache().setup();
+			//WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver(options));
 			break;
 		case "firefox":
