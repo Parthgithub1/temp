@@ -30,7 +30,7 @@ public class Driverhelper {
 		switch (browser) {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
-
+/*
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
 			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
@@ -44,10 +44,11 @@ public class Driverhelper {
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
 				     }
-			//WebDriverManager.chromedriver().clearDriverCache().setup();
-			//WebDriverManager.chromedriver().clearResolutionCache().setup();
-			//WebDriverManager.chromedriver().setup();
-			tlDriver.set(new ChromeDriver(options));
+			WebDriverManager.chromedriver().clearDriverCache().setup();
+			WebDriverManager.chromedriver().clearResolutionCache().setup();
+			WebDriverManager.chromedriver().setup();
+*/				
+			tlDriver.set(new ChromeDriver(options));				
 			break;
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
