@@ -47,9 +47,9 @@ jobs:
         run: mvn clean install -U
   
       
-      - name: setup-chromedriver
-        uses: nanasess/setup-chromedriver@v2.2.2
-            
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 117
       
       - name: Run Testsuite environment QAT
         run: mvn test -Dheadless="true" -Denvironment="qat" -Dcucumber.filter.tags="@QAT and @Smoke"
