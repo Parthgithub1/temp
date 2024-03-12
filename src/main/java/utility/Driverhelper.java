@@ -43,25 +43,11 @@ public class Driverhelper {
 				options.addArguments("--disable-dev-shm-usage");
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
-				options.addArguments("--remote-debugging-port=9222");
-				//options.setBrowserVersion("118");
-				options.addArguments("incognito");
-				options.addArguments("test-type");
-
-			}
-				
-			//WebDriverManager.chromedriver().clearDriverCache().setup();
-			//WebDriverManager.chromedriver().clearResolutionCache().setup();
-
-			//WebDriverManager.chromedriver().setup();
-			driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", options=options);
-				tlDriver.set(new ChromeDriver(options));
-				//Capabilities caps = ((ChromiumDriver) driver).getCapabilities();
-				//String browserName = caps.getBrowserName();
-                                //String browserVersion = caps.getBrowserVersion();
-				//Log.info("\n value of browserName" + browserName);
-				//Log.info("\n value of browserVersion" + browserVersion);
-				
+				     }
+			WebDriverManager.chromedriver().clearDriverCache().setup();
+			WebDriverManager.chromedriver().clearResolutionCache().setup();
+			WebDriverManager.chromedriver().setup();
+			
 			break;
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
