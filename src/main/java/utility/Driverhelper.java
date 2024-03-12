@@ -65,7 +65,7 @@ public class Driverhelper {
 			tlDriver.set(new ChromeDriver());
 		}
 
-		getDriver().manage().deleteAllCookies();
+		//getDriver().manage().deleteAllCookies();
 		if (headless) {
 			Log.info("\n value of headless" + headless);
 			Log.info("\n Selected screen size is ----> " + getDriver().manage().window().getSize() + "   <------ \n");
