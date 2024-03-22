@@ -83,6 +83,6 @@ public class Hooks {
 	@AfterAll
 	public static void sendEmail() {
 		extent.flush();
-		//Eventhelper.sendEmail();
+		Eventhelper.sendEmail();
 	}
 }
