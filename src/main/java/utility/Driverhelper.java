@@ -19,7 +19,7 @@ public class Driverhelper {
 	public WebDriver setDriver(String browser, Boolean headless) {
 
 		if (browser == null) {
-			browser = "chrome";
+			browser = "firefox";
 		}
 		if (headless == null) {
 			headless = false;
@@ -40,8 +40,8 @@ public class Driverhelper {
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
 				     }
-			//WebDriverManager.chromedriver().clearDriverCache().setup();
-			//WebDriverManager.chromedriver().clearResolutionCache().setup();
+			WebDriverManager.chromedriver().clearDriverCache().setup();
+			WebDriverManager.chromedriver().clearResolutionCache().setup();
 			WebDriverManager.chromedriver().setup();				
 			tlDriver.set(new ChromeDriver(options));				
 			break;
