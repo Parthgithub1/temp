@@ -42,8 +42,8 @@ public class Driverhelper {
 			}
 			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().clearResolutionCache().setup();
-			WebDriverManager.chromedriver().setup();	
-			tlDriver.set(new ChromeDriver(options));	
+			WebDriverManager.chromedriver().setup();
+			tlDriver.set(new ChromeDriver(options));
 			break;
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
