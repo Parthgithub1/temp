@@ -39,11 +39,11 @@ public class Driverhelper {
 				options.addArguments("--disable-dev-shm-usage");
 				options.addArguments("--ignore-ssl-errors=yes");
 				options.addArguments("--ignore-certificate-error");
-				     }
+			}
 			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().clearResolutionCache().setup();
-			WebDriverManager.chromedriver().setup();				
-			tlDriver.set(new ChromeDriver(options));				
+			WebDriverManager.chromedriver().setup();	
+			tlDriver.set(new ChromeDriver(options));	
 			break;
 		case "firefox":
 			FirefoxOptions foptions = new FirefoxOptions();
