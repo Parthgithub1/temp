@@ -28,7 +28,6 @@ public class Driverhelper {
 		switch (browser) {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
-
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
 			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
