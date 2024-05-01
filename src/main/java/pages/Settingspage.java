@@ -61,6 +61,7 @@ public class Settingspage {
 	}
 
 	public void enterMobileNumberforTwoFactorAuthentication(String mobileNumber) {
+		Eventhelper.autoScrollWindow(driver);
 		Eventhelper.useActionClassOperation(driver, txtMobileNumber, Constants.DOUBLECLICK);
 		Eventhelper.sendkeys(driver, txtMobileNumber, mobileNumber);
 	}
@@ -77,9 +78,8 @@ public class Settingspage {
 	}
 
 	public void clickOnMenuIconOfBank(String bankName) {
-		Eventhelper.threadWait(1500);
-		Eventhelper.click(driver, By.xpath("//b[text()='" + bankName
-				+ "']/ancestor::div[contains(@class,'AccountDetails_payment-method-info__wrapper')]//following-sibling::div[contains(@class,'SettingsPaymentMethods_payment-method-menu')]"));
+		Eventhelper.threadWait(3000);
+		Eventhelper.click(driver, By.xpath("//h5[text()='"+ bankName+"']/ancestor::div[contains(@class,'AccountDetails_payment-method-info__wrapper')]//following-sibling::div[contains(@class,'payment-method-menu')]"));
 		Eventhelper.threadWait(5000);
 	}
 
@@ -89,7 +89,7 @@ public class Settingspage {
 
 	public boolean isAccountTypeSet(String bankname, String accontType) {
 		return Eventhelper.isElementDisplayed(driver,
-				By.xpath("//b[text()='" + bankname + "']/following-sibling::div/span[text()='" + accontType + "']"));
+				By.xpath("//h5[text()='" + bankname + "']/following-sibling::div/span[text()='" + accontType + "']"));
 	}
 
 	public void enterCurrentPassword() {

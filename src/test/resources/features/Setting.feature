@@ -54,7 +54,7 @@ Feature: Test Settings Tab Functionality
     Then User should see "Your password has been updated" text on the screen
     Then User click on "Dashboard" button to navigate to dashboard
     Then User click on "Receivable" Container
-    Then User should save the amount of Hopscotch Balance from Accounting Page
+    #Then User should save the amount of Hopscotch Balance from Accounting Page
     When User click on Profile Drop Down  and click on "Log Out" option from Profile Drop-Down
     Then User should see "Sign in" text on the screen
 

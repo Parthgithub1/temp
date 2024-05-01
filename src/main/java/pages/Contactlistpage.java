@@ -15,7 +15,7 @@ public class Contactlistpage {
 	private By txtEmail = By.xpath("//input[@name='email']");
 	private By btnAddNewBusiness = By.xpath("//span[contains(text(),'as a new contact')]");
 	private By txtSearchBarforContact = By.xpath("//input[contains(@name ,'search')]");
-	private By newContactAddedName = By.xpath("//span[contains(@class,'InfoHeader_header')]");
+	private By newContactAddedName = By.xpath("//h3[contains(@class,'InfoHeader_header')]");
 	private By lblBusinessNameinContactListGrid = By.xpath("//td[1]");
 	private By btnBackFromContactProfileScreen = By
 			.xpath("//button[contains(@class,'Breadcrumbs_breadcrumbs')]//*[name()='svg'][1]");
@@ -86,7 +86,7 @@ public class Contactlistpage {
 			rowXpath = "";
 		}
 		By lstOfSearchforContact = By
-				.xpath(rowXpath + "//div[contains(@class,'entity-short-card')]/following-sibling::p");
+				.xpath(rowXpath + "//div[contains(@class,'entity-short-card')]//div[2]//h5");
 		Eventhelper.click(driver, lstOfSearchforContact);
 	}
 
@@ -125,7 +125,7 @@ public class Contactlistpage {
 		if (rowXpath == null) {
 			rowXpath = "";
 		}
-		By btnOfMoreActionsGrid = By.xpath(rowXpath + "//div[contains(@id,'actionPopup')]");
+		By btnOfMoreActionsGrid = By.xpath(rowXpath + "//button[contains(@id,'actionPopup')]");
 		Eventhelper.click(driver, btnOfMoreActionsGrid);
 	}
 
@@ -140,7 +140,7 @@ public class Contactlistpage {
 		}
 		return Eventhelper
 				.getTextofElement(driver,
-						By.xpath(xpath + "//td[1]//div[contains(@class,'entity-short-card__info business')]"))
+						By.xpath(xpath + "//td[1]//div[contains(@class,'entity-short-card business_business')]//h5"))
 				.equals(bName);
 	}
 

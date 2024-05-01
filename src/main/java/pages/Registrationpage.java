@@ -54,15 +54,17 @@ public class Registrationpage {
 		By selectEmployee = By.xpath("//div[contains(text(),\"1-2\")]");
 		By ddHowdDidYouHeard = By.xpath("//div[@id='howDidYouHear']");
 		By selectHowdDidYouHear = By.xpath("//div[contains(text(),\"Blog post\")]");
-		By txtAreaExistingAccountingMethod = By.xpath("//textarea[@name='currentInvoiceBillPayWorkflow']");
-
+		//By txtAreaExistingAccountingMethod = By.xpath("//textarea[@name='currentInvoiceBillPayWorkflow']");
+		By lblPlanToUseFlow= By.xpath("//label[@for='acceptFlow']");
+		
 		Eventhelper.click(driver, ddIndustry);
 		Eventhelper.click(driver, selectIndustry);
 		Eventhelper.click(driver, ddEmployee);
 		Eventhelper.click(driver, selectEmployee);
 		Eventhelper.click(driver, ddHowdDidYouHeard);
 		Eventhelper.click(driver, selectHowdDidYouHear);
-		Eventhelper.sendkeys(driver, txtAreaExistingAccountingMethod, "All the accounting is done in a manual way");
+		//Eventhelper.sendkeys(driver, txtAreaExistingAccountingMethod, "All the accounting is done in a manual way");
+		Eventhelper.click(driver, lblPlanToUseFlow);
 
 	}
 
