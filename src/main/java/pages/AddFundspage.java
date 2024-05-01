@@ -33,12 +33,12 @@ public class AddFundspage {
 	public float hopscotchBalanceAfterAddingFund() {
 		Eventhelper.threadWait(5000);
 		return Float.parseFloat(Eventhelper.getValueOfAttribute(driver,
-				By.xpath("//div[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
+				By.xpath("//h4[contains(.,'Hopscotch Balance')]/following-sibling::div[@id='HopscotchBalance']"),
 				"zurobalance-amount").replace("$", "").replace(",", ""));
 	}
 
 	public String modalHeader(String text) {
-		By xpath = By.xpath("//h4[contains(@class,'my-0')  and contains(text(),'" + text + "')]");
+		By xpath = By.xpath("//h3[contains(@class,'my-0')  and contains(text(),'" + text + "')]");
 		return Eventhelper.getTextofElement(driver, xpath);
 	}
 

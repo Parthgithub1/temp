@@ -10,9 +10,9 @@ public class Profilepage {
 
 	private WebDriver driver;
 	private By txtAreaforAboutinProfile = By.xpath("(//textarea[@name='description'])[1]");
-	private By editIcon = By.xpath("//button[contains(@class,'EditButton')]");
+	private By editIcon = By.xpath("(//button[contains(@class,'btn btn--icon btn--small icon-button light')])[1]");
 	private By editfromBanner = By.xpath("//button[contains(@class,'ProfileTopSection_edit-banner')]");
-	private By editAbout = By.xpath("//h4[contains(text(),'About')]/following-sibling::div/button");
+	private By editAbout = By.xpath("//h4[contains(text(),'About')]//following-sibling::button");
 	private By txtWebsite = By.xpath("//input[@name='website']");
 	private By txtYearFoubnded = By.xpath("//input[@name='yearFounded']");
 	private By ddIndustry = By.xpath("//div[@id='industry']");
@@ -95,7 +95,7 @@ public class Profilepage {
 	public boolean isVerificationOfUpdatedProfileMatched(String businessName, String handle, String industry, String webSite,
 			String yearFound) {
 		boolean flag = false;
-		By businessNameVerification = By.xpath("//span[ contains(@class,'InfoHeader_header__title') ]");
+		By businessNameVerification = By.xpath("//h3[ contains(@class,'InfoHeader_header__title') ]");
 		By handleVerification = By.xpath("//p[contains(@class,'InfoHeader_header__handle')]");
 		By industryVerification = By.xpath("//p[contains(@class,'InfoHeader_header__location')]");
 		By webSiteVerification = By.xpath("//a[contains(.,'" + webSite + "')]");
@@ -113,7 +113,7 @@ public class Profilepage {
 
 	public boolean verificationofAbout(String aboutText) {
 		boolean flag = false;
-		By txtAbout = By.xpath("//div[contains(@class,'CompanyDescription_company__about')]");
+		By txtAbout = By.xpath("//p[contains(@class,'CompanyDescription_company__about')]");
 		if (Eventhelper.getTextofElement(driver, txtAbout).contains(aboutText)) {
 			flag = true;
 		}
